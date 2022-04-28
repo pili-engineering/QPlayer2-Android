@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="PlayerEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/white_alpha60</item>
+        <item name="colorControlActivated">@color/white_alpha60</item>
+    </style>
+
+</resources>
