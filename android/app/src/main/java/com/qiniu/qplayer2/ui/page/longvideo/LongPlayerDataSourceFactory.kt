@@ -2,7 +2,7 @@ package com.qiniu.qplayer2.ui.page.longvideo
 
 import com.qiniu.qmedia.component.player.QMediaModelBuilder
 import com.qiniu.qmedia.component.player.QURLType
-import com.qiniu.qplayer2ext.commonplayer.DisplayOrientation
+import com.qiniu.qplayer2ext.commonplayer.data.DisplayOrientation
 import com.qiniu.qplayer2ext.commonplayer.data.CommonPlayerDataSource
 import com.qiniu.qplayer2.repository.setting.PlayerSettingRespostory
 

@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayer
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerConfig
-import com.qiniu.qplayer2ext.commonplayer.DisplayOrientation
+import com.qiniu.qplayer2ext.commonplayer.data.DisplayOrientation
 import com.qiniu.qplayer2ext.commonplayer.data.CommonPlayerDataSource
 import com.qiniu.qplayer2ext.commonplayer.layer.control.ControlPanelConfig
 import com.qiniu.qplayer2ext.commonplayer.layer.control.ControlPanelConfigElement
@@ -18,7 +18,7 @@ import com.qiniu.qplayer2.ui.page.longvideo.service.toast.PlayerToastServiceOwne
 
 class LongVideoActivity : AppCompatActivity() {
 
-    private lateinit var mCommonPlayer: CommonPlayer<ILongEnviromentCoreHandler,
+    private lateinit var mCommonPlayer: CommonPlayer<Any,
             LongLogicProvider, LongPlayableParams, LongVideoParams>
 
     private lateinit var mPlayerDataSource: CommonPlayerDataSource<LongPlayableParams, LongVideoParams>
@@ -39,7 +39,7 @@ class LongVideoActivity : AppCompatActivity() {
 
     private fun initCommonPlayer() {
         mPlayerDataSource = LongPlayerDataSourceFactory.create()
-        val config = CommonPlayerConfig.Builder<ILongEnviromentCoreHandler,
+        val config = CommonPlayerConfig.Builder<Any,
                 LongLogicProvider, LongPlayableParams, LongVideoParams>()
             .addControlPanel(
                 LongControlPanelType.Normal.type,
@@ -57,8 +57,7 @@ class LongVideoActivity : AppCompatActivity() {
                     )
                 )
             ).addEnviroment(LongEnviromentType.LONG.type,
-                LongPlayerEnviroment(),
-                LongEnviromentCoreHandler())
+                LongPlayerEnviroment())
             .setCommonPlayerScreenChangedListener(LongCommonPlayerScreenChangedListener(this, findViewById(R.id.video_container_FL)))
             .setLogicProvider(LongLogicProvider())
             .setPlayerDataSource(mPlayerDataSource)

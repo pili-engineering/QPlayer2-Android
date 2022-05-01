@@ -59,8 +59,17 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
-    implementation("com.qiniu:qplayer2-core:0.0.1-alpha")
-    implementation("com.qiniu:qplayer2-ext:0.0.1-alpha")
+    if (use_aar) {
+        implementation("com.qiniu:qplayer2-core:0.0.1-alpha")
+        implementation("com.qiniu:qplayer2-ext:0.0.2-alpha")
+
+    } else {
+
+        implementation project(path: ':qplayer2-ext')
+        implementation project(path: ':qplayer2-core')
+
+    }
+
 
     implementation 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
     implementation 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0

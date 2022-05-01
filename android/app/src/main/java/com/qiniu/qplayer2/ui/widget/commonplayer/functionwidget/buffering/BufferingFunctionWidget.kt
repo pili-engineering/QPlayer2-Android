@@ -10,6 +10,7 @@ import com.qiniu.qplayer2ext.commonplayer.layer.function.PlayerFunctionContainer
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
+import com.qiniu.qplayer2ext.commonplayer.layer.function.FunctionWidgetConfig
 
 class BufferingFunctionWidget(context: Context):
     BaseFunctionWidget<LongLogicProvider, LongPlayableParams, LongVideoParams>(context)
@@ -19,15 +20,15 @@ class BufferingFunctionWidget(context: Context):
     override val tag: String
         get() = "BufferingFunctionWidget"
 
-    override val functionWidgetConfig: PlayerFunctionContainer.FunctionWidgetConfig
+    override val functionWidgetConfig: FunctionWidgetConfig
         get() {
-            val builder = PlayerFunctionContainer.FunctionWidgetConfig.Builder()
+            val builder = FunctionWidgetConfig.Builder()
             builder.persistent(true)
             builder.dismissWhenVideoCompleted(true)
             builder.dismissWhenVideoChange(false)
             builder.dismissWhenScreenModeChange(false)
             builder.dismissWhenActivityStop(false)
-            builder.launchType(PlayerFunctionContainer.FunctionWidgetConfig.LAUNCH_TYPE_NORMAL)
+            builder.launchType(FunctionWidgetConfig.LAUNCH_TYPE_NORMAL)
             return builder.build()
         }
 

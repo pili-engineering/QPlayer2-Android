@@ -11,6 +11,7 @@ import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
 import com.qiniu.qplayer2.ui.widget.commonplayer.functionwidget.buffering.BufferingFunctionWidget
+import com.qiniu.qplayer2ext.commonplayer.layer.function.FunctionWidgetLayoutParams
 
 class PlayerBufferingService:
     IPlayerService<LongLogicProvider, LongPlayableParams, LongVideoParams>, IPlayerBufferingService,
@@ -57,11 +58,11 @@ QIPlayerBufferingListener, QIPlayerStateChangeListener{
             //显示
         if (!mIsPrepared || mIsBuffering || mIsSeeking) {
             if (mBufferingToken == null) {
-                val layoutParams = PlayerFunctionContainer.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-                layoutParams.layoutType = PlayerFunctionContainer.LayoutParams.LAYOUT_TYPE_IN_CENTER
-                layoutParams.functionType = PlayerFunctionContainer.LayoutParams.FUNCTION_TYPE_EMBEDDED_VIEW
-                layoutParams.enterAnim = PlayerFunctionContainer.LayoutParams.NO_ANIMATION
-                layoutParams.exitAnim = PlayerFunctionContainer.LayoutParams.NO_ANIMATION
+                val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                layoutParams.layoutType = FunctionWidgetLayoutParams.LAYOUT_TYPE_IN_CENTER
+                layoutParams.functionType = FunctionWidgetLayoutParams.FUNCTION_TYPE_EMBEDDED_VIEW
+                layoutParams.enterAnim = FunctionWidgetLayoutParams.NO_ANIMATION
+                layoutParams.exitAnim = FunctionWidgetLayoutParams.NO_ANIMATION
                 layoutParams.touchOutsideDismiss(false)
                 mBufferingToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(BufferingFunctionWidget::class.java, layoutParams)
             }

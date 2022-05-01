@@ -4,14 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerDownloadTextWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerDownloadTextWidget
         android:id="@+id/download_speed_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerBiteRateTextWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerBiteRateTextWidget
         android:id="@+id/biterate_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         app:layout_constraintLeft_toRightOf="@+id/download_speed_TV"
         android:layout_marginLeft="4dp"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerFPSTextWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerFPSTextWidget
         android:id="@+id/fps_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
         app:layout_constraintLeft_toRightOf="@+id/biterate_TV"
         android:layout_marginLeft="4dp"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerPausePlayWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerPausePlayWidget
         android:id="@+id/pause_play_Btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="4dp"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerSeekWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerSeekWidget
         android:id="@+id/seek_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         app:layout_constraintStart_toEndOf="@+id/pause_play_Btn"
         app:layout_constraintEnd_toStartOf="@+id/progress_TV"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerProgressTextWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerProgressTextWidget
         android:id="@+id/progress_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginEnd="2dp"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerFullScreenWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerFullScreenWidget
         android:id="@+id/fullscreen_IV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

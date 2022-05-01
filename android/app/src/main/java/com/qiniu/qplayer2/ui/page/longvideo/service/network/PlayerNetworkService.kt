@@ -14,6 +14,7 @@ import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
 import com.qiniu.qplayer2.ui.widget.commonplayer.functionwidget.error.ErrorFunctionWidget
+import com.qiniu.qplayer2ext.commonplayer.layer.function.FunctionWidgetLayoutParams
 
 class PlayerNetworkService:
     IPlayerService<LongLogicProvider, LongPlayableParams, LongVideoParams>, QIPlayerNetworkListener,
@@ -26,8 +27,6 @@ class PlayerNetworkService:
     override fun onStart() {
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerReconnectListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerStateChangeListener(this)
-
-
     }
 
     override fun onStop() {
@@ -89,12 +88,12 @@ class PlayerNetworkService:
         error: QIPlayerNetworkListener.NetworkError
     ) {
 
-        val layoutParams = PlayerFunctionContainer.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        layoutParams.functionType = PlayerFunctionContainer.LayoutParams.FUNCTION_TYPE_EMBEDDED_VIEW
+        val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        layoutParams.functionType = FunctionWidgetLayoutParams.FUNCTION_TYPE_EMBEDDED_VIEW
 
-        layoutParams.layoutType = PlayerFunctionContainer.LayoutParams.LAYOUT_TYPE_IN_CENTER
-        layoutParams.enterAnim = PlayerFunctionContainer.LayoutParams.NO_ANIMATION
-        layoutParams.exitAnim = PlayerFunctionContainer.LayoutParams.NO_ANIMATION
+        layoutParams.layoutType = FunctionWidgetLayoutParams.LAYOUT_TYPE_IN_CENTER
+        layoutParams.enterAnim = FunctionWidgetLayoutParams.NO_ANIMATION
+        layoutParams.exitAnim = FunctionWidgetLayoutParams.NO_ANIMATION
         layoutParams.touchOutsideDismiss(false)
 
         mErrorToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(

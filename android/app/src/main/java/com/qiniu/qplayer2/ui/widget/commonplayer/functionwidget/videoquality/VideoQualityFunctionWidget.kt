@@ -17,6 +17,7 @@ import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
 import com.qiniu.qplayer2ext.common.measure.DpUtils
+import com.qiniu.qplayer2ext.commonplayer.layer.function.FunctionWidgetConfig
 
 class VideoQualityFunctionWidget (context: Context):
     BaseFunctionWidget<LongLogicProvider, LongPlayableParams, LongVideoParams>(context) {
@@ -96,9 +97,9 @@ class VideoQualityFunctionWidget (context: Context):
         }
     }
 
-    override val functionWidgetConfig: PlayerFunctionContainer.FunctionWidgetConfig
+    override val functionWidgetConfig: FunctionWidgetConfig
         get() {
-            val builder = PlayerFunctionContainer.FunctionWidgetConfig.Builder()
+            val builder = FunctionWidgetConfig.Builder()
             builder.dismissWhenActivityStop(true)
             builder.dismissWhenScreenModeChange(true)
             builder.dismissWhenVideoChange(true)

@@ -1,4 +1,4 @@
-package com.qiniu.qplayer2.ui.widget.commonplayer
+package com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget
 
 import android.annotation.SuppressLint
 import android.content.Context

@@ -19,6 +19,7 @@ import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
 import com.qiniu.qplayer2ext.common.rxjava3.into
 import com.qiniu.qplayer2ext.common.rxjava3.subscribeBy
+import com.qiniu.qplayer2ext.commonplayer.layer.function.FunctionWidgetConfig
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
@@ -62,9 +63,9 @@ class SettingFunctionWidget(context: Context) :
     override val tag: String
         get() = "SettingFunctionWidget"
 
-    override val functionWidgetConfig: PlayerFunctionContainer.FunctionWidgetConfig
+    override val functionWidgetConfig: FunctionWidgetConfig
         get() {
-            val builder = PlayerFunctionContainer.FunctionWidgetConfig.Builder()
+            val builder = FunctionWidgetConfig.Builder()
             builder.dismissWhenActivityStop(true)
             builder.dismissWhenScreenModeChange(true)
             builder.dismissWhenVideoChange(true)

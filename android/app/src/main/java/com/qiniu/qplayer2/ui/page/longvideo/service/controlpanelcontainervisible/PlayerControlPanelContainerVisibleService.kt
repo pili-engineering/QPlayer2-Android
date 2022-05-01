@@ -12,12 +12,13 @@ import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
 import com.qiniu.qplayer2.ui.widget.commonplayer.functionwidget.buffering.BufferingFunctionWidget
 import com.qiniu.qplayer2ext.common.thread.HandlerThreads
+import com.qiniu.qplayer2ext.commonplayer.layer.function.IOnFunctionWidgetVisibilityChangeListener
 
 class PlayerControlPanelContainerVisibleService
     : IPlayerService<LongLogicProvider, LongPlayableParams, LongVideoParams>,
     IPlayerControlPanelContainerVisibleService,
     OnSingleTapListener,
-    PlayerFunctionContainer.OnWidgetStateChangeListener<LongLogicProvider, LongPlayableParams, LongVideoParams>,
+    IOnFunctionWidgetVisibilityChangeListener<LongLogicProvider, LongPlayableParams, LongVideoParams>,
     QIPlayerStateChangeListener {
 
 

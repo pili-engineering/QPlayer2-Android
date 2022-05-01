@@ -1,4 +1,4 @@
-package com.qiniu.qplayer2.ui.widget.commonplayer
+package com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget
 
 import android.content.Context
 import android.util.AttributeSet
@@ -15,6 +15,7 @@ import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
 import com.qiniu.qplayer2.ui.widget.commonplayer.functionwidget.setting.SettingFunctionWidget
 import com.qiniu.qplayer2ext.common.measure.DpUtils
+import com.qiniu.qplayer2ext.commonplayer.layer.function.FunctionWidgetLayoutParams
 
 class CommonPlayerMoreSettingWidget: AppCompatImageView, View.OnClickListener,
     IControlWidget<LongLogicProvider, LongPlayableParams, LongVideoParams> {
@@ -48,8 +49,8 @@ class CommonPlayerMoreSettingWidget: AppCompatImageView, View.OnClickListener,
     }
 
     override fun onClick(v: View?) {
-        val layoutParams = PlayerFunctionContainer.LayoutParams(DpUtils.dpToPx(360), ViewGroup.LayoutParams.MATCH_PARENT)
-        layoutParams.layoutType = PlayerFunctionContainer.LayoutParams.LAYOUT_TYPE_ALIGN_RIGHT
+        val layoutParams = FunctionWidgetLayoutParams(DpUtils.dpToPx(360), ViewGroup.LayoutParams.MATCH_PARENT)
+        layoutParams.layoutType = FunctionWidgetLayoutParams.LAYOUT_TYPE_ALIGN_RIGHT
         mSettingToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(SettingFunctionWidget::class.java, layoutParams)
     }
 

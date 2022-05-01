@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerInsetControllerWidget
+<com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerInsetControllerWidget
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +12,7 @@
     app:contentLeftPadding="16dp"
     tools:ignore="VectorDrawableCompat">
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerBackWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerBackWidget
         android:id="@+id/back_IV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerDownloadTextWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerDownloadTextWidget
         android:id="@+id/download_speed_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         android:fontFamily="sans-serif-medium"
         android:textSize="14sp"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerBiteRateTextWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerBiteRateTextWidget
         android:id="@+id/biterate_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
         android:fontFamily="sans-serif-medium"
         android:textSize="14sp"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerFPSTextWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerFPSTextWidget
         android:id="@+id/fps_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
         android:textSize="14sp"/>
 
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerMoreSettingWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerMoreSettingWidget
         android:id="@+id/setting_IV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
         android:paddingEnd="11dp"
         android:paddingRight="11dp"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerProgressTextWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerProgressTextWidget
         android:id="@+id/progress_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginBottom="8dp"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerSeekWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerSeekWidget
         android:id="@+id/seek_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="4dp"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerPausePlayWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerPausePlayWidget
         android:id="@+id/pause_play_Btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="12dp"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerSelectVideoWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerSelectVideoWidget
         android:id="@+id/select_video_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
         android:fontFamily="sans-serif-medium"
         android:textSize="14sp"/>
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerSelectSpeedWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerSelectSpeedWidget
         android:id="@+id/select_speed_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -171,7 +171,7 @@
 
         />
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerSelectQualityWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerSelectQualityWidget
         android:id="@+id/select_quality_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -190,4 +190,4 @@
         android:fontFamily="sans-serif-medium"
         android:textSize="14sp"/>
 
-</com.qiniu.qplayer2.ui.widget.commonplayer.CommonPlayerInsetControllerWidget>
+</com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerInsetControllerWidget>
