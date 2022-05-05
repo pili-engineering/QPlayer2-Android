@@ -13,7 +13,6 @@ class MediaItemContextManager {
         var mediaItem = mMediaItemContextHashMap[id]
         if (mediaItem != null) {
             if (mediaItem.playMediaControlHandler.currentState == QMediaItemState.STOPED ||
-                mediaItem.playMediaControlHandler.currentState == QMediaItemState.USED ||
                 mediaItem.playMediaControlHandler.currentState == QMediaItemState.ERROR)  {
                 mediaItem.playMediaControlHandler.stop()
                 mMediaItemContextHashMap.remove(id)

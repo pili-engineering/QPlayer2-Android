@@ -32,7 +32,7 @@ class ShortVideoActivity : AppCompatActivity() {
             "https://api-demo.qnsdk.com/v1/kodo/bucket/demo-videos?prefix=shortvideo"
 
         private const val LOAD_FORWARD_POS = 1
-        private const val LOAD_BACKWARD_POS = 1
+        private const val LOAD_BACKWARD_POS = 2
 
     }
 
@@ -87,10 +87,9 @@ class ShortVideoActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         mMediaItemContextManager.discardAllMediaItemContexts()
-        mVideoView.playerControlHandler.stop()
         mVideoView.playerControlHandler.release()
+        super.onDestroy()
     }
 
     private fun fetchVideoList() {
@@ -160,15 +159,18 @@ class ShortVideoActivity : AppCompatActivity() {
 
     private fun updateMediaItemContext() {
 
+        var start = mCurrentPosition - LOAD_FORWARD_POS
+        var end = mCurrentPosition - 1
+
         //当前pos的视频 不加载
-        for (i: Int in 0 .. (mCurrentPosition - LOAD_FORWARD_POS)) {
+        for (i: Int in start .. end) {
             mPlayItemList.getOrNull(i)?.let {
                 mMediaItemContextManager.load(it.id, it.mediaModel, 0, QLogLevel.LOG_VERBOSE, this.getExternalFilesDir(null)?.path ?: "")
             }
         }
 
-        val start = mCurrentPosition + 1
-        val end = if((mCurrentPosition + LOAD_BACKWARD_POS) < mPlayItemList.size) mCurrentPosition + LOAD_BACKWARD_POS else mPlayItemList.size
+        start = mCurrentPosition + 1
+        end = mCurrentPosition + LOAD_BACKWARD_POS
         for (i: Int in start .. end) {
             mPlayItemList.getOrNull(i)?.let {
                 mMediaItemContextManager.load(it.id, it.mediaModel, 0, QLogLevel.LOG_VERBOSE, this.getExternalFilesDir(null)?.path ?: "")
