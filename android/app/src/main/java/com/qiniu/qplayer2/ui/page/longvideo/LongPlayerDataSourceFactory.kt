@@ -111,7 +111,7 @@ object LongPlayerDataSourceFactory {
             "http://pili-hdl.qnsdk.com/sdk-live/timestamp-6M.flv", true
         )
 
-        name = "4-直播-rtmp-flv-60fps"
+        name = "4-直播-http-flv-60fps"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
         dataSourceBuilder.addVideo(
             videoParams,
@@ -128,7 +128,7 @@ object LongPlayerDataSourceFactory {
         )
 
         builder = QMediaModelBuilder()
-        name = "5-直播-m3u8-60fps"
+        name = "5-直播-http-m3u8-60fps"
         builder.addElement(
             "", QURLType.QAUDIO_AND_VIDEO, 720,
             "http://pili-hls.qnsdk.com/sdk-live/timestamp-6M.m3u8", true
