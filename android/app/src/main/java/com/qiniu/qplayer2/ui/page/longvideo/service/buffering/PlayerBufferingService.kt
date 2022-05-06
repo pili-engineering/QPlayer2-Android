@@ -55,23 +55,24 @@ QIPlayerBufferingListener, QIPlayerStateChangeListener{
 
 
     private fun updateBufferingWidget() {
-            //显示
-        if (!mIsPrepared || mIsBuffering || mIsSeeking) {
-            if (mBufferingToken == null) {
-                val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-                layoutParams.layoutType = FunctionWidgetLayoutParams.LAYOUT_TYPE_IN_CENTER
-                layoutParams.functionType = FunctionWidgetLayoutParams.FUNCTION_TYPE_EMBEDDED_VIEW
-                layoutParams.enterAnim = FunctionWidgetLayoutParams.NO_ANIMATION
-                layoutParams.exitAnim = FunctionWidgetLayoutParams.NO_ANIMATION
-                layoutParams.touchOutsideDismiss(false)
-                mBufferingToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(BufferingFunctionWidget::class.java, layoutParams)
-            }
-        }//隐藏
-        else {
+
+        //隐藏
+        if (mBufferingToken != null) {
             mBufferingToken?.let {
                 mPlayerCore.playerFunctionWidgetContainer?.hideWidget(it)
             }
             mBufferingToken = null
+        }
+
+            //显示
+        if (!mIsPrepared || mIsBuffering || mIsSeeking) {
+            val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            layoutParams.layoutType = FunctionWidgetLayoutParams.LAYOUT_TYPE_IN_CENTER
+            layoutParams.functionType = FunctionWidgetLayoutParams.FUNCTION_TYPE_EMBEDDED_VIEW
+            layoutParams.enterAnim = FunctionWidgetLayoutParams.NO_ANIMATION
+            layoutParams.exitAnim = FunctionWidgetLayoutParams.NO_ANIMATION
+            layoutParams.touchOutsideDismiss(false)
+            mBufferingToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(BufferingFunctionWidget::class.java, layoutParams)
         }
     }
 
