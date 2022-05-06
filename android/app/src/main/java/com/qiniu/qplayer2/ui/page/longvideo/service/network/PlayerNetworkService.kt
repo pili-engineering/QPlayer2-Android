@@ -88,16 +88,18 @@ class PlayerNetworkService:
         error: QIPlayerNetworkListener.NetworkError
     ) {
 
-        val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        layoutParams.functionType = FunctionWidgetLayoutParams.FUNCTION_TYPE_EMBEDDED_VIEW
+        if (error != QIPlayerNetworkListener.NetworkError.INTERRUPT) {
+            val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            layoutParams.functionType = FunctionWidgetLayoutParams.FUNCTION_TYPE_EMBEDDED_VIEW
 
-        layoutParams.layoutType = FunctionWidgetLayoutParams.LAYOUT_TYPE_IN_CENTER
-        layoutParams.enterAnim = FunctionWidgetLayoutParams.NO_ANIMATION
-        layoutParams.exitAnim = FunctionWidgetLayoutParams.NO_ANIMATION
-        layoutParams.touchOutsideDismiss(false)
+            layoutParams.layoutType = FunctionWidgetLayoutParams.LAYOUT_TYPE_IN_CENTER
+            layoutParams.enterAnim = FunctionWidgetLayoutParams.NO_ANIMATION
+            layoutParams.exitAnim = FunctionWidgetLayoutParams.NO_ANIMATION
+            layoutParams.touchOutsideDismiss(false)
 
-        mErrorToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(
-            ErrorFunctionWidget::class.java, layoutParams)
+            mErrorToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(
+                ErrorFunctionWidget::class.java, layoutParams)
+        }
     }
 
     override fun onStateChanged(state: QPlayerState) {
