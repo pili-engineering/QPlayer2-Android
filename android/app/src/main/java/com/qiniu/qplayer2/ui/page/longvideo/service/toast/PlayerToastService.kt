@@ -1,5 +1,6 @@
 package com.qiniu.qplayer2.ui.page.longvideo.service.toast
 
+import android.util.Log
 import com.qiniu.qmedia.component.player.*
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
 import com.qiniu.qplayer2ext.commonplayer.layer.toast.PlayerToast
@@ -11,7 +12,8 @@ import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
 
 class PlayerToastService
     : IPlayerService<LongLogicProvider, LongPlayableParams, LongVideoParams>, IPlayerToastService,
-    QIPlayerQualityListener, QIPlayerVideoDecodeTypeListener, QIPlayerCommandNotAllowListener {
+    QIPlayerQualityListener, QIPlayerVideoDecodeListener,
+    QIPlayerCommandNotAllowListener, QIPlayerFormatListener, QIPlayerSEIDataListener {
 
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
 
@@ -19,6 +21,8 @@ class PlayerToastService
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerQualityChangeListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerVideoDecodeTypeListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerCommandNotAllowListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerFormatListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerSEIDataListener(this)
 
     }
 
@@ -26,6 +30,10 @@ class PlayerToastService
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerQualityChangeListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerVideoDecodeTypeListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerCommandNotAllowListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerFormatListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerSEIDataListener(this)
+
+
 
     }
 
@@ -103,7 +111,7 @@ class PlayerToastService
         mPlayerCore.playerToastContainer?.showToast(toast)
     }
 
-    override fun onDecodeByType(type: QPlayerDecodeType) {
+    override fun onVideoDecodeByType(type: QPlayerDecodeType) {
 
         val type = when(type) {
             QPlayerDecodeType.NONE -> "无"
@@ -123,6 +131,16 @@ class PlayerToastService
         mPlayerCore.playerToastContainer?.showToast(toast)
     }
 
+    override fun notSupportCodecFormat(codecId: Int) {
+        val toast = PlayerToast.Builder()
+            .toastItemType(PlayerToastConfig.TYPE_NORMAL)
+            .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
+            .setExtraString(PlayerToastConfig.EXTRA_TITLE, "不支持的编码类型：$codecId")
+            .duration(PlayerToastConfig.DURATION_3)
+            .build()
+        mPlayerCore.playerToastContainer?.showToast(toast)
+    }
+
     override fun onCommandNotAllow(commandName: String, state: QPlayerState) {
         val toast = PlayerToast.Builder()
             .toastItemType(PlayerToastConfig.TYPE_NORMAL)
@@ -130,5 +148,29 @@ class PlayerToastService
             .setExtraString(PlayerToastConfig.EXTRA_TITLE, "not allow $commandName 状态:$state")
             .duration(PlayerToastConfig.DURATION_3)
             .build()
+        mPlayerCore.playerToastContainer?.showToast(toast)
     }
+
+    override fun onFormatNotSupport() {
+        val toast = PlayerToast.Builder()
+            .toastItemType(PlayerToastConfig.TYPE_NORMAL)
+            .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
+            .setExtraString(PlayerToastConfig.EXTRA_TITLE, "流中有播放器不支持的像素格式或音频sample格式")
+            .duration(PlayerToastConfig.DURATION_3)
+            .build()
+        mPlayerCore.playerToastContainer?.showToast(toast)
+    }
+
+    override fun onSEIData(data: ByteArray) {
+        val toast = PlayerToast.Builder()
+            .toastItemType(PlayerToastConfig.TYPE_NORMAL)
+            .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
+            .setExtraString(PlayerToastConfig.EXTRA_TITLE, "SEI DATA:${data.decodeToString()}")
+            .duration(PlayerToastConfig.DURATION_3)
+            .build()
+        Log.i("PlayerToastService", "SEI DATA:${data}")
+        mPlayerCore.playerToastContainer?.showToast(toast)
+    }
+
+
 }

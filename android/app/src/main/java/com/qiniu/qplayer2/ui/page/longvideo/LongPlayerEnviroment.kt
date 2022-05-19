@@ -20,7 +20,9 @@ class LongPlayerEnviroment :
             ServiceOwnerType.PLAYER_CONTROL_PANEL_CONTATINER_VISIBLE_SERVICE.type,
             ServiceOwnerType.PLAYER_TOAST_SERVICE.type,
             ServiceOwnerType.PLAYER_BUFFERING_SERVICE.type,
-            ServiceOwnerType.PLAYER_NETWORK_SERVICE.type
+            ServiceOwnerType.PLAYER_NETWORK_SERVICE.type,
+            ServiceOwnerType.PLAYER_PANORAMA_TOUCH_SERVICE.type
+
         )
 
     private val mVideoPlayEventListener = object : ICommonPlayerControlHandler.ICommonVideoPlayEventListener<LongPlayableParams, LongVideoParams> {

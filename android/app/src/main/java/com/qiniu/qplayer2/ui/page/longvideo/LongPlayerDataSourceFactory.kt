@@ -2,6 +2,7 @@ package com.qiniu.qplayer2.ui.page.longvideo
 
 import com.qiniu.qmedia.component.player.QMediaModelBuilder
 import com.qiniu.qmedia.component.player.QURLType
+import com.qiniu.qmedia.component.player.QVideoRenderType
 import com.qiniu.qplayer2ext.commonplayer.data.DisplayOrientation
 import com.qiniu.qplayer2ext.commonplayer.data.CommonPlayerDataSource
 import com.qiniu.qplayer2.repository.setting.PlayerSettingRespostory
@@ -489,6 +490,9 @@ object LongPlayerDataSourceFactory {
             )
         )
 
+
+
+
         builder = QMediaModelBuilder()
         url = "https://sdk-release.qnsdk.com/test1.wma"
         builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 720, url, true)
@@ -547,7 +551,7 @@ object LongPlayerDataSourceFactory {
         )
 
         builder = QMediaModelBuilder()
-        name = "5-点播m3u8-加密"
+        name = "24-点播m3u8-加密"
         builder.addElement(
             "", QURLType.QAUDIO_AND_VIDEO, 720,
             "http://cdn.qiniushawn.top/timeshift3.m3u8", true
@@ -567,6 +571,47 @@ object LongPlayerDataSourceFactory {
                 )
             )
         )
+
+
+        builder = QMediaModelBuilder()
+        url = "http://demo-videos.qnsdk.com/VR-Panorama-Equirect-Angular-4500k.mp4"
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 4000, url, true, "","",
+            QVideoRenderType.PANORAMA_EQUIRECT_ANGULAR)
+        name = "25-点播-http-vr-Equirect-Angular-mp4"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L,
+                    false
+                )
+            )
+        )
+
+        builder = QMediaModelBuilder()
+        url = "http://pili-playback.qnsdk.com/recordings/z1.sdk-live.6666/1652355051_1652355244.m3u8"
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
+        name = "26-点播-http-m3u8-SEI"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L,
+                    false
+                )
+            )
+        )
+
 
 
         return dataSourceBuilder.build()

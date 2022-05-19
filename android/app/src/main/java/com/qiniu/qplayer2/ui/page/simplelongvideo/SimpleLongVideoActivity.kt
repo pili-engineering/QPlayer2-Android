@@ -65,7 +65,7 @@ class SimpleLongVideoActivity : AppCompatActivity(), IVideoHolderClickListener {
         mBufferingWidget.setPlayerControlHandler(mQSurfacePlayerView.playerControlHandler)
         mSettingVM = PlayerSettingVM(this.lifecycle)
 
-        mQSurfacePlayerView.playerControlHandler.start()
+        mQSurfacePlayerView.playerControlHandler.init()
         mQSurfacePlayerView.playerControlHandler.setDecodeType(
             mSettingVM.decoderTypeLiveData.value?: QPlayerSetting.QPlayerDecoder.QPLAYER_DECODER_SETTING_AUTO)
 

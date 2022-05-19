@@ -1,7 +1,7 @@
 package com.qiniu.qplayer2.ui.page.longvideo.service.network
 
 import android.view.ViewGroup
-import com.qiniu.qmedia.component.player.QIPlayerNetworkListener
+import com.qiniu.qmedia.component.player.QIPlayerMediaListener
 import com.qiniu.qmedia.component.player.QIPlayerStateChangeListener
 import com.qiniu.qmedia.component.player.QPlayerState
 import com.qiniu.qmedia.component.player.QURLType
@@ -17,7 +17,7 @@ import com.qiniu.qplayer2.ui.widget.commonplayer.functionwidget.error.ErrorFunct
 import com.qiniu.qplayer2ext.commonplayer.layer.function.FunctionWidgetLayoutParams
 
 class PlayerNetworkService:
-    IPlayerService<LongLogicProvider, LongPlayableParams, LongVideoParams>, QIPlayerNetworkListener,
+    IPlayerService<LongLogicProvider, LongPlayableParams, LongVideoParams>, QIPlayerMediaListener,
     QIPlayerStateChangeListener {
 
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
@@ -63,13 +63,13 @@ class PlayerNetworkService:
         urlType: QURLType,
         url: String,
         retryTime: Int,
-        error: QIPlayerNetworkListener.NetworkError
+        error: QIPlayerMediaListener.OpenError
     ) {
-        if (error == QIPlayerNetworkListener.NetworkError.NONE || mNotifyTime % 5 == 0) {
+        if (error == QIPlayerMediaListener.OpenError.NONE || mNotifyTime % 5 == 0) {
             val toast = PlayerToast.Builder()
                 .toastItemType(PlayerToastConfig.TYPE_NORMAL)
                 .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
-                .setExtraString(PlayerToastConfig.EXTRA_TITLE, if (error == QIPlayerNetworkListener.NetworkError.NONE)"重连成功." else "重连失败")
+                .setExtraString(PlayerToastConfig.EXTRA_TITLE, if (error == QIPlayerMediaListener.OpenError.NONE)"重连成功." else "重连失败")
                 .duration(PlayerToastConfig.DURATION_3)
                 .build()
 
@@ -85,10 +85,10 @@ class PlayerNetworkService:
         userType: String,
         urlType: QURLType,
         url: String,
-        error: QIPlayerNetworkListener.NetworkError
+        error: QIPlayerMediaListener.OpenError
     ) {
 
-        if (error != QIPlayerNetworkListener.NetworkError.INTERRUPT) {
+        if (error != QIPlayerMediaListener.OpenError.INTERRUPT) {
             val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
             layoutParams.functionType = FunctionWidgetLayoutParams.FUNCTION_TYPE_EMBEDDED_VIEW
 
