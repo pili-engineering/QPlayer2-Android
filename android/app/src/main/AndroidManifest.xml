@@ -4,6 +4,7 @@
     package="com.qiniu.qplayer2">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".application.QPlayerApplication"
@@ -23,7 +24,8 @@
 
             />
         <activity android:name=".ui.page.shortvideo.ShortVideoActivity" />
-        <activity android:name=".ui.page.main.MainActivity">
+        <activity android:name=".ui.page.main.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

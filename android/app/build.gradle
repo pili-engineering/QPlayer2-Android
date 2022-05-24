@@ -63,6 +63,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
     if (use_aar) {
         implementation("com.qiniu:qplayer2-core:0.0.1-alpha")
