@@ -39,15 +39,20 @@ class CommonPlayerPausePlayWidget : AppCompatImageView, View.OnClickListener,
 
     private fun updateIcon(state: QPlayerState) {
         if (state == QPlayerState.PLAYING) {
-            setImageLevel(1)
+            setImageResource(R.drawable.qmedia_player_pause_vector)
+//            setImageLevel(1)
         } else if (state == QPlayerState.PAUSED_RENDER ||
             state == QPlayerState.PREPARE ||
             state == QPlayerState.INIT ||
             state == QPlayerState.NONE
         ) {
-            setImageLevel(0)
+            setImageResource(R.drawable.qmedia_player_play_vector)
+
+//            setImageLevel(0)
         } else if( state == QPlayerState.COMPLETED) {
-            setImageLevel(2)
+            setImageResource(R.drawable.qmedia_ic_player_replay_vector)
+
+//            setImageLevel(2)
         }
     }
 
@@ -64,7 +69,7 @@ class CommonPlayerPausePlayWidget : AppCompatImageView, View.OnClickListener,
     }
 
     override fun onWidgetActive() {
-        setImageResource(R.drawable.qmedia_player_play_pause_level_list)
+//        setImageResource(R.drawable.qmedia_player_play_pause_level_list)
         setOnClickListener(this)
 
         updateIcon(mPlayerCore.mPlayerContext.getPlayerControlHandler().currentPlayerState)

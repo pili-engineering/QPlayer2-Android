@@ -37,10 +37,10 @@ class CommonPlayerBackWidget: AppCompatImageView, View.OnClickListener,
     }
 
     private fun init(context: Context, attrs: AttributeSet?) {
-        val drawableCompat = ContextCompat.getDrawable(context, R.drawable.qmedia_ic_player_back_vector)
-        if (drawableCompat != null) {
-            setImageDrawable(drawableCompat)
-        }
+//        val drawableCompat = ContextCompat.getDrawable(context, R.drawable.qmedia_ic_player_back_vector)
+//        if (drawableCompat != null) {
+//            setImageDrawable(drawableCompat)
+//        }
     }
 
     override fun onClick(v: View?) {

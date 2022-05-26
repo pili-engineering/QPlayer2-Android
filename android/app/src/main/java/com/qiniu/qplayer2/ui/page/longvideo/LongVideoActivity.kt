@@ -2,6 +2,7 @@ package com.qiniu.qplayer2.ui.page.longvideo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayer
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerConfig
@@ -26,6 +27,7 @@ class LongVideoActivity : AppCompatActivity() {
     private lateinit var mPlayerDataSource: CommonPlayerDataSource<LongPlayableParams, LongVideoParams>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         setContentView(R.layout.activity_long_video)
 
         initCommonPlayer()

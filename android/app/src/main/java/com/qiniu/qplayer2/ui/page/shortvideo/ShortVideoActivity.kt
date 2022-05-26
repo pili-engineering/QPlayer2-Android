@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -71,6 +72,8 @@ class ShortVideoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+
         setContentView(R.layout.activity_short_video)
         mShortVideoRV = findViewById(R.id.short_video_RV)
 
@@ -84,6 +87,7 @@ class ShortVideoActivity : AppCompatActivity() {
         mVideoView.playerRenderHandler.addPlayerRenderChangeListener(mPlayerRenderListener)
         mVideoView.playerControlHandler.init()
         fetchVideoList()
+
     }
 
     override fun onDestroy() {

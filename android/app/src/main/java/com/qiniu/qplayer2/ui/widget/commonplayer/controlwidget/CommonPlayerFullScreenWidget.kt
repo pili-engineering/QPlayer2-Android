@@ -38,10 +38,10 @@ class CommonPlayerFullScreenWidget: AppCompatImageView, View.OnClickListener,
 
     private fun init(context: Context, attrs: AttributeSet?) {
         contentDescription = "bbplayer_halfscreen_expand"
-        val drawableCompat = ContextCompat.getDrawable(context, R.drawable.qmedia_ic_player_fullscreen_vector)
-        if (drawableCompat != null) {
-            setImageDrawable(drawableCompat)
-        }
+//        val drawableCompat = ContextCompat.getDrawable(context, R.drawable.qmedia_ic_player_fullscreen_vector)
+//        if (drawableCompat != null) {
+//            setImageDrawable(drawableCompat)
+//        }
 
     }
 
