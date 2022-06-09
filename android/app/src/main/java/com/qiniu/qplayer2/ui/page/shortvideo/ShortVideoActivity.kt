@@ -85,7 +85,7 @@ class ShortVideoActivity : AppCompatActivity() {
         mVideoView = QSurfacePlayerView(this)
         mVideoView.playerControlHandler.addPlayerStateChangeListener(mPlayerStateChangeListener)
         mVideoView.playerRenderHandler.addPlayerRenderChangeListener(mPlayerRenderListener)
-        mVideoView.playerControlHandler.init()
+        mVideoView.playerControlHandler.init(this)
         fetchVideoList()
 
     }
@@ -106,7 +106,7 @@ class ShortVideoActivity : AppCompatActivity() {
                         builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 0, it.videoPath, true)
 
                         val playItem = PlayItem(it.videoPath.hashCode(),
-                            builder.build(),
+                            builder.build(false),
                             it.coverPath)
 
                         mPlayItemList.add(playItem)

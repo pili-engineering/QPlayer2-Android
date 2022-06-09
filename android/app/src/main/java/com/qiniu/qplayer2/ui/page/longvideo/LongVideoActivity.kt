@@ -1,7 +1,9 @@
 package com.qiniu.qplayer2.ui.page.longvideo
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayer
@@ -29,14 +31,13 @@ class LongVideoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         setContentView(R.layout.activity_long_video)
-
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         initCommonPlayer()
     }
 
     override fun onDestroy() {
-
         mCommonPlayer.release()
-
+        this is Context
         super.onDestroy()
 
     }
@@ -65,6 +66,7 @@ class LongVideoActivity : AppCompatActivity() {
             .setCommonPlayerScreenChangedListener(LongCommonPlayerScreenChangedListener(this, findViewById(R.id.video_container_FL)))
             .setLogicProvider(LongLogicProvider())
             .setPlayerDataSource(mPlayerDataSource)
+            .setContext(this)
             .addServiceOwner(PlayerControlPanelContainerVisibleServiceOwner())
             .addServiceOwner(PlayerToastServiceOwner())
             .addServiceOwner(PlayerBufferingServiceOwner())

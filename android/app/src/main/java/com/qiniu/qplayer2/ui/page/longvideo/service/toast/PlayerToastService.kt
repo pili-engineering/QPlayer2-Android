@@ -13,7 +13,7 @@ import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
 class PlayerToastService
     : IPlayerService<LongLogicProvider, LongPlayableParams, LongVideoParams>, IPlayerToastService,
     QIPlayerQualityListener, QIPlayerVideoDecodeListener,
-    QIPlayerCommandNotAllowListener, QIPlayerFormatListener, QIPlayerSEIDataListener {
+    QIPlayerCommandNotAllowListener, QIPlayerFormatListener, QIPlayerSEIDataListener, QIPlayerAuthenticationListener {
 
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
 
@@ -23,7 +23,7 @@ class PlayerToastService
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerCommandNotAllowListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerFormatListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerSEIDataListener(this)
-
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerAuthenticationListener(this)
     }
 
     override fun onStop() {
@@ -32,9 +32,7 @@ class PlayerToastService
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerCommandNotAllowListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerFormatListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerSEIDataListener(this)
-
-
-
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerAuthenticationListener(this)
     }
 
     override fun bindPlayerCore(playerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>) {
@@ -169,6 +167,29 @@ class PlayerToastService
             .duration(PlayerToastConfig.DURATION_3)
             .build()
         Log.i("PlayerToastService", "SEI DATA:${data}")
+        mPlayerCore.playerToastContainer?.showToast(toast)
+    }
+
+    override fun on_authentication_failed() {
+        val toast = PlayerToast.Builder()
+            .toastItemType(PlayerToastConfig.TYPE_NORMAL)
+            .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
+            .setExtraString(PlayerToastConfig.EXTRA_TITLE, "Qplayer2鉴权失败")
+            .duration(PlayerToastConfig.DURATION_3)
+            .build()
+        Log.e("PlayerToastService", "Qplayer2鉴权失败")
+
+        mPlayerCore.playerToastContainer?.showToast(toast)
+    }
+
+    override fun on_authentication_success() {
+        val toast = PlayerToast.Builder()
+            .toastItemType(PlayerToastConfig.TYPE_NORMAL)
+            .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
+            .setExtraString(PlayerToastConfig.EXTRA_TITLE, "Qplayer2鉴权成功")
+            .duration(PlayerToastConfig.DURATION_3)
+            .build()
+        Log.e("PlayerToastService", "Qplayer2鉴权成功")
         mPlayerCore.playerToastContainer?.showToast(toast)
     }
 

@@ -12,7 +12,6 @@ import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
 import com.qiniu.qplayer2ext.commonplayer.controller.ICommonPlayerControlHandler
 import com.qiniu.qplayer2ext.commonplayer.layer.function.BaseFunctionWidget
-import com.qiniu.qplayer2ext.commonplayer.layer.function.PlayerFunctionContainer
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
@@ -173,10 +172,10 @@ class VideoQualityFunctionWidget (context: Context):
         mQualityListAdapter.setItemClickListener(object : VideoQualityListAdapter.OnItemClickListener {
 
             override fun onItemClick(quality: QQuality) {
-                mPlayerCore.mCommonPlayerController.getCurrentPlayableParams()?.isLive?.let { isLive->
+                mPlayerCore.mCommonPlayerController.getCurrentPlayableParams()?.mediaModel?.isLive?.let { isLive->
                     mPlayerCore.mPlayerContext.getPlayerControlHandler().switchQuality(
                         quality.userType,
-                        quality.urlType.value,
+                        quality.urlType,
                         quality.quality, isLive)
                     mPlayerCore.playerFunctionWidgetContainer?.hideWidget(token)
                 }

@@ -62,7 +62,7 @@ class CommonPlayerSeekWidget : AppCompatSeekBar,
             videoParams: LongVideoParams
         ) {
             super.onPlayableParamsStart(playableParams, videoParams)
-            setSeekBarClickable(!playableParams.isLive)
+            setSeekBarClickable(!playableParams.mediaModel.isLive)
             progress = 0
             secondaryProgress = 0
         }
@@ -131,7 +131,7 @@ class CommonPlayerSeekWidget : AppCompatSeekBar,
     override fun onWidgetActive() {
         mPlayerCore.mCommonPlayerController.getCurrentPlayableParams().let { playableParams->
 
-            if (playableParams?.isLive == false) {
+            if (playableParams?.mediaModel?.isLive == false) {
                 mPlayerCore.mPlayerContext.getPlayerControlHandler().let {
                     mIsNeedUpdateProgress = it.currentPlayerState == QPlayerState.PLAYING
                     if (it.duration > 0) {

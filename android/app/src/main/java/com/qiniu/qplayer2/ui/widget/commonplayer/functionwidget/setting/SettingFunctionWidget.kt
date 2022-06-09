@@ -392,7 +392,7 @@ class SettingFunctionWidget(context: Context) :
 
         mPlayerCore.mCommonPlayerController.updateDataSource(object: CommonPlayerDataSource.CommonPlayableParamsUpdater<LongPlayableParams, LongVideoParams > {
             override fun update(playableParams: LongPlayableParams) {
-                if (!playableParams.isLive) {
+                if (!playableParams.mediaModel.isLive) {
                     playableParams.startPos = PlayerSettingRespostory.startPosition
                 }
             }

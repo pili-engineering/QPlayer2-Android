@@ -9,8 +9,7 @@ class LongPlayableParams(
     controlPanelType: String,
     displayOrientation: DisplayOrientation,
     environmentType: String,
-    startPos: Long,
-    val isLive: Boolean
+    startPos: Long
 ): CommonPlayableParams(mediaModel, controlPanelType, displayOrientation, environmentType, startPos) {
 
 }

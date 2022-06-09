@@ -45,12 +45,12 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
                     PlayerSettingRespostory.startPosition,
-                    false
+
                 )
             )
         )
@@ -73,12 +73,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    PlayerSettingRespostory.startPosition,
-                    false
+                    PlayerSettingRespostory.startPosition
                 )
             )
         )
@@ -95,12 +94,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    PlayerSettingRespostory.startPosition,
-                    false
+                    PlayerSettingRespostory.startPosition
                 )
             )
         )
@@ -118,12 +116,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(true),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    true
+                    0L
                 )
             )
         )
@@ -139,13 +136,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(true),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-
-                    true
+                    0L
                 )
             )
         )
@@ -161,13 +156,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(true),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-
-                    true
+                    0L
                 )
             )
         )
@@ -183,13 +176,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    PlayerSettingRespostory.startPosition,
-
-                    false
+                    PlayerSettingRespostory.startPosition
                 )
             )
         )
@@ -223,13 +214,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    PlayerSettingRespostory.startPosition,
-
-                    false
+                    PlayerSettingRespostory.startPosition
                 )
             )
         )
@@ -243,13 +232,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    PlayerSettingRespostory.startPosition,
-
-                    false
+                    PlayerSettingRespostory.startPosition
                 )
             )
         )
@@ -265,13 +252,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    PlayerSettingRespostory.startPosition,
-
-                    false
+                    PlayerSettingRespostory.startPosition
                 )
             )
         )
@@ -303,13 +288,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    PlayerSettingRespostory.startPosition,
-
-                    false
+                    PlayerSettingRespostory.startPosition
                 )
             )
         )
@@ -325,13 +308,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    PlayerSettingRespostory.startPosition,
-
-                    false
+                    PlayerSettingRespostory.startPosition
                 )
             )
         )
@@ -339,18 +320,71 @@ object LongPlayerDataSourceFactory {
         builder = QMediaModelBuilder()
         url = "rtmp://pili-publish.qnsdk.com/sdk-live/6666"
         builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
-        name = "13-直播-rtmp://pili-publish.qnsdk.com/sdk-live/6666"
+        name = "13-1-直播-rtmp://pili-publish.qnsdk.com/sdk-live/6666"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
         dataSourceBuilder.addVideo(
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(true),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    true
+                    0L
+                )
+            )
+        )
+
+        builder = QMediaModelBuilder()
+        url = "http://pili-hls.qnsdk.com/sdk-live/6666.m3u8"
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
+        name = "13-2-直播-http://pili-hls.qnsdk.com/sdk-live/6666.m3u8"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L
+                )
+            )
+        )
+
+        builder = QMediaModelBuilder()
+        url = "http://pili-hdl.qnsdk.com/sdk-live/6666.flv"
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
+        name = "13-3-直播-http://pili-hdl.qnsdk.com/sdk-live/6666.flv"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L
+                )
+            )
+        )
+
+        builder = QMediaModelBuilder()
+        url = "rtmp://ns8.indexforce.com/home/mystream"
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
+        name = "13-4-直播-rtmp://ns8.indexforce.com/home/mystream"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L
                 )
             )
         )
@@ -365,12 +399,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    false
+                    0L
                 )
             )
         )
@@ -385,12 +418,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    false
+                    0L
                 )
             )
         )
@@ -404,12 +436,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    false
+                    0L
                 )
             )
         )
@@ -423,12 +454,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    false
+                    0L
                 )
             )
         )
@@ -442,12 +472,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    false
+                    0L
                 )
             )
         )
@@ -461,12 +490,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    false
+                    0L
                 )
             )
         )
@@ -480,12 +508,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    false
+                    0L
                 )
             )
         )
@@ -502,12 +529,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    false
+                    0L
                 )
             )
         )
@@ -521,12 +547,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    false
+                    0L
                 )
             )
         )
@@ -540,37 +565,36 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.VERTICAL,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    false
+                    0L
                 )
             )
         )
 
-        builder = QMediaModelBuilder()
-        name = "24-点播m3u8-加密"
-        builder.addElement(
-            "", QURLType.QAUDIO_AND_VIDEO, 720,
-            "http://cdn.qiniushawn.top/timeshift3.m3u8", true
-        )
-        videoParams = LongVideoParams(name, name.hashCode().toLong())
-        dataSourceBuilder.addVideo(
-            videoParams,
-            arrayListOf<LongPlayableParams>(
-                LongPlayableParams(
-                    builder.build(),
-                    LongControlPanelType.Normal.type,
-                    DisplayOrientation.LANDSCAPE,
-                    LongEnviromentType.LONG.type,
-                    0L,
-
-                    true
-                )
-            )
-        )
+//        builder = QMediaModelBuilder()
+//        name = "24-点播m3u8-加密"
+//        builder.addElement(
+//            "", QURLType.QAUDIO_AND_VIDEO, 720,
+//            "http://cdn.qiniushawn.top/timeshift3.m3u8", true
+//        )
+//        videoParams = LongVideoParams(name, name.hashCode().toLong())
+//        dataSourceBuilder.addVideo(
+//            videoParams,
+//            arrayListOf<LongPlayableParams>(
+//                LongPlayableParams(
+//                    builder.build(),
+//                    LongControlPanelType.Normal.type,
+//                    DisplayOrientation.LANDSCAPE,
+//                    LongEnviromentType.LONG.type,
+//                    0L,
+//
+//                    true
+//                )
+//            )
+//        )
 
 
         builder = QMediaModelBuilder()
@@ -583,12 +607,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    false
+                    0L
                 )
             )
         )
@@ -602,12 +625,11 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
-                    0L,
-                    false
+                    0L
                 )
             )
         )
