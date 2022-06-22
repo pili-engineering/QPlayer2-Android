@@ -59,7 +59,7 @@ class CommonPlayerSelectQualityWidget: AppCompatTextView,
 
     override fun onClick(v: View?) {
         val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        layoutParams.layoutType = FunctionWidgetLayoutParams.LAYOUT_TYPE_ALIGN_RIGHT
+        layoutParams.layoutType = FunctionWidgetLayoutParams.LayoutAlignType.RIGHT
         mQualityToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(VideoQualityFunctionWidget::class.java, layoutParams)
     }
 }

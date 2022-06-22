@@ -4,7 +4,7 @@ import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
 import com.qiniu.qplayer2.ui.page.longvideo.service.ServiceOwnerType
-import com.qiniu.qplayer2ext.commonplayer.enviroment.IPlayerServiceOwner
+import com.qiniu.qplayer2ext.commonplayer.service.IPlayerServiceOwner
 import com.qiniu.qplayer2ext.commonplayer.service.IPlayerServiceManager
 import com.qiniu.qplayer2ext.commonplayer.service.PlayerServiceManager
 

@@ -14,10 +14,11 @@ import com.qiniu.qplayer2ext.commonplayer.layer.control.ControlPanelConfig
 import com.qiniu.qplayer2ext.commonplayer.layer.control.ControlPanelConfigElement
 import com.qiniu.qplayer2ext.commonplayer.screen.ScreenType
 import com.qiniu.qplayer2.repository.setting.PlayerSettingRespostory
+import com.qiniu.qplayer2.ui.page.longvideo.service.ServiceOwnerType
+import com.qiniu.qplayer2.ui.page.longvideo.service.buffering.PlayerBufferingService
 import com.qiniu.qplayer2.ui.page.longvideo.service.buffering.PlayerBufferingServiceOwner
 import com.qiniu.qplayer2.ui.page.longvideo.service.controlpanelcontainervisible.PlayerControlPanelContainerVisibleServiceOwner
 import com.qiniu.qplayer2.ui.page.longvideo.service.network.PlayerNetworkServiceOwner
-import com.qiniu.qplayer2.ui.page.longvideo.service.panorama.PlayerPanoramaTouchSerivice
 import com.qiniu.qplayer2.ui.page.longvideo.service.panorama.PlayerPanoramaTouchSeriviceOwner
 import com.qiniu.qplayer2.ui.page.longvideo.service.toast.PlayerToastServiceOwner
 
@@ -88,7 +89,7 @@ class LongVideoActivity : AppCompatActivity() {
 
         mCommonPlayer = CommonPlayer(config)
         mPlayerDataSource.getVideoParamsList()[0]?.also {
-            mCommonPlayer.playerControlHandler.switchVideo(it.id)
+            mCommonPlayer.playerVideoSwitcher.switchVideo(it.id)
         }
     }
 }

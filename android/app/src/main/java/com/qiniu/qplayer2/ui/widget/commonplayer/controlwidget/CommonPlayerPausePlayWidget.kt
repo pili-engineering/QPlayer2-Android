@@ -61,7 +61,7 @@ class CommonPlayerPausePlayWidget : AppCompatImageView, View.OnClickListener,
         if (playerState == QPlayerState.PLAYING) {
             mPlayerCore.mPlayerContext.getPlayerControlHandler().pauseRender()
         } else if (playerState == QPlayerState.COMPLETED){
-            mPlayerCore.mCommonPlayerController.replayCurrentVideo()
+            mPlayerCore.mCommonPlayerVideoSwitcher.replayCurrentVideo()
         } else {
             mPlayerCore.mPlayerContext.getPlayerControlHandler().resumeRender()
 

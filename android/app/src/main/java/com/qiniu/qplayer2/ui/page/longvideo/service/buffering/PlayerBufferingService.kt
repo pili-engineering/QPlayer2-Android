@@ -67,8 +67,8 @@ QIPlayerBufferingListener, QIPlayerStateChangeListener{
             //显示
         if (!mIsPrepared || mIsBuffering || mIsSeeking) {
             val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            layoutParams.layoutType = FunctionWidgetLayoutParams.LAYOUT_TYPE_IN_CENTER
-            layoutParams.functionType = FunctionWidgetLayoutParams.FUNCTION_TYPE_EMBEDDED_VIEW
+            layoutParams.layoutType = FunctionWidgetLayoutParams.LayoutAlignType.CENTER
+            layoutParams.functionType = FunctionWidgetLayoutParams.FunctionType.EMBEDDED_VIEW
             layoutParams.enterAnim = FunctionWidgetLayoutParams.NO_ANIMATION
             layoutParams.exitAnim = FunctionWidgetLayoutParams.NO_ANIMATION
             layoutParams.touchOutsideDismiss(false)

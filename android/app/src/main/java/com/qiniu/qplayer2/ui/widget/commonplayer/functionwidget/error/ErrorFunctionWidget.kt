@@ -7,7 +7,6 @@ import android.widget.Button
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
 import com.qiniu.qplayer2ext.commonplayer.layer.function.BaseFunctionWidget
-import com.qiniu.qplayer2ext.commonplayer.layer.function.PlayerFunctionContainer
 import com.qiniu.qplayer2ext.commonplayer.screen.ICommonPlayerScreenChangedListener
 import com.qiniu.qplayer2ext.commonplayer.screen.ScreenType
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
@@ -23,7 +22,7 @@ class ErrorFunctionWidget (context: Context):
 //    private lateinit var mBackIV: ImageView
 
     private val mRetryClickLister = View.OnClickListener {
-        mPlayerCore.mCommonPlayerController.replayCurrentVideo()
+        mPlayerCore.mCommonPlayerVideoSwitcher.replayCurrentVideo()
     }
 
     private val mBackClickListener =
@@ -48,7 +47,7 @@ class ErrorFunctionWidget (context: Context):
         get() {
             val builder = FunctionWidgetConfig.Builder()
             builder.dismissWhenActivityStop(true)
-            builder.dismissWhenScreenModeChange(true)
+            builder.dismissWhenScreenTypeChange(true)
             builder.dismissWhenVideoChange(true)
             builder.dismissWhenVideoCompleted(true)
             builder.persistent(true)

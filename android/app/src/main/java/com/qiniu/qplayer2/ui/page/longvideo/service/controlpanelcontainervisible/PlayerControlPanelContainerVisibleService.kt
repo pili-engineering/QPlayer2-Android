@@ -31,14 +31,14 @@ class PlayerControlPanelContainerVisibleService
 
     override fun onStart() {
         mPlayerCore.playerGestureLayer?.addOnSingleTapListener(this)
-        mPlayerCore.playerFunctionWidgetContainer?.addOnWidgetStateChangeListener(this)
+        mPlayerCore.playerFunctionWidgetContainer?.addOnFunctionWidgetVisibilityChangeListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerStateChangeListener(this)
 
     }
 
     override fun onStop() {
         mPlayerCore.playerGestureLayer?.removeOnSingleTapListener(this)
-        mPlayerCore.playerFunctionWidgetContainer?.removeOnWidgetStateChangeListener(this)
+        mPlayerCore.playerFunctionWidgetContainer?.removeOnFunctionWidgetVisibilityChangeListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerStateChangeListener(this)
     }
 

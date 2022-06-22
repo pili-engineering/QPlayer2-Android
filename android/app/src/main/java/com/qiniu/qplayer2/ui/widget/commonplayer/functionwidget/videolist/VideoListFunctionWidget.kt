@@ -9,9 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
-import com.qiniu.qplayer2ext.commonplayer.controller.ICommonPlayerControlHandler
+import com.qiniu.qplayer2ext.commonplayer.controller.ICommonPlayerVideoSwitcher
 import com.qiniu.qplayer2ext.commonplayer.layer.function.BaseFunctionWidget
-import com.qiniu.qplayer2ext.commonplayer.layer.function.PlayerFunctionContainer
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
@@ -27,15 +26,15 @@ class VideoListFunctionWidget(context: Context):
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
 
     private  val mVideoPlayEventListener = object :
-        ICommonPlayerControlHandler.ICommonVideoPlayEventListener<LongPlayableParams, LongVideoParams> {
+        ICommonPlayerVideoSwitcher.ICommonVideoPlayEventListener<LongPlayableParams, LongVideoParams> {
         override fun onVideoParamsStart(videoParams: LongVideoParams) {
-            mVideoListAdapter.setSelectedVideoId(mPlayerCore.mCommonPlayerController.getSwitchVideoParams()?.id?: -1L)
+            mVideoListAdapter.setSelectedVideoId(mPlayerCore.mCommonPlayerVideoSwitcher.getSwitchVideoParams()?.id?: -1L)
         }
 
         override fun onVideoParamsSetChanged() {
             super.onVideoParamsSetChanged()
             mVideoListAdapter.setItems(mPlayerCore.playerDataSource.getVideoParamsList())
-            mVideoListAdapter.setSelectedVideoId(mPlayerCore.mCommonPlayerController.getSwitchVideoParams()?.id?: -1L)
+            mVideoListAdapter.setSelectedVideoId(mPlayerCore.mCommonPlayerVideoSwitcher.getSwitchVideoParams()?.id?: -1L)
 
         }
         }
@@ -44,7 +43,7 @@ class VideoListFunctionWidget(context: Context):
         get() {
             val builder = FunctionWidgetConfig.Builder()
             builder.dismissWhenActivityStop(true)
-            builder.dismissWhenScreenModeChange(true)
+            builder.dismissWhenScreenTypeChange(true)
             builder.dismissWhenVideoChange(true)
             builder.dismissWhenVideoCompleted(true)
             builder.persistent(true)
@@ -57,13 +56,13 @@ class VideoListFunctionWidget(context: Context):
 
     override fun onWidgetShow() {
         mVideoListAdapter.setItems(mPlayerCore.playerDataSource.getVideoParamsList())
-        mVideoListAdapter.setSelectedVideoId(mPlayerCore.mCommonPlayerController.getSwitchVideoParams()?.id?: -1L)
+        mVideoListAdapter.setSelectedVideoId(mPlayerCore.mCommonPlayerVideoSwitcher.getSwitchVideoParams()?.id?: -1L)
 
-        mPlayerCore.mCommonPlayerController.addVideoPlayEventListener(mVideoPlayEventListener)
+        mPlayerCore.mCommonPlayerVideoSwitcher.addVideoPlayEventListener(mVideoPlayEventListener)
     }
 
     override fun onWidgetDismiss() {
-        mPlayerCore.mCommonPlayerController.removeVideoPlayEventListener(mVideoPlayEventListener)
+        mPlayerCore.mCommonPlayerVideoSwitcher.removeVideoPlayEventListener(mVideoPlayEventListener)
     }
 
     override fun createContentView(context: Context): View {
@@ -91,7 +90,7 @@ class VideoListFunctionWidget(context: Context):
         mVideosRV.adapter = mVideoListAdapter
         mVideoListAdapter.setItemClickListener(object : VideoListAdapter.OnItemClickListener {
             override fun onItemClick(id: Long) {
-                mPlayerCore.mCommonPlayerController.switchVideo(id)
+                mPlayerCore.mCommonPlayerVideoSwitcher.switchVideo(id)
 //                mPlayerCore.playerFunctionWidgetContainer?.hideWidget(token)
             }
         })

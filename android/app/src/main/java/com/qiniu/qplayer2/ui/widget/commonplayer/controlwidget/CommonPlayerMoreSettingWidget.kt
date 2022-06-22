@@ -50,7 +50,7 @@ class CommonPlayerMoreSettingWidget: AppCompatImageView, View.OnClickListener,
 
     override fun onClick(v: View?) {
         val layoutParams = FunctionWidgetLayoutParams(DpUtils.dpToPx(360), ViewGroup.LayoutParams.MATCH_PARENT)
-        layoutParams.layoutType = FunctionWidgetLayoutParams.LAYOUT_TYPE_ALIGN_RIGHT
+        layoutParams.layoutType = FunctionWidgetLayoutParams.LayoutAlignType.RIGHT
         mSettingToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(SettingFunctionWidget::class.java, layoutParams)
     }
 

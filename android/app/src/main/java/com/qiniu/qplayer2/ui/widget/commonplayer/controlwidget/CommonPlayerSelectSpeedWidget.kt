@@ -86,7 +86,7 @@ class CommonPlayerSelectSpeedWidget: AppCompatTextView,
 
     override fun onClick(v: View?) {
         val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        layoutParams.layoutType = FunctionWidgetLayoutParams.LAYOUT_TYPE_ALIGN_RIGHT
+        layoutParams.layoutType = FunctionWidgetLayoutParams.LayoutAlignType.RIGHT
         mSpeedToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(SpeedFunctionWidget::class.java, layoutParams)
     }
 }

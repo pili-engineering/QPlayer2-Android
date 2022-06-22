@@ -9,7 +9,7 @@ import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
-import com.qiniu.qplayer2ext.commonplayer.controller.ICommonPlayerControlHandler
+import com.qiniu.qplayer2ext.commonplayer.controller.ICommonPlayerVideoSwitcher
 import com.qiniu.qplayer2ext.commonplayer.layer.gesture.OnTouchListener
 import com.qiniu.qplayer2ext.commonplayer.service.IPlayerService
 import kotlin.math.abs
@@ -17,7 +17,7 @@ import kotlin.math.abs
 class PlayerPanoramaTouchSerivice :
     IPlayerService<LongLogicProvider, LongPlayableParams, LongVideoParams>,
     QIPlayerStateChangeListener, OnTouchListener,
-    ICommonPlayerControlHandler.ICommonVideoPlayEventListener<LongPlayableParams, LongVideoParams> {
+    ICommonPlayerVideoSwitcher.ICommonVideoPlayEventListener<LongPlayableParams, LongVideoParams> {
 
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
     private var PanoramaTouchEnable = false
@@ -30,11 +30,11 @@ class PlayerPanoramaTouchSerivice :
         const val TAG = "PanoramaTouchSerivice"
     }
     override fun onStart() {
-        mPlayerCore.mCommonPlayerController.addVideoPlayEventListener(this)
+        mPlayerCore.mCommonPlayerVideoSwitcher.addVideoPlayEventListener(this)
     }
 
     override fun onStop() {
-        mPlayerCore.mCommonPlayerController.removeVideoPlayEventListener(this)
+        mPlayerCore.mCommonPlayerVideoSwitcher.removeVideoPlayEventListener(this)
         mPlayerCore.playerGestureLayer?.setOnTouchListener(null)
     }
 
@@ -52,8 +52,8 @@ class PlayerPanoramaTouchSerivice :
     ) {
         val videoRenderType = playableParams.mediaModel.streamElements.getOrNull(0)?.videoRenderType
 
-        if (videoRenderType == QVideoRenderType.PANORAMA_EQUIRECT_ANGULAR.value ||
-            videoRenderType == QVideoRenderType.PANORAMA_ANGULAR_CUBEMAP.value
+        if (videoRenderType == QVideoRenderType.PANORAMA_EQUIRECT_ANGULAR.value
+//            || videoRenderType == QVideoRenderType.PANORAMA_ANGULAR_CUBEMAP.value
         ) {
             PanoramaTouchEnable = true
             mPlayerCore.playerGestureLayer?.setOnTouchListener(this)

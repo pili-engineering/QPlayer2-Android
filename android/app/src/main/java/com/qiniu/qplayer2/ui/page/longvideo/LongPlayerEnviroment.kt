@@ -2,7 +2,7 @@ package com.qiniu.qplayer2.ui.page.longvideo
 
 import android.os.Bundle
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
-import com.qiniu.qplayer2ext.commonplayer.controller.ICommonPlayerControlHandler
+import com.qiniu.qplayer2ext.commonplayer.controller.ICommonPlayerVideoSwitcher
 import com.qiniu.qplayer2ext.commonplayer.enviroment.ICommonPlayerEnvironment
 import com.qiniu.qplayer2.repository.setting.PlayerSettingRespostory
 import com.qiniu.qplayer2.ui.page.longvideo.service.ServiceOwnerType
@@ -25,7 +25,7 @@ class LongPlayerEnviroment :
 
         )
 
-    private val mVideoPlayEventListener = object : ICommonPlayerControlHandler.ICommonVideoPlayEventListener<LongPlayableParams, LongVideoParams> {
+    private val mVideoPlayEventListener = object : ICommonPlayerVideoSwitcher.ICommonVideoPlayEventListener<LongPlayableParams, LongVideoParams> {
         override fun onPlayableParamsWillChange(oldPlayableParams: LongPlayableParams?,
                                                 oldVideoParams: LongVideoParams?,
                                                 newPlayableParams: LongPlayableParams,
@@ -37,12 +37,12 @@ class LongPlayerEnviroment :
         }
     }
     override fun start() {
-        mPlayerCore.mCommonPlayerController.addVideoPlayEventListener(mVideoPlayEventListener)
+        mPlayerCore.mCommonPlayerVideoSwitcher.addVideoPlayEventListener(mVideoPlayEventListener)
 
     }
 
     override fun stop() {
-        mPlayerCore.mCommonPlayerController.removeVideoPlayEventListener(mVideoPlayEventListener)
+        mPlayerCore.mCommonPlayerVideoSwitcher.removeVideoPlayEventListener(mVideoPlayEventListener)
     }
 
     override fun authentication(

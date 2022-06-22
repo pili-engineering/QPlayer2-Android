@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
 import com.qiniu.qplayer2ext.commonplayer.layer.function.BaseFunctionWidget
-import com.qiniu.qplayer2ext.commonplayer.layer.function.PlayerFunctionContainer
 import com.qiniu.qplayer2.repository.setting.PlayerSettingRespostory
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
@@ -29,7 +28,7 @@ class SpeedFunctionWidget(context: Context):
         get() {
             val builder = FunctionWidgetConfig.Builder()
             builder.dismissWhenActivityStop(true)
-            builder.dismissWhenScreenModeChange(true)
+            builder.dismissWhenScreenTypeChange(true)
             builder.dismissWhenVideoChange(true)
             builder.dismissWhenVideoCompleted(true)
             builder.persistent(true)

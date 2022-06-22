@@ -6,7 +6,6 @@ import android.view.View
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
 import com.qiniu.qplayer2ext.commonplayer.layer.function.BaseFunctionWidget
-import com.qiniu.qplayer2ext.commonplayer.layer.function.PlayerFunctionContainer
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
@@ -26,9 +25,9 @@ class BufferingFunctionWidget(context: Context):
             builder.persistent(true)
             builder.dismissWhenVideoCompleted(true)
             builder.dismissWhenVideoChange(false)
-            builder.dismissWhenScreenModeChange(false)
+            builder.dismissWhenScreenTypeChange(false)
             builder.dismissWhenActivityStop(false)
-            builder.launchType(FunctionWidgetConfig.LAUNCH_TYPE_NORMAL)
+            builder.launchType(FunctionWidgetConfig.LaunchType.Normal)
             return builder.build()
         }
 

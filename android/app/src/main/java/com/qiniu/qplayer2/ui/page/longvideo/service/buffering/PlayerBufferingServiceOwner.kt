@@ -1,6 +1,6 @@
 package com.qiniu.qplayer2.ui.page.longvideo.service.buffering
 
-import com.qiniu.qplayer2ext.commonplayer.enviroment.IPlayerServiceOwner
+import com.qiniu.qplayer2ext.commonplayer.service.IPlayerServiceOwner
 import com.qiniu.qplayer2ext.commonplayer.service.IPlayerServiceManager
 import com.qiniu.qplayer2ext.commonplayer.service.PlayerServiceManager
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider

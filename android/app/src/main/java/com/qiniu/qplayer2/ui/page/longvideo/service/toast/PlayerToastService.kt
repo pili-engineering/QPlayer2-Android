@@ -18,7 +18,7 @@ class PlayerToastService
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
 
     override fun onStart() {
-        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerQualityChangeListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerQualityListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerVideoDecodeTypeListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerCommandNotAllowListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerFormatListener(this)
@@ -27,7 +27,7 @@ class PlayerToastService
     }
 
     override fun onStop() {
-        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerQualityChangeListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerQualityListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerVideoDecodeTypeListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerCommandNotAllowListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerFormatListener(this)

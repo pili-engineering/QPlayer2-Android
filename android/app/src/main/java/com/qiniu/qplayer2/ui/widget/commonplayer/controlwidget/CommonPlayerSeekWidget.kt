@@ -9,7 +9,7 @@ import com.qiniu.qmedia.component.player.QIPlayerProgressListener
 import com.qiniu.qmedia.component.player.QIPlayerStateChangeListener
 import com.qiniu.qmedia.component.player.QPlayerState
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
-import com.qiniu.qplayer2ext.commonplayer.controller.ICommonPlayerControlHandler
+import com.qiniu.qplayer2ext.commonplayer.controller.ICommonPlayerVideoSwitcher
 import com.qiniu.qplayer2ext.commonplayer.layer.control.IControlWidget
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
@@ -54,7 +54,7 @@ class CommonPlayerSeekWidget : AppCompatSeekBar,
 
     }
 
-    private val mVideoPlayEventListener = object : ICommonPlayerControlHandler.ICommonVideoPlayEventListener<LongPlayableParams, LongVideoParams> {
+    private val mVideoPlayEventListener = object : ICommonPlayerVideoSwitcher.ICommonVideoPlayEventListener<LongPlayableParams, LongVideoParams> {
 
 
         override fun onPlayableParamsStart(
@@ -129,7 +129,7 @@ class CommonPlayerSeekWidget : AppCompatSeekBar,
     }
 
     override fun onWidgetActive() {
-        mPlayerCore.mCommonPlayerController.getCurrentPlayableParams().let { playableParams->
+        mPlayerCore.mCommonPlayerVideoSwitcher.getCurrentPlayableParams().let { playableParams->
 
             if (playableParams?.mediaModel?.isLive == false) {
                 mPlayerCore.mPlayerContext.getPlayerControlHandler().let {
@@ -151,7 +151,7 @@ class CommonPlayerSeekWidget : AppCompatSeekBar,
             it.addPlayerStateChangeListener(mPlayerStateChangeListener)
         }
         setOnSeekBarChangeListener(this)
-        mPlayerCore.mCommonPlayerController.addVideoPlayEventListener(mVideoPlayEventListener)
+        mPlayerCore.mCommonPlayerVideoSwitcher.addVideoPlayEventListener(mVideoPlayEventListener)
 
     }
 
@@ -163,7 +163,7 @@ class CommonPlayerSeekWidget : AppCompatSeekBar,
 
         }
 
-        mPlayerCore.mCommonPlayerController.removeVideoPlayEventListener(mVideoPlayEventListener)
+        mPlayerCore.mCommonPlayerVideoSwitcher.removeVideoPlayEventListener(mVideoPlayEventListener)
         setOnSeekBarChangeListener(null)
 
     }

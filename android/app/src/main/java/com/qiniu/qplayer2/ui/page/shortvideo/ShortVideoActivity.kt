@@ -84,7 +84,7 @@ class ShortVideoActivity : AppCompatActivity() {
 
         mVideoView = QSurfacePlayerView(this)
         mVideoView.playerControlHandler.addPlayerStateChangeListener(mPlayerStateChangeListener)
-        mVideoView.playerRenderHandler.addPlayerRenderChangeListener(mPlayerRenderListener)
+        mVideoView.playerRenderHandler.addPlayerRenderListener(mPlayerRenderListener)
         mVideoView.playerControlHandler.init(this)
         fetchVideoList()
 

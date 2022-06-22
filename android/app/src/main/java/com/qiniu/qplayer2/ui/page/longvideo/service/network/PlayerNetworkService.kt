@@ -1,7 +1,7 @@
 package com.qiniu.qplayer2.ui.page.longvideo.service.network
 
 import android.view.ViewGroup
-import com.qiniu.qmedia.component.player.QIPlayerMediaListener
+import com.qiniu.qmedia.component.player.QIPlayerMediaNetworkListener
 import com.qiniu.qmedia.component.player.QIPlayerStateChangeListener
 import com.qiniu.qmedia.component.player.QPlayerState
 import com.qiniu.qmedia.component.player.QURLType
@@ -17,7 +17,7 @@ import com.qiniu.qplayer2.ui.widget.commonplayer.functionwidget.error.ErrorFunct
 import com.qiniu.qplayer2ext.commonplayer.layer.function.FunctionWidgetLayoutParams
 
 class PlayerNetworkService:
-    IPlayerService<LongLogicProvider, LongPlayableParams, LongVideoParams>, QIPlayerMediaListener,
+    IPlayerService<LongLogicProvider, LongPlayableParams, LongVideoParams>, QIPlayerMediaNetworkListener,
     QIPlayerStateChangeListener {
 
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
@@ -25,12 +25,12 @@ class PlayerNetworkService:
 
     private var mNotifyTime = 0;
     override fun onStart() {
-        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerReconnectListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerMediaNetworkListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerStateChangeListener(this)
     }
 
     override fun onStop() {
-        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerReconnectListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerMediaNetworkListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerStateChangeListener(this)
 
     }
@@ -63,13 +63,13 @@ class PlayerNetworkService:
         urlType: QURLType,
         url: String,
         retryTime: Int,
-        error: QIPlayerMediaListener.OpenError
+        error: QIPlayerMediaNetworkListener.OpenError
     ) {
-        if (error == QIPlayerMediaListener.OpenError.NONE || mNotifyTime % 5 == 0) {
+        if (error == QIPlayerMediaNetworkListener.OpenError.NONE || mNotifyTime % 5 == 0) {
             val toast = PlayerToast.Builder()
                 .toastItemType(PlayerToastConfig.TYPE_NORMAL)
                 .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
-                .setExtraString(PlayerToastConfig.EXTRA_TITLE, if (error == QIPlayerMediaListener.OpenError.NONE)"重连成功." else "重连失败")
+                .setExtraString(PlayerToastConfig.EXTRA_TITLE, if (error == QIPlayerMediaNetworkListener.OpenError.NONE)"重连成功." else "重连失败")
                 .duration(PlayerToastConfig.DURATION_3)
                 .build()
 
@@ -85,14 +85,14 @@ class PlayerNetworkService:
         userType: String,
         urlType: QURLType,
         url: String,
-        error: QIPlayerMediaListener.OpenError
+        error: QIPlayerMediaNetworkListener.OpenError
     ) {
 
-        if (error != QIPlayerMediaListener.OpenError.INTERRUPT) {
+        if (error != QIPlayerMediaNetworkListener.OpenError.INTERRUPT) {
             val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            layoutParams.functionType = FunctionWidgetLayoutParams.FUNCTION_TYPE_EMBEDDED_VIEW
+            layoutParams.functionType = FunctionWidgetLayoutParams.FunctionType.EMBEDDED_VIEW
 
-            layoutParams.layoutType = FunctionWidgetLayoutParams.LAYOUT_TYPE_IN_CENTER
+            layoutParams.layoutType = FunctionWidgetLayoutParams.LayoutAlignType.CENTER
             layoutParams.enterAnim = FunctionWidgetLayoutParams.NO_ANIMATION
             layoutParams.exitAnim = FunctionWidgetLayoutParams.NO_ANIMATION
             layoutParams.touchOutsideDismiss(false)

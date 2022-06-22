@@ -12,7 +12,6 @@ import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
 import com.qiniu.qplayer2ext.commonplayer.data.CommonPlayerDataSource
 import com.qiniu.qplayer2ext.commonplayer.layer.function.BaseFunctionWidget
-import com.qiniu.qplayer2ext.commonplayer.layer.function.PlayerFunctionContainer
 import com.qiniu.qplayer2.repository.setting.PlayerSettingRespostory
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
@@ -67,7 +66,7 @@ class SettingFunctionWidget(context: Context) :
         get() {
             val builder = FunctionWidgetConfig.Builder()
             builder.dismissWhenActivityStop(true)
-            builder.dismissWhenScreenModeChange(true)
+            builder.dismissWhenScreenTypeChange(true)
             builder.dismissWhenVideoChange(true)
             builder.dismissWhenVideoCompleted(true)
             builder.persistent(true)
@@ -390,7 +389,7 @@ class SettingFunctionWidget(context: Context) :
     private fun updateDataSourceStartPos(startPos: Long) {
         PlayerSettingRespostory.startPosition = startPos
 
-        mPlayerCore.mCommonPlayerController.updateDataSource(object: CommonPlayerDataSource.CommonPlayableParamsUpdater<LongPlayableParams, LongVideoParams > {
+        mPlayerCore.mCommonPlayerVideoSwitcher.updateDataSource(object: CommonPlayerDataSource.CommonPlayableParamsUpdater<LongPlayableParams, LongVideoParams > {
             override fun update(playableParams: LongPlayableParams) {
                 if (!playableParams.mediaModel.isLive) {
                     playableParams.startPos = PlayerSettingRespostory.startPosition

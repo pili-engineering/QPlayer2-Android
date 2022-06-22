@@ -6,12 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.qiniu.qmedia.component.player.QIPlayerRenderListener
 import com.qiniu.qmedia.component.player.QMediaItemContext
-import com.qiniu.qmedia.component.player.QMediaModel
 import com.qiniu.qmedia.ui.QSurfacePlayerView
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2.ui.widget.*
@@ -77,7 +75,7 @@ class ShortVideoHolder(
             mFullScreenPlayClickWidget.setPlayerControlHandler(mVideoPlayerView.playerControlHandler)
             mBufferingWidget.setPlayerControlHandler(mVideoPlayerView.playerControlHandler)
 
-            mVideoPlayerView.playerRenderHandler.addPlayerRenderChangeListener(mPlayerRenderListener)
+            mVideoPlayerView.playerRenderHandler.addPlayerRenderListener(mPlayerRenderListener)
             if (mediaItem != null) {
                 mVideoPlayerView.playerControlHandler.playMediaItem(mediaItem)
             } else {
@@ -88,7 +86,7 @@ class ShortVideoHolder(
 
     fun stopVideo() {
         mCoverIV.visibility = View.VISIBLE
-        mVideoPlayerView.playerRenderHandler.removePlayerRenderListener(mPlayerRenderListener)
+        mVideoPlayerView.playerRenderHandler.removePlayerListener(mPlayerRenderListener)
         mVideoPlayerView.playerControlHandler.stop()
 
         mFPSWidget.setPlayerControlHandler(null)

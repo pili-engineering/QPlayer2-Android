@@ -10,7 +10,7 @@ import com.qiniu.qmedia.component.player.*
 import com.qiniu.qmedia.component.player.QPlayerControlHandler.Companion.INVALID_QUALITY_ID
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
-import com.qiniu.qplayer2ext.commonplayer.controller.ICommonPlayerControlHandler
+import com.qiniu.qplayer2ext.commonplayer.controller.ICommonPlayerVideoSwitcher
 import com.qiniu.qplayer2ext.commonplayer.layer.function.BaseFunctionWidget
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
@@ -32,7 +32,7 @@ class VideoQualityFunctionWidget (context: Context):
             newQuality: Int,
             oldQuality: Int
         ) {
-            mPlayerCore.mCommonPlayerController.getCurrentPlayableParams()?.also {
+            mPlayerCore.mCommonPlayerVideoSwitcher.getCurrentPlayableParams()?.also {
                 updateQualitys(it)
             }
         }
@@ -43,7 +43,7 @@ class VideoQualityFunctionWidget (context: Context):
             newQuality: Int,
             oldQuality: Int
         ) {
-            mPlayerCore.mCommonPlayerController.getCurrentPlayableParams()?.also {
+            mPlayerCore.mCommonPlayerVideoSwitcher.getCurrentPlayableParams()?.also {
                 updateQualitys(it)
             }
         }
@@ -54,7 +54,7 @@ class VideoQualityFunctionWidget (context: Context):
             newQuality: Int,
             oldQuality: Int
         ) {
-            mPlayerCore.mCommonPlayerController.getCurrentPlayableParams()?.also {
+            mPlayerCore.mCommonPlayerVideoSwitcher.getCurrentPlayableParams()?.also {
                 updateQualitys(it)
             }
         }
@@ -65,7 +65,7 @@ class VideoQualityFunctionWidget (context: Context):
             newQuality: Int,
             oldQuality: Int
         ) {
-            mPlayerCore.mCommonPlayerController.getCurrentPlayableParams()?.also {
+            mPlayerCore.mCommonPlayerVideoSwitcher.getCurrentPlayableParams()?.also {
                 updateQualitys(it)
             }
         }
@@ -75,7 +75,7 @@ class VideoQualityFunctionWidget (context: Context):
             urlType: QURLType,
             newQuality: Int
         ) {
-            mPlayerCore.mCommonPlayerController.getCurrentPlayableParams()?.also {
+            mPlayerCore.mCommonPlayerVideoSwitcher.getCurrentPlayableParams()?.also {
                 updateQualitys(it)
             }
         }
@@ -83,7 +83,7 @@ class VideoQualityFunctionWidget (context: Context):
     }
 
     private  val mVideoPlayEventListener = object :
-        ICommonPlayerControlHandler.ICommonVideoPlayEventListener<LongPlayableParams, LongVideoParams> {
+        ICommonPlayerVideoSwitcher.ICommonVideoPlayEventListener<LongPlayableParams, LongVideoParams> {
         override fun onVideoParamsStart(videoParams: LongVideoParams) {
         }
 
@@ -100,7 +100,7 @@ class VideoQualityFunctionWidget (context: Context):
         get() {
             val builder = FunctionWidgetConfig.Builder()
             builder.dismissWhenActivityStop(true)
-            builder.dismissWhenScreenModeChange(true)
+            builder.dismissWhenScreenTypeChange(true)
             builder.dismissWhenVideoChange(true)
             builder.dismissWhenVideoCompleted(true)
             builder.persistent(true)
@@ -134,17 +134,17 @@ class VideoQualityFunctionWidget (context: Context):
     }
     override fun onWidgetShow() {
 
-        mPlayerCore.mCommonPlayerController.getCurrentPlayableParams()?.also {
+        mPlayerCore.mCommonPlayerVideoSwitcher.getCurrentPlayableParams()?.also {
             updateQualitys(it)
         }
 
-        mPlayerCore.mCommonPlayerController.addVideoPlayEventListener(mVideoPlayEventListener)
-        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerQualityChangeListener(mVideoQualityListener)
+        mPlayerCore.mCommonPlayerVideoSwitcher.addVideoPlayEventListener(mVideoPlayEventListener)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerQualityListener(mVideoQualityListener)
     }
 
     override fun onWidgetDismiss() {
-        mPlayerCore.mCommonPlayerController.removeVideoPlayEventListener(mVideoPlayEventListener)
-        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerQualityChangeListener(mVideoQualityListener)
+        mPlayerCore.mCommonPlayerVideoSwitcher.removeVideoPlayEventListener(mVideoPlayEventListener)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerQualityListener(mVideoQualityListener)
 
     }
 
@@ -172,7 +172,7 @@ class VideoQualityFunctionWidget (context: Context):
         mQualityListAdapter.setItemClickListener(object : VideoQualityListAdapter.OnItemClickListener {
 
             override fun onItemClick(quality: QQuality) {
-                mPlayerCore.mCommonPlayerController.getCurrentPlayableParams()?.mediaModel?.isLive?.let { isLive->
+                mPlayerCore.mCommonPlayerVideoSwitcher.getCurrentPlayableParams()?.mediaModel?.isLive?.let { isLive->
                     mPlayerCore.mPlayerContext.getPlayerControlHandler().switchQuality(
                         quality.userType,
                         quality.urlType,
