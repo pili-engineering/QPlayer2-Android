@@ -165,45 +165,6 @@ object LongPlayerDataSourceFactory {
 //            )
 //        )
 
-
-        builder = QMediaModelBuilder()
-        url =
-            "https://ms-shortvideo-dn.eebbk.net/bbk-n002/stream/2021/07/30/1911/68/357c1b03fa454a9c6b3198c9c6a3b49a.mp4?sign=13eb41043c62c8f462dcb6226fd1a5a6&t=613852bf"
-        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true, "http://video.eebbk.net")
-        name = "7-点播-https-mp4-50fps-referer"
-        videoParams = LongVideoParams(name, name.hashCode().toLong())
-        dataSourceBuilder.addVideo(
-            videoParams,
-            arrayListOf<LongPlayableParams>(
-                LongPlayableParams(
-                    builder.build(false),
-                    LongControlPanelType.Normal.type,
-                    DisplayOrientation.LANDSCAPE,
-                    LongEnviromentType.LONG.type,
-                    PlayerSettingRespostory.startPosition
-                )
-            )
-        )
-
-
-//        builder = QMediaModelBuilder()
-//        url =
-//            "https://ms-shortvideo-dn.eebbk.net/bbk-n002/stream/2021/12/27/1143/14571/e3d3dc6b29afcccb6ff01c8f23e4018b.mp4?sign=6a1d95afe884f9654a6598b076affd00&t=61dd5fa6"
-//        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 0, url, true, "http://video.eebbk.net")
-//        videoParams = LongVideoParams("1080P-50FPS-referer-2", url.hashCode().toLong())
-//        dataSourceBuilder.addVideo(
-//            videoParams,
-//            arrayListOf<LongPlayableParams>(
-//                LongPlayableParams(
-//                    builder.build(),
-//                    LongControlPanelType.Normal.type,
-//                    DisplayOrientation.LANDSCAPE,
-//                    LongEnviromentType.LONG.type,
-//                    false
-//                )
-//            )
-//        )
-
         builder = QMediaModelBuilder()
         url = "http://demo-videos.qnsdk.com/song.mp3"
         builder.addElement("", QURLType.QAUDIO, 100, url, true)
