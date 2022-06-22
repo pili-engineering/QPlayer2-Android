@@ -2,7 +2,9 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
-
+ext {
+    qplayer2_demo_version='0.0.6-beta'
+}
 android {
     compileSdkVersion 32
     buildToolsVersion "32.0.0"
@@ -12,7 +14,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 32
         versionCode 1
-        versionName "1.0"
+        versionName "$qplayer2_demo_version"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -72,8 +74,8 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
     if (use_aar) {
-        implementation("com.qiniu:qplayer2-core:0.0.5-beta")
-        implementation("com.qiniu:qplayer2-ext:0.0.5-beta")
+        implementation("com.qiniu:qplayer2-core:0.0.6-beta")
+        implementation("com.qiniu:qplayer2-ext:0.0.6-beta")
 
     } else {
 
