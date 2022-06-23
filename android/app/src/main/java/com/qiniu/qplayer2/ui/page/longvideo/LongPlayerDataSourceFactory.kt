@@ -332,23 +332,7 @@ object LongPlayerDataSourceFactory {
             )
         )
 
-        builder = QMediaModelBuilder()
-        url = "rtmp://ns8.indexforce.com/home/mystream"
-        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
-        name = "13-4-直播-rtmp://ns8.indexforce.com/home/mystream"
-        videoParams = LongVideoParams(name, name.hashCode().toLong())
-        dataSourceBuilder.addVideo(
-            videoParams,
-            arrayListOf<LongPlayableParams>(
-                LongPlayableParams(
-                    builder.build(true),
-                    LongControlPanelType.Normal.type,
-                    DisplayOrientation.LANDSCAPE,
-                    LongEnviromentType.LONG.type,
-                    0L
-                )
-            )
-        )
+
 
 
         builder = QMediaModelBuilder()
@@ -406,23 +390,7 @@ object LongPlayerDataSourceFactory {
             )
         )
 
-        builder = QMediaModelBuilder()
-        url = "https://app.modelbook.xyz:5001/video/21_756_ENH0NN430O3E8MH.mp4/index.m3u8"
-        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 360, url, true)
-        name = "17-点播-https-m3u8-30fps-h264-端口5001"
-        videoParams = LongVideoParams(name, name.hashCode().toLong())
-        dataSourceBuilder.addVideo(
-            videoParams,
-            arrayListOf<LongPlayableParams>(
-                LongPlayableParams(
-                    builder.build(false),
-                    LongControlPanelType.Normal.type,
-                    DisplayOrientation.LANDSCAPE,
-                    LongEnviromentType.LONG.type,
-                    0L
-                )
-            )
-        )
+
 
         builder = QMediaModelBuilder()
         url = "https://sdk-release.qnsdk.com/1599039859854_9242359.mp3"
