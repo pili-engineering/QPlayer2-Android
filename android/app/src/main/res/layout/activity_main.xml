@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_constraintVertical_chainStyle="packed"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.page.main.MainActivity">
+
+    <Button
+        android:id="@+id/long_video_player_BTN"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:text="长视频"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/simple_long_video_player_BTN"/>
+
+
+    <Button
+        android:id="@+id/simple_long_video_player_BTN"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:text="简易长视频"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/long_video_player_BTN"
+        app:layout_constraintBottom_toTopOf="@+id/short_video_player_BTN"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/short_video_player_BTN"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:text="短视频"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/simple_long_video_player_BTN"
+        app:layout_constraintBottom_toTopOf="@+id/setting_BTN"/>
+
+    <Button
+        android:id="@+id/setting_BTN"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:text="初始化设置"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/short_video_player_BTN" />
+</androidx.constraintlayout.widget.ConstraintLayout>

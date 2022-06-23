@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>PlayerServiceManager</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>qplayer2-ext</span>
+            </a>
+    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="qplayer2-ext::com.qiniu.qplayer2ext.commonplayer.service/PlayerServiceManager///PointingToDeclaration//-395598746">
+  <div class="breadcrumbs"><a href="../../../index.html">qplayer2-ext</a><span class="delimiter">/</span><a href="../index.html">com.qiniu.qplayer2ext.commonplayer.service</a><span class="delimiter">/</span><a href="index.html">PlayerServiceManager</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Player</span><wbr></wbr><span>Service</span><wbr></wbr><span><span>Manager</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">PlayerServiceManager</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T2</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer/-i-logic-provider/index.html">ILogicProvider</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer.data/-common-playable-params/index.html">CommonPlayableParams</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer.data/-common-video-params/index.html">CommonVideoParams</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">mPlayerCoreBinderProxy<span class="token operator">: </span><a href="../../com.qiniu.qplayer2ext.commonplayer/-i-common-player-core-binder-proxy/index.html">ICommonPlayerCoreBinderProxy</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../-i-player-service-manager/index.html">IPlayerServiceManager</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button></div>
+    <div class="tabs-section-body">
+      <h2 class="tabbedcontent">Constructors</h2>
+      <div class="table" data-togglable="Constructors"><a data-name="-1977055785%2FConstructors%2F-395598746" anchor-label="PlayerServiceManager" id="-1977055785%2FConstructors%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-player-service-manager.html"><span>Player</span><wbr></wbr><span>Service</span><wbr></wbr><span><span>Manager</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1977055785%2FConstructors%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T2</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer/-i-logic-provider/index.html">ILogicProvider</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer.data/-common-playable-params/index.html">CommonPlayableParams</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer.data/-common-video-params/index.html">CommonVideoParams</a><span class="token operator">&gt; </span><a href="-player-service-manager.html"><span class="token function">PlayerServiceManager</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">mPlayerCoreBinderProxy<span class="token operator">: </span><a href="../../com.qiniu.qplayer2ext.commonplayer/-i-common-player-core-binder-proxy/index.html">ICommonPlayerCoreBinderProxy</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Types</h2>
+      <div class="table" data-togglable="Types"><a data-name="1791783495%2FClasslikes%2F-395598746" anchor-label="Client" id="1791783495%2FClasslikes%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-client/index.html"><span><span>Client</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1791783495%2FClasslikes%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-client/index.html">Client</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-client/index.html">T</a><span class="token operator"> : </span><a href="../-i-player-service/index.html">IPlayerService</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-client/index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-client/index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-client/index.html">T4</a><span class="token operator">&gt;</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="-client/index.html">T2</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer/-i-logic-provider/index.html">ILogicProvider</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-client/index.html">T3</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer.data/-common-playable-params/index.html">CommonPlayableParams</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-client/index.html">T4</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer.data/-common-video-params/index.html">CommonVideoParams</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1384810620%2FClasslikes%2F-395598746" anchor-label="Companion" id="-1384810620%2FClasslikes%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1384810620%2FClasslikes%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-2123730151%2FClasslikes%2F-395598746" anchor-label="ServiceConfig" id="-2123730151%2FClasslikes%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-service-config/index.html"><span>Service</span><wbr></wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2123730151%2FClasslikes%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="-service-config/index.html">ServiceConfig</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-719078772%2FClasslikes%2F-395598746" anchor-label="ServiceDescriptor" id="-719078772%2FClasslikes%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-service-descriptor/index.html"><span>Service</span><wbr></wbr><span><span>Descriptor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-719078772%2FClasslikes%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="-service-descriptor/index.html">ServiceDescriptor</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-service-descriptor/index.html">T</a><span class="token operator"> : </span><a href="../-i-player-service/index.html">IPlayerService</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-service-descriptor/index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-service-descriptor/index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-service-descriptor/index.html">T4</a><span class="token operator">&gt;</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="-service-descriptor/index.html">T2</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer/-i-logic-provider/index.html">ILogicProvider</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-service-descriptor/index.html">T3</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer.data/-common-playable-params/index.html">CommonPlayableParams</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-service-descriptor/index.html">T4</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer.data/-common-video-params/index.html">CommonVideoParams</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Functions</h2>
+      <div class="table" data-togglable="Functions"><a data-name="2077870936%2FFunctions%2F-395598746" anchor-label="bindService" id="2077870936%2FFunctions%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="bind-service.html"><span>bind</span><wbr></wbr><span><span>Service</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2077870936%2FFunctions%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="bind-service.html">T</a><span class="token operator"> : </span><a href="../-i-player-service/index.html">IPlayerService</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span><a href="bind-service.html"><span class="token function">bindService</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">descriptor<span class="token operator">: </span><a href="-service-descriptor/index.html">PlayerServiceManager.ServiceDescriptor</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="bind-service.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">client<span class="token operator">: </span><a href="-client/index.html">PlayerServiceManager.Client</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="bind-service.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="bind-service.html">T</a><span class="token operator"> : </span><a href="../-i-player-service/index.html">IPlayerService</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span><a href="bind-service.html"><span class="token function">bindService</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;descriptor<span class="token operator">: </span><a href="-service-descriptor/index.html">PlayerServiceManager.ServiceDescriptor</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="bind-service.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;client<span class="token operator">: </span><a href="-client/index.html">PlayerServiceManager.Client</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="bind-service.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;autoCreate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2053399574%2FFunctions%2F-395598746" anchor-label="release" id="2053399574%2FFunctions%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="release.html"><span><span>release</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2053399574%2FFunctions%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="release.html"><span class="token function">release</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1244132091%2FFunctions%2F-395598746" anchor-label="startService" id="1244132091%2FFunctions%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="start-service.html"><span>start</span><wbr></wbr><span><span>Service</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1244132091%2FFunctions%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="start-service.html"><span class="token function">startService</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">descriptor<span class="token operator">: </span><a href="-service-descriptor/index.html">PlayerServiceManager.ServiceDescriptor</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-2070139301%2FFunctions%2F-395598746" anchor-label="stopService" id="-2070139301%2FFunctions%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="stop-service.html"><span>stop</span><wbr></wbr><span><span>Service</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2070139301%2FFunctions%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="stop-service.html"><span class="token function">stopService</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">descriptor<span class="token operator">: </span><a href="-service-descriptor/index.html">PlayerServiceManager.ServiceDescriptor</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2033147220%2FFunctions%2F-395598746" anchor-label="unbindService" id="2033147220%2FFunctions%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="unbind-service.html"><span>unbind</span><wbr></wbr><span><span>Service</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2033147220%2FFunctions%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="unbind-service.html"><span class="token function">unbindService</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">descriptor<span class="token operator">: </span><a href="-service-descriptor/index.html">PlayerServiceManager.ServiceDescriptor</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">client<span class="token operator">: </span><a href="-client/index.html">PlayerServiceManager.Client</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

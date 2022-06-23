@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>IPlayerService</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>qplayer2-ext</span>
+            </a>
+    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="qplayer2-ext::com.qiniu.qplayer2ext.commonplayer.service/IPlayerService///PointingToDeclaration//-395598746">
+  <div class="breadcrumbs"><a href="../../../index.html">qplayer2-ext</a><span class="delimiter">/</span><a href="../index.html">com.qiniu.qplayer2ext.commonplayer.service</a><span class="delimiter">/</span><a href="index.html">IPlayerService</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span>IPlayer</span><wbr></wbr><span><span>Service</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">IPlayerService</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T2</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer/-i-logic-provider/index.html">ILogicProvider</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer.data/-common-playable-params/index.html">CommonPlayableParams</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator"> : </span><a href="../../com.qiniu.qplayer2ext.commonplayer.data/-common-video-params/index.html">CommonVideoParams</a><span class="token operator">&gt;</span> : <a href="../../com.qiniu.qplayer2ext.commonplayer/-i-common-player-core-binder/index.html">ICommonPlayerCoreBinder</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">播放服务的基类，每个服务处理特定的事务。 Service的服务范围有多层，针对整个播放器的Service 例如ReportService负责处理播放上报 PlayerStateService负责处理播放器状态 ActivityLifecycleService负责处理页面生命周期状态</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+    <div class="tabs-section-body">
+      <h2 class="">Parameters</h2>
+      <div data-togglable="Parameters">
+        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>T2</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">播放器逻辑调用外部逻辑接口类型</p></div></div></div></div></div><div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>T3</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">播放元素参数类型</p></div></div></div></div></div><div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>T4</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">视频参数类型</p></div></div></div></div></div></div></div></div></div>
+      </div>
+      <h2 class="">Functions</h2>
+      <div class="table" data-togglable="Functions"><a data-name="1721632110%2FFunctions%2F-395598746" anchor-label="bindPlayerCore" id="1721632110%2FFunctions%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="../../com.qiniu.qplayer2ext.commonplayer/-i-common-player-core-binder/bind-player-core.html"><span>bind</span><wbr></wbr><span>Player</span><wbr></wbr><span><span>Core</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1721632110%2FFunctions%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../com.qiniu.qplayer2ext.commonplayer/-i-common-player-core-binder/bind-player-core.html"><span class="token function">bindPlayerCore</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">playerCore<span class="token operator">: </span><a href="../../com.qiniu.qplayer2ext.commonplayer/-common-player-core/index.html">CommonPlayerCore</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T2</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T3</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">T4</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-698026340%2FFunctions%2F-395598746" anchor-label="onPlayerReset" id="-698026340%2FFunctions%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="on-player-reset.html"><span>on</span><wbr></wbr><span>Player</span><wbr></wbr><span><span>Reset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-698026340%2FFunctions%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-player-reset.html"><span class="token function">onPlayerReset</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">重置整个播放器，预留方法，目前没有地方调用</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1942847848%2FFunctions%2F-395598746" anchor-label="onStart" id="1942847848%2FFunctions%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="on-start.html"><span>on</span><wbr></wbr><span><span>Start</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1942847848%2FFunctions%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-start.html"><span class="token function">onStart</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">服务启用时回调</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1828502386%2FFunctions%2F-395598746" anchor-label="onStop" id="-1828502386%2FFunctions%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="on-stop.html"><span>on</span><wbr></wbr><span><span>Stop</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1828502386%2FFunctions%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-stop.html"><span class="token function">onStop</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">服务关闭时回调</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2069449940%2FFunctions%2F-395598746" anchor-label="serviceConfig" id="2069449940%2FFunctions%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="service-config.html"><span>service</span><wbr></wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2069449940%2FFunctions%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="service-config.html"><span class="token function">serviceConfig</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-player-service-manager/-service-config/index.html">PlayerServiceManager.ServiceConfig</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

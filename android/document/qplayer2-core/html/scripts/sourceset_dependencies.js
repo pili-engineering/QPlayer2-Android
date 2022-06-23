@@ -1,0 +1,1 @@
+sourceset_dependencies='{":qplayer2-core:dokkaHtml/androidTestRelease":[],":qplayer2-core:dokkaHtml/debug":[],":qplayer2-core:dokkaHtml/main":[],":qplayer2-core:dokkaHtml/release":[],":qplayer2-core:dokkaHtml/testFixtures":[],":qplayer2-core:dokkaHtml/testFixturesDebug":[],":qplayer2-core:dokkaHtml/testFixturesRelease":[]}'

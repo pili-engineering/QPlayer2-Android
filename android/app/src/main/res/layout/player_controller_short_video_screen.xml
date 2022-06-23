@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.qiniu.qplayer2.ui.widget.PlayerDownloadTextWidget
+        android:id="@+id/download_speed_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.qiniu.qplayer2.ui.widget.PlayerBiteRateTextWidget
+        android:id="@+id/biterate_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:textColor="@color/white"
+
+        app:layout_constraintBottom_toBottomOf="@+id/download_speed_TV"
+        app:layout_constraintLeft_toRightOf="@+id/download_speed_TV"
+        app:layout_constraintTop_toTopOf="@+id/download_speed_TV" />
+
+    <com.qiniu.qplayer2.ui.widget.PlayerFPSTextWidget
+        android:id="@+id/fps_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:textColor="@color/white"
+
+        app:layout_constraintBottom_toBottomOf="@+id/download_speed_TV"
+        app:layout_constraintLeft_toRightOf="@+id/biterate_TV"
+        app:layout_constraintTop_toTopOf="@+id/download_speed_TV" />
+
+    <com.qiniu.qplayer2.ui.widget.PlayerSeekWidget
+        android:id="@+id/seek_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="24dp"
+        android:max="1000"
+        android:maxHeight="4dp"
+        android:minHeight="2dp"
+        android:thumbOffset="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/progress_TV"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.qiniu.qplayer2.ui.widget.PlayerProgressTextWidget
+        android:id="@+id/progress_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="12dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/seek_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/seek_bar" />
+
+    <com.qiniu.qplayer2.ui.widget.PlayerPlayWidget
+        android:id="@+id/player_play_IV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.qiniu.qplayer2.ui.widget.PlayerFullScreenPlayClickWidget
+        android:id="@+id/player_play_click_FL"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/seek_bar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.qiniu.qplayer2.ui.widget.PlayerFullScreenPlayClickWidget>
+
+    <com.qiniu.qplayer2.ui.widget.PlayerBufferingWidget
+        android:id="@+id/buffering_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BUFFERING"
+        android:textColor="@color/blue"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

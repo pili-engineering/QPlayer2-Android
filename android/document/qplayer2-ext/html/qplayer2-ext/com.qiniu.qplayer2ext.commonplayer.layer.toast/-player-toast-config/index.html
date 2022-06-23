@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>PlayerToastConfig</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>qplayer2-ext</span>
+            </a>
+    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="qplayer2-ext::com.qiniu.qplayer2ext.commonplayer.layer.toast/PlayerToastConfig///PointingToDeclaration//-395598746">
+  <div class="breadcrumbs"><a href="../../../index.html">qplayer2-ext</a><span class="delimiter">/</span><a href="../index.html">com.qiniu.qplayer2ext.commonplayer.layer.toast</a><span class="delimiter">/</span><a href="index.html">PlayerToastConfig</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Player</span><wbr></wbr><span>Toast</span><wbr></wbr><span><span>Config</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">PlayerToastConfig</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+    <div class="tabs-section-body">
+      <h2 class="">Types</h2>
+      <div class="table" data-togglable="Types"><a data-name="195139444%2FClasslikes%2F-395598746" anchor-label="Level" id="195139444%2FClasslikes%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-level/index.html"><span><span>Level</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="195139444%2FClasslikes%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/Retention.html"><span class="token annotation">Retention</span></a><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/RetentionPolicy.html">RetentionPolicy.SOURCE</a></span><wbr></wbr><span class="token punctuation">)</span></div><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/Target.html"><span class="token annotation">Target</span></a><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="token punctuation">[</span><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.FIELD</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.PARAMETER</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.METHOD</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.LOCAL_VARIABLE</a></span><wbr></wbr><span class="token punctuation">]</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">annotation class </span><a href="-level/index.html">Level</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">level 决定插入Toast队列的顺序</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2116682357%2FClasslikes%2F-395598746" anchor-label="Location" id="2116682357%2FClasslikes%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-location/index.html"><span><span>Location</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2116682357%2FClasslikes%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/Retention.html"><span class="token annotation">Retention</span></a><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/RetentionPolicy.html">RetentionPolicy.SOURCE</a></span><wbr></wbr><span class="token punctuation">)</span></div><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/Target.html"><span class="token annotation">Target</span></a><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="token punctuation">[</span><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.FIELD</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.PARAMETER</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.METHOD</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.LOCAL_VARIABLE</a></span><wbr></wbr><span class="token punctuation">]</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">annotation class </span><a href="-location/index.html">Location</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1824259437%2FClasslikes%2F-395598746" anchor-label="QueueType" id="1824259437%2FClasslikes%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-queue-type/index.html"><span>Queue</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1824259437%2FClasslikes%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/Retention.html"><span class="token annotation">Retention</span></a><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/RetentionPolicy.html">RetentionPolicy.SOURCE</a></span><wbr></wbr><span class="token punctuation">)</span></div><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/Target.html"><span class="token annotation">Target</span></a><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="token punctuation">[</span><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.FIELD</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.PARAMETER</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.METHOD</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.LOCAL_VARIABLE</a></span><wbr></wbr><span class="token punctuation">]</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">annotation class </span><a href="-queue-type/index.html">QueueType</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">QueueType 决定新的Toast是以刷新的方式影响队列，还是插入的方式 QUEUE_REFRESH : 队列中如果已经存在 ToastItemType 相同的Toast 则刷新，不存在 则 insert QUEUE_INSERT : 永远以 insert 的方式添加</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1049711875%2FClasslikes%2F-395598746" anchor-label="ToastDuration" id="-1049711875%2FClasslikes%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-toast-duration/index.html"><span>Toast</span><wbr></wbr><span><span>Duration</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1049711875%2FClasslikes%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/Retention.html"><span class="token annotation">Retention</span></a><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/RetentionPolicy.html">RetentionPolicy.SOURCE</a></span><wbr></wbr><span class="token punctuation">)</span></div><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/Target.html"><span class="token annotation">Target</span></a><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="token punctuation">[</span><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.FIELD</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.PARAMETER</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.METHOD</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.LOCAL_VARIABLE</a></span><wbr></wbr><span class="token punctuation">]</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">annotation class </span><a href="-toast-duration/index.html">ToastDuration</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">duration 决定Toast展示时长，永久展示 还是定期消失</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1300495932%2FClasslikes%2F-395598746" anchor-label="ToastItemType" id="-1300495932%2FClasslikes%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-toast-item-type/index.html"><span>Toast</span><wbr></wbr><span>Item</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1300495932%2FClasslikes%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/Retention.html"><span class="token annotation">Retention</span></a><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/RetentionPolicy.html">RetentionPolicy.SOURCE</a></span><wbr></wbr><span class="token punctuation">)</span></div><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/Target.html"><span class="token annotation">Target</span></a><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="token punctuation">[</span><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.FIELD</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.PARAMETER</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.METHOD</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://developer.android.com/reference/kotlin/java/lang/annotation/ElementType.html">ElementType.LOCAL_VARIABLE</a></span><wbr></wbr><span class="token punctuation">]</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">annotation class </span><a href="-toast-item-type/index.html">ToastItemType</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Functions</h2>
+      <div class="table" data-togglable="Functions"><a data-name="-848331354%2FFunctions%2F-395598746" anchor-label="getActionText" id="-848331354%2FFunctions%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-action-text.html"><span>get</span><wbr></wbr><span>Action</span><wbr></wbr><span><span>Text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-848331354%2FFunctions%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-action-text.html"><span class="token function">getActionText</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a> </span>toast<span class="token operator">: </span><a href="../-player-toast/index.html">PlayerToast</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-2034036467%2FFunctions%2F-395598746" anchor-label="getTitle" id="-2034036467%2FFunctions%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-title.html"><span>get</span><wbr></wbr><span><span>Title</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2034036467%2FFunctions%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-title.html"><span class="token function">getTitle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a> </span>toast<span class="token operator">: </span><a href="../-player-toast/index.html">PlayerToast</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-333657085%2FFunctions%2F-395598746" anchor-label="getTitleBold" id="-333657085%2FFunctions%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-title-bold.html"><span>get</span><wbr></wbr><span>Title</span><wbr></wbr><span><span>Bold</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-333657085%2FFunctions%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-title-bold.html"><span class="token function">getTitleBold</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a> </span>toast<span class="token operator">: </span><a href="../-player-toast/index.html">PlayerToast</a><span class="token punctuation">, </span></span><span class="parameter ">defaultValue<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="-324841777%2FProperties%2F-395598746" anchor-label="DURATION_1" id="-324841777%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-d-u-r-a-t-i-o-n_1.html">DURATION_1</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-324841777%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-324841777%2FProperties%2F-395598746" anchor-label="DURATION_1" id="-324841777%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-u-r-a-t-i-o-n_1.html">DURATION_1</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1992232773%2FProperties%2F-395598746" anchor-label="DURATION_10" id="-1992232773%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-d-u-r-a-t-i-o-n_10.html">DURATION_10</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1992232773%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-1992232773%2FProperties%2F-395598746" anchor-label="DURATION_10" id="-1992232773%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-u-r-a-t-i-o-n_10.html">DURATION_10</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-293821970%2FProperties%2F-395598746" anchor-label="DURATION_2" id="-293821970%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-d-u-r-a-t-i-o-n_2.html">DURATION_2</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-293821970%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-293821970%2FProperties%2F-395598746" anchor-label="DURATION_2" id="-293821970%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-u-r-a-t-i-o-n_2.html">DURATION_2</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-262802163%2FProperties%2F-395598746" anchor-label="DURATION_3" id="-262802163%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-d-u-r-a-t-i-o-n_3.html">DURATION_3</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-262802163%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-262802163%2FProperties%2F-395598746" anchor-label="DURATION_3" id="-262802163%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-u-r-a-t-i-o-n_3.html">DURATION_3</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-231782356%2FProperties%2F-395598746" anchor-label="DURATION_4" id="-231782356%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-d-u-r-a-t-i-o-n_4.html">DURATION_4</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-231782356%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-231782356%2FProperties%2F-395598746" anchor-label="DURATION_4" id="-231782356%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-u-r-a-t-i-o-n_4.html">DURATION_4</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-200762549%2FProperties%2F-395598746" anchor-label="DURATION_5" id="-200762549%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-d-u-r-a-t-i-o-n_5.html">DURATION_5</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-200762549%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-200762549%2FProperties%2F-395598746" anchor-label="DURATION_5" id="-200762549%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-u-r-a-t-i-o-n_5.html">DURATION_5</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-169742742%2FProperties%2F-395598746" anchor-label="DURATION_6" id="-169742742%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-d-u-r-a-t-i-o-n_6.html">DURATION_6</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-169742742%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-169742742%2FProperties%2F-395598746" anchor-label="DURATION_6" id="-169742742%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-u-r-a-t-i-o-n_6.html">DURATION_6</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-138722935%2FProperties%2F-395598746" anchor-label="DURATION_7" id="-138722935%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-d-u-r-a-t-i-o-n_7.html">DURATION_7</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-138722935%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-138722935%2FProperties%2F-395598746" anchor-label="DURATION_7" id="-138722935%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-u-r-a-t-i-o-n_7.html">DURATION_7</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-107703128%2FProperties%2F-395598746" anchor-label="DURATION_8" id="-107703128%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-d-u-r-a-t-i-o-n_8.html">DURATION_8</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-107703128%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-107703128%2FProperties%2F-395598746" anchor-label="DURATION_8" id="-107703128%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-u-r-a-t-i-o-n_8.html">DURATION_8</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-76683321%2FProperties%2F-395598746" anchor-label="DURATION_9" id="-76683321%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-d-u-r-a-t-i-o-n_9.html">DURATION_9</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-76683321%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-76683321%2FProperties%2F-395598746" anchor-label="DURATION_9" id="-76683321%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-u-r-a-t-i-o-n_9.html">DURATION_9</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-730304455%2FProperties%2F-395598746" anchor-label="DURATION_FOREVER" id="-730304455%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-d-u-r-a-t-i-o-n_-f-o-r-e-v-e-r.html">DURATION_FOREVER</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-730304455%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-730304455%2FProperties%2F-395598746" anchor-label="DURATION_FOREVER" id="-730304455%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-u-r-a-t-i-o-n_-f-o-r-e-v-e-r.html">DURATION_FOREVER</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="566555266%2FProperties%2F-395598746" anchor-label="DURATION_NONE" id="566555266%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-d-u-r-a-t-i-o-n_-n-o-n-e.html">DURATION_NONE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="566555266%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="566555266%2FProperties%2F-395598746" anchor-label="DURATION_NONE" id="566555266%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-u-r-a-t-i-o-n_-n-o-n-e.html">DURATION_NONE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-556944836%2FProperties%2F-395598746" anchor-label="EXTRA_ACTION_NEED_CLOSE" id="-556944836%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-a-c-t-i-o-n_-n-e-e-d_-c-l-o-s-e.html">EXTRA_ACTION_NEED_CLOSE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-556944836%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-556944836%2FProperties%2F-395598746" anchor-label="EXTRA_ACTION_NEED_CLOSE" id="-556944836%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-a-c-t-i-o-n_-n-e-e-d_-c-l-o-s-e.html">EXTRA_ACTION_NEED_CLOSE</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-535979458%2FProperties%2F-395598746" anchor-label="EXTRA_ACTION_TEXT" id="-535979458%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-a-c-t-i-o-n_-t-e-x-t.html">EXTRA_ACTION_TEXT</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-535979458%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-535979458%2FProperties%2F-395598746" anchor-label="EXTRA_ACTION_TEXT" id="-535979458%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-a-c-t-i-o-n_-t-e-x-t.html">EXTRA_ACTION_TEXT</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="737040615%2FProperties%2F-395598746" anchor-label="EXTRA_ACTION_TEXT_COLOR_RES_ID" id="737040615%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-a-c-t-i-o-n_-t-e-x-t_-c-o-l-o-r_-r-e-s_-i-d.html">EXTRA_ACTION_TEXT_COLOR_RES_ID</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="737040615%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="737040615%2FProperties%2F-395598746" anchor-label="EXTRA_ACTION_TEXT_COLOR_RES_ID" id="737040615%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-a-c-t-i-o-n_-t-e-x-t_-c-o-l-o-r_-r-e-s_-i-d.html">EXTRA_ACTION_TEXT_COLOR_RES_ID</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1061383077%2FProperties%2F-395598746" anchor-label="EXTRA_BG_DRAWABLE_RES_ID" id="1061383077%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-b-g_-d-r-a-w-a-b-l-e_-r-e-s_-i-d.html">EXTRA_BG_DRAWABLE_RES_ID</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1061383077%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="1061383077%2FProperties%2F-395598746" anchor-label="EXTRA_BG_DRAWABLE_RES_ID" id="1061383077%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-b-g_-d-r-a-w-a-b-l-e_-r-e-s_-i-d.html">EXTRA_BG_DRAWABLE_RES_ID</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-939810258%2FProperties%2F-395598746" anchor-label="EXTRA_BG_FINAL_DRAWABLE_RES_ID" id="-939810258%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-b-g_-f-i-n-a-l_-d-r-a-w-a-b-l-e_-r-e-s_-i-d.html">EXTRA_BG_FINAL_DRAWABLE_RES_ID</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-939810258%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-939810258%2FProperties%2F-395598746" anchor-label="EXTRA_BG_FINAL_DRAWABLE_RES_ID" id="-939810258%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-b-g_-f-i-n-a-l_-d-r-a-w-a-b-l-e_-r-e-s_-i-d.html">EXTRA_BG_FINAL_DRAWABLE_RES_ID</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1106855031%2FProperties%2F-395598746" anchor-label="EXTRA_DANMAKU_RECOMMENDED" id="-1106855031%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-d-a-n-m-a-k-u_-r-e-c-o-m-m-e-n-d-e-d.html">EXTRA_DANMAKU_RECOMMENDED</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1106855031%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-1106855031%2FProperties%2F-395598746" anchor-label="EXTRA_DANMAKU_RECOMMENDED" id="-1106855031%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-d-a-n-m-a-k-u_-r-e-c-o-m-m-e-n-d-e-d.html">EXTRA_DANMAKU_RECOMMENDED</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-7011856%2FProperties%2F-395598746" anchor-label="EXTRA_DANMAKU_REMOTE_ID" id="-7011856%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-d-a-n-m-a-k-u_-r-e-m-o-t-e_-i-d.html">EXTRA_DANMAKU_REMOTE_ID</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-7011856%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-7011856%2FProperties%2F-395598746" anchor-label="EXTRA_DANMAKU_REMOTE_ID" id="-7011856%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-d-a-n-m-a-k-u_-r-e-m-o-t-e_-i-d.html">EXTRA_DANMAKU_REMOTE_ID</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1933384574%2FProperties%2F-395598746" anchor-label="EXTRA_FINAL_ACTION_TEXT_COLOR_RES_ID" id="1933384574%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-f-i-n-a-l_-a-c-t-i-o-n_-t-e-x-t_-c-o-l-o-r_-r-e-s_-i-d.html">EXTRA_FINAL_ACTION_TEXT_COLOR_RES_ID</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1933384574%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="1933384574%2FProperties%2F-395598746" anchor-label="EXTRA_FINAL_ACTION_TEXT_COLOR_RES_ID" id="1933384574%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-f-i-n-a-l_-a-c-t-i-o-n_-t-e-x-t_-c-o-l-o-r_-r-e-s_-i-d.html">EXTRA_FINAL_ACTION_TEXT_COLOR_RES_ID</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1630427089%2FProperties%2F-395598746" anchor-label="EXTRA_FRONT_DRAWABLE_RES_ID" id="-1630427089%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-f-r-o-n-t_-d-r-a-w-a-b-l-e_-r-e-s_-i-d.html">EXTRA_FRONT_DRAWABLE_RES_ID</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1630427089%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-1630427089%2FProperties%2F-395598746" anchor-label="EXTRA_FRONT_DRAWABLE_RES_ID" id="-1630427089%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-f-r-o-n-t_-d-r-a-w-a-b-l-e_-r-e-s_-i-d.html">EXTRA_FRONT_DRAWABLE_RES_ID</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-968946404%2FProperties%2F-395598746" anchor-label="EXTRA_TITLE" id="-968946404%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-t-i-t-l-e.html">EXTRA_TITLE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-968946404%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-968946404%2FProperties%2F-395598746" anchor-label="EXTRA_TITLE" id="-968946404%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-t-i-t-l-e.html">EXTRA_TITLE</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="767503066%2FProperties%2F-395598746" anchor-label="EXTRA_TITLE_BOLD" id="767503066%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-t-i-t-l-e_-b-o-l-d.html">EXTRA_TITLE_BOLD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="767503066%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="767503066%2FProperties%2F-395598746" anchor-label="EXTRA_TITLE_BOLD" id="767503066%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-t-i-t-l-e_-b-o-l-d.html">EXTRA_TITLE_BOLD</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="564528152%2FProperties%2F-395598746" anchor-label="EXTRA_TITLE_COLOR" id="564528152%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-t-i-t-l-e_-c-o-l-o-r.html">EXTRA_TITLE_COLOR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="564528152%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="564528152%2FProperties%2F-395598746" anchor-label="EXTRA_TITLE_COLOR" id="564528152%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-t-i-t-l-e_-c-o-l-o-r.html">EXTRA_TITLE_COLOR</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1802463454%2FProperties%2F-395598746" anchor-label="EXTRA_TITLE_SIZE" id="1802463454%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-t-i-t-l-e_-s-i-z-e.html">EXTRA_TITLE_SIZE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1802463454%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="1802463454%2FProperties%2F-395598746" anchor-label="EXTRA_TITLE_SIZE" id="1802463454%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-t-i-t-l-e_-s-i-z-e.html">EXTRA_TITLE_SIZE</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="939928808%2FProperties%2F-395598746" anchor-label="EXTRA_TOAST_LENGTH" id="939928808%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-t-o-a-s-t_-l-e-n-g-t-h.html">EXTRA_TOAST_LENGTH</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="939928808%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="939928808%2FProperties%2F-395598746" anchor-label="EXTRA_TOAST_LENGTH" id="939928808%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-t-o-a-s-t_-l-e-n-g-t-h.html">EXTRA_TOAST_LENGTH</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="486743200%2FProperties%2F-395598746" anchor-label="LEVEL_FOURTH" id="486743200%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-l-e-v-e-l_-f-o-u-r-t-h.html">LEVEL_FOURTH</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="486743200%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="486743200%2FProperties%2F-395598746" anchor-label="LEVEL_FOURTH" id="486743200%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-l-e-v-e-l_-f-o-u-r-t-h.html">LEVEL_FOURTH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-301836900%2FProperties%2F-395598746" anchor-label="LEVEL_HIGHEST" id="-301836900%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-l-e-v-e-l_-h-i-g-h-e-s-t.html">LEVEL_HIGHEST</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-301836900%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-301836900%2FProperties%2F-395598746" anchor-label="LEVEL_HIGHEST" id="-301836900%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-l-e-v-e-l_-h-i-g-h-e-s-t.html">LEVEL_HIGHEST</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1889989624%2FProperties%2F-395598746" anchor-label="LEVEL_LOWEST" id="-1889989624%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-l-e-v-e-l_-l-o-w-e-s-t.html">LEVEL_LOWEST</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1889989624%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-1889989624%2FProperties%2F-395598746" anchor-label="LEVEL_LOWEST" id="-1889989624%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-l-e-v-e-l_-l-o-w-e-s-t.html">LEVEL_LOWEST</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="213498758%2FProperties%2F-395598746" anchor-label="LEVEL_SECOND" id="213498758%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-l-e-v-e-l_-s-e-c-o-n-d.html">LEVEL_SECOND</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="213498758%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="213498758%2FProperties%2F-395598746" anchor-label="LEVEL_SECOND" id="213498758%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-l-e-v-e-l_-s-e-c-o-n-d.html">LEVEL_SECOND</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="369292025%2FProperties%2F-395598746" anchor-label="LEVEL_THIRD" id="369292025%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-l-e-v-e-l_-t-h-i-r-d.html">LEVEL_THIRD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="369292025%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="369292025%2FProperties%2F-395598746" anchor-label="LEVEL_THIRD" id="369292025%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-l-e-v-e-l_-t-h-i-r-d.html">LEVEL_THIRD</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="828041908%2FProperties%2F-395598746" anchor-label="LOCAT_CENTER" id="828041908%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-l-o-c-a-t_-c-e-n-t-e-r.html">LOCAT_CENTER</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="828041908%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="828041908%2FProperties%2F-395598746" anchor-label="LOCAT_CENTER" id="828041908%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-l-o-c-a-t_-c-e-n-t-e-r.html">LOCAT_CENTER</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1675825890%2FProperties%2F-395598746" anchor-label="LOCAT_LEFT_SIDE" id="1675825890%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-l-o-c-a-t_-l-e-f-t_-s-i-d-e.html">LOCAT_LEFT_SIDE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1675825890%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="1675825890%2FProperties%2F-395598746" anchor-label="LOCAT_LEFT_SIDE" id="1675825890%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-l-o-c-a-t_-l-e-f-t_-s-i-d-e.html">LOCAT_LEFT_SIDE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1538429330%2FProperties%2F-395598746" anchor-label="QUEUE_INSERT" id="-1538429330%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-q-u-e-u-e_-i-n-s-e-r-t.html">QUEUE_INSERT</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1538429330%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-1538429330%2FProperties%2F-395598746" anchor-label="QUEUE_INSERT" id="-1538429330%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-q-u-e-u-e_-i-n-s-e-r-t.html">QUEUE_INSERT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1659291816%2FProperties%2F-395598746" anchor-label="QUEUE_REFRESH" id="-1659291816%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-q-u-e-u-e_-r-e-f-r-e-s-h.html">QUEUE_REFRESH</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1659291816%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-1659291816%2FProperties%2F-395598746" anchor-label="QUEUE_REFRESH" id="-1659291816%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-q-u-e-u-e_-r-e-f-r-e-s-h.html">QUEUE_REFRESH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1162591146%2FProperties%2F-395598746" anchor-label="TYPE_ACTION" id="1162591146%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-t-y-p-e_-a-c-t-i-o-n.html">TYPE_ACTION</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1162591146%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="1162591146%2FProperties%2F-395598746" anchor-label="TYPE_ACTION" id="1162591146%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-t-y-p-e_-a-c-t-i-o-n.html">TYPE_ACTION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1258599131%2FProperties%2F-395598746" anchor-label="TYPE_ACTION_ANIMATION" id="-1258599131%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-t-y-p-e_-a-c-t-i-o-n_-a-n-i-m-a-t-i-o-n.html">TYPE_ACTION_ANIMATION</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1258599131%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-1258599131%2FProperties%2F-395598746" anchor-label="TYPE_ACTION_ANIMATION" id="-1258599131%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-t-y-p-e_-a-c-t-i-o-n_-a-n-i-m-a-t-i-o-n.html">TYPE_ACTION_ANIMATION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1458342193%2FProperties%2F-395598746" anchor-label="TYPE_CUSTOM" id="-1458342193%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-t-y-p-e_-c-u-s-t-o-m.html">TYPE_CUSTOM</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1458342193%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-1458342193%2FProperties%2F-395598746" anchor-label="TYPE_CUSTOM" id="-1458342193%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-t-y-p-e_-c-u-s-t-o-m.html">TYPE_CUSTOM</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1818738465%2FProperties%2F-395598746" anchor-label="TYPE_END" id="-1818738465%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-t-y-p-e_-e-n-d.html">TYPE_END</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1818738465%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-1818738465%2FProperties%2F-395598746" anchor-label="TYPE_END" id="-1818738465%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace strikethrough"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/Deprecated.html"><span class="token annotation">Deprecated</span></a></div></div><strike><span class="token keyword"></span></strike><strike><span class="token keyword">val </span></strike><a href="-t-y-p-e_-e-n-d.html"><strike>TYPE_END</strike></a><strike><span class="token operator">: </span></strike><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1481066983%2FProperties%2F-395598746" anchor-label="TYPE_NORMAL" id="-1481066983%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-t-y-p-e_-n-o-r-m-a-l.html">TYPE_NORMAL</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1481066983%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-1481066983%2FProperties%2F-395598746" anchor-label="TYPE_NORMAL" id="-1481066983%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-t-y-p-e_-n-o-r-m-a-l.html">TYPE_NORMAL</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1275710456%2FProperties%2F-395598746" anchor-label="TYPE_START" id="1275710456%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-t-y-p-e_-s-t-a-r-t.html">TYPE_START</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1275710456%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="1275710456%2FProperties%2F-395598746" anchor-label="TYPE_START" id="1275710456%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace strikethrough"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/Deprecated.html"><span class="token annotation">Deprecated</span></a></div></div><strike><span class="token keyword"></span></strike><strike><span class="token keyword">val </span></strike><a href="-t-y-p-e_-s-t-a-r-t.html"><strike>TYPE_START</strike></a><strike><span class="token operator">: </span></strike><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1121451567%2FProperties%2F-395598746" anchor-label="TYPE_SYSTEM" id="-1121451567%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":qplayer2-ext:dokkaHtml/release" data-filterable-set=":qplayer2-ext:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-t-y-p-e_-s-y-s-t-e-m.html">TYPE_SYSTEM</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1121451567%2FProperties%2F-395598746"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":qplayer2-ext:dokkaHtml/release"><a data-name="-1121451567%2FProperties%2F-395598746" anchor-label="TYPE_SYSTEM" id="-1121451567%2FProperties%2F-395598746" data-filterable-set=":qplayer2-ext:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-t-y-p-e_-s-y-s-t-e-m.html">TYPE_SYSTEM</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CommonPlayerWindowInset">
+        <attr name="topBackground" format="reference" />
+        <attr name="topBackgroundHeight" format="dimension" />
+        <attr name="bottomBackground" format="reference" />
+        <attr name="bottomBackgroundHeight" format="dimension" />
+        <attr name="contentTopPadding" format="dimension" />
+        <attr name="contentBottomPadding" format="dimension" />
+        <attr name="contentLeftPadding" format="dimension" />
+        <attr name="contentRightPadding" format="dimension" />
+    </declare-styleable>
+
+</resources>
