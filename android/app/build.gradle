@@ -23,19 +23,27 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
+    signingConfigs {
+        qplayer2Config {
+            keyAlias "key-qplayer2"
+            keyPassword "123456"
+            storePassword "123456"
+            storeFile rootProject.file("key")
+        }
+    }
 
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.qplayer2Config
         }
         debug {
             debuggable = true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
-
+            signingConfig signingConfigs.qplayer2Config
         }
 
     }
