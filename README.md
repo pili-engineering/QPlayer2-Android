@@ -11,7 +11,7 @@ Qplayer2是一款跨平台的播放器SDK,除了基础的播放器能力外，�
 
  Platform | Build Status
  -------- | ------------
- Android | BETA 版已发布 
+ Android | 正式版已发布 
  IOS | 敬请期待 
  Windows | 敬请期待 
  Mac | 敬请期待 
@@ -20,7 +20,7 @@ Qplayer2是一款跨平台的播放器SDK,除了基础的播放器能力外，�
 | 能力                  | 亮点                                                         | 备注                             |
 | --------------------- | ------------------------------------------------------------ | -------------------------------- |
 | 媒体资源组成形式      | 一个媒体资源支持多url，比如一个音频url和一个视频url组成一个媒体资源,提升拉流速度和解封装速度 |                                  |
-| 播放协议及视频类型    | http/https/rtmp flv/m3u8/mp4                                 | 新增协议和视频类型请联系技术支持 |
+| 播放协议及视频类型    | http/https/rtmp flv/m3u8/mp4/flac/wav(PCM_S24LE)             | 新增协议和视频类型请联系技术支持 |
 | 解码                  | 除了软解/硬解/自动解码方式外 新增混解方式，提升硬解首帧速度  |                                  |
 | 色盲模式              | 能在业务场景中更好的服务视觉有障碍的客户                     |                                  |
 | 倍速                  | 变速不变调                                                   |                                  |
@@ -54,8 +54,8 @@ Qplayer2是一款跨平台的播放器SDK,除了基础的播放器能力外，�
 ##### 引入依赖
 
 ```groovy
-implementation("com.qiniu:qplayer2-core:0.0.6-beta")
-implementation("com.qiniu:qplayer2-ext:0.0.6-beta") //如果无需qplayer2-ext能力可以不引入 不影响core的使用
+implementation("com.qiniu:qplayer2-core:0.0.7")
+implementation("com.qiniu:qplayer2-ext:0.0.7") //如果无需qplayer2-ext能力可以不引入 不影响core的使用
 ```
 
 
