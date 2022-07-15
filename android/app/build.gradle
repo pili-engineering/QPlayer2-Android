@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 ext {
-    qplayer2_demo_version='0.0.6-beta'
+    qplayer2_demo_version='0.0.7'
 }
 android {
     compileSdkVersion 32
@@ -23,19 +23,27 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
+    signingConfigs {
+        qplayer2Config {
+            keyAlias "key-qplayer2"
+            keyPassword "123456"
+            storePassword "123456"
+            storeFile rootProject.file("key")
+        }
+    }
 
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.qplayer2Config
         }
         debug {
             debuggable = true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
-
+            signingConfig signingConfigs.qplayer2Config
         }
 
     }
@@ -74,8 +82,8 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
     if (use_aar) {
-        implementation("com.qiniu:qplayer2-core:0.0.6-beta")
-        implementation("com.qiniu:qplayer2-ext:0.0.6-beta")
+        implementation("com.qiniu:qplayer2-core:0.0.7")
+        implementation("com.qiniu:qplayer2-ext:0.0.7")
 
     } else {
 
