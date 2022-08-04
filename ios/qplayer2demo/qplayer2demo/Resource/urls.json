@@ -1,0 +1,289 @@
+[
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 1,
+                "url": "http://demo-videos.qnsdk.com/qiniu-1080p.mp4",
+                "quality": 1080,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            },
+            {
+                "user_type": "",
+                "url_type": 1,
+                "url": "http://demo-videos.qnsdk.com/qiniu-720p.mp4",
+                "quality": 720,
+                "is_select": 0,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            },
+            {
+                "user_type": "",
+                "url_type": 1,
+                "url": "http://demo-videos.qnsdk.com/qiniu-480p.mp4",
+                "quality": 480,
+                "is_select": 0,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            },
+            {
+                "user_type": "",
+                "url_type": 1,
+                "url": "http://demo-videos.qnsdk.com/qiniu-360p.mp4",
+                "quality": 360,
+                "is_select": 0,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 1,
+                "url": "http://demo-videos.qnsdk.com/only-audio.m4s",
+                "quality": 100,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 1,
+                "url": "https://sdk-release.qnsdk.com/1080_60_5390.mp4",
+                "quality": 100,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 2,
+                "url": "http://demo-videos.qnsdk.com/only-video-1080p-60fps.m4s",
+                "quality": 1080,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 0,
+                "url": "http://demo-videos.qnsdk.com/shortvideo/nike.mp4",
+                "quality": 960,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 0,
+                "url": "http://demo-videos.qnsdk.com/VR-Panorama-Equirect-Angular-4500k.mp4",
+                "quality": 1080,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "renderType": 1,
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "纯音频",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 0,
+                "url": "http://demo-videos.qnsdk.com/song.mp3",
+                "quality": 100,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 0,
+                "url": "http://demo-videos.qnsdk.com/bbk-bt709.mp4",
+                "quality": 720,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 0,
+                "url": "http://demo-videos.qnsdk.com/bbk-H265-50fps.mp4",
+                "quality": 0,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "音画同步-H264-60FPS",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 0,
+                "url": "http://demo-videos.qnsdk.com/Sync-Footage-V1-H264.mp4",
+                "quality": 1080,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 0,
+                "url": "https://img.qunliao.info:443/4oEGX68t_9505974551.mp4",
+                "quality": 360,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 1,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 0,
+                "url": "srt://cdn-pull-tx.hntv.tv:10080?streamid=#!::h=cdn-pull-tx.hntv.tv/saas_live/38edfba79447461ba3c46440cf474822,m=request,wsSecret=69fb58c54ff2a0c13fb14c793a6aad58,wsTime=1909811783",
+                "quality": 360,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 0,
+                "url": "http://ojpjb7lbl.bkt.clouddn.com/h265/2000k/265_test.m3u8",
+                "quality": 360,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 1,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 0,
+                "url": "srt://cdn-pull-tx.hntv.tv:10080?streamid=#!::h=cdn-pull-tx.hntv.tv/saas_live/38edfba79447461ba3c46440cf474822,m=request,wsSecret=69fb58c54ff2a0c13fb14c793a6aad58,wsTime=1909811783",
+                "quality": 360,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 1,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 0,
+                "url": "srt://cdn-pull-tx-1.hndt.com:10080?streamid=#!::h=cdn-pull-tx-1.hndt.com/saas_live/a5d19ff5c5a24cf99e77b9acd91e1128,m=request,wsSecret=81e31374ab905f273517886ef8446164,wsTime=1910504903",
+                "quality": 360,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 1,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 0,
+                "url": "srt://180.101.136.81:1935?streamid=#!::h=pilidemo/timestamp,m=request,domain=live-pilidemo.cloudvdn.com",
+                "quality": 360,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    }
+]
