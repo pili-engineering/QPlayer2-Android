@@ -7,11 +7,12 @@
 //
 
 #import "PLCellPlayerTableViewCell.h"
+#import "QNPlayerShortVideoMaskView.h"
 
-
-@interface PLCellPlayerTableViewCell()
+@interface PLCellPlayerTableViewCell()<QNPlayerShortVideoMaskViewDelegate>
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
+@property (nonatomic, strong) QNPlayerShortVideoMaskView* maskView;
 
 @end
 
@@ -21,10 +22,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.contentView.backgroundColor = [UIColor blackColor];
-        
         self.width = PLAYER_PORTRAIT_WIDTH;
         self.height = PLAYER_PORTRAIT_HEIGHT;
-        
         self.stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, _height- 20, _width - 10, 20)];
         self.stateLabel.backgroundColor = [UIColor clearColor];
         self.stateLabel.font = PL_FONT_MEDIUM(12);
@@ -45,6 +44,8 @@
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _width, 0.5)];
         lineView.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:lineView];
+        
+        
     }
     return self;
 }
@@ -55,6 +56,7 @@
     if (_playerView) {
         [self.contentView insertSubview:_playerView atIndex:0];
     }
+    
 }
 
 - (void)setUrl:(NSString *)url {
@@ -73,8 +75,43 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    if (!self.maskView) {
+        [self addPlayerMaskView:_player];
+    }
     // Configure the view for the selected state
 }
+-(void)setState:(BOOL)state{
+    if (self.maskView) {
+        [self.maskView setPlayButtonState:state];
+    }
+    
+}
+-(void)setPlayer:(QPlayerContext *)player{
+//    _player = player;
+    if (!self.maskView) {
+        [self addPlayerMaskView:player];
+    }else{
+        self.maskView.player = player;
+    }
+//    self.maskView.player = player;
+}
+#pragma mark - 添加点播界面蒙版
 
+- (void)addPlayerMaskView:(QPlayerContext *)player{
+    self.maskView = [[QNPlayerShortVideoMaskView alloc] initWithShortVideoFrame:CGRectMake(0, PL_SCREEN_HEIGHT-90, PL_SCREEN_WIDTH, 50) player:player isLiving:NO];
+//    self.maskView.center = self.player.playerView.center;
+    self.maskView.delegate = self;
+    self.maskView.backgroundColor = [UIColor clearColor];
+//    [self.maskView.rotateButton addTarget:self action:@selector(rotateButtonAction:) forControlEvents:UIControlEventTouchDown];
+//    [self.contentView insertSubview:_maskView aboveSubview:_player.playerView];
+    [self.contentView addSubview:_maskView];
+    
+//    [self.maskView.qualitySegMc addTarget:self action:@selector(qualityAction:) forControlEvents:UIControlEventValueChanged];
+}
+#pragma mark - QNPlayerShortVideoMaskViewDelegate
+
+-(void)reOpenPlayPlayerMaskView:(QNPlayerShortVideoMaskView *)playerMaskView{
+    [_maskView setPlayButtonState:YES];
+
+}
 @end

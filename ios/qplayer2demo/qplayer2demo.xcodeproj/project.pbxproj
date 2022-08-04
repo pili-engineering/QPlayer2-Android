@@ -7,39 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CA90B81D289A7AF60087543B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA90B81B289A7AF60087543B /* Main.storyboard */; };
-		CA90B81F289A7AF80087543B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA90B81E289A7AF80087543B /* Assets.xcassets */; };
-		CA90B822289A7AF80087543B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA90B820289A7AF80087543B /* LaunchScreen.storyboard */; };
-		CA90B825289A7AF80087543B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B824289A7AF80087543B /* main.m */; };
-		CA90B83A289A7B6D0087543B /* QNURLListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B82B289A7B6D0087543B /* QNURLListTableViewCell.m */; };
-		CA90B83B289A7B6D0087543B /* PLCellPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B82F289A7B6D0087543B /* PLCellPlayerViewController.m */; };
-		CA90B83C289A7B6E0087543B /* QNHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B830289A7B6D0087543B /* QNHomeViewController.m */; };
-		CA90B83D289A7B6E0087543B /* QNPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B832289A7B6D0087543B /* QNPlayerViewController.m */; };
-		CA90B83E289A7B6E0087543B /* QNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B835289A7B6D0087543B /* QNAppDelegate.m */; };
-		CA90B83F289A7B6E0087543B /* PLCellPlayerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B836289A7B6D0087543B /* PLCellPlayerTableViewCell.m */; };
-		CA90B840289A7B6E0087543B /* QNInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B837289A7B6D0087543B /* QNInfoHeaderView.m */; };
-		CA90B847289A7C1C0087543B /* QNScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B845289A7C1C0087543B /* QNScanViewController.m */; };
-		CA90B84C289A7C530087543B /* lite_urls.json in Resources */ = {isa = PBXBuildFile; fileRef = CA90B848289A7C530087543B /* lite_urls.json */; };
-		CA90B84D289A7C530087543B /* urls.json in Resources */ = {isa = PBXBuildFile; fileRef = CA90B849289A7C530087543B /* urls.json */; };
-		CA90B84E289A7C530087543B /* audiovorbis.ogg in Resources */ = {isa = PBXBuildFile; fileRef = CA90B84A289A7C530087543B /* audiovorbis.ogg */; };
-		CA90B84F289A7C530087543B /* gotham.mkv in Resources */ = {isa = PBXBuildFile; fileRef = CA90B84B289A7C530087543B /* gotham.mkv */; };
-		CA90B858289A7C9F0087543B /* source264_flv.flv in Resources */ = {isa = PBXBuildFile; fileRef = CA90B853289A7C9F0087543B /* source264_flv.flv */; };
-		CA90B859289A7C9F0087543B /* source265_flv.flv in Resources */ = {isa = PBXBuildFile; fileRef = CA90B854289A7C9F0087543B /* source265_flv.flv */; };
-		CA90B85A289A7C9F0087543B /* source265_mp4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CA90B855289A7C9F0087543B /* source265_mp4.mp4 */; };
-		CA90B85B289A7C9F0087543B /* source264_mp4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CA90B856289A7C9F0087543B /* source264_mp4.mp4 */; };
-		CA90B85C289A7C9F0087543B /* source_aac.aac in Resources */ = {isa = PBXBuildFile; fileRef = CA90B857289A7C9F0087543B /* source_aac.aac */; };
-		CA90B85F289A7CD50087543B /* QNPlayerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B85D289A7CD50087543B /* QNPlayerMaskView.m */; };
-		CA90B870289A7CF50087543B /* QNConfigInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B861289A7CF40087543B /* QNConfigInputTableViewCell.m */; };
-		CA90B871289A7CF50087543B /* QDataHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B862289A7CF40087543B /* QDataHandle.m */; };
-		CA90B872289A7CF50087543B /* QNOptionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B863289A7CF40087543B /* QNOptionListView.m */; };
-		CA90B873289A7CF50087543B /* QNPlayerConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B865289A7CF40087543B /* QNPlayerConfigViewController.m */; };
-		CA90B874289A7CF50087543B /* QNClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B86A289A7CF50087543B /* QNClassModel.m */; };
-		CA90B875289A7CF50087543B /* QNConfigListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B86B289A7CF50087543B /* QNConfigListTableViewCell.m */; };
-		CA90B876289A7CF50087543B /* QNConfigSegTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B86C289A7CF50087543B /* QNConfigSegTableViewCell.m */; };
-		CA90B877289A7CF50087543B /* QNPlayerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B86E289A7CF50087543B /* QNPlayerModel.m */; };
-		CA90B881289A7D0D0087543B /* QNPlayerSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B87B289A7D0D0087543B /* QNPlayerSettingsView.m */; };
-		CA90B882289A7D0D0087543B /* QNChangePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B87C289A7D0D0087543B /* QNChangePlayerView.m */; };
-		CA90B883289A7D0D0087543B /* QNSpeedPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90B87D289A7D0D0087543B /* QNSpeedPlayerView.m */; };
+		50B1F3D5289BBF7A0074E02D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B1F3D4289BBF7A0074E02D /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,62 +28,103 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		50B1EFE6289BB1CC0074E02D /* QNPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNPlayerViewController.h; sourceTree = "<group>"; };
+		50B1EFE8289BB1CC0074E02D /* QNPlayerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNPlayerModel.m; sourceTree = "<group>"; };
+		50B1EFE9289BB1CC0074E02D /* QNConfigInputTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNConfigInputTableViewCell.h; sourceTree = "<group>"; };
+		50B1EFEA289BB1CC0074E02D /* QNConfigListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNConfigListTableViewCell.m; sourceTree = "<group>"; };
+		50B1EFEB289BB1CC0074E02D /* QNOptionListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNOptionListView.m; sourceTree = "<group>"; };
+		50B1EFEC289BB1CC0074E02D /* QNPlayerConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNPlayerConfigViewController.h; sourceTree = "<group>"; };
+		50B1EFED289BB1CC0074E02D /* QDataHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QDataHandle.h; sourceTree = "<group>"; };
+		50B1EFEE289BB1CC0074E02D /* QNConfigSegTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNConfigSegTableViewCell.m; sourceTree = "<group>"; };
+		50B1EFEF289BB1CC0074E02D /* QNClassModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNClassModel.h; sourceTree = "<group>"; };
+		50B1EFF0289BB1CC0074E02D /* QNConfigInputTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNConfigInputTableViewCell.m; sourceTree = "<group>"; };
+		50B1EFF1289BB1CC0074E02D /* QNPlayerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNPlayerModel.h; sourceTree = "<group>"; };
+		50B1EFF3289BB1CC0074E02D /* QNPlayerSettingsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNPlayerSettingsView.m; sourceTree = "<group>"; };
+		50B1EFF4289BB1CC0074E02D /* QNChangePlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNChangePlayerView.m; sourceTree = "<group>"; };
+		50B1EFF5289BB1CC0074E02D /* QNSpeedPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNSpeedPlayerView.m; sourceTree = "<group>"; };
+		50B1EFF6289BB1CC0074E02D /* QNChangePlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNChangePlayerView.h; sourceTree = "<group>"; };
+		50B1EFF7289BB1CC0074E02D /* QNPlayerSettingsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNPlayerSettingsView.h; sourceTree = "<group>"; };
+		50B1EFF8289BB1CC0074E02D /* QNSpeedPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNSpeedPlayerView.h; sourceTree = "<group>"; };
+		50B1EFF9289BB1CC0074E02D /* QNOptionListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNOptionListView.h; sourceTree = "<group>"; };
+		50B1EFFA289BB1CC0074E02D /* QNConfigListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNConfigListTableViewCell.h; sourceTree = "<group>"; };
+		50B1EFFB289BB1CC0074E02D /* QDataHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QDataHandle.m; sourceTree = "<group>"; };
+		50B1EFFC289BB1CC0074E02D /* QNPlayerConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNPlayerConfigViewController.m; sourceTree = "<group>"; };
+		50B1EFFD289BB1CC0074E02D /* QNConfigSegTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNConfigSegTableViewCell.h; sourceTree = "<group>"; };
+		50B1EFFE289BB1CC0074E02D /* QNClassModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNClassModel.m; sourceTree = "<group>"; };
+		50B1EFFF289BB1CC0074E02D /* QNPublicHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNPublicHeader.h; sourceTree = "<group>"; };
+		50B1F000289BB1CC0074E02D /* QNURLListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNURLListTableViewCell.m; sourceTree = "<group>"; };
+		50B1F001289BB1CC0074E02D /* PLCellPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLCellPlayerViewController.h; sourceTree = "<group>"; };
+		50B1F002289BB1CC0074E02D /* QNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNAppDelegate.m; sourceTree = "<group>"; };
+		50B1F004289BB1CC0074E02D /* QNToastView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNToastView.m; sourceTree = "<group>"; };
+		50B1F005289BB1CC0074E02D /* ShowMassageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowMassageView.m; sourceTree = "<group>"; };
+		50B1F006289BB1CC0074E02D /* QNToastView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNToastView.h; sourceTree = "<group>"; };
+		50B1F007289BB1CC0074E02D /* ShowMassageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowMassageView.h; sourceTree = "<group>"; };
+		50B1F008289BB1CC0074E02D /* QNInfoHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNInfoHeaderView.m; sourceTree = "<group>"; };
+		50B1F009289BB1CC0074E02D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		50B1F00A289BB1CC0074E02D /* QNHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNHomeViewController.h; sourceTree = "<group>"; };
+		50B1F00B289BB1CC0074E02D /* PLCellPlayerTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLCellPlayerTableViewCell.m; sourceTree = "<group>"; };
+		50B1F00D289BB1CC0074E02D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		50B1F00F289BB1CC0074E02D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		50B1F010289BB1CC0074E02D /* QNPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNPlayerViewController.m; sourceTree = "<group>"; };
+		50B1F012289BB1CC0074E02D /* QNPlayerShortVideoMaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNPlayerShortVideoMaskView.h; sourceTree = "<group>"; };
+		50B1F013289BB1CC0074E02D /* QNPlayerMaskView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNPlayerMaskView.m; sourceTree = "<group>"; };
+		50B1F014289BB1CC0074E02D /* QNPlayerShortVideoMaskView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNPlayerShortVideoMaskView.m; sourceTree = "<group>"; };
+		50B1F015289BB1CC0074E02D /* QNPlayerMaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNPlayerMaskView.h; sourceTree = "<group>"; };
+		50B1F017289BB1CC0074E02D /* QNSoundSliderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNSoundSliderView.m; sourceTree = "<group>"; };
+		50B1F018289BB1CC0074E02D /* QNHeadsetNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNHeadsetNotification.h; sourceTree = "<group>"; };
+		50B1F019289BB1CC0074E02D /* QNButtomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNButtomView.m; sourceTree = "<group>"; };
+		50B1F01A289BB1CC0074E02D /* QNSoundSliderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNSoundSliderView.h; sourceTree = "<group>"; };
+		50B1F01B289BB1CC0074E02D /* QNButtomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNButtomView.h; sourceTree = "<group>"; };
+		50B1F01C289BB1CC0074E02D /* QNHeadsetNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNHeadsetNotification.m; sourceTree = "<group>"; };
+		50B1F01D289BB1CC0074E02D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		50B1F01E289BB1CC0074E02D /* QNURLListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNURLListTableViewCell.h; sourceTree = "<group>"; };
+		50B1F01F289BB1CC0074E02D /* PLCellPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLCellPlayerViewController.m; sourceTree = "<group>"; };
+		50B1F020289BB1CC0074E02D /* QNInfoHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNInfoHeaderView.h; sourceTree = "<group>"; };
+		50B1F022289BB1CC0074E02D /* QNScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNScanViewController.h; sourceTree = "<group>"; };
+		50B1F023289BB1CC0074E02D /* QNScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNScanViewController.m; sourceTree = "<group>"; };
+		50B1F025289BB1CC0074E02D /* qiniu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qiniu.png; sourceTree = "<group>"; };
+		50B1F026289BB1CC0074E02D /* pl_smallScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_smallScreen.png; sourceTree = "<group>"; };
+		50B1F027289BB1CC0074E02D /* pl_forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_forward.png; sourceTree = "<group>"; };
+		50B1F028289BB1CC0074E02D /* pl_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_back.png; sourceTree = "<group>"; };
+		50B1F029289BB1CC0074E02D /* pl_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_play.png; sourceTree = "<group>"; };
+		50B1F02A289BB1CC0074E02D /* pl_scan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_scan.png; sourceTree = "<group>"; };
+		50B1F02B289BB1CC0074E02D /* pl_maxVolume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_maxVolume.png; sourceTree = "<group>"; };
+		50B1F02C289BB1CC0074E02D /* pl_backward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_backward.png; sourceTree = "<group>"; };
+		50B1F02D289BB1CC0074E02D /* pl_mirror.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_mirror.png; sourceTree = "<group>"; };
+		50B1F02E289BB1CC0074E02D /* pl_setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_setting.png; sourceTree = "<group>"; };
+		50B1F02F289BB1CC0074E02D /* pl_round.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_round.png; sourceTree = "<group>"; };
+		50B1F030289BB1CC0074E02D /* pl_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_delete.png; sourceTree = "<group>"; };
+		50B1F031289BB1CC0074E02D /* pl_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_up.png; sourceTree = "<group>"; };
+		50B1F032289BB1CC0074E02D /* pl_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_down.png; sourceTree = "<group>"; };
+		50B1F033289BB1CC0074E02D /* pl_min_blue_volume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_min_blue_volume.png; sourceTree = "<group>"; };
+		50B1F034289BB1CC0074E02D /* LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO.png; sourceTree = "<group>"; };
+		50B1F035289BB1CC0074E02D /* pl_clip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_clip.png; sourceTree = "<group>"; };
+		50B1F036289BB1CC0074E02D /* urls.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = urls.json; sourceTree = "<group>"; };
+		50B1F037289BB1CC0074E02D /* launch_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launch_image.jpg; sourceTree = "<group>"; };
+		50B1F038289BB1CC0074E02D /* audiovorbis.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = audiovorbis.ogg; sourceTree = "<group>"; };
+		50B1F039289BB1CC0074E02D /* pl_origin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_origin.png; sourceTree = "<group>"; };
+		50B1F03A289BB1CC0074E02D /* lite_urls.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lite_urls.json; sourceTree = "<group>"; };
+		50B1F03B289BB1CC0074E02D /* pl_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_close.png; sourceTree = "<group>"; };
+		50B1F03C289BB1CC0074E02D /* pl_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_stop.png; sourceTree = "<group>"; };
+		50B1F03D289BB1CC0074E02D /* pl_minVolume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_minVolume.png; sourceTree = "<group>"; };
+		50B1F03E289BB1CC0074E02D /* pl_shoot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_shoot.png; sourceTree = "<group>"; };
+		50B1F03F289BB1CC0074E02D /* gotham.mkv */ = {isa = PBXFileReference; lastKnownFileType = file; path = gotham.mkv; sourceTree = "<group>"; };
+		50B1F040289BB1CC0074E02D /* pl_fullScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_fullScreen.png; sourceTree = "<group>"; };
+		50B1F042289BB1CC0074E02D /* source264_flv.flv */ = {isa = PBXFileReference; lastKnownFileType = file; path = source264_flv.flv; sourceTree = "<group>"; };
+		50B1F043289BB1CC0074E02D /* source265_flv.flv */ = {isa = PBXFileReference; lastKnownFileType = file; path = source265_flv.flv; sourceTree = "<group>"; };
+		50B1F044289BB1CC0074E02D /* source265_mp4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = source265_mp4.mp4; sourceTree = "<group>"; };
+		50B1F045289BB1CC0074E02D /* source264_mp4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = source264_mp4.mp4; sourceTree = "<group>"; };
+		50B1F046289BB1CC0074E02D /* source_aac.aac */ = {isa = PBXFileReference; lastKnownFileType = file; path = source_aac.aac; sourceTree = "<group>"; };
+		50B1F047289BB1CC0074E02D /* pl_max_blue_volume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl_max_blue_volume.png; sourceTree = "<group>"; };
+		50B1F048289BB1CC0074E02D /* pl_rotate@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pl_rotate@3x.png"; sourceTree = "<group>"; };
+		50B1F049289BB1CC0074E02D /* QNAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QNAppDelegate.h; sourceTree = "<group>"; };
+		50B1F04A289BB1CC0074E02D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50B1F04B289BB1CC0074E02D /* PLCellPlayerTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLCellPlayerTableViewCell.h; sourceTree = "<group>"; };
+		50B1F04C289BB1CC0074E02D /* QNHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QNHomeViewController.m; sourceTree = "<group>"; };
+		50B1F3CA289BBC630074E02D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		50B1F3CE289BBCEA0074E02D /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		50B1F3D4289BBF7A0074E02D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CA90B80F289A7AF60087543B /* qplayer2demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = qplayer2demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA90B81C289A7AF60087543B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CA90B81E289A7AF80087543B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CA90B821289A7AF80087543B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CA90B823289A7AF80087543B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CA90B824289A7AF80087543B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CA90B82B289A7B6D0087543B /* QNURLListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNURLListTableViewCell.m; sourceTree = "<group>"; };
-		CA90B82C289A7B6D0087543B /* QNPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNPlayerViewController.h; sourceTree = "<group>"; };
-		CA90B82D289A7B6D0087543B /* QNHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNHomeViewController.h; sourceTree = "<group>"; };
-		CA90B82E289A7B6D0087543B /* QNAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNAppDelegate.h; sourceTree = "<group>"; };
-		CA90B82F289A7B6D0087543B /* PLCellPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLCellPlayerViewController.m; sourceTree = "<group>"; };
-		CA90B830289A7B6D0087543B /* QNHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNHomeViewController.m; sourceTree = "<group>"; };
-		CA90B831289A7B6D0087543B /* QNInfoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNInfoHeaderView.h; sourceTree = "<group>"; };
-		CA90B832289A7B6D0087543B /* QNPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNPlayerViewController.m; sourceTree = "<group>"; };
-		CA90B833289A7B6D0087543B /* PLCellPlayerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLCellPlayerTableViewCell.h; sourceTree = "<group>"; };
-		CA90B834289A7B6D0087543B /* QNURLListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNURLListTableViewCell.h; sourceTree = "<group>"; };
-		CA90B835289A7B6D0087543B /* QNAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNAppDelegate.m; sourceTree = "<group>"; };
-		CA90B836289A7B6D0087543B /* PLCellPlayerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLCellPlayerTableViewCell.m; sourceTree = "<group>"; };
-		CA90B837289A7B6D0087543B /* QNInfoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNInfoHeaderView.m; sourceTree = "<group>"; };
-		CA90B838289A7B6D0087543B /* QNPublicHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNPublicHeader.h; sourceTree = "<group>"; };
-		CA90B839289A7B6D0087543B /* PLCellPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLCellPlayerViewController.h; sourceTree = "<group>"; };
-		CA90B845289A7C1C0087543B /* QNScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNScanViewController.m; sourceTree = "<group>"; };
-		CA90B846289A7C1C0087543B /* QNScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNScanViewController.h; sourceTree = "<group>"; };
-		CA90B848289A7C530087543B /* lite_urls.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lite_urls.json; sourceTree = "<group>"; };
-		CA90B849289A7C530087543B /* urls.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = urls.json; sourceTree = "<group>"; };
-		CA90B84A289A7C530087543B /* audiovorbis.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = audiovorbis.ogg; sourceTree = "<group>"; };
-		CA90B84B289A7C530087543B /* gotham.mkv */ = {isa = PBXFileReference; lastKnownFileType = file; path = gotham.mkv; sourceTree = "<group>"; };
-		CA90B853289A7C9F0087543B /* source264_flv.flv */ = {isa = PBXFileReference; lastKnownFileType = file; path = source264_flv.flv; sourceTree = "<group>"; };
-		CA90B854289A7C9F0087543B /* source265_flv.flv */ = {isa = PBXFileReference; lastKnownFileType = file; path = source265_flv.flv; sourceTree = "<group>"; };
-		CA90B855289A7C9F0087543B /* source265_mp4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = source265_mp4.mp4; sourceTree = "<group>"; };
-		CA90B856289A7C9F0087543B /* source264_mp4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = source264_mp4.mp4; sourceTree = "<group>"; };
-		CA90B857289A7C9F0087543B /* source_aac.aac */ = {isa = PBXFileReference; lastKnownFileType = file; path = source_aac.aac; sourceTree = "<group>"; };
-		CA90B85D289A7CD50087543B /* QNPlayerMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNPlayerMaskView.m; sourceTree = "<group>"; };
-		CA90B85E289A7CD50087543B /* QNPlayerMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNPlayerMaskView.h; sourceTree = "<group>"; };
-		CA90B860289A7CF40087543B /* QNClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNClassModel.h; sourceTree = "<group>"; };
-		CA90B861289A7CF40087543B /* QNConfigInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNConfigInputTableViewCell.m; sourceTree = "<group>"; };
-		CA90B862289A7CF40087543B /* QDataHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QDataHandle.m; sourceTree = "<group>"; };
-		CA90B863289A7CF40087543B /* QNOptionListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNOptionListView.m; sourceTree = "<group>"; };
-		CA90B864289A7CF40087543B /* QNConfigListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNConfigListTableViewCell.h; sourceTree = "<group>"; };
-		CA90B865289A7CF40087543B /* QNPlayerConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNPlayerConfigViewController.m; sourceTree = "<group>"; };
-		CA90B866289A7CF40087543B /* QNPlayerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNPlayerModel.h; sourceTree = "<group>"; };
-		CA90B867289A7CF40087543B /* QNOptionListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNOptionListView.h; sourceTree = "<group>"; };
-		CA90B868289A7CF40087543B /* QNPlayerConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNPlayerConfigViewController.h; sourceTree = "<group>"; };
-		CA90B869289A7CF40087543B /* QNConfigSegTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNConfigSegTableViewCell.h; sourceTree = "<group>"; };
-		CA90B86A289A7CF50087543B /* QNClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNClassModel.m; sourceTree = "<group>"; };
-		CA90B86B289A7CF50087543B /* QNConfigListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNConfigListTableViewCell.m; sourceTree = "<group>"; };
-		CA90B86C289A7CF50087543B /* QNConfigSegTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNConfigSegTableViewCell.m; sourceTree = "<group>"; };
-		CA90B86D289A7CF50087543B /* QDataHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDataHandle.h; sourceTree = "<group>"; };
-		CA90B86E289A7CF50087543B /* QNPlayerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNPlayerModel.m; sourceTree = "<group>"; };
-		CA90B86F289A7CF50087543B /* QNConfigInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNConfigInputTableViewCell.h; sourceTree = "<group>"; };
-		CA90B87B289A7D0D0087543B /* QNPlayerSettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNPlayerSettingsView.m; sourceTree = "<group>"; };
-		CA90B87C289A7D0D0087543B /* QNChangePlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNChangePlayerView.m; sourceTree = "<group>"; };
-		CA90B87D289A7D0D0087543B /* QNSpeedPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNSpeedPlayerView.m; sourceTree = "<group>"; };
-		CA90B87E289A7D0D0087543B /* QNChangePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNChangePlayerView.h; sourceTree = "<group>"; };
-		CA90B87F289A7D0D0087543B /* QNPlayerSettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNPlayerSettingsView.h; sourceTree = "<group>"; };
-		CA90B880289A7D0D0087543B /* QNSpeedPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNSpeedPlayerView.h; sourceTree = "<group>"; };
 		CA90B8B6289B616F0087543B /* qplayer2-core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "qplayer2-core.xcodeproj"; path = "../../../qplayer2-core/platform/ios/qplayer2-core/qplayer2-core.xcodeproj"; sourceTree = "<group>"; };
 		CA90B8C2289B62460087543B /* qplayer2-ext.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "qplayer2-ext.xcodeproj"; path = "../../../qplayer2-core/platform/ios/qplayer2-ext/qplayer2-ext.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,18 +134,183 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50B1F3D5289BBF7A0074E02D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50B1EFE5289BB1CC0074E02D /* qplayer2demo */ = {
+			isa = PBXGroup;
+			children = (
+				50B1EFFF289BB1CC0074E02D /* QNPublicHeader.h */,
+				50B1EFE6289BB1CC0074E02D /* QNPlayerViewController.h */,
+				50B1F000289BB1CC0074E02D /* QNURLListTableViewCell.m */,
+				50B1F001289BB1CC0074E02D /* PLCellPlayerViewController.h */,
+				50B1F002289BB1CC0074E02D /* QNAppDelegate.m */,
+				50B1F011289BB1CC0074E02D /* Public */,
+				50B1EFE7289BB1CC0074E02D /* PlayerSettings */,
+				50B1F003289BB1CC0074E02D /* toast */,
+				50B1F008289BB1CC0074E02D /* QNInfoHeaderView.m */,
+				50B1F009289BB1CC0074E02D /* Assets.xcassets */,
+				50B1F00A289BB1CC0074E02D /* QNHomeViewController.h */,
+				50B1F00B289BB1CC0074E02D /* PLCellPlayerTableViewCell.m */,
+				50B1F00C289BB1CC0074E02D /* LaunchScreen.storyboard */,
+				50B1F00E289BB1CC0074E02D /* Main.storyboard */,
+				50B1F010289BB1CC0074E02D /* QNPlayerViewController.m */,
+				50B1F01D289BB1CC0074E02D /* main.m */,
+				50B1F01E289BB1CC0074E02D /* QNURLListTableViewCell.h */,
+				50B1F01F289BB1CC0074E02D /* PLCellPlayerViewController.m */,
+				50B1F020289BB1CC0074E02D /* QNInfoHeaderView.h */,
+				50B1F021289BB1CC0074E02D /* ScanCode */,
+				50B1F024289BB1CC0074E02D /* Resource */,
+				50B1F049289BB1CC0074E02D /* QNAppDelegate.h */,
+				50B1F04A289BB1CC0074E02D /* Info.plist */,
+				50B1F04B289BB1CC0074E02D /* PLCellPlayerTableViewCell.h */,
+				50B1F04C289BB1CC0074E02D /* QNHomeViewController.m */,
+			);
+			path = qplayer2demo;
+			sourceTree = "<group>";
+		};
+		50B1EFE7289BB1CC0074E02D /* PlayerSettings */ = {
+			isa = PBXGroup;
+			children = (
+				50B1EFE8289BB1CC0074E02D /* QNPlayerModel.m */,
+				50B1EFE9289BB1CC0074E02D /* QNConfigInputTableViewCell.h */,
+				50B1EFEA289BB1CC0074E02D /* QNConfigListTableViewCell.m */,
+				50B1EFEB289BB1CC0074E02D /* QNOptionListView.m */,
+				50B1EFEC289BB1CC0074E02D /* QNPlayerConfigViewController.h */,
+				50B1EFED289BB1CC0074E02D /* QDataHandle.h */,
+				50B1EFEE289BB1CC0074E02D /* QNConfigSegTableViewCell.m */,
+				50B1EFEF289BB1CC0074E02D /* QNClassModel.h */,
+				50B1EFF0289BB1CC0074E02D /* QNConfigInputTableViewCell.m */,
+				50B1EFF1289BB1CC0074E02D /* QNPlayerModel.h */,
+				50B1EFF2289BB1CC0074E02D /* view */,
+				50B1EFF9289BB1CC0074E02D /* QNOptionListView.h */,
+				50B1EFFA289BB1CC0074E02D /* QNConfigListTableViewCell.h */,
+				50B1EFFB289BB1CC0074E02D /* QDataHandle.m */,
+				50B1EFFC289BB1CC0074E02D /* QNPlayerConfigViewController.m */,
+				50B1EFFD289BB1CC0074E02D /* QNConfigSegTableViewCell.h */,
+				50B1EFFE289BB1CC0074E02D /* QNClassModel.m */,
+			);
+			path = PlayerSettings;
+			sourceTree = "<group>";
+		};
+		50B1EFF2289BB1CC0074E02D /* view */ = {
+			isa = PBXGroup;
+			children = (
+				50B1EFF3289BB1CC0074E02D /* QNPlayerSettingsView.m */,
+				50B1EFF4289BB1CC0074E02D /* QNChangePlayerView.m */,
+				50B1EFF5289BB1CC0074E02D /* QNSpeedPlayerView.m */,
+				50B1EFF6289BB1CC0074E02D /* QNChangePlayerView.h */,
+				50B1EFF7289BB1CC0074E02D /* QNPlayerSettingsView.h */,
+				50B1EFF8289BB1CC0074E02D /* QNSpeedPlayerView.h */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		50B1F003289BB1CC0074E02D /* toast */ = {
+			isa = PBXGroup;
+			children = (
+				50B1F004289BB1CC0074E02D /* QNToastView.m */,
+				50B1F005289BB1CC0074E02D /* ShowMassageView.m */,
+				50B1F006289BB1CC0074E02D /* QNToastView.h */,
+				50B1F007289BB1CC0074E02D /* ShowMassageView.h */,
+			);
+			path = toast;
+			sourceTree = "<group>";
+		};
+		50B1F011289BB1CC0074E02D /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				50B1F012289BB1CC0074E02D /* QNPlayerShortVideoMaskView.h */,
+				50B1F013289BB1CC0074E02D /* QNPlayerMaskView.m */,
+				50B1F014289BB1CC0074E02D /* QNPlayerShortVideoMaskView.m */,
+				50B1F015289BB1CC0074E02D /* QNPlayerMaskView.h */,
+				50B1F016289BB1CC0074E02D /* ElementView */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		50B1F016289BB1CC0074E02D /* ElementView */ = {
+			isa = PBXGroup;
+			children = (
+				50B1F017289BB1CC0074E02D /* QNSoundSliderView.m */,
+				50B1F018289BB1CC0074E02D /* QNHeadsetNotification.h */,
+				50B1F019289BB1CC0074E02D /* QNButtomView.m */,
+				50B1F01A289BB1CC0074E02D /* QNSoundSliderView.h */,
+				50B1F01B289BB1CC0074E02D /* QNButtomView.h */,
+				50B1F01C289BB1CC0074E02D /* QNHeadsetNotification.m */,
+			);
+			path = ElementView;
+			sourceTree = "<group>";
+		};
+		50B1F021289BB1CC0074E02D /* ScanCode */ = {
+			isa = PBXGroup;
+			children = (
+				50B1F022289BB1CC0074E02D /* QNScanViewController.h */,
+				50B1F023289BB1CC0074E02D /* QNScanViewController.m */,
+			);
+			path = ScanCode;
+			sourceTree = "<group>";
+		};
+		50B1F024289BB1CC0074E02D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				50B1F025289BB1CC0074E02D /* qiniu.png */,
+				50B1F026289BB1CC0074E02D /* pl_smallScreen.png */,
+				50B1F027289BB1CC0074E02D /* pl_forward.png */,
+				50B1F028289BB1CC0074E02D /* pl_back.png */,
+				50B1F029289BB1CC0074E02D /* pl_play.png */,
+				50B1F02A289BB1CC0074E02D /* pl_scan.png */,
+				50B1F02B289BB1CC0074E02D /* pl_maxVolume.png */,
+				50B1F02C289BB1CC0074E02D /* pl_backward.png */,
+				50B1F02D289BB1CC0074E02D /* pl_mirror.png */,
+				50B1F02E289BB1CC0074E02D /* pl_setting.png */,
+				50B1F02F289BB1CC0074E02D /* pl_round.png */,
+				50B1F030289BB1CC0074E02D /* pl_delete.png */,
+				50B1F031289BB1CC0074E02D /* pl_up.png */,
+				50B1F032289BB1CC0074E02D /* pl_down.png */,
+				50B1F033289BB1CC0074E02D /* pl_min_blue_volume.png */,
+				50B1F034289BB1CC0074E02D /* LOGO.png */,
+				50B1F035289BB1CC0074E02D /* pl_clip.png */,
+				50B1F036289BB1CC0074E02D /* urls.json */,
+				50B1F037289BB1CC0074E02D /* launch_image.jpg */,
+				50B1F038289BB1CC0074E02D /* audiovorbis.ogg */,
+				50B1F039289BB1CC0074E02D /* pl_origin.png */,
+				50B1F03A289BB1CC0074E02D /* lite_urls.json */,
+				50B1F03B289BB1CC0074E02D /* pl_close.png */,
+				50B1F03C289BB1CC0074E02D /* pl_stop.png */,
+				50B1F03D289BB1CC0074E02D /* pl_minVolume.png */,
+				50B1F03E289BB1CC0074E02D /* pl_shoot.png */,
+				50B1F03F289BB1CC0074E02D /* gotham.mkv */,
+				50B1F040289BB1CC0074E02D /* pl_fullScreen.png */,
+				50B1F041289BB1CC0074E02D /* testSrc */,
+				50B1F047289BB1CC0074E02D /* pl_max_blue_volume.png */,
+				50B1F048289BB1CC0074E02D /* pl_rotate@3x.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		50B1F041289BB1CC0074E02D /* testSrc */ = {
+			isa = PBXGroup;
+			children = (
+				50B1F042289BB1CC0074E02D /* source264_flv.flv */,
+				50B1F043289BB1CC0074E02D /* source265_flv.flv */,
+				50B1F044289BB1CC0074E02D /* source265_mp4.mp4 */,
+				50B1F045289BB1CC0074E02D /* source264_mp4.mp4 */,
+				50B1F046289BB1CC0074E02D /* source_aac.aac */,
+			);
+			path = testSrc;
+			sourceTree = "<group>";
+		};
 		CA90B806289A7AF60087543B = {
 			isa = PBXGroup;
 			children = (
+				50B1EFE5289BB1CC0074E02D /* qplayer2demo */,
 				CA90B8C2289B62460087543B /* qplayer2-ext.xcodeproj */,
 				CA90B8B6289B616F0087543B /* qplayer2-core.xcodeproj */,
-				CA90B811289A7AF60087543B /* qplayer2demo */,
 				CA90B810289A7AF60087543B /* Products */,
 				CA90BF8B289B846C0087543B /* Frameworks */,
 			);
@@ -148,116 +322,6 @@
 				CA90B80F289A7AF60087543B /* qplayer2demo.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CA90B811289A7AF60087543B /* qplayer2demo */ = {
-			isa = PBXGroup;
-			children = (
-				CA90B844289A7BB50087543B /* PlayerSettings */,
-				CA90B843289A7BA90087543B /* Public */,
-				CA90B842289A7BA00087543B /* Resource */,
-				CA90B841289A7B7B0087543B /* scanCode */,
-				CA90B833289A7B6D0087543B /* PLCellPlayerTableViewCell.h */,
-				CA90B836289A7B6D0087543B /* PLCellPlayerTableViewCell.m */,
-				CA90B839289A7B6D0087543B /* PLCellPlayerViewController.h */,
-				CA90B82F289A7B6D0087543B /* PLCellPlayerViewController.m */,
-				CA90B82E289A7B6D0087543B /* QNAppDelegate.h */,
-				CA90B835289A7B6D0087543B /* QNAppDelegate.m */,
-				CA90B82D289A7B6D0087543B /* QNHomeViewController.h */,
-				CA90B830289A7B6D0087543B /* QNHomeViewController.m */,
-				CA90B831289A7B6D0087543B /* QNInfoHeaderView.h */,
-				CA90B837289A7B6D0087543B /* QNInfoHeaderView.m */,
-				CA90B82C289A7B6D0087543B /* QNPlayerViewController.h */,
-				CA90B832289A7B6D0087543B /* QNPlayerViewController.m */,
-				CA90B838289A7B6D0087543B /* QNPublicHeader.h */,
-				CA90B834289A7B6D0087543B /* QNURLListTableViewCell.h */,
-				CA90B82B289A7B6D0087543B /* QNURLListTableViewCell.m */,
-				CA90B81B289A7AF60087543B /* Main.storyboard */,
-				CA90B81E289A7AF80087543B /* Assets.xcassets */,
-				CA90B820289A7AF80087543B /* LaunchScreen.storyboard */,
-				CA90B823289A7AF80087543B /* Info.plist */,
-				CA90B824289A7AF80087543B /* main.m */,
-			);
-			path = qplayer2demo;
-			sourceTree = "<group>";
-		};
-		CA90B841289A7B7B0087543B /* scanCode */ = {
-			isa = PBXGroup;
-			children = (
-				CA90B846289A7C1C0087543B /* QNScanViewController.h */,
-				CA90B845289A7C1C0087543B /* QNScanViewController.m */,
-			);
-			path = scanCode;
-			sourceTree = "<group>";
-		};
-		CA90B842289A7BA00087543B /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				CA90B852289A7C9F0087543B /* testSrc */,
-				CA90B84A289A7C530087543B /* audiovorbis.ogg */,
-				CA90B84B289A7C530087543B /* gotham.mkv */,
-				CA90B848289A7C530087543B /* lite_urls.json */,
-				CA90B849289A7C530087543B /* urls.json */,
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
-		CA90B843289A7BA90087543B /* Public */ = {
-			isa = PBXGroup;
-			children = (
-				CA90B85E289A7CD50087543B /* QNPlayerMaskView.h */,
-				CA90B85D289A7CD50087543B /* QNPlayerMaskView.m */,
-			);
-			path = Public;
-			sourceTree = "<group>";
-		};
-		CA90B844289A7BB50087543B /* PlayerSettings */ = {
-			isa = PBXGroup;
-			children = (
-				CA90B87A289A7D0D0087543B /* view */,
-				CA90B86D289A7CF50087543B /* QDataHandle.h */,
-				CA90B862289A7CF40087543B /* QDataHandle.m */,
-				CA90B860289A7CF40087543B /* QNClassModel.h */,
-				CA90B86A289A7CF50087543B /* QNClassModel.m */,
-				CA90B86F289A7CF50087543B /* QNConfigInputTableViewCell.h */,
-				CA90B861289A7CF40087543B /* QNConfigInputTableViewCell.m */,
-				CA90B864289A7CF40087543B /* QNConfigListTableViewCell.h */,
-				CA90B86B289A7CF50087543B /* QNConfigListTableViewCell.m */,
-				CA90B869289A7CF40087543B /* QNConfigSegTableViewCell.h */,
-				CA90B86C289A7CF50087543B /* QNConfigSegTableViewCell.m */,
-				CA90B867289A7CF40087543B /* QNOptionListView.h */,
-				CA90B863289A7CF40087543B /* QNOptionListView.m */,
-				CA90B868289A7CF40087543B /* QNPlayerConfigViewController.h */,
-				CA90B865289A7CF40087543B /* QNPlayerConfigViewController.m */,
-				CA90B866289A7CF40087543B /* QNPlayerModel.h */,
-				CA90B86E289A7CF50087543B /* QNPlayerModel.m */,
-			);
-			path = PlayerSettings;
-			sourceTree = "<group>";
-		};
-		CA90B852289A7C9F0087543B /* testSrc */ = {
-			isa = PBXGroup;
-			children = (
-				CA90B853289A7C9F0087543B /* source264_flv.flv */,
-				CA90B854289A7C9F0087543B /* source265_flv.flv */,
-				CA90B855289A7C9F0087543B /* source265_mp4.mp4 */,
-				CA90B856289A7C9F0087543B /* source264_mp4.mp4 */,
-				CA90B857289A7C9F0087543B /* source_aac.aac */,
-			);
-			path = testSrc;
-			sourceTree = "<group>";
-		};
-		CA90B87A289A7D0D0087543B /* view */ = {
-			isa = PBXGroup;
-			children = (
-				CA90B87B289A7D0D0087543B /* QNPlayerSettingsView.m */,
-				CA90B87C289A7D0D0087543B /* QNChangePlayerView.m */,
-				CA90B87D289A7D0D0087543B /* QNSpeedPlayerView.m */,
-				CA90B87E289A7D0D0087543B /* QNChangePlayerView.h */,
-				CA90B87F289A7D0D0087543B /* QNPlayerSettingsView.h */,
-				CA90B880289A7D0D0087543B /* QNSpeedPlayerView.h */,
-			);
-			path = view;
 			sourceTree = "<group>";
 		};
 		CA90B8B7289B616F0087543B /* Products */ = {
@@ -279,6 +343,9 @@
 		CA90BF8B289B846C0087543B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50B1F3D4289BBF7A0074E02D /* Foundation.framework */,
+				50B1F3CE289BBCEA0074E02D /* AVKit.framework */,
+				50B1F3CA289BBC630074E02D /* AVFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -367,18 +434,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA90B822289A7AF80087543B /* LaunchScreen.storyboard in Resources */,
-				CA90B84F289A7C530087543B /* gotham.mkv in Resources */,
-				CA90B859289A7C9F0087543B /* source265_flv.flv in Resources */,
-				CA90B84C289A7C530087543B /* lite_urls.json in Resources */,
-				CA90B85B289A7C9F0087543B /* source264_mp4.mp4 in Resources */,
-				CA90B858289A7C9F0087543B /* source264_flv.flv in Resources */,
-				CA90B81F289A7AF80087543B /* Assets.xcassets in Resources */,
-				CA90B84E289A7C530087543B /* audiovorbis.ogg in Resources */,
-				CA90B81D289A7AF60087543B /* Main.storyboard in Resources */,
-				CA90B85A289A7C9F0087543B /* source265_mp4.mp4 in Resources */,
-				CA90B85C289A7C9F0087543B /* source_aac.aac in Resources */,
-				CA90B84D289A7C530087543B /* urls.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,47 +444,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA90B85F289A7CD50087543B /* QNPlayerMaskView.m in Sources */,
-				CA90B83C289A7B6E0087543B /* QNHomeViewController.m in Sources */,
-				CA90B83F289A7B6E0087543B /* PLCellPlayerTableViewCell.m in Sources */,
-				CA90B847289A7C1C0087543B /* QNScanViewController.m in Sources */,
-				CA90B83A289A7B6D0087543B /* QNURLListTableViewCell.m in Sources */,
-				CA90B825289A7AF80087543B /* main.m in Sources */,
-				CA90B870289A7CF50087543B /* QNConfigInputTableViewCell.m in Sources */,
-				CA90B840289A7B6E0087543B /* QNInfoHeaderView.m in Sources */,
-				CA90B83B289A7B6D0087543B /* PLCellPlayerViewController.m in Sources */,
-				CA90B83D289A7B6E0087543B /* QNPlayerViewController.m in Sources */,
-				CA90B875289A7CF50087543B /* QNConfigListTableViewCell.m in Sources */,
-				CA90B883289A7D0D0087543B /* QNSpeedPlayerView.m in Sources */,
-				CA90B873289A7CF50087543B /* QNPlayerConfigViewController.m in Sources */,
-				CA90B83E289A7B6E0087543B /* QNAppDelegate.m in Sources */,
-				CA90B876289A7CF50087543B /* QNConfigSegTableViewCell.m in Sources */,
-				CA90B881289A7D0D0087543B /* QNPlayerSettingsView.m in Sources */,
-				CA90B874289A7CF50087543B /* QNClassModel.m in Sources */,
-				CA90B882289A7D0D0087543B /* QNChangePlayerView.m in Sources */,
-				CA90B877289A7CF50087543B /* QNPlayerModel.m in Sources */,
-				CA90B872289A7CF50087543B /* QNOptionListView.m in Sources */,
-				CA90B871289A7CF50087543B /* QDataHandle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CA90B81B289A7AF60087543B /* Main.storyboard */ = {
+		50B1F00C289BB1CC0074E02D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CA90B81C289A7AF60087543B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		CA90B820289A7AF80087543B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA90B821289A7AF80087543B /* Base */,
+				50B1F00D289BB1CC0074E02D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		50B1F00E289BB1CC0074E02D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50B1F00F289BB1CC0074E02D /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

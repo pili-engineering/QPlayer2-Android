@@ -52,6 +52,86 @@
             {
                 "user_type": "",
                 "url_type": 1,
+                "url": "https://sdk-release.qnsdk.com/4K_3840%2A1920.m4s",
+                "quality": 100,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 1,
+                "url": "https://vodbasic.jiaoyanyun.com/sv/5f2c335c-1749a0516fb/5f2c335c-1749a0516fb.mp4",
+                "quality": 100,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 1,
+                "url": "https://sdk-release.qnsdk.com/1080_60_5390.mp4",
+                "quality": 100,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 1,
+                "url": "http://demo-videos.qnsdk.com/shortvideo/nike.mp4",
+                "quality": 100,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 1,
+                "url": "https://sdk-release.qnsdk.com/10701032_194625-hd%20%281%29.mp4",
+                "quality": 100,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 1,
                 "url": "http://demo-videos.qnsdk.com/only-audio.m4s",
                 "quality": 100,
                 "is_select": 1,
@@ -213,7 +293,7 @@
             {
                 "user_type": "",
                 "url_type": 0,
-                "url": "srt://cdn-pull-tx.hntv.tv:10080?streamid=#!::h=cdn-pull-tx.hntv.tv/saas_live/38edfba79447461ba3c46440cf474822,m=request,wsSecret=69fb58c54ff2a0c13fb14c793a6aad58,wsTime=1909811783",
+                "url": "srt://cdn-pull-tx-1.hndt.com:10080?streamid=#!::h=cdn-pull-tx-1.hndt.com/saas_live/a5d19ff5c5a24cf99e77b9acd91e1128,m=request,wsSecret=81e31374ab905f273517886ef8446164,wsTime=1910504903",
                 "quality": 360,
                 "is_select": 1,
                 "backup_url": "",

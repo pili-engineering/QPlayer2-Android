@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QNPlayerSettingsView.h"
 @class QNPlayerMaskView;
 @protocol QNPlayerMaskViewDelegate <NSObject>
 
@@ -40,15 +39,8 @@
 @property (nonatomic, assign) BOOL isLiving;
 
 /** QPlayer **/
-@property (nonatomic, weak) QPlayer *player;
-
-@property (nonatomic, strong) UIButton *playButton;
-@property (nonatomic, strong) UIButton *settingButton;
-@property (nonatomic, strong) UISlider *volumeSlider;
-@property (nonatomic, strong) UIButton *shootButton;
-@property (nonatomic, strong) UIButton *clipButton;
-@property (nonatomic, strong) UIButton *rotateButton;
-@property (nonatomic, strong) UIButton *mirrorButton;
+//@property (nonatomic, weak) QPlayer *player;
+@property (nonatomic, weak) QPlayerContext *player;
 
 @property (nonatomic, strong) UISegmentedControl *qualitySegMc;
 
@@ -62,8 +54,7 @@
  @param isLiving 是否是直播
  @return QNPlayerMaskView 的实例子
  */
-- (id)initWithFrame:(CGRect)frame player:(QPlayer *)player isLiving:(BOOL)isLiving;
-
+- (id)initWithFrame:(CGRect)frame player:(QPlayerContext *)player isLiving:(BOOL)isLiving;
 
 /**
  刷新音量图片的显示
@@ -82,4 +73,13 @@
  */
 - (void)removeActivityIndicatorView;
 
+/**
+ 修改播放按钮的状态
+ */
+-(void)setPlayButtonState:(BOOL)state;
+
+/**
+返回解码类型
+ */
+-(QPlayerDecoderType)getDecoderType;
 @end

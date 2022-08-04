@@ -9,8 +9,8 @@
 #import "PLCellPlayerViewController.h"
 #import "PLCellPlayerTableViewCell.h"
 #import "QNPlayerModel.h"
-
-
+#import "QNPlayerShortVideoMaskView.h"
+#import "QNToastView.h"
 static NSString *status[] = {
     @"Unknow",
     @"Preparing",
@@ -28,22 +28,24 @@ static NSString *status[] = {
 @interface PLCellPlayerViewController ()
 <
 UITableViewDelegate,
-UITableViewDataSource,
-QPlayerDelegate,
-QMediaItemDelegate
+UITableViewDataSource
+//QPlayerDelegate,
+//QMediaItemDelegate
 >
 
-@property (nonatomic, strong) QPlayer *player;
-
+//@property (nonatomic, strong) QPlayer *player;
+@property (nonatomic, strong) QPlayerContext *player;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) PLCellPlayerTableViewCell *currentCell;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
-@property (nonatomic, strong) NSMutableArray <QMediaItem *>*cacheArray;
-
+//@property (nonatomic, strong) NSMutableArray <QMediaItem *>*cacheArray;
+@property (nonatomic, strong) NSMutableArray <QMediaItemContext *>*cacheArray;
 @property (nonatomic, strong) NSMutableArray<QNPlayerModel *> *playerModels;
 
 @property (nonatomic, assign) CGFloat topSpace;
+
+@property (nonatomic, strong) QNToastView *toastView;
 
 @end
 
@@ -51,10 +53,10 @@ QMediaItemDelegate
 
 - (void)dealloc {
     
-    [self.player stop];
+    [self.player.controlHandler stop];
     for (int i = 0; i < _cacheArray.count; i ++) {
-        QMediaItem *item = _cacheArray[i];
-       BOOL aa =  [item stop];
+        QMediaItemContext *item = _cacheArray[i];
+       BOOL aa =  [item.controlHandler stop];
         NSLog(@"----%d",aa);
     }
     [_cacheArray removeAllObjects];
@@ -63,7 +65,7 @@ QMediaItemDelegate
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.player stop];
+    [self.player.controlHandler stop];
 }
 
 
@@ -127,15 +129,21 @@ QMediaItemDelegate
     }
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, PL_SCREEN_WIDTH, PL_SCREEN_HEIGHT) style:UITableViewStylePlain];
-    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = PLAYER_PORTRAIT_HEIGHT + 1;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.pagingEnabled = YES;
+    self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     [self.view addSubview:_tableView];
     
+
     [self setUpPlayer];
+    
+    _toastView = [[QNToastView alloc]initWithFrame:CGRectMake(0, PL_SCREEN_HEIGHT - 350, 200, 300)];
+    [self.view addSubview:_toastView];
+    
+    [self playerContextAllCallBack];
 }
 
 - (void)setUpPlayer{
@@ -152,11 +160,13 @@ QMediaItemDelegate
     QAppInformation *info = [[QAppInformation alloc] init];
     info.mAppId = @"com.qbox.QPlayerKitDemo";
     
-    QPlayer* player = [[QPlayer alloc] initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
+//    QPlayer* player = [[QPlayer alloc] initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
+//    self.player = player;
+//    self.player.mDelagete = self;
+    QPlayerContext *player = [[QPlayerContext alloc]initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
     self.player = player;
-    self.player.mDelagete = self;
-    self.player.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
-    [self.view addSubview:_player.playerView];
+//    self.player.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
+//    [self.view addSubview:_player.playerView];
     
     
 //    for (int i = 0; i < 5; i ++) {
@@ -167,7 +177,7 @@ QMediaItemDelegate
 //        // 预加载
 //        QMediaItem *item = [[QMediaItem alloc] initItemComtextStorageDir:documentsDir logLevel:LOG_VERBOSE];
 //        [item start:model startPos:0];
-//        
+//        NSLog(@"预加载--add---%@",item.media_model.streamElements[0].url);
 //        [self.cacheArray addObject:item];
 //    }
 //    
@@ -176,7 +186,7 @@ QMediaItemDelegate
         QMediaModel *model = [[QMediaModel alloc] init];
         model.streamElements = _playerModels.firstObject.streamElements;
         model.is_live = _playerModels.firstObject.is_live;
-        [self.player playMediaModel:model startPos:0];
+        [self.player.controlHandler playMediaModel:model startPos:0];
 //    });
 
 
@@ -184,55 +194,158 @@ QMediaItemDelegate
 
 
 
-#pragma mark - PLPlayerDelegate
 
+
+#pragma mark - PLPlayerDelegate
+-(void)playerContextAllCallBack{
+    __weak PLCellPlayerViewController *weakSelf = self;
+    [self.player.controlHandler addPlayerStateCallBackName:@"stateChanged" CallBack:^(QPlayerContext *_Nullable context, QPlayerStatus state) {
+        [weakSelf statePlayerChanged:state];
+        
+    }];
+    [self.player.renderHandler addPlayerFirstFrameCallBackName:@"firstFrame" callBack:^(QPlayerContext *_Nullable context, QNotifyModle * _Nonnull notify, NSInteger elapsedTime) {
+            [weakSelf screenRenderFirstFrame:notify elapsedTime:elapsedTime];
+    }];
+    [self.player.controlHandler addPlayerStreamOpenAndDurationCallBackName:@"streamOpen" callBack:^(QPlayerContext *_Nullable context, QNotifyModle * _Nonnull notify, int64_t duration) {
+            [weakSelf streamOpen:notify duration:duration];
+    }];
+    [self.player.controlHandler addPlayerStreamOpenAndErrorCallBackName:@"error" callBack:^(QPlayerContext *_Nullable context, QNotifyModle * _Nonnull notify, NSInteger error) {
+        [weakSelf streamOpenError:notify error:error];
+    }];
+}
+
+-(void)statePlayerChanged:(QPlayerStatus)state{
+    if(state == QPLAYERSTATUS_NONE){
+        [_toastView addText:@"初始状态"];
+    }
+    else if (state == QPLAYERSTATUS_INIT){
+        
+        [_toastView addText:@"创建完成"];
+    }
+    else if(state == QPLAYERSTATUS_PREPARE ||state == QPLAYERSTATUS_MEDIA_ITEM_PREPARE){
+        [_toastView addText:@"正在加载"];
+    }
+    else if (state == QPLAYERSTATUS_PLAYING) {
+        if (_currentCell == nil) {
+            [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+        }else{
+            _currentCell.player = self.player;
+        }
+        _currentCell.state = YES;
+        [_toastView addText:@"正在播放"];
+    }
+    else if(state == QPLAYERSTATUS_PAUSED ||  state == QPLAYERSTATUS_PAUSED_RENDER){
+        _currentCell.state = NO;
+        [_toastView addText:@"播放暂停"];
+    }
+    else if(state == QPLAYERSTATUS_STOPPED || state == QPLAYERSTATUS_COMPLETED){
+        _currentCell.state = NO;
+        [_toastView addText:@"播放完成"];
+    }
+    else if(state == QPLAYERSTATUS_ERROR){
+        _currentCell.state = NO;
+        
+        [_toastView addText:@"播放出错"];
+    }
+    else if (state == QPLAYERSTATUS_SEEKING){
+        [_toastView addText:@"正在seek"];
+    }
+    else{
+        [_toastView addText:@"其他状态"];
+    }
+
+
+    
+}
 -(void)player:(QPlayer *)player stateChanged:(QPlayerStatus)state{
 
 }
 
 /// 播放发生错误的回调
-- (void)player:(QPlayer *)player stoppedWithError:(NSError *)error {
-
-}
+//- (void)player:(QPlayer *)player stoppedWithError:(NSError *)error {
+//    [_toastView addText:[NSString stringWithFormat:@"播放错误:%@",error]];
+//}
 
 /// 点播已缓冲区域的回调
-- (void)player:(nonnull QPlayer *)player loadedTimeRange:(CMTime)timeRange {
-    float durationSeconds = CMTimeGetSeconds(timeRange);
-    NSString *string = [NSString stringWithFormat:@"durationSecods(%0.2f)", durationSeconds];
-}
+//- (void)player:(nonnull QPlayer *)player loadedTimeRange:(CMTime)timeRange {
+//    float durationSeconds = CMTimeGetSeconds(timeRange);
+//    NSString *string = [NSString stringWithFormat:@"durationSecods(%0.2f)", durationSeconds];
+//}
 
-
-- (void)player:(QPlayer *_Nullable)player screenRenderFirstFrame:(QNotifyModle *)notify elapsedTime:(NSInteger)elapsedTime{
+-(void)screenRenderFirstFrame:(QNotifyModle *)notify elapsedTime:(NSInteger)elapsedTime{
     NSLog(@"预加载首帧时间----%d",elapsedTime);
+    
+    
+    if (!_currentCell) {
+        _currentCell = (PLCellPlayerTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    }
     
     dispatch_async(dispatch_get_main_queue(), ^{
         _currentCell.playerView = _player.playerView;
+        NSLog(@"2");
     });
     
     [self updateCache:_currentCell.model];
 }
+- (void)player:(QPlayer *_Nullable)player screenRenderFirstFrame:(QNotifyModle *)notify elapsedTime:(NSInteger)elapsedTime{
+
+}
+
+-(void)streamOpen:(QNotifyModle *)notify duration:(int64_t)duration{
+    
+    NSLog(@"-------------streamOpen ----%@",notify.user_type);
+}
+-(void)player:(QPlayer *)player streamOpen:(QNotifyModle *)notify duration:(int64_t)duration{
+}
+
+-(void)streamOpenError:(QNotifyModle *)notify error:(NSInteger)error{
+    
+    NSLog(@"-------------streamOpenError -----%@",notify.user_type);
+}
+-(void)player:(QPlayer *)player streamOpenError:(QNotifyModle *)notify error:(NSInteger)error{
+}
 
 
 #pragma mark - mediaItemDelegate
--(void)mediaItem:(QMediaItem *)mediaItem onStateChanged:(QMediaItemState)state{
-    NSLog(@"预加载--onStateChanged -- %d",state);
-}
 
--(void)mediaItem:(QMediaItem *)mediaItem openNotify:(QNotifyModle *)notify duration:( int64_t)duration{
-    NSLog(@"预加载--openNotify -- %d",duration);
+-(void)addAllCallBack:(QMediaItemContext *)mediaItem{
+    
+    __weak PLCellPlayerViewController *weakSelf = self;
+    [mediaItem.controlHandler addPlayerOnStateChangedCallBackName:@"StateChanged" callBack:^(QMediaItemContext * _Nonnull context, QMediaItemState state) {
+        NSLog(@"-------------预加载--onStateChanged -- %d---%@",state,mediaItem.media_model.streamElements[0].url);
+    }];
+    [mediaItem.controlHandler addPlayerOpenNotifyAndDurationCallBackName:@"openNotify" callBack:^(QMediaItemContext * _Nonnull context, QNotifyModle * _Nonnull notify, int64_t duration) {
+            NSLog(@"-------------预加载--openNotify -- %d",duration);
+    }];
+    [mediaItem.controlHandler addPlayerOpenErrorCallBackName:@"openError" callBack:^(QMediaItemContext * _Nonnull context, QNotifyModle * _Nonnull notify) {
+        NSLog(@"-------------预加载--openError -- ");
+    }];
+    [mediaItem.controlHandler addPlayerIOErrorCallBackName:@"IOError" callBack:^(QMediaItemContext * _Nonnull context, QNotifyModle * _Nonnull notify) {
+            NSLog(@"-------------预加载--ioError");
+    }];
+    [mediaItem.controlHandler addPlayerCommandNotAllowCallBackName:@"NotAllow" callBack:^(QMediaItemContext * _Nonnull context, QNotifyModle * _Nonnull notify, NSString * _Nonnull commandName, QMediaItemState state) {
+        NSLog(@"-------------预加载--notAllow---%@",commandName);
+    }];
 }
+//-(void)mediaItem:(QMediaItem *)mediaItem onStateChanged:(QMediaItemState)state{
+//    NSLog(@"-------------预加载--onStateChanged -- %d---%@",state,mediaItem.media_model.streamElements[0].url);
+//}
 
--(void)mediaItem:(QMediaItem *)mediaItem openError:(QNotifyModle *)notify{
-    NSLog(@"预加载--openError -- ");
-}
+//-(void)mediaItem:(QMediaItem *)mediaItem openNotify:(QNotifyModle *)notify duration:( int64_t)duration{
+//    NSLog(@"-------------预加载--openNotify -- %d",duration);
+//}
 
--(void)mediaItem:(QMediaItem *)mediaItem ioError:(QNotifyModle *)notify{
-    NSLog(@"预加载--ioError");
-}
+//-(void)mediaItem:(QMediaItem *)mediaItem openError:(QNotifyModle *)notify{
+//    NSLog(@"-------------预加载--openError -- ");
+//}
 
--(void)mediaItem:(QMediaItem *)mediaItem notAllow:(QNotifyModle *)notify command_name:(NSString *)command_name mediaItemState:(QMediaItemState)state{
-    NSLog(@"预加载--notAllow---%@",command_name);
-}
+//-(void)mediaItem:(QMediaItem *)mediaItem ioError:(QNotifyModle *)notify{
+//    NSLog(@"-------------预加载--ioError");
+//}
+
+//-(void)mediaItem:(QMediaItem *)mediaItem notAllow:(QNotifyModle *)notify command_name:(NSString *)command_name mediaItemState:(QMediaItemState)state{
+//    NSLog(@"-------------预加载--notAllow---%@",command_name);
+//}
 
 #pragma mark - tableView delegate
 
@@ -250,22 +363,19 @@ QMediaItemDelegate
     QNPlayerModel *model = _playerModels[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = model;
-    if (indexPath.row == 0) {
-        _currentCell = cell;
-    }
+       
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PLCellPlayerTableViewCell *cell = (PLCellPlayerTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     [self updatePlayCell:cell];
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return PL_SCREEN_HEIGHT;
 }
-
-
 
 
 // 松手时已经静止,只会调用scrollViewDidEndDragging
@@ -309,25 +419,28 @@ QMediaItemDelegate
 
 
 -(void)updatePlayCell:(PLCellPlayerTableViewCell *)cell{
-    
+    cell.player = self.player;
     BOOL isPlaying = _player.isPlaying;
   
     if (_currentCell == cell && _currentCell) {
         if(isPlaying) {
-                [_player pause_render];
+                [_player.controlHandler pause_render];
         } else{
-                [_player resume_render];
+                [_player.controlHandler resume_render];
         }
     } else{
 
-        QMediaItem *item = [self findCrashMediaItemsOf:cell.model];
+        QMediaItemContext *item = [self findCrashMediaItemsOf:cell.model];
         if (item) {
-            [self.player playMediaItem:item];
+            [self.player.controlHandler playMediaItem:item];
+            NSLog(@"预加载--播放缓存---%@",item.media_model.streamElements[0].url);
         }else{
             QMediaModel *model = [[QMediaModel alloc] init];
             model.streamElements = cell.model.streamElements;
             model.is_live = _playerModels.firstObject.is_live;
-            [self.player playMediaModel:model startPos:0];
+            [self.player.controlHandler playMediaModel:model startPos:0];
+            
+            NSLog(@"预加载--new---%@",item.media_model.streamElements[0].url);
         }
     
         _currentCell = cell;
@@ -347,15 +460,15 @@ QMediaItemDelegate
     model.is_live = playerModel.is_live;
     
     // 预加载
-    QMediaItem *item = [[QMediaItem alloc] initItemComtextStorageDir:documentsDir logLevel:LOG_VERBOSE];
-    [item start:model startPos:0];
-    item.mDelagete = self;
+    QMediaItemContext *item = [[QMediaItemContext alloc] initItemComtextStorageDir:documentsDir logLevel:LOG_VERBOSE];
+    [item.controlHandler start:model startPos:0];
+//    item.mDelagete = self;
     [self.cacheArray addObject:item];
     
     NSLog(@"预加载--addcrash -- %@",playerModel.streamElements.firstObject.url);
 }
 
--(int)indexPlayerModelsOf:(QMediaItem *)item{
+-(int)indexPlayerModelsOf:(QMediaItemContext *)item{
     for (int i = 0; i < _playerModels.count; i ++) {
         QNPlayerModel *modle = _playerModels[i];
         if (modle.is_live == item.media_model.is_live && modle.streamElements == item.media_model.streamElements) {
@@ -365,9 +478,9 @@ QMediaItemDelegate
     return -1;
 }
 
--(QMediaItem *)findCrashMediaItemsOf:(QNPlayerModel *)modle{
+-(QMediaItemContext *)findCrashMediaItemsOf:(QNPlayerModel *)modle{
     for (int i = 0; i < _cacheArray.count; i ++) {
-        QMediaItem *item = _cacheArray[i];
+        QMediaItemContext *item = _cacheArray[i];
         if (modle.is_live == item.media_model.is_live && modle.streamElements == item.media_model.streamElements) {
             return item;
         }
@@ -384,7 +497,7 @@ QMediaItemDelegate
     NSMutableArray *addArray = [NSMutableArray array];
     
     for (int i = 0; i < _cacheArray.count; i ++) {//
-        QMediaItem *model0 = _cacheArray[i];
+        QMediaItemContext *model0 = _cacheArray[i];
         int index = (int)[self indexPlayerModelsOf:model0];
         if (![realCacheArray containsObject:@(index)]) {// _cacheArray 独有
             [delArray addObject:model0];
@@ -442,6 +555,7 @@ QMediaItemDelegate
 
 
 - (void)getBack {
+    [self.player.controlHandler stop];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

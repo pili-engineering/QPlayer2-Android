@@ -45,22 +45,6 @@
             }
         ]
     },
-    {
-        "name": "",
-        "is_live": 0,
-        "streamElements": [
-            {
-                "user_type": "",
-                "url_type": 1,
-                "url": "https://vodbasic.jiaoyanyun.com/sv/5f2c335c-1749a0516fb/5f2c335c-1749a0516fb.mp4",
-                "quality": 1080,
-                "is_select": 1,
-                "backup_url": "",
-                "referer": "",
-                "immediately": 0
-            }
-        ]
-    },
     
     {
         "name": "",
