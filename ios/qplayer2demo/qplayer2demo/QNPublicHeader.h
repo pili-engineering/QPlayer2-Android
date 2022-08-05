@@ -70,7 +70,7 @@ else if (@available(iOS 11.0, *)) {\
 //#import <QPlayerKit/QPlayerContext.h>
 //#import <QPlayerKit/QMediaItemContext.h>
 //#import <QPlayerKit/QPlayerControlHandler.h>
-#import <QPlayerKit/QPlayer2CoreHeader.h>
+#import <qplayer2_core/QPlayer2CoreHeader.h>
 /** 第三方 **/
 
 // 轻量级布局框架
