@@ -778,7 +778,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GDFHW66V92;
-				GCC_PREFIX_HEADER = "/Users/wangshenglu/Desktop/qplay2--sunmu/qplayer2Demo/ios/qplayer2demo/qplayer2demo/QNPublicHeader.h";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/qplayer2demo/QNPublicHeader.h";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = qplayer2demo/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -815,7 +815,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GDFHW66V92;
-				GCC_PREFIX_HEADER = "/Users/wangshenglu/Desktop/qplay2--sunmu/qplayer2Demo/ios/qplayer2demo/qplayer2demo/QNPublicHeader.h";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/qplayer2demo/QNPublicHeader.h";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = qplayer2demo/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";

@@ -64,13 +64,9 @@ else if (@available(iOS 11.0, *)) {\
 #define PLStrongSelf(type)  __strong typeof(type) type = weak##type;
 
 # warning PLPlayerKit 播放器核心类
-//#import <QPlayerKit/QPlayer.h>
-//#import <QPlayerKit/QMediaItem.h>
 #import <AVFoundation/AVFoundation.h>
-//#import <QPlayerKit/QPlayerContext.h>
-//#import <QPlayerKit/QMediaItemContext.h>
-//#import <QPlayerKit/QPlayerControlHandler.h>
-#import <qplayer2_core/QPlayer2CoreHeader.h>
+#import <qplayer2_core/QPlayerContext.h>
+#import <qplayer2_core//QMediaItemContext.h>
 /** 第三方 **/
 
 // 轻量级布局框架
