@@ -420,13 +420,13 @@ UITableViewDataSource
 
 -(void)updatePlayCell:(PLCellPlayerTableViewCell *)cell{
     cell.player = self.player;
-    BOOL isPlaying = _player.isPlaying;
+    BOOL isPlaying = (_player.currentPlayerState == QPLAYERSTATUS_PLAYING);
   
     if (_currentCell == cell && _currentCell) {
         if(isPlaying) {
-                [_player.controlHandler pause_render];
+                [_player.controlHandler pauseRender];
         } else{
-                [_player.controlHandler resume_render];
+                [_player.controlHandler resumeRender];
         }
     } else{
 

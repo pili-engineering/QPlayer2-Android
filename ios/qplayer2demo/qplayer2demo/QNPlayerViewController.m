@@ -100,10 +100,10 @@ PLScanViewControlerDelegate
 - (void)onUIApplication:(BOOL)active{
     if (active) {
 //        [self.player resume_render];
-        [self.playerContext.controlHandler resume_render];
+        [self.playerContext.controlHandler resumeRender];
     }else{
 //        [self.player pause_render];
-        [self.playerContext.controlHandler pause_render];
+        [self.playerContext.controlHandler pauseRender];
     }
 }
 
@@ -578,8 +578,8 @@ PLScanViewControlerDelegate
 #pragma mark - PLScanViewControlerDelegate 代理方法
 
 - (void)scanQRResult:(NSString *)qrString isLive:(BOOL)isLive{
-    if (_playerContext.isPlaying) {
-        [_playerContext.controlHandler pause_render];
+    if (_playerContext.currentPlayerState == QPLAYERSTATUS_PLAYING) {
+        [_playerContext.controlHandler pauseRender];
     }
     NSURL *url;
     if (qrString) {
@@ -650,8 +650,8 @@ PLScanViewControlerDelegate
 //    if ([_player.URL isEqual:selectedURL]) {
 //        return;
 //    }
-    if (_playerContext.playing) {
-        [_playerContext.controlHandler pause_render];
+    if (_playerContext.currentPlayerState == QPLAYERSTATUS_PLAYING) {
+        [_playerContext.controlHandler pauseRender];
     }
     
     _selectedIndex = indexPath.row;

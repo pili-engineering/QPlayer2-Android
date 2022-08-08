@@ -129,7 +129,7 @@
 }
 - (void)setPlayer:(QPlayerContext *)player {
     _player = player;
-    self.playButton.selected = _player.isPlaying;
+    self.playButton.selected = (_player.currentPlayerState == QPLAYERSTATUS_PLAYING);
     if (self.isLiving) {
         self.totalDuration = 0;
     } else {
@@ -213,9 +213,9 @@
 -(void)setPlayState{
     self.playButton.selected = !self.playButton.selected;
     if (self.playButton.selected) {
-        [self.player.controlHandler resume_render];
+        [self.player.controlHandler resumeRender];
     } else {
-        [self.player.controlHandler pause_render];
+        [self.player.controlHandler pauseRender];
     }
 }
 
@@ -239,11 +239,11 @@
     myCallback(button.isSelected);
     
     if (button.selected) {
-        [self.player.controlHandler resume_render];
+        [self.player.controlHandler resumeRender];
 //        [self.player play];
 
     } else {
-        [self.player.controlHandler pause_render];
+        [self.player.controlHandler pauseRender];
 //        [self.player stop];
     }
 }

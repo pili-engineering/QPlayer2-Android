@@ -629,7 +629,7 @@ UIGestureRecognizerDelegate
 #pragma mark - 返回
 
 - (void)getBackAction:(UIButton *)backButton {
-    if (self.player.isPlaying && ![self.buttomView getFullButtonState]) {
+    if (self.player.currentPlayerState == QPLAYERSTATUS_PLAYING && ![self.buttomView getFullButtonState]) {
 //        [self.durationTimer invalidate];
 //        self.durationTimer = nil;
         [self.buttomView timeDealloc];
