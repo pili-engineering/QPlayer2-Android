@@ -281,7 +281,7 @@ UITableViewDataSource
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        _currentCell.playerView = _player.playerView;
+        _currentCell.playerView = _player.controlHandler.playerView;
         NSLog(@"2");
     });
     
@@ -420,7 +420,7 @@ UITableViewDataSource
 
 -(void)updatePlayCell:(PLCellPlayerTableViewCell *)cell{
     cell.player = self.player;
-    BOOL isPlaying = (_player.currentPlayerState == QPLAYERSTATUS_PLAYING);
+    BOOL isPlaying = (_player.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING);
   
     if (_currentCell == cell && _currentCell) {
         if(isPlaying) {
@@ -565,8 +565,8 @@ UITableViewDataSource
         return;
     }
     UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityIndicatorView.center = CGPointMake(CGRectGetMidX(self.player.playerView.bounds), CGRectGetMidY(self.player.playerView.bounds));
-    [self.player.playerView addSubview:activityIndicatorView];
+    activityIndicatorView.center = CGPointMake(CGRectGetMidX(self.player.controlHandler.playerView.bounds), CGRectGetMidY(self.player.controlHandler.playerView.bounds));
+    [self.player.controlHandler.playerView addSubview:activityIndicatorView];
     [activityIndicatorView stopAnimating];
     self.activityIndicatorView = activityIndicatorView;
 }

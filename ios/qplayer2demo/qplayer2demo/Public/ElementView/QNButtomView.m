@@ -44,7 +44,7 @@
         if (self.isLiving) {
             self.totalDuration = 0;
         } else {
-            self.totalDuration = self.player.duration;
+            self.totalDuration = self.player.controlHandler.duration;
         }
         minutes = _totalDuration / 60.0;
         seconds = (int)_totalDuration % 60;
@@ -72,7 +72,7 @@
         if (self.isLiving) {
             self.totalDuration = 0;
         } else {
-            self.totalDuration = self.player.duration;
+            self.totalDuration = self.player.controlHandler.duration;
         }
         minutes = _totalDuration / 60.0;
         seconds = (int)_totalDuration % 60;
@@ -129,11 +129,11 @@
 }
 - (void)setPlayer:(QPlayerContext *)player {
     _player = player;
-    self.playButton.selected = (_player.currentPlayerState == QPLAYERSTATUS_PLAYING);
+    self.playButton.selected = (_player.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING);
     if (self.isLiving) {
         self.totalDuration = 0;
     } else {
-        self.totalDuration = self.player.duration/1000;
+        self.totalDuration = self.player.controlHandler.duration/1000;
     }
     float minutes = _totalDuration / 60.0;
     int seconds = (int)_totalDuration % 60;
@@ -275,9 +275,9 @@
 
 }
 - (void)timerAction:(NSTimer *)timer {
-    long long currentSeconds = self.player.currentPosition/1000;
-    float currentSecondsDouble = self.player.currentPosition/1000.0;
-    long long totalSeconds = self.player.duration/1000;
+    long long currentSeconds = self.player.controlHandler.currentPosition/1000;
+    float currentSecondsDouble = self.player.controlHandler.currentPosition/1000.0;
+    long long totalSeconds = self.player.controlHandler.duration/1000;
 
     if (self.totalDuration != 0 && (currentSeconds == totalSeconds || fabsf(currentSecondsDouble - totalSeconds) <=0.5)) {
         if (!_isLiving) {

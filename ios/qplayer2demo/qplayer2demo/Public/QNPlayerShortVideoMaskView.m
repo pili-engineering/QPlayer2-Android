@@ -29,7 +29,7 @@
         self.buttomView = [[QNButtomView alloc]initWithShortVideoFrame:CGRectMake(8, playerHeight - 28, playerWidth - 16, 28) player:player playerFrame:frame isLiving:isLiving];
         [self addSubview:_buttomView];
         [self.buttomView playButtonClickCallBack:^(BOOL selectedState) {
-            if(self.player.currentPlayerState == QPLAYERSTATUS_COMPLETED){
+            if(self.player.controlHandler.currentPlayerState == QPLAYERSTATUS_COMPLETED){
                 if (self.delegate != nil && [self.delegate respondsToSelector:@selector(reOpenPlayPlayerMaskView:)]) {
                     [self.delegate reOpenPlayPlayerMaskView:self];
                 }

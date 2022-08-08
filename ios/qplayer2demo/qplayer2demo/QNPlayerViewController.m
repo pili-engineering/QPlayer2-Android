@@ -208,8 +208,8 @@ PLScanViewControlerDelegate
 //    [self.view addSubview:_player.playerView];
     QPlayerContext *player =  [[QPlayerContext alloc]initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
     self.playerContext = player;
-    self.playerContext.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
-    [self.view addSubview:self.playerContext.playerView];
+    self.playerContext.controlHandler.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
+    [self.view addSubview:self.playerContext.controlHandler.playerView];
     
     
     for (QNClassModel* model in configs) {
@@ -381,11 +381,11 @@ PLScanViewControlerDelegate
 - (NSArray *)updateInfoArray {
     NSString *statusStr = [self updatePlayerStatus];
 //    NSString *connectTimeStr = [self stringByNSTimerinterval:self.player.connectTime];
-    NSString *firstVideoTimeStr = [NSString stringWithFormat:@"%d ms",self.playerContext.firstVideoTime];
+    NSString *firstVideoTimeStr = [NSString stringWithFormat:@"%d ms",self.playerContext.renderHandler.firstVideoTime];
 //    NSString *widthStr = [NSString stringWithFormat:@"%d", self.player.width];
 //    NSString *heightStr = [NSString stringWithFormat:@"%d", self.player.height];
-    NSString *renderFPSStr = [NSString stringWithFormat:@"%dfps", self.playerContext.fps];
-    NSString *downSpeedStr = [NSString stringWithFormat:@"%.2fkb/s", self.playerContext.downloadSpeed * 1.0/1000];
+    NSString *renderFPSStr = [NSString stringWithFormat:@"%dfps", self.playerContext.controlHandler.fps];
+    NSString *downSpeedStr = [NSString stringWithFormat:@"%.2fkb/s", self.playerContext.controlHandler.downloadSpeed * 1.0/1000];
 
     NSArray *array = @[statusStr,firstVideoTimeStr,renderFPSStr,downSpeedStr];
 //    if (_isLiving) {
@@ -395,7 +395,7 @@ PLScanViewControlerDelegate
 //        [mutableArray addObjectsFromArray:@[videoFPSStr, bitrateStr]];
 //        array = [mutableArray copy];
 //    } else {
-    long bufferPositon = self.playerContext.bufferPostion;
+    long bufferPositon = self.playerContext.controlHandler.bufferPostion;
         NSString *fileUnit = @"ms";
 
         NSString *fileSizeStr = [NSString stringWithFormat:@"%d%@", bufferPositon, fileUnit];
@@ -433,7 +433,7 @@ PLScanViewControlerDelegate
                                        @(QPLAYERSTATUS_SEEKING):@"seek",
                                        @(QPLAYERSTATUS_COMPLETED):@"Completed"
                                        };
-    return statusDictionary[@(self.playerContext.currentPlayerState)];
+    return statusDictionary[@(self.playerContext.controlHandler.currentPlayerState)];
 
 }
 
@@ -441,11 +441,11 @@ PLScanViewControlerDelegate
 
 - (void)addPlayerMaskView{
     self.maskView = [[QNPlayerMaskView alloc] initWithFrame:CGRectMake(0, 0, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT) player:self.playerContext isLiving:NO];
-    self.maskView.center = self.playerContext.playerView.center;
+    self.maskView.center = self.playerContext.controlHandler.playerView.center;
     self.maskView.delegate = self;
     self.maskView.backgroundColor = PL_COLOR_RGB(0, 0, 0, 0.35);
 //    [self.maskView.rotateButton addTarget:self action:@selector(rotateButtonAction:) forControlEvents:UIControlEventTouchDown];
-    [self.view insertSubview:_maskView aboveSubview:self.playerContext.playerView];
+    [self.view insertSubview:_maskView aboveSubview:self.playerContext.controlHandler.playerView];
     
     [self.maskView.qualitySegMc addTarget:self action:@selector(qualityAction:) forControlEvents:UIControlEventValueChanged];
 }
@@ -502,13 +502,13 @@ PLScanViewControlerDelegate
         [self.navigationController setNavigationBarHidden:YES animated:NO];
         [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
         [self.urlListTableView removeFromSuperview];
-        self.playerContext.playerView.frame = CGRectMake(0, 0, PL_SCREEN_WIDTH, PL_SCREEN_HEIGHT);
+        self.playerContext.controlHandler.playerView.frame = CGRectMake(0, 0, PL_SCREEN_WIDTH, PL_SCREEN_HEIGHT);
         self.maskView.frame = CGRectMake(0, 0, PL_SCREEN_WIDTH, PL_SCREEN_HEIGHT);
     } else {
         [self.navigationController setNavigationBarHidden:NO animated:NO];
         [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
         [self.view addSubview:_urlListTableView];
-        self.playerContext.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
+        self.playerContext.controlHandler.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
         self.maskView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
     }
     [UIViewController attemptRotationToDeviceOrientation];
@@ -578,7 +578,7 @@ PLScanViewControlerDelegate
 #pragma mark - PLScanViewControlerDelegate 代理方法
 
 - (void)scanQRResult:(NSString *)qrString isLive:(BOOL)isLive{
-    if (_playerContext.currentPlayerState == QPLAYERSTATUS_PLAYING) {
+    if (_playerContext.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING) {
         [_playerContext.controlHandler pauseRender];
     }
     NSURL *url;
@@ -650,7 +650,7 @@ PLScanViewControlerDelegate
 //    if ([_player.URL isEqual:selectedURL]) {
 //        return;
 //    }
-    if (_playerContext.currentPlayerState == QPLAYERSTATUS_PLAYING) {
+    if (_playerContext.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING) {
         [_playerContext.controlHandler pauseRender];
     }
     

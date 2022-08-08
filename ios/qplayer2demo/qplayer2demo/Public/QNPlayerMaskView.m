@@ -99,7 +99,7 @@ UIGestureRecognizerDelegate
 
 - (float)currentTime
 {
-    return self.player.currentPosition/1000;
+    return self.player.controlHandler.currentPosition/1000;
 }
 
 - (UIView *)fastView {
@@ -154,7 +154,7 @@ UIGestureRecognizerDelegate
         [self addSubview:_buttomView];
         
         [self.buttomView playButtonClickCallBack:^(BOOL selectedState) {
-            if(self.player.currentPlayerState == QPLAYERSTATUS_COMPLETED){
+            if(self.player.controlHandler.currentPlayerState == QPLAYERSTATUS_COMPLETED){
                 if (self.delegate != nil && [self.delegate respondsToSelector:@selector(reOpenPlayPlayerMaskView:)]) {
                     [self.delegate reOpenPlayPlayerMaskView:self];
                 }
@@ -615,7 +615,7 @@ UIGestureRecognizerDelegate
         _showSettingViewButton.hidden = YES;
         _showSpeedViewButton.hidden = YES;
     }
-    self.activityIndicatorView.center = self.player.playerView.center;
+    self.activityIndicatorView.center = self.player.controlHandler.playerView.center;
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
@@ -629,7 +629,7 @@ UIGestureRecognizerDelegate
 #pragma mark - 返回
 
 - (void)getBackAction:(UIButton *)backButton {
-    if (self.player.currentPlayerState == QPLAYERSTATUS_PLAYING && ![self.buttomView getFullButtonState]) {
+    if (self.player.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING && ![self.buttomView getFullButtonState]) {
 //        [self.durationTimer invalidate];
 //        self.durationTimer = nil;
         [self.buttomView timeDealloc];
