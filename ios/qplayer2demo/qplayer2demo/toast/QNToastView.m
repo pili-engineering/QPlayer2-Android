@@ -51,7 +51,13 @@ static pthread_rwlock_t w_plock;
 }
 -(void)addView:(NSString *)str{
 
-    ShowMassageView *showView = [[ShowMassageView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 60, self.frame.size.width, 30) Massage:str];
+    ShowMassageView *showView;
+    if ([UIApplication sharedApplication].statusBarOrientation == UIDeviceOrientationLandscapeRight ||
+    [UIApplication sharedApplication].statusBarOrientation == UIDeviceOrientationLandscapeLeft) {
+        showView = [[ShowMassageView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 40, self.frame.size.width, 30) Massage:str];
+    } else {
+        showView = [[ShowMassageView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 60, self.frame.size.width, 30) Massage:str];
+    }
     [self addSubview:showView];
     pthread_rwlock_wrlock(&w_plock);
     for (ShowMassageView *view in arr) {

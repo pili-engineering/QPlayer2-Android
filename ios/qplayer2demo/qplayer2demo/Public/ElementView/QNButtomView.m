@@ -49,6 +49,7 @@
         minutes = _totalDuration / 60.0;
         seconds = (int)_totalDuration % 60;
         [self addPlayButton];
+        [self addSubview:self.prograssSlider];
         [self addTotalDurationLabel];
         [self addCurrentTimeLabel];
         [self addFullScreenButton];
@@ -77,6 +78,8 @@
         minutes = _totalDuration / 60.0;
         seconds = (int)_totalDuration % 60;
         [self addPlayButton];
+        
+        [self addSubview:self.prograssSlider];
         [self addCurrentTimeLabel];
         self.durationTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
     }
@@ -101,14 +104,13 @@
 }
 
 -(void)addPlayButton{
-    self.playButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
+    self.playButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 22)];
+    [self.playButton setImageEdgeInsets:UIEdgeInsetsMake(0, 4, 0, 4)];
     [self.playButton setImage:[UIImage imageNamed:@"pl_play"] forState:UIControlStateNormal];
     [self.playButton setImage:[UIImage imageNamed:@"pl_stop"] forState:UIControlStateSelected];
     [self.playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:_playButton];
     
-    
-    [self addSubview:self.prograssSlider];
 }
 -(void)addCurrentTimeLabel{
     self.currentTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(36, 3, 40, 20)];
@@ -120,7 +122,8 @@
 }
 
 -(void)addFullScreenButton{
-    self.fullScreenButton = [[UIButton alloc] initWithFrame:CGRectMake(playerWidth - 44, 0, 22, 22)];
+    self.fullScreenButton = [[UIButton alloc] initWithFrame:CGRectMake(playerWidth - 52, 0, 30, 22)];
+    [self.fullScreenButton setImageEdgeInsets:UIEdgeInsetsMake(0, 6, 0, 2)];
     [self.fullScreenButton setImage:[UIImage imageNamed:@"pl_fullScreen"] forState:UIControlStateNormal];
     [self.fullScreenButton setImage:[UIImage imageNamed:@"pl_smallScreen"] forState:UIControlStateSelected];
     [self.fullScreenButton addTarget:self action:@selector(changeScreenSize:) forControlEvents:UIControlEventTouchDown];
@@ -185,7 +188,7 @@
     playerWidth = CGRectGetWidth(frame);
     playerHeight = CGRectGetHeight(frame);
     self.totalDurationLabel.frame = CGRectMake(playerWidth - 92, 3, 40, 20);
-    self.fullScreenButton.frame = CGRectMake(playerWidth - 44, 0, 22, 22);
+    self.fullScreenButton.frame = CGRectMake(playerWidth - 52, 0, 30, 22);
     self.prograssSlider.frame = CGRectMake(76, 3, playerWidth - 170, 20);
 }
 
@@ -279,7 +282,7 @@
     float currentSecondsDouble = self.player.controlHandler.currentPosition/1000.0;
     long long totalSeconds = self.player.controlHandler.duration/1000;
 
-    if (self.totalDuration != 0 && (currentSeconds == totalSeconds || fabsf(currentSecondsDouble - totalSeconds) <=0.5)) {
+    if (self.totalDuration != 0 && (currentSeconds >= totalSeconds || fabsf(currentSecondsDouble - totalSeconds) <=0.5)) {
         if (!_isLiving) {
             self.prograssSlider.value = self.totalDuration;
             float minutes = totalSeconds / 60;

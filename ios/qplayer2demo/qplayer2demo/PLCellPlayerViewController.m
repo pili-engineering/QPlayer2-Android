@@ -29,17 +29,13 @@ static NSString *status[] = {
 <
 UITableViewDelegate,
 UITableViewDataSource
-//QPlayerDelegate,
-//QMediaItemDelegate
 >
 
-//@property (nonatomic, strong) QPlayer *player;
 @property (nonatomic, strong) QPlayerContext *player;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) PLCellPlayerTableViewCell *currentCell;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
-//@property (nonatomic, strong) NSMutableArray <QMediaItem *>*cacheArray;
 @property (nonatomic, strong) NSMutableArray <QMediaItemContext *>*cacheArray;
 @property (nonatomic, strong) NSMutableArray<QNPlayerModel *> *playerModels;
 
@@ -73,13 +69,7 @@ UITableViewDataSource
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 
 }
--(void)viewDidAppear:(BOOL)animated{
-//    [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-}
 
-- (void)onUIApplication:(BOOL)active{
-//    self.player.enableRender = active;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -159,42 +149,18 @@ UITableViewDataSource
     
     QAppInformation *info = [[QAppInformation alloc] init];
     info.mAppId = @"com.qbox.QPlayerKitDemo";
-    
-//    QPlayer* player = [[QPlayer alloc] initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
-//    self.player = player;
-//    self.player.mDelagete = self;
+
     QPlayerContext *player = [[QPlayerContext alloc]initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
+    //设置为软解
+    [player.controlHandler setDecoderType:QPLAYER_DECODER_SETTING_SOFT_PRIORITY];
     self.player = player;
-//    self.player.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
-//    [self.view addSubview:_player.playerView];
-    
-    
-//    for (int i = 0; i < 5; i ++) {
-//        QMediaModel *model = [[QMediaModel alloc] init];
-//        model.streamElements = _playerModels[i].streamElements;
-//        model.is_live = _playerModels[i].is_live;
-//        
-//        // 预加载
-//        QMediaItem *item = [[QMediaItem alloc] initItemComtextStorageDir:documentsDir logLevel:LOG_VERBOSE];
-//        [item start:model startPos:0];
-//        NSLog(@"预加载--add---%@",item.media_model.streamElements[0].url);
-//        [self.cacheArray addObject:item];
-//    }
-//    
-//    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        QMediaModel *model = [[QMediaModel alloc] init];
-        model.streamElements = _playerModels.firstObject.streamElements;
-        model.is_live = _playerModels.firstObject.is_live;
-        [self.player.controlHandler playMediaModel:model startPos:0];
-//    });
+    QMediaModel *model = [[QMediaModel alloc] init];
+    model.streamElements = _playerModels.firstObject.streamElements;
+    model.is_live = _playerModels.firstObject.is_live;
+    [self.player.controlHandler playMediaModel:model startPos:0];
 
 
 }
-
-
-
-
 
 #pragma mark - PLPlayerDelegate
 -(void)playerContextAllCallBack{
@@ -257,20 +223,7 @@ UITableViewDataSource
 
     
 }
--(void)player:(QPlayer *)player stateChanged:(QPlayerStatus)state{
 
-}
-
-/// 播放发生错误的回调
-//- (void)player:(QPlayer *)player stoppedWithError:(NSError *)error {
-//    [_toastView addText:[NSString stringWithFormat:@"播放错误:%@",error]];
-//}
-
-/// 点播已缓冲区域的回调
-//- (void)player:(nonnull QPlayer *)player loadedTimeRange:(CMTime)timeRange {
-//    float durationSeconds = CMTimeGetSeconds(timeRange);
-//    NSString *string = [NSString stringWithFormat:@"durationSecods(%0.2f)", durationSeconds];
-//}
 
 -(void)screenRenderFirstFrame:(QNotifyModle *)notify elapsedTime:(NSInteger)elapsedTime{
     NSLog(@"预加载首帧时间----%d",elapsedTime);
@@ -282,37 +235,31 @@ UITableViewDataSource
     
     dispatch_async(dispatch_get_main_queue(), ^{
         _currentCell.playerView = _player.controlHandler.playerView;
-        NSLog(@"2");
+        
     });
     
     [self updateCache:_currentCell.model];
-}
-- (void)player:(QPlayer *_Nullable)player screenRenderFirstFrame:(QNotifyModle *)notify elapsedTime:(NSInteger)elapsedTime{
-
 }
 
 -(void)streamOpen:(QNotifyModle *)notify duration:(int64_t)duration{
     
     NSLog(@"-------------streamOpen ----%@",notify.user_type);
 }
--(void)player:(QPlayer *)player streamOpen:(QNotifyModle *)notify duration:(int64_t)duration{
-}
 
 -(void)streamOpenError:(QNotifyModle *)notify error:(NSInteger)error{
     
     NSLog(@"-------------streamOpenError -----%@",notify.user_type);
 }
--(void)player:(QPlayer *)player streamOpenError:(QNotifyModle *)notify error:(NSInteger)error{
-}
-
 
 #pragma mark - mediaItemDelegate
 
 -(void)addAllCallBack:(QMediaItemContext *)mediaItem{
     
     __weak PLCellPlayerViewController *weakSelf = self;
+    
     [mediaItem.controlHandler addPlayerOnStateChangedCallBackName:@"StateChanged" callBack:^(QMediaItemContext * _Nonnull context, QMediaItemState state) {
-        NSLog(@"-------------预加载--onStateChanged -- %d---%@",state,mediaItem.media_model.streamElements[0].url);
+        NSLog(@"-------------预加载--onStateChanged -- %d---%@",state,context.controlHandler.media_model.streamElements[0].url);
+        
     }];
     [mediaItem.controlHandler addPlayerOpenNotifyAndDurationCallBackName:@"openNotify" callBack:^(QMediaItemContext * _Nonnull context, QNotifyModle * _Nonnull notify, int64_t duration) {
             NSLog(@"-------------预加载--openNotify -- %d",duration);
@@ -327,25 +274,6 @@ UITableViewDataSource
         NSLog(@"-------------预加载--notAllow---%@",commandName);
     }];
 }
-//-(void)mediaItem:(QMediaItem *)mediaItem onStateChanged:(QMediaItemState)state{
-//    NSLog(@"-------------预加载--onStateChanged -- %d---%@",state,mediaItem.media_model.streamElements[0].url);
-//}
-
-//-(void)mediaItem:(QMediaItem *)mediaItem openNotify:(QNotifyModle *)notify duration:( int64_t)duration{
-//    NSLog(@"-------------预加载--openNotify -- %d",duration);
-//}
-
-//-(void)mediaItem:(QMediaItem *)mediaItem openError:(QNotifyModle *)notify{
-//    NSLog(@"-------------预加载--openError -- ");
-//}
-
-//-(void)mediaItem:(QMediaItem *)mediaItem ioError:(QNotifyModle *)notify{
-//    NSLog(@"-------------预加载--ioError");
-//}
-
-//-(void)mediaItem:(QMediaItem *)mediaItem notAllow:(QNotifyModle *)notify command_name:(NSString *)command_name mediaItemState:(QMediaItemState)state{
-//    NSLog(@"-------------预加载--notAllow---%@",command_name);
-//}
 
 #pragma mark - tableView delegate
 
@@ -398,7 +326,6 @@ UITableViewDataSource
     CGFloat gap = MAXFLOAT;
     for (PLCellPlayerTableViewCell *cell in visiableCells) {
 
-//        [indexPaths addObject:cell.indexPath];
         if (cell.model) { // 如果这个cell有视频
             CGPoint coorCentre = [cell.superview convertPoint:cell.center toView:nil];
             CGFloat delta = fabs(coorCentre.y-[UIScreen mainScreen].bounds.size.height*0.5);
@@ -433,14 +360,14 @@ UITableViewDataSource
         QMediaItemContext *item = [self findCrashMediaItemsOf:cell.model];
         if (item) {
             [self.player.controlHandler playMediaItem:item];
-            NSLog(@"预加载--播放缓存---%@",item.media_model.streamElements[0].url);
+            NSLog(@"预加载--播放缓存---%@",item.controlHandler.media_model.streamElements[0].url);
         }else{
             QMediaModel *model = [[QMediaModel alloc] init];
             model.streamElements = cell.model.streamElements;
             model.is_live = _playerModels.firstObject.is_live;
             [self.player.controlHandler playMediaModel:model startPos:0];
             
-            NSLog(@"预加载--new---%@",item.media_model.streamElements[0].url);
+            NSLog(@"预加载--new---%@",item.controlHandler.media_model.streamElements[0].url);
         }
     
         _currentCell = cell;
@@ -461,17 +388,18 @@ UITableViewDataSource
     
     // 预加载
     QMediaItemContext *item = [[QMediaItemContext alloc] initItemComtextStorageDir:documentsDir logLevel:LOG_VERBOSE];
+    [self addAllCallBack:item];
     [item.controlHandler start:model startPos:0];
-//    item.mDelagete = self;
     [self.cacheArray addObject:item];
     
     NSLog(@"预加载--addcrash -- %@",playerModel.streamElements.firstObject.url);
+    
 }
 
 -(int)indexPlayerModelsOf:(QMediaItemContext *)item{
     for (int i = 0; i < _playerModels.count; i ++) {
         QNPlayerModel *modle = _playerModels[i];
-        if (modle.is_live == item.media_model.is_live && modle.streamElements == item.media_model.streamElements) {
+        if (modle.is_live == item.controlHandler.media_model.is_live && modle.streamElements == item.controlHandler.media_model.streamElements) {
             return i;
         }
     }
@@ -481,7 +409,7 @@ UITableViewDataSource
 -(QMediaItemContext *)findCrashMediaItemsOf:(QNPlayerModel *)modle{
     for (int i = 0; i < _cacheArray.count; i ++) {
         QMediaItemContext *item = _cacheArray[i];
-        if (modle.is_live == item.media_model.is_live && modle.streamElements == item.media_model.streamElements) {
+        if (modle.is_live == item.controlHandler.media_model.is_live && modle.streamElements == item.controlHandler.media_model.streamElements) {
             return item;
         }
     }
@@ -584,14 +512,6 @@ UITableViewDataSource
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -28,15 +28,12 @@
 
 @interface QNPlayerViewController ()
 <
-//QPlayerDelegate,  /** PLPlayer 代理 **/
 UITableViewDelegate,
 UITableViewDataSource,
 QNPlayerMaskViewDelegate,
 PLScanViewControlerDelegate
 >
 
-/** PLPlayer 的核心应用类 **/
-//@property (nonatomic, strong) QPlayer *player;
 /** 播放器蒙版视图 **/
 @property (nonatomic, strong) QNPlayerMaskView *maskView;
 
@@ -52,7 +49,6 @@ PLScanViewControlerDelegate
 @property (nonatomic, assign) BOOL isPull;
 
 @property (nonatomic, copy) NSString *playerLogFileName;
-@property (nonatomic, strong) NSMutableArray *logRecordArray;
 /** 无可显示 URL 的提示 **/
 @property (nonatomic, strong) UILabel *hintLabel;
 
@@ -93,16 +89,13 @@ PLScanViewControlerDelegate
     [super viewWillDisappear:animated];
     [self.durationTimer invalidate];
     self.durationTimer = nil;
-//    [self.player stop];
     [self.playerContext.controlHandler stop];
 }
 
 - (void)onUIApplication:(BOOL)active{
     if (active) {
-//        [self.player resume_render];
         [self.playerContext.controlHandler resumeRender];
     }else{
-//        [self.player pause_render];
         [self.playerContext.controlHandler pauseRender];
     }
 }
@@ -162,16 +155,11 @@ PLScanViewControlerDelegate
 
     [self layoutUrlListTableView];
     
-    _logRecordArray = [NSMutableArray array];
     
     _toastView = [[QNToastView alloc]initWithFrame:CGRectMake(0, PL_SCREEN_HEIGHT-300, 200, 300)];
     [self.view addSubview:_toastView];
     //清晰度默认为1080p
     self.definition = @"1080p";
-//    [self.player addPlayerStaticCallBackName:@"callback1" CallBack:^(QPlayerStatus state) {
-//            NSLog(@"2");
-//    }];
-//    [self.player removePlayerStaticCallBack:@"213"];
     [self playerContextAllCallBack];
 }
 
@@ -196,16 +184,10 @@ PLScanViewControlerDelegate
     }
     
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-//    NSString *path = [documentsDir stringByAppendingPathComponent:@"me"];
-    
+
     QAppInformation *info = [[QAppInformation alloc] init];
     info.mAppId = @"com.qbox.QPlayerKitDemo";
-    
-//    QPlayer* player = [[QPlayer alloc] initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
-//    self.player = player;
-//    self.player.mDelagete = self;
-//    self.player.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
-//    [self.view addSubview:_player.playerView];
+
     QPlayerContext *player =  [[QPlayerContext alloc]initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
     self.playerContext = player;
     self.playerContext.controlHandler.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
@@ -219,16 +201,11 @@ PLScanViewControlerDelegate
             }
         }
     }
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"1080_60_5390.mp4" ofType:nil];
-//    _playerModels.firstObject.streamElements[0].url = path;
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     QMediaModel *model = [[QMediaModel alloc] init];
     model.streamElements = _playerModels.firstObject.streamElements;
     model.is_live = _playerModels.firstObject.is_live;
-//    [self.player playMediaModel:model startPos:[[QDataHandle shareInstance] getConfiguraPostion]];
     [self.playerContext.controlHandler playMediaModel:model startPos:[[QDataHandle shareInstance] getConfiguraPostion]];
-//    });
-//    [self.player playMediaModel:@[_playerModels.firstObject] startPos:0];
+
 
 }
 
@@ -254,15 +231,7 @@ PLScanViewControlerDelegate
         [_toastView addDecoderType:[self.maskView getDecoderType]];
         [_toastView addText:[NSString stringWithFormat:@"清晰度：%@",self.definition]];
     } else{
-//        if (state != PLPlayerStateAutoReconnecting) {
-//            [self.maskView removeActivityIndicatorView];
-//
-//            [self.durationTimer invalidate];
-//            self.durationTimer = nil;
-//            self.durationTimer = [NSTimer scheduledTimerWithTimeInterval:0.05f target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
-//            [self logPrintWithKey:@"playerVersion" content:playerVersion()];
-//            [self logPrintWithKey:@"playerURL" content:[NSString stringWithFormat:@"%@", _player.URL]];
-//        }
+
         if (state == QPLAYERSTATUS_PLAYING) {
 //            _maskView.player = _player;
             
@@ -271,63 +240,20 @@ PLScanViewControlerDelegate
             [self showHintViewWithText:@"开始播放器"];
             
             [_toastView addText:@"播放中"];
-//            if (_player.metadata) {
-//                NSString *content = [NSString stringWithFormat:@"{"];
-//                for (NSString *key in _player.metadata) {
-//                    content = [content stringByAppendingString:[NSString stringWithFormat:@"%@:%@,", key, _player.metadata[key]]];
-//                }
-//                content = [content substringToIndex:(content.length - 2)];
-//                content = [content stringByAppendingString:@"}"];
-//                NSLog(@"_player.metadata ------ %@", content);
-//                [self logPrintWithKey:@"playerMetadata" content:content];
-//            }
+
         } else if (state == QPLAYERSTATUS_PAUSED_RENDER || state == QPLAYERSTATUS_STOPPED) {
-//            _maskView.playButton.selected = NO;
-            
             [_toastView addText:@"暂停渲染或者停止当前播放"];
             [_maskView setPlayButtonState:NO];
         }else if (state == QPLAYERSTATUS_ERROR){
-//            [self.durationTimer invalidate];
-//            self.durationTimer = nil;
-//            _maskView.playButton.selected = NO;
             [_toastView addText:@"播放错误"];
             [_maskView setPlayButtonState:NO];
-//            NSString *message;
-//            NSString *title;
-//            message = @"播放出现错误！";
-//            title = @"发生错误";
-//
-//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:title otherButtonTitles:nil];
-//            [alertView show];
         }else if (state == QPLAYERSTATUS_COMPLETED){
-//            _maskView.playButton.selected = NO;
             
             [_toastView addText:@"播放完成"];
             [_maskView setPlayButtonState:NO];
         }
     }
 }
--(void)player:(QPlayer *)player stateChanged:(QPlayerStatus)state{
-    
-}
-
-
-/// 播放发生错误的回调
-//- (void)player:(QPlayerContext *)player stoppedWithError:(NSError *)error {
-//    //    self.maskView.player = _player;
-//        self.maskView.player = self.playerContext;
-//        [self.maskView removeActivityIndicatorView];
-//        [_toastView addText:[NSString stringWithFormat:@"%@",error]];
-//    //    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"error info" message:error.description delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:@"重连", nil];
-//    //    [alertView show];
-//    //    [self.player stop];
-//}
-
-/// 点播已缓冲区域的回调
-//- (void)player:(nonnull QPlayer *)player loadedTimeRange:(CMTime)timeRange {
-//    float durationSeconds = CMTimeGetSeconds(timeRange);
-//    NSString *string = [NSString stringWithFormat:@"durationSecods(%0.2f)", durationSeconds];
-//}
 
 -(void)renderBufferingChange:(QNotifyModle*)notify{
     if (notify.notify_type == QPLAYER_NOTIFY_RENDER_BUFFERRING_START) {
@@ -337,38 +263,12 @@ PLScanViewControlerDelegate
         [self.maskView removeActivityIndicatorView];
     }
 }
--(void)player:(QPlayer *)player renderBufferingChange:(QNotifyModle *)notify{
 
-}
 
 -(void)qualityVideoDidChanged:(QNotifyModle *)notify oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality qualitySerial:(NSInteger)qualitySerial{
     NSString *string = [NSString stringWithFormat:@"清晰度切换成功"];
     [self.toastView addText:string];
 }
-
-//清晰度切换成功回调
--(void)player:(QPlayer *)player qualityVideoDidChanged:(QNotifyModle *)notify oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality qualitySerial:(NSInteger)qualitySerial{
-
-}
-
-
-///// 即将进入后台播放任务的回调
-//- (void)playerWillBeginBackgroundTask:(QPlayer *)player {
-//
-////    NSLog(@"begin background device orientation - %ld", [UIDevice currentDevice].orientation);
-//}
-
-/// 即将结束后台播放状态任务的回调
-//- (void)playerWillEndBackgroundTask:(QPlayer *)player {
-////    NSLog(@"end background device orientation - %ld", [UIDevice currentDevice].orientation);
-//    // 解决部分 iOS 系统退后台后回到前台时，将 orientation 设置为 UIInterfaceOrientationPortrait，与退后台前的方向不符合，导致 playerView 显示不全的问题
-//    // 判断实际方向是否与原方向一致，不一致则设置保持一致
-//    if (self.isFlip) {
-//        [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
-//    } else{
-//        [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationPortrait) forKey:@"orientation"];
-//    }
-//}
 
 #pragma mark - 计时器方法
 
@@ -380,31 +280,20 @@ PLScanViewControlerDelegate
 
 - (NSArray *)updateInfoArray {
     NSString *statusStr = [self updatePlayerStatus];
-//    NSString *connectTimeStr = [self stringByNSTimerinterval:self.player.connectTime];
     NSString *firstVideoTimeStr = [NSString stringWithFormat:@"%d ms",self.playerContext.renderHandler.firstVideoTime];
-//    NSString *widthStr = [NSString stringWithFormat:@"%d", self.player.width];
-//    NSString *heightStr = [NSString stringWithFormat:@"%d", self.player.height];
     NSString *renderFPSStr = [NSString stringWithFormat:@"%dfps", self.playerContext.controlHandler.fps];
     NSString *downSpeedStr = [NSString stringWithFormat:@"%.2fkb/s", self.playerContext.controlHandler.downloadSpeed * 1.0/1000];
 
     NSArray *array = @[statusStr,firstVideoTimeStr,renderFPSStr,downSpeedStr];
-//    if (_isLiving) {
-//        NSString *videoFPSStr = [NSString stringWithFormat:@"%dfps", self.player.videoFPS];
-//        NSString *bitrateStr = [NSString stringWithFormat:@"%.2fkb/s", self.player.videoBitrate];
-//        NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:array];
-//        [mutableArray addObjectsFromArray:@[videoFPSStr, bitrateStr]];
-//        array = [mutableArray copy];
-//    } else {
-    long bufferPositon = self.playerContext.controlHandler.bufferPostion;
-        NSString *fileUnit = @"ms";
 
-        NSString *fileSizeStr = [NSString stringWithFormat:@"%d%@", bufferPositon, fileUnit];
-        NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:array];
-        [mutableArray addObjectsFromArray:@[fileSizeStr]];
-        array = [mutableArray copy];
-//    }
+    long bufferPositon = self.playerContext.controlHandler.bufferPostion;
+    NSString *fileUnit = @"ms";
+    
+    NSString *fileSizeStr = [NSString stringWithFormat:@"%d%@", bufferPositon, fileUnit];
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:array];
+    [mutableArray addObjectsFromArray:@[fileSizeStr]];
+    array = [mutableArray copy];
     return array;
-    return @[];
 }
 
 - (NSString *)stringByNSTimerinterval:(NSTimeInterval)interval {
@@ -444,7 +333,6 @@ PLScanViewControlerDelegate
     self.maskView.center = self.playerContext.controlHandler.playerView.center;
     self.maskView.delegate = self;
     self.maskView.backgroundColor = PL_COLOR_RGB(0, 0, 0, 0.35);
-//    [self.maskView.rotateButton addTarget:self action:@selector(rotateButtonAction:) forControlEvents:UIControlEventTouchDown];
     [self.view insertSubview:_maskView aboveSubview:self.playerContext.controlHandler.playerView];
     
     [self.maskView.qualitySegMc addTarget:self action:@selector(qualityAction:) forControlEvents:UIControlEventValueChanged];
@@ -465,7 +353,6 @@ PLScanViewControlerDelegate
         
         self.maskView = nil;
         
-//        self.player.mDelagete = nil;
         self.playerContext = nil;
         // 更新日志
         [self.navigationController popViewControllerAnimated:YES];
@@ -488,7 +375,6 @@ PLScanViewControlerDelegate
     model.is_live = _playerModels[_selectedIndex].is_live;
     
     [_playerContext.controlHandler playMediaModel:model startPos:[[QDataHandle shareInstance] getConfiguraPostion]];
-//    _maskView.playButton.selected = YES;
     [_maskView setPlayButtonState:YES];
 
 }
@@ -554,7 +440,6 @@ PLScanViewControlerDelegate
         }
 
         if ([configureModel.configuraKey containsString:@"播放起始"]){
-
 
         } else if ([configureModel.configuraKey containsString:@"Decoder"]) {
             [self.playerContext.controlHandler setDecoderType:(QPlayerDecoderType)index];
@@ -647,9 +532,6 @@ PLScanViewControlerDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSURL *selectedURL = [NSURL URLWithString:_playerModels[indexPath.row].streamElements[0].url];
-//    if ([_player.URL isEqual:selectedURL]) {
-//        return;
-//    }
     if (_playerContext.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING) {
         [_playerContext.controlHandler pauseRender];
     }
@@ -707,7 +589,6 @@ PLScanViewControlerDelegate
     [pullButton setImage:[UIImage imageNamed:@"pl_down"] forState:UIControlStateNormal];
     [pullButton setImage:[UIImage imageNamed:@"pl_up"] forState:UIControlStateSelected];
     [pullButton addTarget:self action:@selector(pullClickList:) forControlEvents:UIControlEventTouchDown];
-//    [headerView addSubview:pullButton];
     
     UIButton *scanButton = [[UIButton alloc] initWithFrame:CGRectMake(245, 7, 22, 22)];
     scanButton.backgroundColor = PL_COLOR_RGB(81, 81, 81, 1);
@@ -830,17 +711,5 @@ PLScanViewControlerDelegate
     [self.playerContext.controlHandler switchQuality:model.streamElements[index]];
     
 }
-
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

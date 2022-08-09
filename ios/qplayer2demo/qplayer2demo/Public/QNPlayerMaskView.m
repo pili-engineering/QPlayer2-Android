@@ -12,7 +12,6 @@
 #import "QDataHandle.h"
 #import "QNHeadsetNotification.h"
 #import "QNbuttomView.h"
-#import "QNToastView.h"
 typedef NS_ENUM(NSInteger, PLMoveDirectionType)
 {
     PLHorizontailDirection,
@@ -581,9 +580,7 @@ UIGestureRecognizerDelegate
 - (void)changeFrame:(CGRect)frame isFull:(BOOL)isFull {
     CGFloat playerWidth = CGRectGetWidth(frame);
     CGFloat playerHeight = CGRectGetHeight(frame);
-    self.buttomView.frame = CGRectMake(8, playerHeight - 28, playerWidth - 16, 28);
-   
-    [self.buttomView changeFrame:frame isFull:isFull];
+
    
     self.showSettingViewButton.frame = CGRectMake(playerWidth - 100, 8, 25, 30);
     self.settingView.frame = CGRectMake(playerWidth - 390, 0, 390, playerHeight);
@@ -591,6 +588,9 @@ UIGestureRecognizerDelegate
     self.settingSpeedView.frame = CGRectMake(playerWidth - 130, 0, 130, playerHeight);
     isScreenFull = isFull;
     if (isFull) {
+        self.buttomView.frame = CGRectMake(8, playerHeight - 55, playerWidth - 16, 28);
+        
+        [self.buttomView changeFrame:frame isFull:isFull];
         self.volumeView.hidden = YES;
         _showSettingViewButton.hidden = NO;
         _showSpeedViewButton.hidden = NO;
@@ -599,6 +599,9 @@ UIGestureRecognizerDelegate
         [self.settingSpeedView reloadInputViews];
 //        [self.settingView setBackScrollContentSize:CGSizeMake(390, 650)];
     } else{
+        self.buttomView.frame = CGRectMake(8, playerHeight - 28, playerWidth - 16, 28);
+        
+        [self.buttomView changeFrame:frame isFull:isFull];
         if (self.settingView.hidden == NO) {
             self.settingView.hidden =YES;
         }

@@ -87,26 +87,20 @@
     
 }
 -(void)setPlayer:(QPlayerContext *)player{
-//    _player = player;
     if (!self.maskView) {
         [self addPlayerMaskView:player];
     }else{
         self.maskView.player = player;
     }
-//    self.maskView.player = player;
 }
 #pragma mark - 添加点播界面蒙版
 
 - (void)addPlayerMaskView:(QPlayerContext *)player{
     self.maskView = [[QNPlayerShortVideoMaskView alloc] initWithShortVideoFrame:CGRectMake(0, PL_SCREEN_HEIGHT-90, PL_SCREEN_WIDTH, 50) player:player isLiving:NO];
-//    self.maskView.center = self.player.playerView.center;
     self.maskView.delegate = self;
     self.maskView.backgroundColor = [UIColor clearColor];
-//    [self.maskView.rotateButton addTarget:self action:@selector(rotateButtonAction:) forControlEvents:UIControlEventTouchDown];
-//    [self.contentView insertSubview:_maskView aboveSubview:_player.playerView];
     [self.contentView addSubview:_maskView];
     
-//    [self.maskView.qualitySegMc addTarget:self action:@selector(qualityAction:) forControlEvents:UIControlEventValueChanged];
 }
 #pragma mark - QNPlayerShortVideoMaskViewDelegate
 

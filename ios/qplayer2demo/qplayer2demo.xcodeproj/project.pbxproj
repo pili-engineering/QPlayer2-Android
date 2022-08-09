@@ -255,6 +255,7 @@
 				50B1F439289CC62D0074E02D /* QNAppDelegate.m */,
 				50B1F441289CC62D0074E02D /* QNHomeViewController.h */,
 				50B1F483289CC62D0074E02D /* QNHomeViewController.m */,
+				50B1F4DE28A10B6C0074E02D /* New Group */,
 				50B1F457289CC62D0074E02D /* QNInfoHeaderView.h */,
 				50B1F43F289CC62D0074E02D /* QNInfoHeaderView.m */,
 				50B1F41D289CC62D0074E02D /* QNPlayerViewController.h */,
@@ -320,11 +321,11 @@
 		50B1F448289CC62D0074E02D /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				50B1F449289CC62D0074E02D /* QNPlayerShortVideoMaskView.h */,
-				50B1F44A289CC62D0074E02D /* QNPlayerMaskView.m */,
-				50B1F44B289CC62D0074E02D /* QNPlayerShortVideoMaskView.m */,
-				50B1F44C289CC62D0074E02D /* QNPlayerMaskView.h */,
 				50B1F44D289CC62D0074E02D /* ElementView */,
+				50B1F44C289CC62D0074E02D /* QNPlayerMaskView.h */,
+				50B1F44A289CC62D0074E02D /* QNPlayerMaskView.m */,
+				50B1F449289CC62D0074E02D /* QNPlayerShortVideoMaskView.h */,
+				50B1F44B289CC62D0074E02D /* QNPlayerShortVideoMaskView.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -332,12 +333,12 @@
 		50B1F44D289CC62D0074E02D /* ElementView */ = {
 			isa = PBXGroup;
 			children = (
-				50B1F44E289CC62D0074E02D /* QNSoundSliderView.m */,
-				50B1F44F289CC62D0074E02D /* QNHeadsetNotification.h */,
-				50B1F450289CC62D0074E02D /* QNButtomView.m */,
-				50B1F451289CC62D0074E02D /* QNSoundSliderView.h */,
 				50B1F452289CC62D0074E02D /* QNButtomView.h */,
+				50B1F450289CC62D0074E02D /* QNButtomView.m */,
+				50B1F44F289CC62D0074E02D /* QNHeadsetNotification.h */,
 				50B1F453289CC62D0074E02D /* QNHeadsetNotification.m */,
+				50B1F451289CC62D0074E02D /* QNSoundSliderView.h */,
+				50B1F44E289CC62D0074E02D /* QNSoundSliderView.m */,
 			);
 			path = ElementView;
 			sourceTree = "<group>";
@@ -399,6 +400,13 @@
 				50B1F47D289CC62D0074E02D /* source_aac.aac */,
 			);
 			path = testSrc;
+			sourceTree = "<group>";
+		};
+		50B1F4DE28A10B6C0074E02D /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		CA90B806289A7AF60087543B = {
