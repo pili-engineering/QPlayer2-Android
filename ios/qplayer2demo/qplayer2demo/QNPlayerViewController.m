@@ -68,6 +68,7 @@ PLScanViewControlerDelegate
 @property (nonatomic, assign) NSString *definition;
 
 @property (nonatomic, strong) QPlayerContext *playerContext;
+@property (nonatomic, assign) BOOL scanClick;
 @end
 
 @implementation QNPlayerViewController
@@ -89,7 +90,10 @@ PLScanViewControlerDelegate
     [super viewWillDisappear:animated];
     [self.durationTimer invalidate];
     self.durationTimer = nil;
-    [self.playerContext.controlHandler stop];
+    if (!self.scanClick) {
+        
+        [self.playerContext.controlHandler stop];
+    }
 }
 
 - (void)onUIApplication:(BOOL)active{
@@ -102,7 +106,7 @@ PLScanViewControlerDelegate
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.scanClick = NO;
     _playerConfigArray = [QDataHandle shareInstance].playerConfigArray;
     
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -463,12 +467,17 @@ PLScanViewControlerDelegate
 #pragma mark - PLScanViewControlerDelegate 代理方法
 
 - (void)scanQRResult:(NSString *)qrString isLive:(BOOL)isLive{
-    if (_playerContext.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING) {
-        [_playerContext.controlHandler pauseRender];
+
+    if (!isLive) {
+        [_playerContext.controlHandler resumeRender];
     }
     NSURL *url;
     if (qrString) {
         url = [NSURL URLWithString:qrString];
+    }
+    else{
+        return;
+        
     }
     if (url) {
         QNPlayerModel *modle = [[QNPlayerModel alloc] init];
@@ -493,6 +502,11 @@ PLScanViewControlerDelegate
 #pragma mark - 扫码二维码
 
 - (void)scanCodeAction:(UIButton *)scanButton {
+    
+    if (_playerContext.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING) {
+        [_playerContext.controlHandler pauseRender];
+    }
+    self.scanClick = YES;
     QNScanViewController *scanViewController = [[QNScanViewController alloc] init];
     scanViewController.delegate = self;
     [self.navigationController pushViewController:scanViewController animated:YES];
@@ -679,11 +693,7 @@ PLScanViewControlerDelegate
     [self layoutUrlListTableView];
 }
 
-#pragma mark - 返回 
 
-- (void)leftBarButtonAction {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

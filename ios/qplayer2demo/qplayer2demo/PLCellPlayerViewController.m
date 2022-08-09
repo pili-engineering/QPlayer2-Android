@@ -204,8 +204,13 @@ UITableViewDataSource
         _currentCell.state = NO;
         [_toastView addText:@"播放暂停"];
     }
-    else if(state == QPLAYERSTATUS_STOPPED || state == QPLAYERSTATUS_COMPLETED){
+    else if(state == QPLAYERSTATUS_STOPPED){
         _currentCell.state = NO;
+        [_toastView addText:@"播放停止"];
+    }
+    else if(state == QPLAYERSTATUS_COMPLETED){
+        _currentCell.state = NO;
+        [self.player.controlHandler seek:0];
         [_toastView addText:@"播放完成"];
     }
     else if(state == QPLAYERSTATUS_ERROR){
@@ -229,10 +234,7 @@ UITableViewDataSource
     NSLog(@"预加载首帧时间----%d",elapsedTime);
     
     
-    if (!_currentCell) {
-        _currentCell = (PLCellPlayerTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    }
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         _currentCell.playerView = _player.controlHandler.playerView;
         
@@ -297,7 +299,7 @@ UITableViewDataSource
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PLCellPlayerTableViewCell *cell = (PLCellPlayerTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    [self updatePlayCell:cell];
+    [self updatePlayCell:cell scroll:NO];
     
 }
 
@@ -338,22 +340,24 @@ UITableViewDataSource
 
     // 注意, 如果正在播放的cell和finnalCell是同一个cell, 不应该在播放
     if (finnalCell != nil && _currentCell != finnalCell)  {
-        [self updatePlayCell:finnalCell];
+        [self updatePlayCell:finnalCell scroll:YES];
         return;
     }
-
+//    [self updatePlayCell:finnalCell scroll:YES];
 }
 
 
--(void)updatePlayCell:(PLCellPlayerTableViewCell *)cell{
+-(void)updatePlayCell:(PLCellPlayerTableViewCell *)cell scroll:(BOOL)scroll{
     cell.player = self.player;
     BOOL isPlaying = (_player.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING);
-  
+    
     if (_currentCell == cell && _currentCell) {
-        if(isPlaying) {
-                [_player.controlHandler pauseRender];
-        } else{
-                [_player.controlHandler resumeRender];
+        if (!scroll) {
+            if(isPlaying) {
+                    [_player.controlHandler pauseRender];
+            } else{
+                    [_player.controlHandler resumeRender];
+            }
         }
     } else{
 

@@ -43,15 +43,7 @@
         _playerConfigArray = [array copy];
         
     } else {
-        
-//        NSDictionary *enableRenderDict = @{@"enableRender - 渲染画面 ( Default：YES )":@[@"NO", @"YES"], @"default":@1};
-//        NSDictionary *backgroundPlayEnableDict = @{@"backgroundPlayEnable - 支持音频后台播放 ( Default：YES )":@[@"NO", @"YES"], @"default":@1};
-//        NSDictionary *refererDict = @{@"referer - 设置 http header referer 值 ( Default：null )":@[@"null", @"pili", @"player"], @"default":@0};
-//        NSDictionary *viewModeDict = @{@"contentMode - 设置 playerView 的填充方式 ( Default：UIViewContentModeScaleAspectFit )":@[@"UIViewContentModeScaleToFill", @"UIViewContentModeScaleAspectFit", @"UIViewContentModeScaleAspectFill"], @"default":@1};
-//
-//        NSArray *piliPlayerArray = @[enableRenderDict,backgroundPlayEnableDict,refererDict, viewModeDict];
-//
-//        NSDictionary *LogLevelDict = @{@"LogLevel - 控制台 log 的级别 ( Default：kPLLogNone )":@[@"kPLLogNone", @"kPLLogError", @"kPLLogWarning", @"kPLLogInfo", @"kPLLogDebug", @"kPLLogVerbose"], @"default":@0};
+
         NSDictionary *startDict = @{@"播放起始 (ms)":@[@"0.0",@"0.0"], @"default":@0};
         NSDictionary *videoToolboxDict = @{@"Decoder":@[@"自动",@"硬解",@"软解",@"混解"], @"default":@0};
         
