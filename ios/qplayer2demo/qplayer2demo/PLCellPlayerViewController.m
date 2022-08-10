@@ -236,7 +236,7 @@ UITableViewDataSource
     
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        _currentCell.playerView = _player.controlHandler.playerView;
+//        _currentCell.playerView = _player.controlHandler.playerView;
         
     });
     
@@ -497,8 +497,8 @@ UITableViewDataSource
         return;
     }
     UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityIndicatorView.center = CGPointMake(CGRectGetMidX(self.player.controlHandler.playerView.bounds), CGRectGetMidY(self.player.controlHandler.playerView.bounds));
-    [self.player.controlHandler.playerView addSubview:activityIndicatorView];
+//    activityIndicatorView.center = CGPointMake(CGRectGetMidX(self.player.controlHandler.playerView.bounds), CGRectGetMidY(self.player.controlHandler.playerView.bounds));
+//    [self.player.controlHandler.playerView addSubview:activityIndicatorView];
     [activityIndicatorView stopAnimating];
     self.activityIndicatorView = activityIndicatorView;
 }

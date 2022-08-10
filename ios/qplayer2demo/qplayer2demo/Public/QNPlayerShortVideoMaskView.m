@@ -7,10 +7,10 @@
 //
 
 #import "QNPlayerShortVideoMaskView.h"
-#import "QNbuttomView.h"
+#import "QNButtonView.h"
 @interface QNPlayerShortVideoMaskView()
 
-@property (nonatomic, strong) QNButtomView *buttomView;
+@property (nonatomic, strong) QNButtonView *buttomView;
 
 @end
 
@@ -26,7 +26,7 @@
         CGFloat playerHeight = CGRectGetHeight(frame);
         
 //        self.buttomView = [[QNButtomView alloc]initWithFrame:CGRectMake(8, playerHeight - 28, playerWidth - 16, 28) player:player playerFrame:frame isLiving:isLiving];
-        self.buttomView = [[QNButtomView alloc]initWithShortVideoFrame:CGRectMake(8, playerHeight - 28, playerWidth - 16, 28) player:player playerFrame:frame isLiving:isLiving];
+        self.buttomView = [[QNButtonView alloc]initWithShortVideoFrame:CGRectMake(8, playerHeight - 28, playerWidth - 16, 28) player:player playerFrame:frame isLiving:isLiving];
         [self addSubview:_buttomView];
         [self.buttomView playButtonClickCallBack:^(BOOL selectedState) {
             if(self.player.controlHandler.currentPlayerState == QPLAYERSTATUS_COMPLETED){

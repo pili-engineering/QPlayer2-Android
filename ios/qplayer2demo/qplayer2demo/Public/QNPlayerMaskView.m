@@ -11,7 +11,7 @@
 #import "QNSoundSliderView.h"
 #import "QDataHandle.h"
 #import "QNHeadsetNotification.h"
-#import "QNbuttomView.h"
+#import "QNButtonView.h"
 typedef NS_ENUM(NSInteger, PLMoveDirectionType)
 {
     PLHorizontailDirection,
@@ -26,7 +26,7 @@ UIGestureRecognizerDelegate
     CGRect fullFrame;
 }
 
-@property (nonatomic, strong) QNButtomView *buttomView;
+@property (nonatomic, strong) QNButtonView *buttonView;
 
 @property (nonatomic, strong) UIButton *backButton;
 
@@ -66,7 +66,8 @@ UIGestureRecognizerDelegate
 @property (nonatomic, strong) QNPlayerSettingsView *settingSpeedView;
 
 @property (nonatomic, assign) QPlayerDecoderType decoderType;
-
+@property (nonatomic, assign) BOOL seeking;
+@property (nonatomic, strong) RenderView *myRenderView;
 @end
 
 @implementation QNPlayerMaskView
@@ -87,7 +88,7 @@ UIGestureRecognizerDelegate
 
 
 - (void)setPlayer:(QPlayerContext *)player {
-    self.buttomView.player = player;
+    self.buttonView.player = player;
     _player = player;
 //    [self.player.controlHandler addPlayerStaticCallBackName:@"callback2" CallBack:^(QPlayerStatus state) {
 //            NSLog(@"2312");
@@ -141,18 +142,19 @@ UIGestureRecognizerDelegate
 
 #pragma mark - basic
 
-- (id)initWithFrame:(CGRect)frame player:(QPlayerContext *)player isLiving:(BOOL)isLiving{
+- (id)initWithFrame:(CGRect)frame player:(QPlayerContext *)player isLiving:(BOOL)isLiving renderView:(RenderView *)view{
     if (self = [super initWithFrame:frame]) {
         self.player = player;
         self.isLiving = isLiving;
+        self.myRenderView = view;
         CGFloat playerWidth = CGRectGetWidth(frame);
         CGFloat playerHeight = CGRectGetHeight(frame);
         
-        self.buttomView = [[QNButtomView alloc]initWithFrame:CGRectMake(8, playerHeight - 28, playerWidth - 16, 28) player:player playerFrame:frame isLiving:isLiving];
+        self.buttonView = [[QNButtonView alloc]initWithFrame:CGRectMake(8, playerHeight - 28, playerWidth - 16, 28) player:player playerFrame:frame isLiving:isLiving];
         
-        [self addSubview:_buttomView];
+        [self addSubview:_buttonView];
         
-        [self.buttomView playButtonClickCallBack:^(BOOL selectedState) {
+        [self.buttonView playButtonClickCallBack:^(BOOL selectedState) {
             if(self.player.controlHandler.currentPlayerState == QPLAYERSTATUS_COMPLETED){
                 if (self.delegate != nil && [self.delegate respondsToSelector:@selector(reOpenPlayPlayerMaskView:)]) {
                     [self.delegate reOpenPlayPlayerMaskView:self];
@@ -160,13 +162,18 @@ UIGestureRecognizerDelegate
             }
         }];
         
-        [self.buttomView changeScreenSizeButtonClickCallBack:^(BOOL selectedState) {
+        [self.buttonView changeScreenSizeButtonClickCallBack:^(BOOL selectedState) {
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(playerMaskView:isLandscape:)]) {
                 [self.delegate playerMaskView:self isLandscape:selectedState];
             }
             [self changeFrame:self.frame isFull:selectedState];
         }];
-        
+        [self.buttonView sliderStartCallBack:^(BOOL seeking) {
+                    self.seeking = seeking;
+        }];
+        [self.buttonView sliderEndCallBack:^(BOOL seeking) {
+                    self.seeking = seeking;
+        }];
         // 音量调整/快进快退
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
         [self addGestureRecognizer:pan];
@@ -421,10 +428,7 @@ UIGestureRecognizerDelegate
 
 // 加载视频转码的动画
 - (void)loadActivityIndicatorView {
-//    if ([self.activityIndicatorView isAnimating]) {
-//        [self.activityIndicatorView stopAnimating];
-//        [self.activityIndicatorView removeFromSuperview];
-//    }
+
     if(!self.activityIndicatorView.isAnimating){
         [self addSubview:self.activityIndicatorView];
         [self.activityIndicatorView startAnimating];
@@ -439,7 +443,7 @@ UIGestureRecognizerDelegate
     }
 }
 -(void)setPlayButtonState:(BOOL)state{
-    [self.buttomView setPlayButtonState:state];
+    [self.buttonView setPlayButtonState:state];
 }
 
 -(QPlayerDecoderType)getDecoderType{
@@ -447,14 +451,17 @@ UIGestureRecognizerDelegate
 }
 #pragma mark - private methods
 
+-(void)setIsLiving:(BOOL)isLiving{
+    self.buttonView.isLiving = isLiving;
+}
 // 触摸消失
 - (void)showAction
 {
-    self.buttomView.hidden = !self.buttomView.hidden;
+    self.buttonView.hidden = !self.buttonView.hidden;
     if(isScreenFull){
         
-        self.showSettingViewButton.hidden = self.buttomView.hidden;
-        self.showSpeedViewButton.hidden = self.buttomView.hidden;
+        self.showSettingViewButton.hidden = self.buttonView.hidden;
+        self.showSpeedViewButton.hidden = self.buttonView.hidden;
     }else{
         
         self.showSettingViewButton.hidden = YES;
@@ -465,11 +472,11 @@ UIGestureRecognizerDelegate
     }
 
 
-    if (![self.buttomView getFullButtonState]) {
-        self.volumeView.hidden = self.buttomView.hidden;
+    if (![self.buttonView getFullButtonState]) {
+        self.volumeView.hidden = self.buttonView.hidden;
     }
 
-    if (!self.buttomView.hidden) {
+    if (!self.buttonView.hidden) {
         self.backgroundColor = PL_COLOR_RGB(0, 0, 0, 0.3);
         [self hideInterfaceView];
     } else{
@@ -492,7 +499,7 @@ UIGestureRecognizerDelegate
  */
 - (void)doubleTapAction:(UIGestureRecognizer *)gesture {
 
-    [self.buttomView setPlayState];
+    [self.buttonView setPlayState];
 
 }
 
@@ -501,19 +508,25 @@ UIGestureRecognizerDelegate
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(dismiss) object:nil];
     [self performSelector:@selector(dismiss) withObject:nil afterDelay:5];
+    
 }
 
 - (void)dismiss
 {
-    if (!_isLiving) {
-        self.fastView.hidden = YES;
+    if (self.seeking) {
+        [self hideInterfaceView];
     }
-    self.buttomView.hidden = YES;
-    self.volumeView.hidden = YES;
-    self.qualitySegMc.hidden = YES;
-    self.showSettingViewButton.hidden = YES;
-    self.showSpeedViewButton.hidden = YES;
-    self.backgroundColor = [UIColor clearColor];
+    else{
+        if (!_isLiving) {
+            self.fastView.hidden = YES;
+        }
+        self.buttonView.hidden = YES;
+        self.volumeView.hidden = YES;
+        self.qualitySegMc.hidden = YES;
+        self.showSettingViewButton.hidden = YES;
+        self.showSpeedViewButton.hidden = YES;
+        self.backgroundColor = [UIColor clearColor];
+    }
 }
 
 
@@ -558,23 +571,9 @@ UIGestureRecognizerDelegate
     rotateY = rotateY % 360;
     rotateX = rotateX % 360;
     
-    NSLog(@"pointx==%d===%d",rotateY,rotateX);
     [self.player.controlHandler setPanoramaViewRotate:rotateX rotateY:rotateY];
 
 }
-
-/**
- *  从 xx 秒开始播放视频跳转
- *
- *  @param dragedSeconds 视频跳转的秒数
- */
-//- (void)seekToTime:(NSInteger)dragedSeconds {
-//    CMTime dragedCMTime = CMTimeMake(dragedSeconds, 1); //kCMTimeZero
-//    [self.player seek:dragedSeconds * 1000];
-//    self.fastView.hidden = YES;
-//}
-
-
 
 
 - (void)changeFrame:(CGRect)frame isFull:(BOOL)isFull {
@@ -588,20 +587,19 @@ UIGestureRecognizerDelegate
     self.settingSpeedView.frame = CGRectMake(playerWidth - 130, 0, 130, playerHeight);
     isScreenFull = isFull;
     if (isFull) {
-        self.buttomView.frame = CGRectMake(8, playerHeight - 55, playerWidth - 16, 28);
+        self.buttonView.frame = CGRectMake(8, playerHeight - 55, playerWidth - 16, 28);
         
-        [self.buttomView changeFrame:frame isFull:isFull];
+        [self.buttonView changeFrame:frame isFull:isFull];
         self.volumeView.hidden = YES;
         _showSettingViewButton.hidden = NO;
         _showSpeedViewButton.hidden = NO;
         fullFrame = frame;
         self.settingSpeedView.contentSize = CGSizeMake(130, frame.size.height);
         [self.settingSpeedView reloadInputViews];
-//        [self.settingView setBackScrollContentSize:CGSizeMake(390, 650)];
     } else{
-        self.buttomView.frame = CGRectMake(8, playerHeight - 28, playerWidth - 16, 28);
+        self.buttonView.frame = CGRectMake(8, playerHeight - 28, playerWidth - 16, 28);
         
-        [self.buttomView changeFrame:frame isFull:isFull];
+        [self.buttonView changeFrame:frame isFull:isFull];
         if (self.settingView.hidden == NO) {
             self.settingView.hidden =YES;
         }
@@ -614,16 +612,17 @@ UIGestureRecognizerDelegate
         if (self.showSpeedViewButton.hidden == NO) {
             self.showSpeedViewButton.hidden =YES;
         }
-        self.volumeView.hidden = self.buttomView.hidden;
+        self.volumeView.hidden = self.buttonView.hidden;
         _showSettingViewButton.hidden = YES;
         _showSpeedViewButton.hidden = YES;
     }
-    self.activityIndicatorView.center = self.player.controlHandler.playerView.center;
+//    self.activityIndicatorView.center = self.player.controlHandler.playerView.center;
+    self.activityIndicatorView.center = self.myRenderView.center;
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     if (!newSuperview) {
-        [self.buttomView timeDealloc];
+        [self.buttonView timeDealloc];
     }
 }
 
@@ -632,10 +631,8 @@ UIGestureRecognizerDelegate
 #pragma mark - 返回
 
 - (void)getBackAction:(UIButton *)backButton {
-    if (self.player.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING && ![self.buttomView getFullButtonState]) {
-//        [self.durationTimer invalidate];
-//        self.durationTimer = nil;
-        [self.buttomView timeDealloc];
+    if (self.player.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING && ![self.buttonView getFullButtonState]) {
+        [self.buttonView timeDealloc];
         [self.player.controlHandler stop];
     }
     
@@ -645,7 +642,7 @@ UIGestureRecognizerDelegate
     
     QNAppDelegate *appDelegate = (QNAppDelegate *)[UIApplication sharedApplication].delegate;
     if (!appDelegate.isFlip) {
-        [self.buttomView setFullButtonState:NO];
+        [self.buttonView setFullButtonState:NO];
         [self changeFrame:self.frame isFull:NO];
     }
 }
@@ -660,14 +657,5 @@ UIGestureRecognizerDelegate
     }
     
 }
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

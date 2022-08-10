@@ -54,7 +54,7 @@
  @param isLiving 是否是直播
  @return QNPlayerMaskView 的实例子
  */
-- (id)initWithFrame:(CGRect)frame player:(QPlayerContext *)player isLiving:(BOOL)isLiving;
+- (id)initWithFrame:(CGRect)frame player:(QPlayerContext *)player isLiving:(BOOL)isLiving  renderView:(RenderView *)view;
 
 /**
  刷新音量图片的显示

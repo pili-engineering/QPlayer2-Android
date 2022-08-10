@@ -10,9 +10,11 @@
 #import "QNPlayerSettingsView.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface QNButtomView : UIView
+@interface QNButtonView : UIView
 
 @property (nonatomic, weak) QPlayerContext *player;
+///是否是直播
+@property (nonatomic, assign) BOOL isLiving;
 ///初始化
 ///@param frame 添加的buttomView的frame
 ///@param player 播放器
@@ -29,7 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
     
 ///释放timer
 -(void)timeDealloc;
-
 ///修改播放状态  -->暂停/继续
 -(void)setPlayState;
 
@@ -50,6 +51,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///是否全屏的frame变化
 - (void)changeFrame:(CGRect)frame isFull:(BOOL)isFull;
+
+///进度条开始拖动回调
+-(void)sliderStartCallBack:(void (^)(BOOL seeking))callBack;
+///进度条结束拖动回调
+-(void)sliderEndCallBack:(void (^)(BOOL seeking))callBack;
 @end
 
 NS_ASSUME_NONNULL_END

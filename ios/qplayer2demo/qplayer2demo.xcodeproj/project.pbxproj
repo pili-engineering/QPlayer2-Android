@@ -30,7 +30,7 @@
 		50B1F499289CC62D0074E02D /* QNPlayerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F44A289CC62D0074E02D /* QNPlayerMaskView.m */; };
 		50B1F49A289CC62D0074E02D /* QNPlayerShortVideoMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F44B289CC62D0074E02D /* QNPlayerShortVideoMaskView.m */; };
 		50B1F49B289CC62D0074E02D /* QNSoundSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F44E289CC62D0074E02D /* QNSoundSliderView.m */; };
-		50B1F49C289CC62D0074E02D /* QNButtomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F450289CC62D0074E02D /* QNButtomView.m */; };
+		50B1F49C289CC62D0074E02D /* QNButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F450289CC62D0074E02D /* QNButtonView.m */; };
 		50B1F49D289CC62D0074E02D /* QNHeadsetNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F453289CC62D0074E02D /* QNHeadsetNotification.m */; };
 		50B1F49E289CC62D0074E02D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F454289CC62D0074E02D /* main.m */; };
 		50B1F49F289CC62D0074E02D /* PLCellPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F456289CC62D0074E02D /* PLCellPlayerViewController.m */; };
@@ -153,9 +153,9 @@
 		50B1F44C289CC62D0074E02D /* QNPlayerMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNPlayerMaskView.h; sourceTree = "<group>"; };
 		50B1F44E289CC62D0074E02D /* QNSoundSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNSoundSliderView.m; sourceTree = "<group>"; };
 		50B1F44F289CC62D0074E02D /* QNHeadsetNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNHeadsetNotification.h; sourceTree = "<group>"; };
-		50B1F450289CC62D0074E02D /* QNButtomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNButtomView.m; sourceTree = "<group>"; };
+		50B1F450289CC62D0074E02D /* QNButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNButtonView.m; sourceTree = "<group>"; };
 		50B1F451289CC62D0074E02D /* QNSoundSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNSoundSliderView.h; sourceTree = "<group>"; };
-		50B1F452289CC62D0074E02D /* QNButtomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNButtomView.h; sourceTree = "<group>"; };
+		50B1F452289CC62D0074E02D /* QNButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNButtonView.h; sourceTree = "<group>"; };
 		50B1F453289CC62D0074E02D /* QNHeadsetNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNHeadsetNotification.m; sourceTree = "<group>"; };
 		50B1F454289CC62D0074E02D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		50B1F455289CC62D0074E02D /* QNURLListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNURLListTableViewCell.h; sourceTree = "<group>"; };
@@ -322,8 +322,8 @@
 		50B1F44D289CC62D0074E02D /* ElementView */ = {
 			isa = PBXGroup;
 			children = (
-				50B1F452289CC62D0074E02D /* QNButtomView.h */,
-				50B1F450289CC62D0074E02D /* QNButtomView.m */,
+				50B1F452289CC62D0074E02D /* QNButtonView.h */,
+				50B1F450289CC62D0074E02D /* QNButtonView.m */,
 				50B1F44F289CC62D0074E02D /* QNHeadsetNotification.h */,
 				50B1F453289CC62D0074E02D /* QNHeadsetNotification.m */,
 				50B1F451289CC62D0074E02D /* QNSoundSliderView.h */,
@@ -612,7 +612,7 @@
 				50B1F48D289CC62D0074E02D /* QNPlayerConfigViewController.m in Sources */,
 				50B1F491289CC62D0074E02D /* QNToastView.m in Sources */,
 				50B1F49F289CC62D0074E02D /* PLCellPlayerViewController.m in Sources */,
-				50B1F49C289CC62D0074E02D /* QNButtomView.m in Sources */,
+				50B1F49C289CC62D0074E02D /* QNButtonView.m in Sources */,
 				50B1F49B289CC62D0074E02D /* QNSoundSliderView.m in Sources */,
 				50B1F48B289CC62D0074E02D /* QNSpeedPlayerView.m in Sources */,
 				50B1F493289CC62D0074E02D /* QNInfoHeaderView.m in Sources */,

@@ -69,6 +69,7 @@ PLScanViewControlerDelegate
 
 @property (nonatomic, strong) QPlayerContext *playerContext;
 @property (nonatomic, assign) BOOL scanClick;
+@property (nonatomic, strong) RenderView *myRenderView;
 @end
 
 @implementation QNPlayerViewController
@@ -194,8 +195,11 @@ PLScanViewControlerDelegate
 
     QPlayerContext *player =  [[QPlayerContext alloc]initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
     self.playerContext = player;
-    self.playerContext.controlHandler.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
-    [self.view addSubview:self.playerContext.controlHandler.playerView];
+//    self.playerContext.controlHandler.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
+    _myRenderView = [[RenderView alloc]initWithFrame:CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT)];
+    [_myRenderView attachRenderHandler:self.playerContext.renderHandler];
+//    [self.view addSubview:self.playerContext.controlHandler.playerView];
+    [self.view addSubview:_myRenderView];
     
     
     for (QNClassModel* model in configs) {
@@ -333,12 +337,14 @@ PLScanViewControlerDelegate
 #pragma mark - 添加点播界面蒙版
 
 - (void)addPlayerMaskView{
-    self.maskView = [[QNPlayerMaskView alloc] initWithFrame:CGRectMake(0, 0, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT) player:self.playerContext isLiving:NO];
-    self.maskView.center = self.playerContext.controlHandler.playerView.center;
+    self.maskView = [[QNPlayerMaskView alloc] initWithFrame:CGRectMake(0, 0, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT) player:self.playerContext isLiving:NO renderView:self.myRenderView];
+//    self.maskView.center = self.playerContext.controlHandler.playerView.center;
+    self.maskView.center = self.myRenderView.center;
     self.maskView.delegate = self;
     self.maskView.backgroundColor = PL_COLOR_RGB(0, 0, 0, 0.35);
-    [self.view insertSubview:_maskView aboveSubview:self.playerContext.controlHandler.playerView];
-    
+//    [self.view insertSubview:_maskView aboveSubview:self.playerContext.controlHandler.playerView];
+    [self.view insertSubview:_maskView aboveSubview:self.myRenderView];
+        
     [self.maskView.qualitySegMc addTarget:self action:@selector(qualityAction:) forControlEvents:UIControlEventValueChanged];
 }
 
@@ -382,26 +388,43 @@ PLScanViewControlerDelegate
     [_maskView setPlayButtonState:YES];
 
 }
+- (BOOL)shouldAutorotate
 
+{
+
+return NO;
+
+}
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+}
 - (void)forceOrientationLandscape:(BOOL)isLandscape {
     QNAppDelegate *appDelegate = (QNAppDelegate *)[UIApplication sharedApplication].delegate;
     appDelegate.isFlip = isLandscape;
     [appDelegate application:[UIApplication sharedApplication] supportedInterfaceOrientationsForWindow:self.view.window];
+    NSLog(@"width: %f,height: %f",self.view.frame.size.width,self.view.frame.size.height);
+    [UIViewController attemptRotationToDeviceOrientation];
     _isFlip = appDelegate.isFlip;
     if (isLandscape) {
         [self.navigationController setNavigationBarHidden:YES animated:NO];
         [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
         [self.urlListTableView removeFromSuperview];
-        self.playerContext.controlHandler.playerView.frame = CGRectMake(0, 0, PL_SCREEN_WIDTH, PL_SCREEN_HEIGHT);
+        NSLog(@"width: %f,height: %f",self.view.frame.size.width,self.view.frame.size.height);
+//        self.playerContext.controlHandler.playerView.frame = CGRectMake(0, 0, PL_SCREEN_WIDTH, PL_SCREEN_HEIGHT);
+        self.myRenderView.frame = CGRectMake(0, 0, PL_SCREEN_WIDTH, PL_SCREEN_HEIGHT);
+        NSLog(@"width: %f,height: %f",self.myRenderView.frame.size.width,self.myRenderView.frame.size.height);
         self.maskView.frame = CGRectMake(0, 0, PL_SCREEN_WIDTH, PL_SCREEN_HEIGHT);
     } else {
         [self.navigationController setNavigationBarHidden:NO animated:NO];
         [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
         [self.view addSubview:_urlListTableView];
-        self.playerContext.controlHandler.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
+//        self.playerContext.controlHandler.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
+        self.myRenderView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
         self.maskView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
     }
-    [UIViewController attemptRotationToDeviceOrientation];
+    
 }
 
 #pragma mark - 创建  urlListTableView
@@ -556,7 +579,7 @@ PLScanViewControlerDelegate
     QMediaModel *model = [[QMediaModel alloc] init];
     model.streamElements = _playerModels[indexPath.row].streamElements;
     model.is_live = _playerModels[indexPath.row].is_live;
-    
+    self.maskView.isLiving = model.is_live;
     if(model.streamElements.count > 1){
         [self.maskView.qualitySegMc removeAllSegments];
         int index = 0;

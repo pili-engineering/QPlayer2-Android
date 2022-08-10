@@ -6,14 +6,13 @@
 //  Copyright © 2022 Aaron. All rights reserved.
 //
 
-#import "QNButtomView.h"
-@interface QNButtomView()
+#import "QNButtonView.h"
+@interface QNButtonView()
 
 @property (nonatomic, strong) UILabel *totalDurationLabel;
 @property (nonatomic, strong) UILabel *currentTimeLabel;
 @property (nonatomic, strong) NSTimer *durationTimer;
 @property (nonatomic, assign) long long totalDuration;
-@property (nonatomic, assign) BOOL isLiving;
 @property (nonatomic, strong) UIButton *fullScreenButton;
 @property (nonatomic, strong) UISlider *prograssSlider;
 @property (nonatomic, assign) BOOL isSeeking;
@@ -21,7 +20,7 @@
 @property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, assign) BOOL shortVideoBool;
 @end
-@implementation QNButtomView{
+@implementation QNButtonView{
     CGFloat playerWidth;
     CGFloat playerHeight;
     CGRect myPlayerFrame;
@@ -29,6 +28,8 @@
     int seconds;
     void (^myCallback) (BOOL selectedState);
     void (^changeScreenSizeCallback) (BOOL selectedState);
+    void (^sliderStart) (BOOL seek);
+    void (^sliderEnd) (BOOL seek);
 }
 -(instancetype)initWithFrame:(CGRect)frame player:(QPlayerContext *)player playerFrame:(CGRect)playerFrame isLiving:(BOOL)isLiving{
     self = [super initWithFrame:frame];
@@ -215,9 +216,14 @@
 
 -(void)setPlayState{
     self.playButton.selected = !self.playButton.selected;
-    if (self.playButton.selected) {
+    if(_isLiving && self.playButton.selected){
+        //直播情况下恢复渲染，目前是继续上一帧，有问题，需要新的接口来重新加房间
         [self.player.controlHandler resumeRender];
-    } else {
+    }
+    else if (self.playButton.selected) {
+        [self.player.controlHandler resumeRender];
+    }
+    else{
         [self.player.controlHandler pauseRender];
     }
 }
@@ -243,33 +249,47 @@
     
     if (button.selected) {
         [self.player.controlHandler resumeRender];
-//        [self.player play];
 
     } else {
         [self.player.controlHandler pauseRender];
-//        [self.player stop];
     }
+}
+-(void)sliderStartCallBack:(void (^)(BOOL seeking))callBack{
+    sliderStart = callBack;
+}
+-(void)sliderEndCallBack:(void (^)(BOOL seeking))callBack{
+    sliderEnd = callBack;
 }
 - (void)progressSliderValueChanged:(UISlider *)slider {
     _isSeeking = YES;
 }
 - (void)sliderTouchUpDown:(UISlider*)slider {
     _isSeeking = YES;
+    if (sliderStart) {
+        sliderStart(true);
+    }
 
 }
 - (void)sliderTouchUpInside:(UISlider*)slider {
     _isSeeking = NO;
-    
+    if (sliderEnd) {
+        sliderEnd(false);
+    }
     [self.player.controlHandler seek:(int)slider.value * 1000];
     NSLog(@"seek --- %d", (int)slider.value * 1000);
 }
 - (void)sliderTouchUpCancel:(UISlider*)slider {
     _isSeeking = NO;
+    if (sliderEnd) {
+        sliderEnd(false);
+    }
 }
 
 - (void)sliderTouchUpOutside:(UISlider*)slider {
     _isSeeking = NO;
-    
+    if (sliderEnd) {
+        sliderEnd(false);
+    }
     [self.player.controlHandler seek:(int)slider.value * 1000];
     NSLog(@"seek --- %d", (int)slider.value * 1000);
 }

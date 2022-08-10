@@ -66,6 +66,7 @@ else if (@available(iOS 11.0, *)) {\
 # warning PLPlayerKit 播放器核心类
 #import <AVFoundation/AVFoundation.h>
 #import <qplayer2_core/QPlayerContext.h>
+#import <qplayer2_core/RenderView.h>
 #import <qplayer2_core//QMediaItemContext.h>
 /** 第三方 **/
 
