@@ -28,7 +28,12 @@ static NSString *status[] = {
 @interface PLCellPlayerViewController ()
 <
 UITableViewDelegate,
-UITableViewDataSource
+UITableViewDataSource,
+QIPlayerStateChangeListener,
+QIPlayerStreamListener,
+QIPlayerRenderListener,
+QIMediaItemCommandNotAllowListener,
+QIMediaItemStateChangeListener
 >
 
 @property (nonatomic, strong) QPlayerContext *player;
@@ -42,6 +47,7 @@ UITableViewDataSource
 @property (nonatomic, assign) CGFloat topSpace;
 
 @property (nonatomic, strong) QNToastView *toastView;
+@property (nonatomic, strong) RenderView *myRenderView;
 
 @end
 
@@ -149,11 +155,14 @@ UITableViewDataSource
     
     QAppInformation *info = [[QAppInformation alloc] init];
     info.mAppId = @"com.qbox.QPlayerKitDemo";
-
+    self.myRenderView = [[RenderView alloc]init];
     QPlayerContext *player = [[QPlayerContext alloc]initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
     //设置为软解
     [player.controlHandler setDecoderType:QPLAYER_DECODER_SETTING_SOFT_PRIORITY];
     self.player = player;
+    [self.myRenderView attachRenderHandler:self.player.renderHandler];
+    
+    
     QMediaModel *model = [[QMediaModel alloc] init];
     model.streamElements = _playerModels.firstObject.streamElements;
     model.is_live = _playerModels.firstObject.is_live;
@@ -164,23 +173,12 @@ UITableViewDataSource
 
 #pragma mark - PLPlayerDelegate
 -(void)playerContextAllCallBack{
-    __weak PLCellPlayerViewController *weakSelf = self;
-    [self.player.controlHandler addPlayerStateCallBackName:@"stateChanged" CallBack:^(QPlayerContext *_Nullable context, QPlayerStatus state) {
-        [weakSelf statePlayerChanged:state];
-        
-    }];
-    [self.player.renderHandler addPlayerFirstFrameCallBackName:@"firstFrame" callBack:^(QPlayerContext *_Nullable context, QNotifyModle * _Nonnull notify, NSInteger elapsedTime) {
-            [weakSelf screenRenderFirstFrame:notify elapsedTime:elapsedTime];
-    }];
-    [self.player.controlHandler addPlayerStreamOpenAndDurationCallBackName:@"streamOpen" callBack:^(QPlayerContext *_Nullable context, QNotifyModle * _Nonnull notify, int64_t duration) {
-            [weakSelf streamOpen:notify duration:duration];
-    }];
-    [self.player.controlHandler addPlayerStreamOpenAndErrorCallBackName:@"error" callBack:^(QPlayerContext *_Nullable context, QNotifyModle * _Nonnull notify, NSInteger error) {
-        [weakSelf streamOpenError:notify error:error];
-    }];
-}
+    [self.player.controlHandler addPlayerStateListener:self];
+    [self.player.controlHandler addPlayerStreamListener:self];
+    [self.player.renderHandler addPlayerRenderListener:self];
 
--(void)statePlayerChanged:(QPlayerStatus)state{
+}
+-(void)onStateChange:(QPlayerContext *)context state:(QPlayerStatus)state{
     if(state == QPLAYERSTATUS_NONE){
         [_toastView addText:@"初始状态"];
     }
@@ -225,58 +223,43 @@ UITableViewDataSource
         [_toastView addText:@"其他状态"];
     }
 
-
-    
 }
 
-
--(void)screenRenderFirstFrame:(QNotifyModle *)notify elapsedTime:(NSInteger)elapsedTime{
+-(void)onFirstFrameRendered:(QPlayerContext *)context elapsedTime:(NSInteger)elapsedTime{
     NSLog(@"预加载首帧时间----%d",elapsedTime);
     
     
 
     dispatch_async(dispatch_get_main_queue(), ^{
-//        _currentCell.playerView = _player.controlHandler.playerView;
+        _currentCell.playerView = _myRenderView;
         
     });
     
     [self updateCache:_currentCell.model];
 }
-
--(void)streamOpen:(QNotifyModle *)notify duration:(int64_t)duration{
+-(void)onStreamOpen:(QPlayerContext *)context duration:(int64_t)duration{
     
-    NSLog(@"-------------streamOpen ----%@",notify.user_type);
+    NSLog(@"-------------streamOpen ----");
 }
-
--(void)streamOpenError:(QNotifyModle *)notify error:(NSInteger)error{
+-(void)onStreamOpenError:(QPlayerContext *)context error:(NSInteger)error{
     
-    NSLog(@"-------------streamOpenError -----%@",notify.user_type);
+    NSLog(@"-------------streamOpenError -----");
 }
 
 #pragma mark - mediaItemDelegate
 
 -(void)addAllCallBack:(QMediaItemContext *)mediaItem{
+    [mediaItem.controlHandler addMediaItemStateChangeListener:self];
+    [mediaItem.controlHandler addMediaItemCommandNotAllowListener:self];
     
-    __weak PLCellPlayerViewController *weakSelf = self;
-    
-    [mediaItem.controlHandler addPlayerOnStateChangedCallBackName:@"StateChanged" callBack:^(QMediaItemContext * _Nonnull context, QMediaItemState state) {
-        NSLog(@"-------------预加载--onStateChanged -- %d---%@",state,context.controlHandler.media_model.streamElements[0].url);
-        
-    }];
-    [mediaItem.controlHandler addPlayerOpenNotifyAndDurationCallBackName:@"openNotify" callBack:^(QMediaItemContext * _Nonnull context, QNotifyModle * _Nonnull notify, int64_t duration) {
-            NSLog(@"-------------预加载--openNotify -- %d",duration);
-    }];
-    [mediaItem.controlHandler addPlayerOpenErrorCallBackName:@"openError" callBack:^(QMediaItemContext * _Nonnull context, QNotifyModle * _Nonnull notify) {
-        NSLog(@"-------------预加载--openError -- ");
-    }];
-    [mediaItem.controlHandler addPlayerIOErrorCallBackName:@"IOError" callBack:^(QMediaItemContext * _Nonnull context, QNotifyModle * _Nonnull notify) {
-            NSLog(@"-------------预加载--ioError");
-    }];
-    [mediaItem.controlHandler addPlayerCommandNotAllowCallBackName:@"NotAllow" callBack:^(QMediaItemContext * _Nonnull context, QNotifyModle * _Nonnull notify, NSString * _Nonnull commandName, QMediaItemState state) {
-        NSLog(@"-------------预加载--notAllow---%@",commandName);
-    }];
-}
 
+}
+-(void)onStateChanged:(QMediaItemContext *)context state:(QMediaItemState)state{
+    NSLog(@"-------------预加载--onStateChanged -- %d---%@",state,context.controlHandler.media_model.streamElements[0].url);
+}
+-(void)onCommandNotAllow:(QMediaItemContext *)context commandName:(NSString *)commandName state:(QMediaItemState)state{
+    NSLog(@"-------------预加载--notAllow---%@",commandName);
+}
 #pragma mark - tableView delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -497,8 +480,8 @@ UITableViewDataSource
         return;
     }
     UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-//    activityIndicatorView.center = CGPointMake(CGRectGetMidX(self.player.controlHandler.playerView.bounds), CGRectGetMidY(self.player.controlHandler.playerView.bounds));
-//    [self.player.controlHandler.playerView addSubview:activityIndicatorView];
+    activityIndicatorView.center = CGPointMake(CGRectGetMidX(self.myRenderView.bounds), CGRectGetMidY(self.myRenderView.bounds));
+    [self.myRenderView addSubview:activityIndicatorView];
     [activityIndicatorView stopAnimating];
     self.activityIndicatorView = activityIndicatorView;
 }

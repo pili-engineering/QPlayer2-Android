@@ -31,7 +31,10 @@
 UITableViewDelegate,
 UITableViewDataSource,
 QNPlayerMaskViewDelegate,
-PLScanViewControlerDelegate
+PLScanViewControlerDelegate,
+QIPlayerStateChangeListener,
+QIPlayerBufferingListener,
+QIPlayerQualityListener
 >
 
 /** 播放器蒙版视图 **/
@@ -219,20 +222,13 @@ PLScanViewControlerDelegate
 
 #pragma mark - PLPlayerDelegate
 -(void)playerContextAllCallBack{
-    __weak QNPlayerViewController *weakSelf = self;
-    [self.playerContext.controlHandler addPlayerStateCallBackName:@"stateChanged" CallBack:^(QPlayerContext *_Nullable context, QPlayerStatus state) {
-        [weakSelf stateChanged:state];
-        
-    }];
-    [self.playerContext.controlHandler addPlayerBufferingChangeCallBackName:@"BufferingChange" callBack:^(QPlayerContext *_Nullable context, QNotifyModle * _Nonnull notify) {
-            [weakSelf renderBufferingChange:notify];
-    }];
-    [self.playerContext.controlHandler addPlayerQualityVideoDidChangedCallBackName:@"qualityVideoDidChanged" callBack:^(QPlayerContext *_Nullable context, QNotifyModle * _Nonnull notify, NSInteger oldQuality, NSInteger newQuality, NSInteger qualitySerial) {
-            [weakSelf qualityVideoDidChanged:notify oldQuality:oldQuality newQuality:newQuality qualitySerial:qualitySerial];
-    }];
-}
 
--(void)stateChanged:(QPlayerStatus)state{
+    [self.playerContext.controlHandler addPlayerStateListener:self];
+    [self.playerContext.controlHandler addPlayerBufferingListener:self];
+    [self.playerContext.controlHandler addPlayerQualityListener:self];
+    
+}
+-(void)onStateChange:(QPlayerContext *)context state:(QPlayerStatus)state{
     if (state == QPLAYERSTATUS_PREPARE) {
         [self.maskView loadActivityIndicatorView];
         [_toastView addText:@"开始拉视频数据"];
@@ -263,20 +259,18 @@ PLScanViewControlerDelegate
     }
 }
 
--(void)renderBufferingChange:(QNotifyModle*)notify{
-    if (notify.notify_type == QPLAYER_NOTIFY_RENDER_BUFFERRING_START) {
-        [self.maskView loadActivityIndicatorView];
-    }
-    if (notify.notify_type == QPLAYER_NOTIFY_RENDER_BUFFERRING_END) {
-        [self.maskView removeActivityIndicatorView];
-    }
+
+-(void)renderBufferingEnd:(QPlayerContext *)context{
+    [self.maskView removeActivityIndicatorView];
 }
-
-
--(void)qualityVideoDidChanged:(QNotifyModle *)notify oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality qualitySerial:(NSInteger)qualitySerial{
+-(void)renderBufferingStart:(QPlayerContext *)context{
+    [self.maskView loadActivityIndicatorView];
+}
+-(void)onQualitySwitchComplete:(QPlayerContext *)context oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality qualitySerial:(NSInteger)qualitySerial{
     NSString *string = [NSString stringWithFormat:@"清晰度切换成功"];
     [self.toastView addText:string];
 }
+
 
 #pragma mark - 计时器方法
 
@@ -335,6 +329,7 @@ PLScanViewControlerDelegate
 }
 
 #pragma mark - 添加点播界面蒙版
+
 
 - (void)addPlayerMaskView{
     self.maskView = [[QNPlayerMaskView alloc] initWithFrame:CGRectMake(0, 0, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT) player:self.playerContext isLiving:NO renderView:self.myRenderView];
@@ -404,23 +399,18 @@ return NO;
     QNAppDelegate *appDelegate = (QNAppDelegate *)[UIApplication sharedApplication].delegate;
     appDelegate.isFlip = isLandscape;
     [appDelegate application:[UIApplication sharedApplication] supportedInterfaceOrientationsForWindow:self.view.window];
-    NSLog(@"width: %f,height: %f",self.view.frame.size.width,self.view.frame.size.height);
     [UIViewController attemptRotationToDeviceOrientation];
     _isFlip = appDelegate.isFlip;
     if (isLandscape) {
         [self.navigationController setNavigationBarHidden:YES animated:NO];
         [[UIDevice currentDevice] setValue:@(UIInterfaceOrientationLandscapeRight) forKey:@"orientation"];
         [self.urlListTableView removeFromSuperview];
-        NSLog(@"width: %f,height: %f",self.view.frame.size.width,self.view.frame.size.height);
-//        self.playerContext.controlHandler.playerView.frame = CGRectMake(0, 0, PL_SCREEN_WIDTH, PL_SCREEN_HEIGHT);
         self.myRenderView.frame = CGRectMake(0, 0, PL_SCREEN_WIDTH, PL_SCREEN_HEIGHT);
-        NSLog(@"width: %f,height: %f",self.myRenderView.frame.size.width,self.myRenderView.frame.size.height);
         self.maskView.frame = CGRectMake(0, 0, PL_SCREEN_WIDTH, PL_SCREEN_HEIGHT);
     } else {
         [self.navigationController setNavigationBarHidden:NO animated:NO];
         [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
         [self.view addSubview:_urlListTableView];
-//        self.playerContext.controlHandler.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
         self.myRenderView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
         self.maskView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
     }

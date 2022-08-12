@@ -17,7 +17,7 @@
 @property (nonatomic, strong) UILabel *URLLabel;
 @property (nonatomic, strong) UILabel *stateLabel;
 @property (nonatomic, assign) BOOL state;
-@property (nonatomic, strong) UIView *playerView;
+@property (nonatomic, strong) RenderView *playerView;
 @property (nonatomic, strong) QNPlayerModel *model;
 
 

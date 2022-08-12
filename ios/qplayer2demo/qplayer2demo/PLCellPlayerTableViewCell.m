@@ -50,7 +50,7 @@
     return self;
 }
 
-- (void)setPlayerView:(UIView *)playerView {
+- (void)setPlayerView:(RenderView *)playerView {
     _playerView = playerView;
     playerView.frame = self.contentView.bounds;
     if (_playerView) {

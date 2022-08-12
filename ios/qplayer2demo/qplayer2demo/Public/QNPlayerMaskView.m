@@ -310,11 +310,9 @@ UIGestureRecognizerDelegate
                 }
             }
         }
-
     }
     return self;
 }
-
 
 
 - (void)configurePlayerWithConfigureModel:(PLConfigureModel *)configureModel classModel:(QNClassModel *)classModel {
