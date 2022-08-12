@@ -49,10 +49,10 @@
         }
         minutes = _totalDuration / 60.0;
         seconds = (int)_totalDuration % 60;
-        [self addPlayButton];
         [self addSubview:self.prograssSlider];
         [self addTotalDurationLabel];
         [self addCurrentTimeLabel];
+        [self addPlayButton];
         [self addFullScreenButton];
         self.durationTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
     }
@@ -105,8 +105,8 @@
 }
 
 -(void)addPlayButton{
-    self.playButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 22)];
-    [self.playButton setImageEdgeInsets:UIEdgeInsetsMake(0, 4, 0, 4)];
+    self.playButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 35, 30)];
+    [self.playButton setImageEdgeInsets:UIEdgeInsetsMake(3, 6, 5, 7)];
     [self.playButton setImage:[UIImage imageNamed:@"pl_play"] forState:UIControlStateNormal];
     [self.playButton setImage:[UIImage imageNamed:@"pl_stop"] forState:UIControlStateSelected];
     [self.playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchDown];
@@ -123,8 +123,8 @@
 }
 
 -(void)addFullScreenButton{
-    self.fullScreenButton = [[UIButton alloc] initWithFrame:CGRectMake(playerWidth - 52, 0, 30, 22)];
-    [self.fullScreenButton setImageEdgeInsets:UIEdgeInsetsMake(0, 6, 0, 2)];
+    self.fullScreenButton = [[UIButton alloc] initWithFrame:CGRectMake(playerWidth - 52, 0, 35, 30)];
+    [self.fullScreenButton setImageEdgeInsets:UIEdgeInsetsMake(3, 6, 5, 7)];
     [self.fullScreenButton setImage:[UIImage imageNamed:@"pl_fullScreen"] forState:UIControlStateNormal];
     [self.fullScreenButton setImage:[UIImage imageNamed:@"pl_smallScreen"] forState:UIControlStateSelected];
     [self.fullScreenButton addTarget:self action:@selector(changeScreenSize:) forControlEvents:UIControlEventTouchDown];
@@ -189,7 +189,7 @@
     playerWidth = CGRectGetWidth(frame);
     playerHeight = CGRectGetHeight(frame);
     self.totalDurationLabel.frame = CGRectMake(playerWidth - 92, 3, 40, 20);
-    self.fullScreenButton.frame = CGRectMake(playerWidth - 52, 0, 30, 22);
+    self.fullScreenButton.frame = CGRectMake(playerWidth - 52, 0, 35, 30);
     self.prograssSlider.frame = CGRectMake(76, 3, playerWidth - 170, 20);
 }
 
