@@ -94,7 +94,7 @@
     }
     else{
         
-        self.totalDurationLabel = [[UILabel alloc] initWithFrame:CGRectMake(playerWidth - 92, 3, 40, 20)];
+        self.totalDurationLabel = [[UILabel alloc] initWithFrame:CGRectMake(playerWidth - 122, 3, 70, 20)];
     }
     self.totalDurationLabel.font = PL_FONT_LIGHT(14);
     self.totalDurationLabel.textColor = [UIColor whiteColor];
@@ -171,6 +171,7 @@
         _prograssSlider.value = 0;
         
         // slider滑动中事件
+        
         [_prograssSlider addTarget:self action:@selector(progressSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         [_prograssSlider addTarget:self action:@selector(sliderTouchUpDown:) forControlEvents:UIControlEventTouchDown];
         [_prograssSlider addTarget:self action:@selector(sliderTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
@@ -188,9 +189,9 @@
 - (void)changeFrame:(CGRect)frame isFull:(BOOL)isFull{
     playerWidth = CGRectGetWidth(frame);
     playerHeight = CGRectGetHeight(frame);
-    self.totalDurationLabel.frame = CGRectMake(playerWidth - 92, 3, 40, 20);
+    self.totalDurationLabel.frame = CGRectMake(playerWidth - 122, 3, 70, 20);
     self.fullScreenButton.frame = CGRectMake(playerWidth - 52, 0, 35, 30);
-    self.prograssSlider.frame = CGRectMake(76, 3, playerWidth - 170, 20);
+    self.prograssSlider.frame = CGRectMake(76, 3, playerWidth - 200, 20);
 }
 
 -(void)setFullButtonState:(BOOL)state{
@@ -275,8 +276,13 @@
     if (sliderEnd) {
         sliderEnd(false);
     }
-    [self.player.controlHandler seek:(int)slider.value * 1000];
-    NSLog(@"seek --- %d", (int)slider.value * 1000);
+    if (_isLiving) {
+        
+    }else{
+        
+        [self.player.controlHandler seek:(int)slider.value * 1000];
+        NSLog(@"seek --- %d", (int)slider.value * 1000);
+    }
 }
 - (void)sliderTouchUpCancel:(UISlider*)slider {
     _isSeeking = NO;
@@ -290,8 +296,14 @@
     if (sliderEnd) {
         sliderEnd(false);
     }
-    [self.player.controlHandler seek:(int)slider.value * 1000];
-    NSLog(@"seek --- %d", (int)slider.value * 1000);
+    if (_isLiving) {
+        
+    }else{
+        
+        [self.player.controlHandler seek:(int)slider.value * 1000];
+        NSLog(@"seek --- %d", (int)slider.value * 1000);
+    }
+
 }
 - (void)sliderTouchDragExit:(UISlider*)slider {
     _isSeeking = YES;
