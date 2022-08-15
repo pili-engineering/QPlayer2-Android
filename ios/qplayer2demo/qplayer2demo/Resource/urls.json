@@ -68,6 +68,22 @@
             {
                 "user_type": "",
                 "url_type": 1,
+                "url": "http://demo-videos.qnsdk.com/shortvideo/nike.mp4",
+                "quality": 100,
+                "is_select": 1,
+                "backup_url": "",
+                "referer": "",
+                "immediately": 0
+            }
+        ]
+    },
+    {
+        "name": "",
+        "is_live": 0,
+        "streamElements": [
+            {
+                "user_type": "",
+                "url_type": 1,
                 "url": "http://demo-videos.qnsdk.com/only-video-1080p-60fps.m4s",
                 "quality": 100,
                 "is_select": 1,
