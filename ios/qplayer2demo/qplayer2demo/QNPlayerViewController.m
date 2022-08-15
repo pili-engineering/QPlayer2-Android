@@ -583,8 +583,14 @@ return NO;
     
         
         for (QStreamElement* modle0 in model.streamElements) {
-            [self.maskView.qualitySegMc insertSegmentWithTitle:[NSString stringWithFormat:@"%dp",modle0.quality] atIndex:index animated:NO];
-             index ++;
+            if ([modle0.url isEqual:@"http://demo-videos.qnsdk.com/only-video-1080p-60fps.m4s"]) {
+                
+                self.maskView.qualitySegMc.hidden = YES;
+            }else{
+                
+                [self.maskView.qualitySegMc insertSegmentWithTitle:[NSString stringWithFormat:@"%dp",modle0.quality] atIndex:index animated:NO];
+                index++;
+            }
         }
         self.maskView.qualitySegMc.selectedSegmentIndex = indexSel;
     }else{
