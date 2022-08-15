@@ -98,6 +98,8 @@ QIPlayerQualityListener
         
         [self.playerContext.controlHandler stop];
     }
+    [self.playerContext.controlHandler playerRelease];
+    self.playerContext = nil;
 }
 
 - (void)onUIApplication:(BOOL)active{
@@ -193,10 +195,8 @@ QIPlayerQualityListener
     
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 
-    QAppInformation *info = [[QAppInformation alloc] init];
-    info.mAppId = @"com.qbox.QPlayerKitDemo";
-
-    QPlayerContext *player =  [[QPlayerContext alloc]initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
+    
+    QPlayerContext *player =  [[QPlayerContext alloc]initPlayerVersion:nil storageDir:documentsDir logLevel:LOG_VERBOSE];
     self.playerContext = player;
 //    self.playerContext.controlHandler.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
     _myRenderView = [[RenderView alloc]initWithFrame:CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT)];
@@ -358,7 +358,7 @@ QIPlayerQualityListener
         
         self.maskView = nil;
         
-        self.playerContext = nil;
+//        self.playerContext = nil;
         // 更新日志
         [self.navigationController popViewControllerAnimated:YES];
     }

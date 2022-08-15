@@ -169,7 +169,8 @@ QIMediaItemStateChangeListener
     QAppInformation *info = [[QAppInformation alloc] init];
     info.mAppId = @"com.qbox.QPlayerKitDemo";
     self.myRenderView = [[RenderView alloc]init];
-    QPlayerContext *player = [[QPlayerContext alloc]initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
+//    QPlayerContext *player = [[QPlayerContext alloc]initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
+    QPlayerContext *player = [[QPlayerContext alloc]initPlayerVersion:@"" storageDir:documentsDir logLevel:LOG_VERBOSE];
     //设置为软解
     [player.controlHandler setDecoderType:QPLAYER_DECODER_SETTING_SOFT_PRIORITY];
     self.player = player;

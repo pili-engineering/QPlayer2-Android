@@ -766,6 +766,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GDFHW66V92;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/qplayer2demo/QNPublicHeader.h";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = qplayer2demo/Info.plist;
@@ -803,6 +804,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GDFHW66V92;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/qplayer2demo/QNPublicHeader.h";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = qplayer2demo/Info.plist;
