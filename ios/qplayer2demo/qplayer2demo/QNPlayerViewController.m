@@ -260,10 +260,10 @@ QIPlayerQualityListener
 }
 
 
--(void)renderBufferingEnd:(QPlayerContext *)context{
+-(void)onBufferingEnd:(QPlayerContext *)context{
     [self.maskView removeActivityIndicatorView];
 }
--(void)renderBufferingStart:(QPlayerContext *)context{
+-(void)onBufferingStart:(QPlayerContext *)context{
     [self.maskView loadActivityIndicatorView];
 }
 -(void)onQualitySwitchComplete:(QPlayerContext *)context oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality qualitySerial:(NSInteger)qualitySerial{

@@ -73,6 +73,7 @@ QIMediaItemStateChangeListener
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+//    self.navigationController.navigationBar.barTintColor = PL_SEGMENT_BG_COLOR;
 
 }
 
@@ -83,8 +84,20 @@ QIMediaItemStateChangeListener
     self.cacheArray = [NSMutableArray array];
     
     // Do any additional setup after loading the view.
+
     self.title = @"短视频";
-    self.navigationController.navigationBar.barTintColor = PL_SEGMENT_BG_COLOR;
+    
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance* appearance = [[UINavigationBarAppearance alloc]init];
+        [appearance configureWithOpaqueBackground];
+        appearance.backgroundColor =PL_SEGMENT_BG_COLOR;
+        [self.navigationController.navigationBar setScrollEdgeAppearance:appearance];
+        [self.navigationController.navigationBar setStandardAppearance:appearance];
+        
+    } else {
+        self.navigationController.navigationBar.barTintColor = PL_SEGMENT_BG_COLOR;
+        // Fallback on earlier versions
+    };
     
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 6, 34, 34)];
     UIImage *image = [UIImage imageNamed:@"pl_back"];
