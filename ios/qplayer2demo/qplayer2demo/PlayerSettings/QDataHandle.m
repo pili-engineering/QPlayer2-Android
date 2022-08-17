@@ -45,7 +45,7 @@
     } else {
 
         NSDictionary *startDict = @{@"播放起始 (ms)":@[@"0.0",@"0.0"], @"default":@0};
-        NSDictionary *videoToolboxDict = @{@"Decoder":@[@"自动",@"硬解",@"软解",@"混解"], @"default":@0};
+        NSDictionary *videoToolboxDict = @{@"Decoder":@[@"自动",@"硬解",@"软解"], @"default":@0};
         
         NSDictionary *seekDict = @{@"Seek":@[@"关键帧seek",@"精准seek"], @"default":@0};
         

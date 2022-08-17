@@ -219,13 +219,13 @@
     self.playButton.selected = !self.playButton.selected;
     if(_isLiving && self.playButton.selected){
         //直播情况下恢复渲染，目前是继续上一帧，有问题，需要新的接口来重新加房间
-        [self.player.controlHandler resumeRender];
+        [self.player.controlHandler resume];
     }
     else if (self.playButton.selected) {
-        [self.player.controlHandler resumeRender];
+        [self.player.controlHandler resume];
     }
     else{
-        [self.player.controlHandler pauseRender];
+        [self.player.controlHandler pause];
     }
 }
 
@@ -249,10 +249,10 @@
     myCallback(button.isSelected);
     
     if (button.selected) {
-        [self.player.controlHandler resumeRender];
+        [self.player.controlHandler resume];
 
     } else {
-        [self.player.controlHandler pauseRender];
+        [self.player.controlHandler pause];
     }
 }
 -(void)sliderStartCallBack:(void (^)(BOOL seeking))callBack{

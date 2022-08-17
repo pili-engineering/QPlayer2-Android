@@ -24,7 +24,6 @@ static NSString *status[] = {
     @"Reconnecting",
     @"Completed"
 };
-
 @interface PLCellPlayerViewController ()
 <
 UITableViewDelegate,
@@ -172,7 +171,7 @@ QIMediaItemStateChangeListener
 //    QPlayerContext *player = [[QPlayerContext alloc]initPlayerAppInfo:info storageDir:documentsDir logLevel:LOG_VERBOSE];
     QPlayerContext *player = [[QPlayerContext alloc]initPlayerVersion:@"" storageDir:documentsDir logLevel:LOG_VERBOSE];
     //设置为软解
-    [player.controlHandler setDecoderType:QPLAYER_DECODER_SETTING_SOFT_PRIORITY];
+//    [player.controlHandler setDecoderType:QPLAYER_DECODER_SETTING_SOFT_PRIORITY];
     self.player = player;
     [self.myRenderView attachRenderHandler:self.player.renderHandler];
     
@@ -192,9 +191,10 @@ QIMediaItemStateChangeListener
     [self.player.renderHandler addPlayerRenderListener:self];
 
 }
--(void)onStateChange:(QPlayerContext *)context state:(QPlayerStatus)state{
+-(void)onStateChange:(QPlayerContext *)context state:(QPlayerState)state{
     if(state == QPLAYERSTATUS_NONE){
         [_toastView addText:@"初始状态"];
+        
     }
     else if (state == QPLAYERSTATUS_INIT){
         
@@ -207,12 +207,12 @@ QIMediaItemStateChangeListener
         if (_currentCell == nil) {
             [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
         }else{
-            _currentCell.player = self.player;
+//            _currentCell.player = self.player;
         }
         _currentCell.state = YES;
         [_toastView addText:@"正在播放"];
     }
-    else if(state == QPLAYERSTATUS_PAUSED ||  state == QPLAYERSTATUS_PAUSED_RENDER){
+    else if(state == QPLAYERSTATUS_PAUSED){
         _currentCell.state = NO;
         [_toastView addText:@"播放暂停"];
     }
@@ -255,7 +255,7 @@ QIMediaItemStateChangeListener
     
     NSLog(@"-------------streamOpen ----");
 }
--(void)onStreamOpenError:(QPlayerContext *)context error:(NSInteger)error{
+-(void)onStreamOpenFailed:(QPlayerContext *)context userType:(NSString *)userType urlType:(QPlayerURLType)urlType url:(NSString *)url error:(NSInteger)error{
     
     NSLog(@"-------------streamOpenError -----");
 }
@@ -297,6 +297,7 @@ QIMediaItemStateChangeListener
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PLCellPlayerTableViewCell *cell = (PLCellPlayerTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     [self updatePlayCell:cell scroll:NO];
+
     
 }
 
@@ -307,9 +308,9 @@ QIMediaItemStateChangeListener
 
 // 松手时已经静止,只会调用scrollViewDidEndDragging
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    if (decelerate == NO) { // scrollView已经完全静止
-        [self handleScroll];
-    }
+//    if (decelerate == NO) { // scrollView已经完全静止
+//        [self handleScroll];
+//    }
 }
 
 // 松手时还在运动, 先调用scrollViewDidEndDragging,在调用scrollViewDidEndDecelerating
@@ -337,7 +338,9 @@ QIMediaItemStateChangeListener
 
     // 注意, 如果正在播放的cell和finnalCell是同一个cell, 不应该在播放
     if (finnalCell != nil && _currentCell != finnalCell)  {
+
         [self updatePlayCell:finnalCell scroll:YES];
+
         return;
     }
 //    [self updatePlayCell:finnalCell scroll:YES];
@@ -346,14 +349,15 @@ QIMediaItemStateChangeListener
 
 -(void)updatePlayCell:(PLCellPlayerTableViewCell *)cell scroll:(BOOL)scroll{
     cell.player = self.player;
+    
     BOOL isPlaying = (_player.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING);
     
     if (_currentCell == cell && _currentCell) {
         if (!scroll) {
             if(isPlaying) {
-                    [_player.controlHandler pauseRender];
+                    [_player.controlHandler pause];
             } else{
-                    [_player.controlHandler resumeRender];
+                    [_player.controlHandler resume];
             }
         }
     } else{
@@ -362,6 +366,7 @@ QIMediaItemStateChangeListener
         if (item) {
             [self.player.controlHandler playMediaItem:item];
             NSLog(@"预加载--播放缓存---%@",item.controlHandler.media_model.streamElements[0].url);
+            
         }else{
             QMediaModel *model = [[QMediaModel alloc] init];
             model.streamElements = cell.model.streamElements;
@@ -373,6 +378,7 @@ QIMediaItemStateChangeListener
     
         _currentCell = cell;
     }
+
 }
 
 
@@ -464,7 +470,9 @@ QIMediaItemStateChangeListener
     if (index == 1) {
         realCacheArray = @[@0,@1,@2,@3];
     }
-    
+    if (index == 2) {
+        realCacheArray = @[@1,@2,@3,@4];
+    }
     if (index == _playerModels.count-1) {
         realCacheArray = @[@(index-1)];
     }

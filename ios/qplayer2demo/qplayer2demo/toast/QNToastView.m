@@ -35,13 +35,10 @@ static pthread_rwlock_t w_plock;
             [self addView:@"解码方式：自动"];
             break;
         case QPLAYER_DECODER_SETTING_HARDWARE_PRIORITY:
-            [self addView:@"解码方式：硬编"];
+            [self addView:@"解码方式：硬解"];
             break;
         case QPLAYER_DECODER_SETTING_SOFT_PRIORITY:
             [self addView:@"解码方式：软解"];
-            break;
-        case QPLAYER_DECODER_SETTING_FIRST_FRAME_ACCEL_PRIORITY:
-            [self addView:@"解码方式：混解"];
             break;
             
         default:

@@ -28,7 +28,7 @@
             // 耳机插入
             if (myPlayer.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING) {
 //                [myPlayer resume_render];
-                [myPlayer.controlHandler resumeRender];
+                [myPlayer.controlHandler resume];
             }
             break;
             
@@ -37,7 +37,7 @@
             // 耳机拔掉
             // 拔掉耳机继续播放
             if (myPlayer.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING) {
-                [myPlayer.controlHandler pauseRender];
+                [myPlayer.controlHandler pause];
             }
         }
             break;

@@ -8,7 +8,6 @@
 
 #import "QNPlayerMaskView.h"
 #import "QNAppDelegate.h"
-#import "QNSoundSliderView.h"
 #import "QDataHandle.h"
 #import "QNHeadsetNotification.h"
 #import "QNButtonView.h"
@@ -30,7 +29,6 @@ UIGestureRecognizerDelegate
 
 @property (nonatomic, strong) UIButton *backButton;
 
-@property (nonatomic, strong) QNSoundSliderView *volumeView;
 
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 
@@ -185,10 +183,7 @@ UIGestureRecognizerDelegate
         
         CGFloat ratio = [self receiveComparison];
         // 声音控件
-        self.volumeView = [[QNSoundSliderView alloc]initWithFrame:CGRectMake(- 32 * ratio, playerHeight - 101 * ratio, playerHeight - 70, 18) player:player playerFrame:frame];
-        
-        [self addSubview:_volumeView];
-    
+
         
         self.backButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 6, 44, 44)];
         [self.backButton setImage:[UIImage imageNamed:@"pl_back"] forState:UIControlStateNormal];
@@ -417,13 +412,6 @@ UIGestureRecognizerDelegate
 
 #pragma mark - public methods
 
-/**
- 更新音量视图标识显示
- */
-- (void)updateVoulmeSliderImage {
-    [self.volumeView updateVoulmeSliderImage];
-}
-
 // 加载视频转码的动画
 - (void)loadActivityIndicatorView {
 
@@ -470,9 +458,7 @@ UIGestureRecognizerDelegate
     }
 
 
-    if (![self.buttonView getFullButtonState]) {
-        self.volumeView.hidden = self.buttonView.hidden;
-    }
+
 
     if (!self.buttonView.hidden) {
         self.backgroundColor = PL_COLOR_RGB(0, 0, 0, 0.3);
@@ -519,7 +505,6 @@ UIGestureRecognizerDelegate
             self.fastView.hidden = YES;
         }
         self.buttonView.hidden = YES;
-        self.volumeView.hidden = YES;
         self.qualitySegMc.hidden = YES;
         self.showSettingViewButton.hidden = YES;
         self.showSpeedViewButton.hidden = YES;
@@ -588,7 +573,6 @@ UIGestureRecognizerDelegate
         self.buttonView.frame = CGRectMake(8, playerHeight - 55, playerWidth - 16, 28);
         
         [self.buttonView changeFrame:frame isFull:isFull];
-        self.volumeView.hidden = YES;
         _showSettingViewButton.hidden = NO;
         _showSpeedViewButton.hidden = NO;
         fullFrame = frame;
@@ -610,7 +594,6 @@ UIGestureRecognizerDelegate
         if (self.showSpeedViewButton.hidden == NO) {
             self.showSpeedViewButton.hidden =YES;
         }
-        self.volumeView.hidden = self.buttonView.hidden;
         _showSettingViewButton.hidden = YES;
         _showSpeedViewButton.hidden = YES;
     }

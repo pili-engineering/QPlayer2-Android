@@ -73,6 +73,8 @@ QIPlayerQualityListener
 @property (nonatomic, strong) QPlayerContext *playerContext;
 @property (nonatomic, assign) BOOL scanClick;
 @property (nonatomic, strong) RenderView *myRenderView;
+@property (nonatomic, assign) BOOL isPlaying;
+@property (nonatomic, assign) BOOL beInterruptedByOtherAudio;
 @end
 
 @implementation QNPlayerViewController
@@ -104,15 +106,16 @@ QIPlayerQualityListener
 
 - (void)onUIApplication:(BOOL)active{
     if (active) {
-        [self.playerContext.controlHandler resumeRender];
+        [self.playerContext.controlHandler resume];
     }else{
-        [self.playerContext.controlHandler pauseRender];
+        [self.playerContext.controlHandler pause];
     }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.scanClick = NO;
+    self.isPlaying = NO;
     _playerConfigArray = [QDataHandle shareInstance].playerConfigArray;
     
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -171,6 +174,7 @@ QIPlayerQualityListener
     //清晰度默认为1080p
     self.definition = @"1080p";
     [self playerContextAllCallBack];
+    
 }
 
 #pragma mark - 初始化 PLPlayer
@@ -228,35 +232,33 @@ QIPlayerQualityListener
     [self.playerContext.controlHandler addPlayerQualityListener:self];
     
 }
--(void)onStateChange:(QPlayerContext *)context state:(QPlayerStatus)state{
+-(void)onStateChange:(QPlayerContext *)context state:(QPlayerState)state{
     if (state == QPLAYERSTATUS_PREPARE) {
         [self.maskView loadActivityIndicatorView];
         [_toastView addText:@"开始拉视频数据"];
         [_toastView addDecoderType:[self.maskView getDecoderType]];
         [_toastView addText:[NSString stringWithFormat:@"清晰度：%@",self.definition]];
-    } else{
-
-        if (state == QPLAYERSTATUS_PLAYING) {
-//            _maskView.player = _player;
-            
-            self.maskView.player = self.playerContext;
-            [_maskView setPlayButtonState:YES];
-            [self showHintViewWithText:@"开始播放器"];
-            
-            [_toastView addText:@"播放中"];
-
-        } else if (state == QPLAYERSTATUS_PAUSED_RENDER || state == QPLAYERSTATUS_STOPPED) {
-            [_toastView addText:@"暂停渲染或者停止当前播放"];
-            [_maskView setPlayButtonState:NO];
-        }else if (state == QPLAYERSTATUS_ERROR){
-            [_toastView addText:@"播放错误"];
-            [_maskView setPlayButtonState:NO];
-        }else if (state == QPLAYERSTATUS_COMPLETED){
-            
-            [_toastView addText:@"播放完成"];
-            [_maskView setPlayButtonState:NO];
-        }
+    } else if (state == QPLAYERSTATUS_PLAYING) {
+        //            _maskView.player = _player;
+        self.isPlaying = YES;
+        self.maskView.player = self.playerContext;
+        [_maskView setPlayButtonState:YES];
+        [self showHintViewWithText:@"开始播放器"];
+        
+        [_toastView addText:@"播放中"];
+        
+    } else if (state == QPLAYERSTATUS_PAUSED || state == QPLAYERSTATUS_STOPPED) {
+        [_toastView addText:@"暂停渲染或者停止当前播放"];
+        [_maskView setPlayButtonState:NO];
+    }else if (state == QPLAYERSTATUS_ERROR){
+        [_toastView addText:@"播放错误"];
+        [_maskView setPlayButtonState:NO];
+    }else if (state == QPLAYERSTATUS_COMPLETED){
+        
+        [_toastView addText:@"播放完成"];
+        [_maskView setPlayButtonState:NO];
     }
+    
 }
 
 
@@ -318,7 +320,6 @@ QIPlayerQualityListener
                                        @(QPLAYERSTATUS_PREPARE):@"PREPARE",
                                        @(QPLAYERSTATUS_PLAYING):@"Playing",
                                        @(QPLAYERSTATUS_PAUSED):@"Paused",
-                                       @(QPLAYERSTATUS_PAUSED_RENDER):@"Paused",
                                        @(QPLAYERSTATUS_STOPPED):@"Stopped",
                                        @(QPLAYERSTATUS_ERROR):@"Error",
                                        @(QPLAYERSTATUS_SEEKING):@"seek",
@@ -482,7 +483,7 @@ return NO;
 - (void)scanQRResult:(NSString *)qrString isLive:(BOOL)isLive{
 
     if (!isLive) {
-        [_playerContext.controlHandler resumeRender];
+        [_playerContext.controlHandler resume];
     }
     NSURL *url;
     if (qrString) {
@@ -517,7 +518,7 @@ return NO;
 - (void)scanCodeAction:(UIButton *)scanButton {
     
     if (_playerContext.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING) {
-        [_playerContext.controlHandler pauseRender];
+        [_playerContext.controlHandler pause];
     }
     self.scanClick = YES;
     QNScanViewController *scanViewController = [[QNScanViewController alloc] init];
@@ -560,7 +561,7 @@ return NO;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSURL *selectedURL = [NSURL URLWithString:_playerModels[indexPath.row].streamElements[0].url];
     if (_playerContext.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING) {
-        [_playerContext.controlHandler pauseRender];
+        [_playerContext.controlHandler pause];
     }
     
     _selectedIndex = indexPath.row;
@@ -740,5 +741,6 @@ return NO;
     [self.playerContext.controlHandler switchQuality:model.streamElements[index]];
     
 }
+
 
 @end

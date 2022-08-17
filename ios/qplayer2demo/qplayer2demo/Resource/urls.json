@@ -190,7 +190,7 @@
             {
                 "user_type": "",
                 "url_type": 0,
-                "url": "rtmp://pili-publish.qnsdk.com/sdk-live/6666",
+                "url": "rtmp://pili-rtmp.qnsdk.com/sdk-live/6666",
                 "quality": 100,
                 "is_select": 1,
                 "backup_url": "",
@@ -238,7 +238,7 @@
             {
                 "user_type": "",
                 "url_type": 0,
-                "url": "http://ojpjb7lbl.bkt.clouddn.com/h265/2000k/265_test.m3u8",
+                "url": "https://sdk-release.qnsdk.com/zeng.m3u8",
                 "quality": 100,
                 "is_select": 1,
                 "backup_url": "",
@@ -291,7 +291,6 @@
                 "is_select": 1,
                 "backup_url": "",
                 "referer": "",
-                "renderType": 1,
                 "immediately": 0
             }
         ]
@@ -388,6 +387,7 @@
                 "is_select": 1,
                 "backup_url": "",
                 "referer": "",
+                "renderType": 1,
                 "immediately": 0
             }
         ]

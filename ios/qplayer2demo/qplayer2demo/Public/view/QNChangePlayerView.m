@@ -26,11 +26,6 @@
         buttonArray = [NSMutableArray array];
         labelArray = [NSMutableArray array];
         titleArray = [NSMutableArray array];
-//        buttonTypeArray = @[@(UIButtonTypeStreAutomatic),
-//                            @(UIButtonTypeStretching),
-//                            @(UIButtonTypeSpreadOver),
-//                            @(UIButtonType16and9),
-//                            @(UIButtonType4and3)];
         selectedImage = [UIImage imageNamed:@"selected"];
         notSelectedImage = [UIImage imageNamed:@"notSelected"];
         notSelectedColor = [UIColor whiteColor];

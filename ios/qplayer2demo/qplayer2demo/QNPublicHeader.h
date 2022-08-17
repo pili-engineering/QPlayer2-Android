@@ -68,6 +68,7 @@ else if (@available(iOS 11.0, *)) {\
 #import <qplayer2_core/QPlayerContext.h>
 #import <qplayer2_core/RenderView.h>
 #import <qplayer2_core/QMediaItemContext.h>
+#import <qplayer2_core/QIOSCommon.h>
 /** 第三方 **/
 
 // 轻量级布局框架

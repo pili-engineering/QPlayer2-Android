@@ -98,7 +98,6 @@
             break;
         case UIButtonTypeDectorHard:
         case UIButtonTypeDectorSoft:
-        case UIButtonTypeDectorBlend:
         case UIButtonTypeDectorAutomatic:
             [decoderView setDefault:type];
             break;
@@ -250,9 +249,8 @@ return YES;
     decoderView = [[QNChangePlayerView alloc]initWithFrame:frame backgroudColor:[UIColor clearColor]];
     [decoderView setTitleLabelText:@"Decoder" frame:CGRectMake(10, 10, 120, 30) textColor:[UIColor whiteColor]];
     [decoderView addButtonText:@"自动" frame:CGRectMake(10, 50, 60, 20) type:UIButtonTypeDectorAutomatic target:self selector:@selector(changePlayerViewClick:) selectorTag:@selector(changePlayerViewClickTag:)];
-    [decoderView addButtonText:@"软解" frame:CGRectMake(95, 50, 60, 20) type:UIButtonTypeDectorSoft target:self selector:@selector(changePlayerViewClick:) selectorTag:@selector(changePlayerViewClickTag:)];
-    [decoderView addButtonText:@"硬解" frame:CGRectMake(180, 50, 60, 20) type:UIButtonTypeDectorHard target:self selector:@selector(changePlayerViewClick:) selectorTag:@selector(changePlayerViewClickTag:)];
-    [decoderView addButtonText:@"混解" frame:CGRectMake(265, 50, 60, 20) type:UIButtonTypeDectorBlend target:self selector:@selector(changePlayerViewClick:) selectorTag:@selector(changePlayerViewClickTag:)];
+    [decoderView addButtonText:@"软解" frame:CGRectMake(125, 50, 60, 20) type:UIButtonTypeDectorSoft target:self selector:@selector(changePlayerViewClick:) selectorTag:@selector(changePlayerViewClickTag:)];
+    [decoderView addButtonText:@"硬解" frame:CGRectMake(240, 50, 60, 20) type:UIButtonTypeDectorHard target:self selector:@selector(changePlayerViewClick:) selectorTag:@selector(changePlayerViewClickTag:)];
     [decoderView setDefault:UIButtonTypeDectorAutomatic];
     [self addSubview:decoderView];
 }

@@ -19,9 +19,8 @@ typedef NS_ENUM(NSInteger, ChangeUIButtonType){
     UIButtonTypeFilterBlueAndYellow,    //蓝/黄滤镜
     
     UIButtonTypeDectorAutomatic = 200,        //自动
-    UIButtonTypeDectorSoft,             //软解
     UIButtonTypeDectorHard,             //硬解
-    UIButtonTypeDectorBlend,            //混解
+    UIButtonTypeDectorSoft,             //软解
     
     UIButtonTypeSeekKey = 300,                //关键帧seek
     UIButtonTypeSeekAccurate,           //精准seek

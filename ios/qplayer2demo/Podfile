@@ -6,4 +6,5 @@
 target 'qplayer2demo' do
   pod 'Bugly'
   pod 'Masonry', '1.0.1'
+  #pod 'qplayer2-core', :path => "../"
 end
