@@ -7,11 +7,10 @@
 //
 
 #import "QNButtonView.h"
-@interface QNButtonView()
+@interface QNButtonView()<QIPlayerStreamListener,QIPlayerProgressListener>
 
 @property (nonatomic, strong) UILabel *totalDurationLabel;
 @property (nonatomic, strong) UILabel *currentTimeLabel;
-@property (nonatomic, strong) NSTimer *durationTimer;
 @property (nonatomic, assign) long long totalDuration;
 @property (nonatomic, strong) UIButton *fullScreenButton;
 @property (nonatomic, strong) UISlider *prograssSlider;
@@ -19,6 +18,7 @@
 
 @property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, assign) BOOL shortVideoBool;
+@property (nonatomic, assign) BOOL isBuffingBool;
 @end
 @implementation QNButtonView{
     CGFloat playerWidth;
@@ -36,6 +36,7 @@
     if (self) {
         _shortVideoBool = false;
         self.isSeeking = NO;
+        self.isBuffingBool = NO;
         self.isLiving = isLiving;
         myPlayerFrame = playerFrame;
         self.backgroundColor = [UIColor clearColor];
@@ -45,7 +46,7 @@
         if (self.isLiving) {
             self.totalDuration = 0;
         } else {
-            self.totalDuration = self.player.controlHandler.duration;
+            self.totalDuration = self.player.controlHandler.duration/1000;
         }
         minutes = _totalDuration / 60.0;
         seconds = (int)_totalDuration % 60;
@@ -54,7 +55,8 @@
         [self addCurrentTimeLabel];
         [self addPlayButton];
         [self addFullScreenButton];
-        self.durationTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
+        [self.player.controlHandler addPlayerStreamListener:self];
+        [self.player.controlHandler addPlayerProgressChangeListener:self];
     }
     return self;
 }
@@ -82,7 +84,9 @@
         
         [self addSubview:self.prograssSlider];
         [self addCurrentTimeLabel];
-        self.durationTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
+        
+        [self.player.controlHandler addPlayerStreamListener:self];
+        [self.player.controlHandler addPlayerProgressChangeListener:self];
     }
     return self;
 }
@@ -133,22 +137,7 @@
 }
 - (void)setPlayer:(QPlayerContext *)player {
     _player = player;
-    self.playButton.selected = (_player.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING);
-    if (self.isLiving) {
-        self.totalDuration = 0;
-    } else {
-        self.totalDuration = self.player.controlHandler.duration/1000;
-    }
-    float minutes = _totalDuration / 60.0;
-    int seconds = (int)_totalDuration % 60;
-    if (minutes < 60) {
-        self.totalDurationLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)minutes, seconds];
-    } else{
-        float hours = minutes / 60.0;
-        int min = (int)minutes % 60;
-        self.totalDurationLabel.text = [NSString stringWithFormat:@"%02d:%02d:%02d", (int)hours, (int)min, seconds];
-    }
-    self.prograssSlider.maximumValue = _totalDuration;
+    self.playButton.selected = (_player.controlHandler.currentPlayerState == PLAYING);
 }
 
 - (UISlider *)prograssSlider {
@@ -183,7 +172,49 @@
     return _prograssSlider;
 }
 
+#pragma mark ListenDelegate
+-(void)onProgressChanged:(QPlayerContext *)context progress:(NSInteger)progress{
+    long long currentSeconds = progress/1000;
+    float currentSecondsDouble = progress/1000.0;
+    long long totalSeconds = self.player.controlHandler.duration/1000;
 
+    if (self.totalDuration != 0 && (currentSeconds >= totalSeconds || fabsf(currentSecondsDouble - totalSeconds) <=0.5)) {
+        if (!_isLiving) {
+            self.prograssSlider.value = self.totalDuration;
+            float minutes = totalSeconds / 60;
+            int seconds = totalSeconds % 60;
+            self.currentTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)minutes, seconds];
+            
+        }
+    } else{
+        if (self.isSeeking || self.isBuffingBool) {
+            return;
+        }
+        
+        minutes = currentSeconds / 60;
+        seconds = currentSeconds % 60;
+        self.currentTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)minutes, seconds];
+        self.prograssSlider.value = currentSeconds;
+    }
+}
+-(void)onStreamOpen:(QPlayerContext *)context duration:(int64_t)duration{
+    
+    if (self.isLiving) {
+        self.totalDuration = 0;
+    } else {
+        self.totalDuration = duration/1000;
+    }
+    float minutes = _totalDuration / 60.0;
+    int seconds = (int)_totalDuration % 60;
+    if (minutes < 60) {
+        self.totalDurationLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)minutes, seconds];
+    } else{
+        float hours = minutes / 60.0;
+        int min = (int)minutes % 60;
+        self.totalDurationLabel.text = [NSString stringWithFormat:@"%02d:%02d:%02d", (int)hours, (int)min, seconds];
+    }
+    self.prograssSlider.maximumValue = _totalDuration;
+}
 #pragma mark 对外接口
 
 - (void)changeFrame:(CGRect)frame isFull:(BOOL)isFull{
@@ -229,15 +260,6 @@
     }
 }
 
--(void)timeDealloc{
-    
-    [self.durationTimer invalidate];
-    self.durationTimer = nil;
-}
-
-
-
-
 #pragma mark 按钮点击事件
 - (void)changeScreenSize:(UIButton *)button {
     button.selected = !button.selected;
@@ -281,7 +303,13 @@
     }else{
         
         [self.player.controlHandler seek:(int)slider.value * 1000];
-        NSLog(@"seek --- %d", (int)slider.value * 1000);
+        self.prograssSlider.value = slider.value;
+        
+        minutes = (int)slider.value / 60;
+        seconds = (int)slider.value % 60;
+        self.currentTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)minutes, seconds];
+        NSLog(@"seek --- %d", (int)slider.value);
+        
     }
 }
 - (void)sliderTouchUpCancel:(UISlider*)slider {
@@ -301,6 +329,12 @@
     }else{
         
         [self.player.controlHandler seek:(int)slider.value * 1000];
+        self.prograssSlider.value = slider.value;
+        self.prograssSlider.value = slider.value;
+        
+        minutes = (int)slider.value / 60;
+        seconds = (int)slider.value % 60;
+        self.currentTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)minutes, seconds];
         NSLog(@"seek --- %d", (int)slider.value * 1000);
     }
 
@@ -309,30 +343,7 @@
     _isSeeking = YES;
 
 }
-- (void)timerAction:(NSTimer *)timer {
-    long long currentSeconds = self.player.controlHandler.currentPosition/1000;
-    float currentSecondsDouble = self.player.controlHandler.currentPosition/1000.0;
-    long long totalSeconds = self.player.controlHandler.duration/1000;
 
-    if (self.totalDuration != 0 && (currentSeconds >= totalSeconds || fabsf(currentSecondsDouble - totalSeconds) <=0.5)) {
-        if (!_isLiving) {
-            self.prograssSlider.value = self.totalDuration;
-            float minutes = totalSeconds / 60;
-            int seconds = totalSeconds % 60;
-            self.currentTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)minutes, seconds];
-            
-        }
-    } else{
-        if (_isSeeking) {
-            return;
-        }
-        
-        float minutes = currentSeconds / 60;
-        int seconds = currentSeconds % 60;
-        self.currentTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)minutes, seconds];
-        self.prograssSlider.value = currentSeconds;
-    }
-}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
