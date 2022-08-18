@@ -192,18 +192,18 @@ QIMediaItemStateChangeListener
 
 }
 -(void)onStateChange:(QPlayerContext *)context state:(QPlayerState)state{
-    if(state == QPLAYERSTATUS_NONE){
+    if(state == NONE){
         [_toastView addText:@"初始状态"];
         
     }
-    else if (state == QPLAYERSTATUS_INIT){
+    else if (state == INIT){
         
         [_toastView addText:@"创建完成"];
     }
-    else if(state == QPLAYERSTATUS_PREPARE ||state == QPLAYERSTATUS_MEDIA_ITEM_PREPARE){
+    else if(state == PREPARE ||state == MEDIA_ITEM_PREPARE){
         [_toastView addText:@"正在加载"];
     }
-    else if (state == QPLAYERSTATUS_PLAYING) {
+    else if (state == PLAYING) {
         if (_currentCell == nil) {
             [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
         }else{
@@ -212,25 +212,25 @@ QIMediaItemStateChangeListener
         _currentCell.state = YES;
         [_toastView addText:@"正在播放"];
     }
-    else if(state == QPLAYERSTATUS_PAUSED){
+    else if(state == PAUSED){
         _currentCell.state = NO;
         [_toastView addText:@"播放暂停"];
     }
-    else if(state == QPLAYERSTATUS_STOPPED){
+    else if(state == STOPPED){
         _currentCell.state = NO;
         [_toastView addText:@"播放停止"];
     }
-    else if(state == QPLAYERSTATUS_COMPLETED){
+    else if(state == COMPLETED){
         _currentCell.state = NO;
         [self.player.controlHandler seek:0];
         [_toastView addText:@"播放完成"];
     }
-    else if(state == QPLAYERSTATUS_ERROR){
+    else if(state == ERROR){
         _currentCell.state = NO;
         
         [_toastView addText:@"播放出错"];
     }
-    else if (state == QPLAYERSTATUS_SEEKING){
+    else if (state == SEEKING){
         [_toastView addText:@"正在seek"];
     }
     else{
@@ -350,7 +350,7 @@ QIMediaItemStateChangeListener
 -(void)updatePlayCell:(PLCellPlayerTableViewCell *)cell scroll:(BOOL)scroll{
     cell.player = self.player;
     
-    BOOL isPlaying = (_player.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING);
+    BOOL isPlaying = (_player.controlHandler.currentPlayerState == PLAYING);
     
     if (_currentCell == cell && _currentCell) {
         if (!scroll) {

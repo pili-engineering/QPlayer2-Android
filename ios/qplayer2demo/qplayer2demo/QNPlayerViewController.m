@@ -106,6 +106,7 @@ QIPlayerQualityListener
 
 - (void)onUIApplication:(BOOL)active{
     if (active) {
+        
         [self.playerContext.controlHandler resume];
     }else{
         [self.playerContext.controlHandler pause];
@@ -224,7 +225,7 @@ QIPlayerQualityListener
 
 }
 
-#pragma mark - PLPlayerDelegate
+#pragma mark - PlayerListenerDelegate
 -(void)playerContextAllCallBack{
 
     [self.playerContext.controlHandler addPlayerStateListener:self];
@@ -232,28 +233,28 @@ QIPlayerQualityListener
     [self.playerContext.controlHandler addPlayerQualityListener:self];
     
 }
+
 -(void)onStateChange:(QPlayerContext *)context state:(QPlayerState)state{
-    if (state == QPLAYERSTATUS_PREPARE) {
+    if (state == PREPARE) {
         [self.maskView loadActivityIndicatorView];
         [_toastView addText:@"开始拉视频数据"];
         [_toastView addDecoderType:[self.maskView getDecoderType]];
         [_toastView addText:[NSString stringWithFormat:@"清晰度：%@",self.definition]];
-    } else if (state == QPLAYERSTATUS_PLAYING) {
+    } else if (state == PLAYING) {
         //            _maskView.player = _player;
         self.isPlaying = YES;
-        self.maskView.player = self.playerContext;
         [_maskView setPlayButtonState:YES];
         [self showHintViewWithText:@"开始播放器"];
         
         [_toastView addText:@"播放中"];
         
-    } else if (state == QPLAYERSTATUS_PAUSED || state == QPLAYERSTATUS_STOPPED) {
+    } else if (state == PAUSED || state == STOPPED) {
         [_toastView addText:@"暂停渲染或者停止当前播放"];
         [_maskView setPlayButtonState:NO];
-    }else if (state == QPLAYERSTATUS_ERROR){
+    }else if (state == ERROR){
         [_toastView addText:@"播放错误"];
         [_maskView setPlayButtonState:NO];
-    }else if (state == QPLAYERSTATUS_COMPLETED){
+    }else if (state == COMPLETED){
         
         [_toastView addText:@"播放完成"];
         [_maskView setPlayButtonState:NO];
@@ -268,7 +269,7 @@ QIPlayerQualityListener
 -(void)onBufferingStart:(QPlayerContext *)context{
     [self.maskView loadActivityIndicatorView];
 }
--(void)onQualitySwitchComplete:(QPlayerContext *)context oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality qualitySerial:(NSInteger)qualitySerial{
+-(void)onQualitySwitchComplete:(QPlayerContext *)context usertype:(NSString *)usertype urlType:(QPlayerURLType)urlType oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality{
     NSString *string = [NSString stringWithFormat:@"清晰度切换成功"];
     [self.toastView addText:string];
 }
@@ -315,15 +316,15 @@ QIPlayerQualityListener
 }
 
 - (NSString *)updatePlayerStatus {
-    NSDictionary *statusDictionary = @{@(QPLAYERSTATUS_NONE):@"Unknow",
-                                       @(QPLAYERSTATUS_INIT):@"init",
-                                       @(QPLAYERSTATUS_PREPARE):@"PREPARE",
-                                       @(QPLAYERSTATUS_PLAYING):@"Playing",
-                                       @(QPLAYERSTATUS_PAUSED):@"Paused",
-                                       @(QPLAYERSTATUS_STOPPED):@"Stopped",
-                                       @(QPLAYERSTATUS_ERROR):@"Error",
-                                       @(QPLAYERSTATUS_SEEKING):@"seek",
-                                       @(QPLAYERSTATUS_COMPLETED):@"Completed"
+    NSDictionary *statusDictionary = @{@(NONE):@"Unknow",
+                                       @(INIT):@"init",
+                                       @(PREPARE):@"PREPARE",
+                                       @(PLAYING):@"Playing",
+                                       @(PAUSED):@"Paused",
+                                       @(STOPPED):@"Stopped",
+                                       @(ERROR):@"Error",
+                                       @(SEEKING):@"seek",
+                                       @(COMPLETED):@"Completed"
                                        };
     return statusDictionary[@(self.playerContext.controlHandler.currentPlayerState)];
 
@@ -517,7 +518,7 @@ return NO;
 
 - (void)scanCodeAction:(UIButton *)scanButton {
     
-    if (_playerContext.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING) {
+    if (_playerContext.controlHandler.currentPlayerState == PLAYING) {
         [_playerContext.controlHandler pause];
     }
     self.scanClick = YES;
@@ -560,7 +561,7 @@ return NO;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSURL *selectedURL = [NSURL URLWithString:_playerModels[indexPath.row].streamElements[0].url];
-    if (_playerContext.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING) {
+    if (_playerContext.controlHandler.currentPlayerState == PLAYING) {
         [_playerContext.controlHandler pause];
     }
     
@@ -734,7 +735,7 @@ return NO;
         }
         tempIndex ++;
     }
-    NSArray<NSString*> *segmentedArray = [[NSArray alloc]initWithObjects:@"1080p",@"720p",@"640p",@"270p",nil];
+    NSArray<NSString*> *segmentedArray = [[NSArray alloc]initWithObjects:@"1080p",@"720p",@"480p",@"270p",nil];
     [_toastView addText:[NSString stringWithFormat:@"即将切换为：%@",segmentedArray[index]]];
     self.definition = segmentedArray[index];
     

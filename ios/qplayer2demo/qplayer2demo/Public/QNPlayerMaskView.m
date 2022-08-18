@@ -19,7 +19,8 @@ typedef NS_ENUM(NSInteger, PLMoveDirectionType)
 
 @interface QNPlayerMaskView ()
 <
-UIGestureRecognizerDelegate
+UIGestureRecognizerDelegate,
+QIPlayerQualityListener
 >{
     bool isScreenFull;
     CGRect fullFrame;
@@ -70,72 +71,6 @@ UIGestureRecognizerDelegate
 
 @implementation QNPlayerMaskView
 
-- (void)dealloc{
-    NSLog(@"QNPlayerMaskView dealloc");
-    _delegate = nil;
-}
-
-#pragma mark - setter
-
-- (void)setCurrentTime:(float)currentTime
-{
-//    CMTime newTime = self.player.currentTime;
-//    newTime.value = newTime.timescale * currentTime;
-    [self.player.controlHandler seek:currentTime*1000];
-}
-
-
-- (void)setPlayer:(QPlayerContext *)player {
-    self.buttonView.player = player;
-    _player = player;
-//    [self.player.controlHandler addPlayerStaticCallBackName:@"callback2" CallBack:^(QPlayerStatus state) {
-//            NSLog(@"2312");
-//    }];
-}
-
-#pragma mark - getter
-
-- (float)currentTime
-{
-    return self.player.controlHandler.currentPosition/1000;
-}
-
-- (UIView *)fastView {
-    if (!_fastView) {
-        _fastView = [[UIView alloc] init];
-        _fastView.backgroundColor = PL_COLOR_RGB(0, 0, 0, 0.8);
-        _fastView.layer.cornerRadius = 4;
-        _fastView.layer.masksToBounds = YES;
-    }
-    return _fastView;
-}
-
-- (UIImageView *)fastImageView {
-    if (!_fastImageView) {
-        _fastImageView = [[UIImageView alloc] init];
-    }
-    return _fastImageView;
-}
-
-- (UILabel *)fastTimeLabel {
-    if (!_fastTimeLabel) {
-        _fastTimeLabel               = [[UILabel alloc] init];
-        _fastTimeLabel.textColor     = [UIColor whiteColor];
-        _fastTimeLabel.textAlignment = NSTextAlignmentCenter;
-        _fastTimeLabel.font          = [UIFont systemFontOfSize:14.0];
-    }
-    return _fastTimeLabel;
-}
-
-- (UIProgressView *)fastProgressView {
-    if (!_fastProgressView) {
-        _fastProgressView                   = [[UIProgressView alloc] init];
-        _fastProgressView.progressTintColor = [UIColor whiteColor];
-        _fastProgressView.trackTintColor    = [[UIColor lightGrayColor] colorWithAlphaComponent:0.4];
-    }
-    return _fastProgressView;
-}
-
 
 
 #pragma mark - basic
@@ -143,6 +78,8 @@ UIGestureRecognizerDelegate
 - (id)initWithFrame:(CGRect)frame player:(QPlayerContext *)player isLiving:(BOOL)isLiving renderView:(RenderView *)view{
     if (self = [super initWithFrame:frame]) {
         self.player = player;
+        
+        [self.player.controlHandler addPlayerQualityListener:self];
         self.isLiving = isLiving;
         self.myRenderView = view;
         CGFloat playerWidth = CGRectGetWidth(frame);
@@ -153,7 +90,7 @@ UIGestureRecognizerDelegate
         [self addSubview:_buttonView];
         
         [self.buttonView playButtonClickCallBack:^(BOOL selectedState) {
-            if(self.player.controlHandler.currentPlayerState == QPLAYERSTATUS_COMPLETED){
+            if(self.player.controlHandler.currentPlayerState == COMPLETED){
                 if (self.delegate != nil && [self.delegate respondsToSelector:@selector(reOpenPlayPlayerMaskView:)]) {
                     [self.delegate reOpenPlayPlayerMaskView:self];
                 }
@@ -191,14 +128,13 @@ UIGestureRecognizerDelegate
         [self addSubview:_backButton];
         
         
-        NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"1080p",@"720p",@"640p",@"270p",nil];
+        NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"1080p",@"720p",@"480p",@"270p",nil];
 
         self.qualitySegMc = [[UISegmentedControl alloc]initWithItems:segmentedArray];
 
         self.qualitySegMc.frame = CGRectMake(playerWidth - 250, 7, 250, 28);
 
         self.qualitySegMc.selectedSegmentIndex = 0;//设置默认选择项索引
-
         self.qualitySegMc.tintColor = [UIColor grayColor];
         [self addSubview:_qualitySegMc];
         
@@ -409,6 +345,80 @@ UIGestureRecognizerDelegate
     return 1.0;
 }
 
+- (void)dealloc{
+    NSLog(@"QNPlayerMaskView dealloc");
+    _delegate = nil;
+}
+
+#pragma mark - setter
+
+- (void)setCurrentTime:(float)currentTime
+{
+//    CMTime newTime = self.player.currentTime;
+//    newTime.value = newTime.timescale * currentTime;
+    [self.player.controlHandler seek:currentTime*1000];
+}
+
+
+- (void)setPlayer:(QPlayerContext *)player {
+    self.buttonView.player = player;
+//    _player = player;
+}
+#pragma mark - playerListenerDelegate
+-(void)onQualitySwitchFailed:(QPlayerContext *)context usertype:(NSString *)usertype urlType:(QPlayerURLType)urlType oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality{
+    if (oldQuality) {
+        NSInteger nums = [self.qualitySegMc numberOfSegments];
+        for (int i = 0 ; i<nums; i++) {
+            if ([[self.qualitySegMc titleForSegmentAtIndex:i] isEqual:[NSString stringWithFormat:@"%d%@",(int)oldQuality,@"p"]]) {
+                self.qualitySegMc.selectedSegmentIndex = i;
+                break;
+            }
+        }
+    }
+}
+#pragma mark - getter
+
+- (float)currentTime
+{
+    return self.player.controlHandler.currentPosition/1000;
+}
+
+- (UIView *)fastView {
+    if (!_fastView) {
+        _fastView = [[UIView alloc] init];
+        _fastView.backgroundColor = PL_COLOR_RGB(0, 0, 0, 0.8);
+        _fastView.layer.cornerRadius = 4;
+        _fastView.layer.masksToBounds = YES;
+    }
+    return _fastView;
+}
+
+- (UIImageView *)fastImageView {
+    if (!_fastImageView) {
+        _fastImageView = [[UIImageView alloc] init];
+    }
+    return _fastImageView;
+}
+
+- (UILabel *)fastTimeLabel {
+    if (!_fastTimeLabel) {
+        _fastTimeLabel               = [[UILabel alloc] init];
+        _fastTimeLabel.textColor     = [UIColor whiteColor];
+        _fastTimeLabel.textAlignment = NSTextAlignmentCenter;
+        _fastTimeLabel.font          = [UIFont systemFontOfSize:14.0];
+    }
+    return _fastTimeLabel;
+}
+
+- (UIProgressView *)fastProgressView {
+    if (!_fastProgressView) {
+        _fastProgressView                   = [[UIProgressView alloc] init];
+        _fastProgressView.progressTintColor = [UIColor whiteColor];
+        _fastProgressView.trackTintColor    = [[UIColor lightGrayColor] colorWithAlphaComponent:0.4];
+    }
+    return _fastProgressView;
+}
+
 
 #pragma mark - public methods
 
@@ -612,7 +622,7 @@ UIGestureRecognizerDelegate
 #pragma mark - 返回
 
 - (void)getBackAction:(UIButton *)backButton {
-    if (self.player.controlHandler.currentPlayerState == QPLAYERSTATUS_PLAYING && ![self.buttonView getFullButtonState]) {
+    if (self.player.controlHandler.currentPlayerState == PLAYING && ![self.buttonView getFullButtonState]) {
         [self.buttonView timeDealloc];
         [self.player.controlHandler stop];
     }
