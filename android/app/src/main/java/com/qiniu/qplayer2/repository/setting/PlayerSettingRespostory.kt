@@ -17,6 +17,7 @@ object PlayerSettingRespostory : SharedPreferences.OnSharedPreferenceChangeListe
     private const val SPEED_SETTING_KEY_NAME = "SpeedSetting"
     private const val START_POSITION_SETTING_KEY_NAME = "StartPositionSetting"
     private const val BLIND_SETTING_KEY_NAME = "BlindSetting"
+    private const val SEI_SETTING_KEY_NAME = "SEISetting"
 
 
     var decoderTypeSubject = PublishSubject.create<QPlayerSetting.QPlayerDecoder>()
@@ -126,6 +127,17 @@ object PlayerSettingRespostory : SharedPreferences.OnSharedPreferenceChangeListe
         }
         set(value) {
             mSharedPreferencesHelper.setLong(START_POSITION_SETTING_KEY_NAME, value)
+        }
+
+    var seiEnable: Boolean
+        get() {
+            return mSharedPreferencesHelper.optBoolean(
+                SEI_SETTING_KEY_NAME,
+                false
+            )
+        }
+        set(value) {
+            mSharedPreferencesHelper.setBoolean(SEI_SETTING_KEY_NAME, value)
         }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {

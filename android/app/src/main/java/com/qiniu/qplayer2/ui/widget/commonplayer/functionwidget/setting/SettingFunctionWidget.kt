@@ -3,6 +3,7 @@ package com.qiniu.qplayer2.ui.widget.commonplayer.functionwidget.setting
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -54,6 +55,9 @@ class SettingFunctionWidget(context: Context) :
 
     private lateinit var mStartPositionEdit: EditText
 
+    private lateinit var mForceFlushAuthenticationCB: CheckBox
+
+    private lateinit var mSEIEnableCB: CheckBox
 
     private val mCompositeDisposable = CompositeDisposable();
 
@@ -82,7 +86,8 @@ class SettingFunctionWidget(context: Context) :
         updateRenderRatio(PlayerSettingRespostory.ratioType)
         updateStartPosition(PlayerSettingRespostory.startPosition)
         updateBlindType(PlayerSettingRespostory.blindType)
-
+        updateSEIEnable(PlayerSettingRespostory.seiEnable)
+        updateForceFlushAuthentication()
 //        registerSubjects()
         registerClickListeners()
     }
@@ -131,6 +136,9 @@ class SettingFunctionWidget(context: Context) :
         mStartPositionEdit = view.findViewById(R.id.start_pos_ET)
 
 
+        mForceFlushAuthenticationCB = view.findViewById(R.id.flush_authentication_CB)
+
+        mSEIEnableCB = view.findViewById(R.id.sei_CB)
 
 
         return view
@@ -149,6 +157,13 @@ class SettingFunctionWidget(context: Context) :
         }
     }
 
+    private fun updateSEIEnable(enable: Boolean) {
+        mSEIEnableCB.isChecked = enable
+    }
+
+    private fun updateForceFlushAuthentication() {
+        mForceFlushAuthenticationCB.isChecked = false
+    }
     private fun updateStartType(startType: QPlayerSetting.QPlayerStart) {
         when (startType) {
             QPlayerSetting.QPlayerStart.QPLAYER_START_SETTING_PLAYING ->
@@ -200,73 +215,73 @@ class SettingFunctionWidget(context: Context) :
     private fun updateStartPosition(startPos: Long) {
         mStartPositionEdit.setText(startPos.toString())
     }
-
-    private fun registerSubjects() {
-        PlayerSettingRespostory.decoderTypeSubject
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeBy {
-                onNext {
-                    updateDecoder(it)
-                }
-                onError { }
-            } into mCompositeDisposable
-
-
-        PlayerSettingRespostory.seekTypeSubject
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeBy {
-                onNext {
-                    updateSeekType(it)
-
-                }
-                onError { }
-            } into mCompositeDisposable
-
-        PlayerSettingRespostory.startTypeSubject
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeBy {
-                onNext {
-                    updateStartType(it)
-                }
-                onError { }
-            } into mCompositeDisposable
-
-
-        PlayerSettingRespostory.renderRatioSubject
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeBy {
-                onNext {
-                    updateRenderRatio(it)
-                }
-                onError { }
-            } into mCompositeDisposable
-
-
-
-        PlayerSettingRespostory.startPositionSubject
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeBy {
-                onNext {
-                    updateStartPosition(it)
-                }
-                onError { }
-            } into mCompositeDisposable
-
-
-        PlayerSettingRespostory.blindTypeSubject
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeBy {
-                onNext {
-                    updateBlindType(it)
-                }
-                onError { }
-            } into mCompositeDisposable
-
-    }
-
-    private fun unregisterSubjects() {
-        mCompositeDisposable.clear()
-    }
+//
+//    private fun registerSubjects() {
+//        PlayerSettingRespostory.decoderTypeSubject
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeBy {
+//                onNext {
+//                    updateDecoder(it)
+//                }
+//                onError { }
+//            } into mCompositeDisposable
+//
+//
+//        PlayerSettingRespostory.seekTypeSubject
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeBy {
+//                onNext {
+//                    updateSeekType(it)
+//
+//                }
+//                onError { }
+//            } into mCompositeDisposable
+//
+//        PlayerSettingRespostory.startTypeSubject
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeBy {
+//                onNext {
+//                    updateStartType(it)
+//                }
+//                onError { }
+//            } into mCompositeDisposable
+//
+//
+//        PlayerSettingRespostory.renderRatioSubject
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeBy {
+//                onNext {
+//                    updateRenderRatio(it)
+//                }
+//                onError { }
+//            } into mCompositeDisposable
+//
+//
+//
+//        PlayerSettingRespostory.startPositionSubject
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeBy {
+//                onNext {
+//                    updateStartPosition(it)
+//                }
+//                onError { }
+//            } into mCompositeDisposable
+//
+//
+//        PlayerSettingRespostory.blindTypeSubject
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeBy {
+//                onNext {
+//                    updateBlindType(it)
+//                }
+//                onError { }
+//            } into mCompositeDisposable
+//
+//    }
+//
+//    private fun unregisterSubjects() {
+//        mCompositeDisposable.clear()
+//    }
 
     private fun unRegisterClickListeners() {
         mDecodrRG.setOnCheckedChangeListener(null)
@@ -280,6 +295,10 @@ class SettingFunctionWidget(context: Context) :
         mBlindRG.setOnCheckedChangeListener(null)
 
         mStartPositionEdit.setOnFocusChangeListener(null)
+
+        mForceFlushAuthenticationCB.setOnCheckedChangeListener(null)
+
+        mSEIEnableCB.setOnCheckedChangeListener(null)
     }
     private fun registerClickListeners() {
         mDecodrRG.setOnCheckedChangeListener { group, checkedId ->
@@ -384,6 +403,16 @@ class SettingFunctionWidget(context: Context) :
             }
         }
 
+        mSEIEnableCB.setOnCheckedChangeListener { cb, is_checked ->
+            PlayerSettingRespostory.seiEnable = is_checked
+            mPlayerCore.mPlayerContext.getPlayerControlHandler().setSEIEnable(is_checked)
+        }
+
+        mForceFlushAuthenticationCB.setOnCheckedChangeListener { cb, is_checked ->
+            if (is_checked) {
+                mPlayerCore.mPlayerContext.getPlayerControlHandler().forceAuthenticationFromNetwork()
+            }
+        }
     }
 
     private fun updateDataSourceStartPos(startPos: Long) {

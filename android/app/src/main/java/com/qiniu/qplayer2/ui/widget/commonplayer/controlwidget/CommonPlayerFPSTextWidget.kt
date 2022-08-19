@@ -15,6 +15,7 @@ class CommonPlayerFPSTextWidget: AppCompatTextView,
     IControlWidget<LongLogicProvider, LongPlayableParams, LongVideoParams> {
 
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
+
     private val mPlayerFPSListener = object : QIPlayerFPSListener {
         @SuppressLint("SetTextI18n")
         override fun onFPSChanged(fps: Int) {

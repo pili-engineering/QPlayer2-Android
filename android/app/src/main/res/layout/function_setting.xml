@@ -249,6 +249,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start_pos_title_TV" />
 
+    <View
+        android:id="@+id/divider20"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="12dp"
+        android:background="@color/white_alpha80"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/start_pos_ET" />
+
+    <TextView
+        android:id="@+id/authentication_title_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="鉴权"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider20" />
+
+    <CheckBox
+        android:id="@+id/flush_authentication_CB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/authentication_title_TV"
+        android:layout_marginStart="12dp"
+        android:textSize="12sp"
+        android:textColor="@drawable/qmedia_player_selector_panel_text_purple"
+        android:text="下一次刷新鉴权信息">
+    </CheckBox>
+
     <TextView
         android:id="@+id/realtime_update_title_TV"
         android:layout_width="wrap_content"
@@ -259,7 +295,7 @@
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_pos_ET" />
+        app:layout_constraintTop_toBottomOf="@+id/flush_authentication_CB" />
 
     <View
         android:id="@+id/divider5"
@@ -413,7 +449,6 @@
             android:layout_weight="1"
             android:textSize="12sp"
             android:textColor="@drawable/qmedia_player_selector_panel_text_purple"
-
             android:text="蓝/黄滤镜" />
     </RadioGroup>
 
@@ -427,6 +462,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blind_RG" />
+
+    <TextView
+        android:id="@+id/sei_title_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="SEI回调"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider7" />
+
+    <CheckBox
+        android:id="@+id/sei_CB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sei_title_TV"
+        android:layout_marginStart="12dp"
+        android:textSize="12sp"
+        android:textColor="@drawable/qmedia_player_selector_panel_text_purple"
+        android:text="是否开启SEI回调">
+    </CheckBox>
+
+    <View
+        android:id="@+id/divider8"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@color/white_alpha70"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sei_CB" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.text.TextUtils
 import android.util.AttributeSet
+import android.util.Log
 import androidx.appcompat.widget.AppCompatTextView
 import com.qiniu.qmedia.component.player.QIPlayerProgressListener
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore

@@ -336,9 +336,9 @@ object LongPlayerDataSourceFactory {
 
 
         builder = QMediaModelBuilder()
-        url = "http://ojpjb7lbl.bkt.clouddn.com/h265/2000k/265_test.m3u8"
+        url = "https://sdk-release.qnsdk.com/zeng.m3u8"
         builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
-        name = "14-点播-hhtp-m3u8-25fps-H265"
+        name = "14-点播-hhtp-m3u8-30fps"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
         dataSourceBuilder.addVideo(
             videoParams,

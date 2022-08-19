@@ -12,8 +12,6 @@ import com.qiniu.qplayer2.logic.PlayerSettingVM
 
 class SettingActivity : AppCompatActivity() {
 
-
-
     private lateinit var mDecodrRG: RadioGroup
     private lateinit var mAutoDecodrRB: RadioButton
     private lateinit var mSoftDecodrRB: RadioButton

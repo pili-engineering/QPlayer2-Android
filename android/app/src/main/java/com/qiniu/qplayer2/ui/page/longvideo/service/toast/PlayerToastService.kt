@@ -170,7 +170,7 @@ class PlayerToastService
         mPlayerCore.playerToastContainer?.showToast(toast)
     }
 
-    override fun on_authentication_failed() {
+    override fun on_authentication_failed(error_type: QAuthenticationErrorType) {
         val toast = PlayerToast.Builder()
             .toastItemType(PlayerToastConfig.TYPE_NORMAL)
             .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
