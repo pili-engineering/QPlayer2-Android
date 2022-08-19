@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)addText:(NSString *)str;
 
 //添加解码方式的toast
--(void)addDecoderType:(QPlayerDecoderType)type;
+-(void)addDecoderType:(QPlayerDecoder)type;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -38,8 +38,6 @@ QIPlayerQualityListener
 @property (nonatomic, strong) UILabel *fastTimeLabel;
 @property (nonatomic, strong) UIImageView *fastImageView;
 
-/** 是否正在拖拽 **/
-//@property (nonatomic, assign) BOOL isSeeking;
 
 /** slider上次的值 **/
 @property (nonatomic, assign) CGFloat sliderLastValue;
@@ -64,9 +62,10 @@ QIPlayerQualityListener
 @property (nonatomic, strong) UIButton *showSpeedViewButton;
 @property (nonatomic, strong) QNPlayerSettingsView *settingSpeedView;
 
-@property (nonatomic, assign) QPlayerDecoderType decoderType;
+@property (nonatomic, assign) QPlayerDecoder decoderType;
 @property (nonatomic, assign) BOOL seeking;
 @property (nonatomic, strong) RenderView *myRenderView;
+@property (nonatomic, assign) NSInteger myOldQuality;
 @end
 
 @implementation QNPlayerMaskView
@@ -90,7 +89,7 @@ QIPlayerQualityListener
         [self addSubview:_buttonView];
         
         [self.buttonView playButtonClickCallBack:^(BOOL selectedState) {
-            if(self.player.controlHandler.currentPlayerState == COMPLETED){
+            if(self.player.controlHandler.currentPlayerState == QPLAYER_STATE_COMPLETED){
                 if (self.delegate != nil && [self.delegate respondsToSelector:@selector(reOpenPlayPlayerMaskView:)]) {
                     [self.delegate reOpenPlayPlayerMaskView:self];
                 }
@@ -159,26 +158,31 @@ QIPlayerQualityListener
         [_showSettingViewButton addTarget:self action:@selector(ShowSettingViewButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         _showSettingViewButton.hidden = YES;
         [self addSubview:_showSettingViewButton];
-        _settingView = [[QNPlayerSettingsView alloc]initChangePlayerViewCallBack:^(ChangeUIButtonType type, NSString * _Nonnull startPosition) {
+        _settingView = [[QNPlayerSettingsView alloc]initChangePlayerViewCallBack:^(ChangeButtonType type, NSString * _Nonnull startPosition) {
             if (type < 5) {
-                [self.player.controlHandler setRenderRatio:(QPlayerRenderRatio)(type + 1)];
+                [self.player.renderHandler setRenderRatio:(QPlayerRenderRatio)(type + 1)];
                 
                 [[QDataHandle shareInstance] setSelConfiguraKey:@"Render ratio" selIndex:(int)type];
             }else if(type < 104){
-                [self.player.controlHandler setBlindType:(QPlayerBlindType)(type - 100)];
+                [self.player.renderHandler setBlindType:(QPlayerBlind)(type - 100)];
                 [[QDataHandle shareInstance] setSelConfiguraKey:@"色盲模式" selIndex:(int)(type - 100)];
             }else if(type < 204){
                 
-                self.decoderType = (QPlayerDecoderType)(type - 200);
-                [self.player.controlHandler setDecoderType:(QPlayerDecoderType)(type - 200)];;
+                self.decoderType = (QPlayerDecoder)(type - 200);
+                [self.player.controlHandler setDecoderType:(QPlayerDecoder)(type - 200)];;
                 [[QDataHandle shareInstance] setSelConfiguraKey:@"Decoder" selIndex:(int)(type - 200)];
             }else if(type < 302 ){
-                [self.player.controlHandler  setSeekMode:(int)(type-300)];
+                [self.player.controlHandler  setSeekMode:(QPlayerSeek)(type-300)];
                 [[QDataHandle shareInstance] setSelConfiguraKey:@"Seek" selIndex:(int)(type-300)];
             }else if(type < 402){
-                [self.player.controlHandler setStartAction:(int)(type-400)];;;
+                [self.player.controlHandler setStartAction:(QPlayerStart)(type-400)];;;
                 
                 [[QDataHandle shareInstance] setSelConfiguraKey:@"Start Action" selIndex:(int)(type-400)];
+            }
+            else if(type < 502){
+                
+            }
+            else if(type < 602){
             }
             
             if (startPosition && ![startPosition isEqualToString:@""]) {
@@ -225,7 +229,7 @@ QIPlayerQualityListener
                     break;
             }
             
-            [self.player.controlHandler setSpeed:speed];
+            [self.player.controlHandler setPlayerSpeed:speed];
             [[QDataHandle shareInstance] setSelConfiguraKey:@"播放速度" selIndex:(int)(type)];
             
         }];
@@ -246,6 +250,9 @@ QIPlayerQualityListener
 }
 
 
+
+
+
 - (void)configurePlayerWithConfigureModel:(PLConfigureModel *)configureModel classModel:(QNClassModel *)classModel {
     NSInteger index = [configureModel.selectedNum integerValue];
     
@@ -259,20 +266,20 @@ QIPlayerQualityListener
             [_settingView setPostioTittle:[configureModel.configuraValue[0] intValue]];
 
         } else if ([configureModel.configuraKey containsString:@"Decoder"]) {
-            self.decoderType = (QPlayerDecoderType)index;
-            [_settingView setChangeDefault:(ChangeUIButtonType)(index + 200)];
+            self.decoderType = (QPlayerDecoder)index;
+            [_settingView setChangeDefault:(ChangeButtonType)(index + 200)];
             
         } else if ([configureModel.configuraKey containsString:@"Seek"]) {
-            [_settingView setChangeDefault:(ChangeUIButtonType)(index + 300)];
+            [_settingView setChangeDefault:(ChangeButtonType)(index + 300)];
 
         } else if ([configureModel.configuraKey containsString:@"Start Action"]) {
-            [_settingView setChangeDefault:(ChangeUIButtonType)(index + 400)];
+            [_settingView setChangeDefault:(ChangeButtonType)(index + 400)];
             
         } else if ([configureModel.configuraKey containsString:@"Render ratio"]) {
-            [_settingView setChangeDefault:(ChangeUIButtonType)(index)];
+            [_settingView setChangeDefault:(ChangeButtonType)(index)];
             
         } else if ([configureModel.configuraKey containsString:@"色盲模式"]) {
-            [_settingView setChangeDefault:(ChangeUIButtonType)(index + 100)];
+            [_settingView setChangeDefault:(ChangeButtonType)(index + 100)];
         }
     }
 }
@@ -362,17 +369,21 @@ QIPlayerQualityListener
 
 - (void)setPlayer:(QPlayerContext *)player {
     self.buttonView.player = player;
-//    _player = player;
+    _player = player;
 }
 #pragma mark - playerListenerDelegate
--(void)onQualitySwitchFailed:(QPlayerContext *)context usertype:(NSString *)usertype urlType:(QPlayerURLType)urlType oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality{
-    if (oldQuality) {
-        NSInteger nums = [self.qualitySegMc numberOfSegments];
-        for (int i = 0 ; i<nums; i++) {
-            if ([[self.qualitySegMc titleForSegmentAtIndex:i] isEqual:[NSString stringWithFormat:@"%d%@",(int)oldQuality,@"p"]]) {
-                self.qualitySegMc.selectedSegmentIndex = i;
-                break;
-            }
+-(void)onQualitySwitchComplete:(QPlayerContext *)context usertype:(NSString *)usertype urlType:(QPlayerURLType)urlType oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality{
+    self.myOldQuality = newQuality;
+}
+-(void)onQualitySwitchStart:(QPlayerContext *)context usertype:(NSString *)usertype urlType:(QPlayerURLType)urlType oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality{
+    self.myOldQuality = newQuality;
+}
+-(void)onQualitySwitchRetryLater:(QPlayerContext *)context usertype:(NSString *)usertype urlType:(QPlayerURLType)urlType{
+    NSInteger nums = self.qualitySegMc.numberOfSegments;
+    for (int i = 0; i < nums; i++) {
+        if ([[self.qualitySegMc titleForSegmentAtIndex:i] isEqual:[NSString stringWithFormat:@"%ld%@",(long)self.myOldQuality,@"p"]]) {
+            self.qualitySegMc.selectedSegmentIndex = i;
+            break;
         }
     }
 }
@@ -442,7 +453,7 @@ QIPlayerQualityListener
     [self.buttonView setPlayButtonState:state];
 }
 
--(QPlayerDecoderType)getDecoderType{
+-(QPlayerDecoder)getDecoderType{
     return self.decoderType;
 }
 #pragma mark - private methods
@@ -564,7 +575,7 @@ QIPlayerQualityListener
     rotateY = rotateY % 360;
     rotateX = rotateX % 360;
     
-    [self.player.controlHandler setPanoramaViewRotate:rotateX rotateY:rotateY];
+    [self.player.renderHandler setPanoramaViewRotate:rotateX rotateY:rotateY];
 
 }
 
@@ -611,21 +622,14 @@ QIPlayerQualityListener
     self.activityIndicatorView.center = self.myRenderView.center;
 }
 
-- (void)willMoveToSuperview:(UIView *)newSuperview {
-    if (!newSuperview) {
-        [self.buttonView timeDealloc];
-    }
-}
+
 
 
 
 #pragma mark - 返回
 
 - (void)getBackAction:(UIButton *)backButton {
-    if (self.player.controlHandler.currentPlayerState == PLAYING && ![self.buttonView getFullButtonState]) {
-        [self.buttonView timeDealloc];
-        [self.player.controlHandler stop];
-    }
+
     
     if (self.delegate != nil && [self.delegate respondsToSelector:@selector(playerMaskView:didGetBack:)]) {
         [self.delegate playerMaskView:self didGetBack:backButton];

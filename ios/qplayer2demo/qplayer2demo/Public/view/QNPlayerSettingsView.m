@@ -19,11 +19,13 @@
     QNChangePlayerView *seekView;
     QNChangePlayerView *decoderView;
     QNChangePlayerView *stretchPlayerView;
-    void (^changePlayerViewCallback)(ChangeUIButtonType type , NSString * startPosition);
+    QNChangePlayerView *SEIPlayerView;
+    QNChangePlayerView *authenticationPlayerView;
+    void (^changePlayerViewCallback)(ChangeButtonType type , NSString * startPosition);
     void (^speedViewCallback)(SpeedUIButtonType type);
 }
 
--(instancetype)initChangePlayerViewCallBack:(void (^)(ChangeUIButtonType type , NSString * startPosition) )back{
+-(instancetype)initChangePlayerViewCallBack:(void (^)(ChangeButtonType type , NSString * startPosition) )back{
     self = [super init];
     if (self) {
         self.frame = CGRectMake(ScreenWidth-390, 0, 390, ScreenHeight);
@@ -73,7 +75,7 @@
             break;
     }
 }
--(void)setChangeDefault:(ChangeUIButtonType)type{
+-(void)setChangeDefault:(ChangeButtonType)type{
     switch (type) {
         case UIButtonTypeStreAutomatic:
         case UIButtonTypeStretching:
@@ -129,7 +131,7 @@
 }
 -(void)addScrollView:(CGRect)frame{
 //    self = [[UIScrollView alloc]initWithFrame:frame];
-    self.contentSize = CGSizeMake(frame.size.width, 650);
+    self.contentSize = CGSizeMake(frame.size.width, 850);
 //    self.backgroundColor = [UIColor clearColor];
     self.userInteractionEnabled = YES;
     self.scrollEnabled = YES;
@@ -158,22 +160,48 @@
     
     [self addPositionTexfield: CGRectMake(0, 345, self.frame.size.width - 150, 70)];
     
-    UILabel *nowLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 430, self.frame.size.width, 30)];
+    [self addLine:CGRectMake(5, 463, self.frame.size.width, 2)];
+    
+    [self addAuthentication:CGRectMake(0, 465, 350, 90)];
+    
+    UILabel *nowLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 540, self.frame.size.width, 30)];
     nowLabel.text = @"立即生效设置";
     nowLabel.textColor = [UIColor whiteColor];
     nowLabel.backgroundColor = [UIColor clearColor];
     [self addSubview:nowLabel];
     
-    [self addLine:CGRectMake(5, 463, self.frame.size.width, 2)];
+    [self addLine:CGRectMake(5, 568, self.frame.size.width, 2)];
     
-    [self addRender:CGRectMake(0, 465, 350, 90)];
+    [self addRender:CGRectMake(0, 575, 350, 90)];
     
-    [self addLine:CGRectMake(5, 558, self.frame.size.width, 2)];
+    [self addLine:CGRectMake(5, 663, self.frame.size.width, 2)];
     
-    [self addFilter:CGRectMake(0, 565, 350, 90)];
+    [self addFilter:CGRectMake(0, 675, 350, 90)];
+    
+    
+    [self addLine:CGRectMake(5, 758, self.frame.size.width, 2)];
+    
+    [self addSEI:CGRectMake(0, 765, 350, 90)];
+    
+    
+    
 }
+-(void)addAuthentication:(CGRect)frame{
+    
+    authenticationPlayerView = [[QNChangePlayerView alloc]initWithFrame:frame backgroudColor:[UIColor clearColor]];
+    [authenticationPlayerView setTitleLabelText:@"鉴权" frame:CGRectMake(10, 10, 120, 30) textColor:[UIColor whiteColor]];
+    [authenticationPlayerView addButtonText:@"下一次刷新鉴权信息" frame:CGRectMake(10, 50, 150, 20) type:UIButtonTypeAuthentication target:self selector:@selector(changePlayerViewClick:) selectorTag:@selector(changePlayerViewClickTag:)];
 
+    [self addSubview:authenticationPlayerView];
+}
+-(void)addSEI:(CGRect)frame{
+    
+    SEIPlayerView = [[QNChangePlayerView alloc]initWithFrame:frame backgroudColor:[UIColor clearColor]];
+    [SEIPlayerView setTitleLabelText:@"SEI回调" frame:CGRectMake(10, 10, 120, 30) textColor:[UIColor whiteColor]];
+    [SEIPlayerView addButtonText:@"是否开启SEI回调" frame:CGRectMake(10, 50, 150, 20) type:UIButtonTypeSEIData target:self selector:@selector(changePlayerViewClick:) selectorTag:@selector(changePlayerViewClickTag:)];
 
+    [self addSubview:SEIPlayerView];
+}
 -(void)addPositionTexfield:(CGRect)frame{
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(frame.origin.x+5, frame.origin.y+5, frame.size.width, 30)];
     titleLabel.text = @"起播位置(毫秒)";

@@ -50,7 +50,7 @@
         [self addSubview:titleLabel];
     }
 }
--(void)setDefault:(ChangeUIButtonType)type{
+-(void)setDefault:(ChangeButtonType)type{
     for (UIButton *btn in buttonArray) {
         if (btn.tag == type) {
             [btn setImage:selectedImage forState:UIControlStateNormal];
@@ -70,7 +70,7 @@
         }
     }
 }
--(void)addButtonText:(NSString *)text frame:(CGRect)frame type:(ChangeUIButtonType)type target:(id)target selector:(SEL)selector selectorTag:(SEL)selectorTag{
+-(void)addButtonText:(NSString *)text frame:(CGRect)frame type:(ChangeButtonType)type target:(id)target selector:(SEL)selector selectorTag:(SEL)selectorTag{
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.height, frame.size.height)];
     UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(btn.frame.size.width +btn.frame.origin.x + 3, frame.origin.y, frame.size.width - frame.size.height -6, frame.size.height)];
     bool isExist = false;
@@ -116,13 +116,29 @@
     }
 }
 -(void)GestureClick:(UITapGestureRecognizer *)tap{
+
     for (int i = 0; i < buttonArray.count; i++) {
         UIButton *midBtn = buttonArray[i];
         UILabel *midlab = labelArray[i];
         if (midBtn.tag == tap.view.tag) {
-            [midBtn setImage:selectedImage forState:UIControlStateNormal];
-            midlab.textColor = selectedColor;
-            midBtn.selected = YES;
+            if ((UIButtonType)midBtn.tag == UIButtonTypeSEIData || (UIButtonType)midBtn.tag == UIButtonTypeAuthentication) {
+                if (midBtn.selected) {
+                    midBtn.selected = NO;
+                    [midBtn setImage:notSelectedImage forState:UIControlStateNormal];
+                    midlab.textColor = notSelectedColor;
+                }else{
+                    midBtn.selected = YES;
+                    [midBtn setImage:selectedImage forState:UIControlStateNormal];
+                    midlab.textColor = selectedColor;
+                }
+                return;
+            }
+            else{
+                
+                [midBtn setImage:selectedImage forState:UIControlStateNormal];
+                midlab.textColor = selectedColor;
+                midBtn.selected = YES;
+            }
         }
         else{
             [midBtn setImage:notSelectedImage forState:UIControlStateNormal];
@@ -132,6 +148,16 @@
     }
 }
 -(void)Click:(UIButton *)btn{
+    if ((UIButtonType)btn.tag == UIButtonTypeSEIData || (UIButtonType)btn.tag == UIButtonTypeAuthentication) {
+        if (btn.selected) {
+            btn.selected = NO;
+            [btn setImage:notSelectedImage forState:UIControlStateNormal];
+        }else{
+            btn.selected = YES;
+            [btn setImage:selectedImage forState:UIControlStateNormal];
+        }
+        return;
+    }
     for (int i = 0; i < buttonArray.count; i++) {
         UIButton *midBtn = buttonArray[i];
         UILabel *midlab = labelArray[i];
@@ -147,7 +173,7 @@
         }
     }
 }
--(void)setButtonFrame:(CGRect)frame type:(ChangeUIButtonType)type{
+-(void)setButtonFrame:(CGRect)frame type:(ChangeButtonType)type{
     BOOL success = false;
     for (UIButton *btn in buttonArray) {
         if (btn.tag == type) {
@@ -165,7 +191,7 @@
         NSLog(@"StretchingPlayerView 设置button失败，不存在改button。");
     }
 }
--(void)setButtonTitle:(NSString *)title type:(ChangeUIButtonType)type{
+-(void)setButtonTitle:(NSString *)title type:(ChangeButtonType)type{
     BOOL success = false;
     for (UILabel *lab in labelArray) {
         if (lab.tag == type) {
@@ -196,7 +222,7 @@
 }
 
 
--(void)deleteButton:(ChangeUIButtonType)type{
+-(void)deleteButton:(ChangeButtonType)type{
     BOOL success = false;
     NSMutableArray *arr = [NSMutableArray array];
     NSMutableArray *arrlab = [NSMutableArray array];

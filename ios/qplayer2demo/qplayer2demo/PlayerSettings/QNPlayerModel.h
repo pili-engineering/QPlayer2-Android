@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)NSString *name;
 
-@property (assign, nonatomic) BOOL is_live;
+@property (assign, nonatomic) BOOL isLive;
 
 @property (strong, nonatomic) NSArray <QStreamElement*> *streamElements;
 @end

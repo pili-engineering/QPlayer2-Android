@@ -21,7 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [Bugly startWithAppId:@"19383f3ffe"];
+    [Bugly startWithAppId:@"f562ca3299"];
     
     // 使用 category，应用不会随手机静音键而静音，可在手机静音下播放声音
 

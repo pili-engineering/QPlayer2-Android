@@ -26,7 +26,7 @@
     switch (routeChangeReason) {
         case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
             // 耳机插入
-            if (myPlayer.controlHandler.currentPlayerState == PLAYING) {
+            if (myPlayer.controlHandler.currentPlayerState == QPLAYER_STATE_PLAYING) {
 //                [myPlayer resume_render];
                 [myPlayer.controlHandler resume];
             }
@@ -36,7 +36,7 @@
         {
             // 耳机拔掉
             // 拔掉耳机继续播放
-            if (myPlayer.controlHandler.currentPlayerState == PLAYING) {
+            if (myPlayer.controlHandler.currentPlayerState == QPLAYER_STATE_PLAYING) {
                 [myPlayer.controlHandler pause];
             }
         }

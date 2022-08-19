@@ -29,8 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///@param isLiving 是否是直播
 -(instancetype)initWithShortVideoFrame:(CGRect)frame player:(QPlayerContext *)player playerFrame:(CGRect)playerFrame isLiving:(BOOL)isLiving;
     
-///释放timer
--(void)timeDealloc;
 ///修改播放状态  -->暂停/继续
 -(void)setPlayState;
 

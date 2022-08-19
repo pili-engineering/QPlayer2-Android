@@ -41,7 +41,7 @@ QIMediaItemStateChangeListener
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
 @property (nonatomic, strong) NSMutableArray <QMediaItemContext *>*cacheArray;
-@property (nonatomic, strong) NSMutableArray<QNPlayerModel *> *playerModels;
+@property (nonatomic, strong) NSMutableArray<QMediaModel *> *playerModels;
 
 @property (nonatomic, assign) CGFloat topSpace;
 
@@ -122,8 +122,8 @@ QIMediaItemStateChangeListener
     _playerModels = [NSMutableArray array];
    
     for (NSDictionary *dic in urlArray) {
-            QNPlayerModel *modle = [[QNPlayerModel alloc] init];
-            [modle setValuesForKeysWithDictionary:dic];
+        QMediaModel *modle = [[QMediaModel alloc] init];
+        [modle setValuesForKeysWithDictionary:dic];
             
         NSMutableArray <QStreamElement*> *streams = [NSMutableArray array];
         for (NSDictionary *elDic in dic[@"streamElements"]) {
@@ -178,7 +178,7 @@ QIMediaItemStateChangeListener
     
     QMediaModel *model = [[QMediaModel alloc] init];
     model.streamElements = _playerModels.firstObject.streamElements;
-    model.is_live = _playerModels.firstObject.is_live;
+    model.isLive = _playerModels.firstObject.isLive;
     [self.player.controlHandler playMediaModel:model startPos:0];
 
 
@@ -192,18 +192,18 @@ QIMediaItemStateChangeListener
 
 }
 -(void)onStateChange:(QPlayerContext *)context state:(QPlayerState)state{
-    if(state == NONE){
+    if(state == QPLAYER_STATE_NONE){
         [_toastView addText:@"初始状态"];
         
     }
-    else if (state == INIT){
+    else if (state ==     QPLAYER_STATE_INIT){
         
         [_toastView addText:@"创建完成"];
     }
-    else if(state == PREPARE ||state == MEDIA_ITEM_PREPARE){
+    else if(state ==     QPLAYER_STATE_PREPARE ||state == QPLAYER_STATE_MEDIA_ITEM_PREPARE){
         [_toastView addText:@"正在加载"];
     }
-    else if (state == PLAYING) {
+    else if (state == QPLAYER_STATE_PLAYING) {
         if (_currentCell == nil) {
             [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
         }else{
@@ -212,25 +212,25 @@ QIMediaItemStateChangeListener
         _currentCell.state = YES;
         [_toastView addText:@"正在播放"];
     }
-    else if(state == PAUSED){
+    else if(state == QPLAYER_STATE_PAUSED){
         _currentCell.state = NO;
         [_toastView addText:@"播放暂停"];
     }
-    else if(state == STOPPED){
+    else if(state == QPLAYER_STATE_STOPPED){
         _currentCell.state = NO;
         [_toastView addText:@"播放停止"];
     }
-    else if(state == COMPLETED){
+    else if(state == QPLAYER_STATE_COMPLETED){
         _currentCell.state = NO;
         [self.player.controlHandler seek:0];
         [_toastView addText:@"播放完成"];
     }
-    else if(state == ERROR){
+    else if(state == QPLAYER_STATE_ERROR){
         _currentCell.state = NO;
         
         [_toastView addText:@"播放出错"];
     }
-    else if (state == SEEKING){
+    else if (state == QPLAYER_STATE_SEEKING){
         [_toastView addText:@"正在seek"];
     }
     else{
@@ -255,7 +255,7 @@ QIMediaItemStateChangeListener
     
     NSLog(@"-------------streamOpen ----");
 }
--(void)onStreamOpenFailed:(QPlayerContext *)context userType:(NSString *)userType urlType:(QPlayerURLType)urlType url:(NSString *)url error:(NSInteger)error{
+-(void)onOpenFailed:(QPlayerContext *)context userType:(NSString *)userType urlType:(QPlayerURLType)urlType url:(NSString *)url error:(QPlayerOpenError)error{
     
     NSLog(@"-------------streamOpenError -----");
 }
@@ -287,7 +287,7 @@ QIMediaItemStateChangeListener
     if (cell == nil) {
         cell = [[PLCellPlayerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    QNPlayerModel *model = _playerModels[indexPath.row];
+    QMediaModel *model = _playerModels[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = model;
        
@@ -350,7 +350,7 @@ QIMediaItemStateChangeListener
 -(void)updatePlayCell:(PLCellPlayerTableViewCell *)cell scroll:(BOOL)scroll{
     cell.player = self.player;
     
-    BOOL isPlaying = (_player.controlHandler.currentPlayerState == PLAYING);
+    BOOL isPlaying = (_player.controlHandler.currentPlayerState == QPLAYER_STATE_PLAYING);
     
     if (_currentCell == cell && _currentCell) {
         if (!scroll) {
@@ -370,7 +370,7 @@ QIMediaItemStateChangeListener
         }else{
             QMediaModel *model = [[QMediaModel alloc] init];
             model.streamElements = cell.model.streamElements;
-            model.is_live = _playerModels.firstObject.is_live;
+            model.isLive = _playerModels.firstObject.isLive;
             [self.player.controlHandler playMediaModel:model startPos:0];
             
             NSLog(@"预加载--new---%@",item.controlHandler.media_model.streamElements[0].url);
@@ -382,7 +382,7 @@ QIMediaItemStateChangeListener
 }
 
 
--(void)AddToCash:(QNPlayerModel *)playerModel{
+-(void)AddToCash:(QMediaModel *)playerModel{
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 //    NSString *path = [documentsDir stringByAppendingPathComponent:@"me"];
     
@@ -391,7 +391,7 @@ QIMediaItemStateChangeListener
     
     QMediaModel *model = [[QMediaModel alloc] init];
     model.streamElements = playerModel.streamElements;
-    model.is_live = playerModel.is_live;
+    model.isLive = playerModel.isLive;
     
     // 预加载
     QMediaItemContext *item = [[QMediaItemContext alloc] initItemComtextStorageDir:documentsDir logLevel:LOG_VERBOSE];
@@ -405,18 +405,18 @@ QIMediaItemStateChangeListener
 
 -(int)indexPlayerModelsOf:(QMediaItemContext *)item{
     for (int i = 0; i < _playerModels.count; i ++) {
-        QNPlayerModel *modle = _playerModels[i];
-        if (modle.is_live == item.controlHandler.media_model.is_live && modle.streamElements == item.controlHandler.media_model.streamElements) {
+        QMediaModel *modle = _playerModels[i];
+        if (modle.isLive == item.controlHandler.media_model.isLive && modle.streamElements == item.controlHandler.media_model.streamElements) {
             return i;
         }
     }
     return -1;
 }
 
--(QMediaItemContext *)findCrashMediaItemsOf:(QNPlayerModel *)modle{
+-(QMediaItemContext *)findCrashMediaItemsOf:(QMediaModel *)modle{
     for (int i = 0; i < _cacheArray.count; i ++) {
         QMediaItemContext *item = _cacheArray[i];
-        if (modle.is_live == item.controlHandler.media_model.is_live && modle.streamElements == item.controlHandler.media_model.streamElements) {
+        if (modle.isLive == item.controlHandler.media_model.isLive && modle.streamElements == item.controlHandler.media_model.streamElements) {
             return item;
         }
     }
@@ -424,7 +424,7 @@ QIMediaItemStateChangeListener
 }
 
 
--(void)updateCache:(QNPlayerModel *)model{
+-(void)updateCache:(QMediaModel *)model{
 
     NSArray *realCacheArray = [self getRealCacheIndexArray:model];
     
@@ -442,7 +442,7 @@ QIMediaItemStateChangeListener
 
     for (int i = 0; i < realCacheArray.count; i ++) {//
         int index = [realCacheArray[i] intValue];
-        QNPlayerModel *model0 = _playerModels[index];
+        QMediaModel *model0 = _playerModels[index];
         if (![self findCrashMediaItemsOf:model0]) {// realCacheArray 独有
             [self AddToCash:_playerModels[index]];
         }
@@ -452,7 +452,7 @@ QIMediaItemStateChangeListener
 }
 
 // 前 1 后 3
--(NSArray *)getRealCacheIndexArray:(QNPlayerModel *)model{
+-(NSArray *)getRealCacheIndexArray:(QMediaModel *)model{
     NSArray *realCacheArray = nil;
     if (_playerModels.count <= 5) {
         NSMutableArray *array = [NSMutableArray array];

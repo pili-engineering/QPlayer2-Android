@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///“设置视频” 悬浮框
 ///type 当前点击事件对应的button
 ///startPosition 起播位置
--(instancetype)initChangePlayerViewCallBack:(void (^)(ChangeUIButtonType type , NSString * startPosition) )callback;
+-(instancetype)initChangePlayerViewCallBack:(void (^)(ChangeButtonType type , NSString * startPosition) )callback;
 
 
 ///设置倍速悬浮框
@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///设置悬浮窗默认的配置
 ///type 当前点击事件对应的button
--(void)setChangeDefault:(ChangeUIButtonType)type;
+-(void)setChangeDefault:(ChangeButtonType)type;
 
 ///倍速默认的配置
 ///type 当前点击事件对应的button

@@ -13,7 +13,7 @@
 -(instancetype)initWithFrame:(CGRect)frame Massage:(NSString *)massage{
     self = [super initWithFrame:frame];
     if (self) {
-        float width = 10+massage.length *13;
+        float width = 10+massage.length *12;
         
         if (width >= frame.size.width) {
             width = frame.size.width;

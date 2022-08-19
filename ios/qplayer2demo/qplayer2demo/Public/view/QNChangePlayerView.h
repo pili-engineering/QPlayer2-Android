@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef NS_ENUM(NSInteger, ChangeUIButtonType){
+typedef NS_ENUM(NSInteger, ChangeButtonType){
     UIButtonTypeStreAutomatic = 0,      //自动
     UIButtonTypeStretching,             //拉伸
     UIButtonTypeSpreadOver,             //铺满
@@ -28,6 +28,11 @@ typedef NS_ENUM(NSInteger, ChangeUIButtonType){
     UIButtonTypeActionPlay = 400,             //起播播放
     UIButtonTypeActionPause,            //起播暂停
     
+    
+    UIButtonTypeSEIData = 500,            //起播暂停
+    
+    UIButtonTypeAuthentication = 600            //起播暂停
+    
 };
 NS_ASSUME_NONNULL_BEGIN
 
@@ -45,18 +50,18 @@ NS_ASSUME_NONNULL_BEGIN
 ///@param target selector所在类
 ///@param selector 响应事件
 ///@param selectorTag 响应事件
--(void)addButtonText:(NSString *)text frame:(CGRect)frame type:(ChangeUIButtonType)type target:(id)target selector:(SEL)selector selectorTag:(SEL)selectorTag;
+-(void)addButtonText:(NSString *)text frame:(CGRect)frame type:(ChangeButtonType)type target:(id)target selector:(SEL)selector selectorTag:(SEL)selectorTag;
 
 ///修改button的frame
 ///@param frame 修改后的frame
 ///@param type 需要修改哪一类的button
--(void)setButtonFrame:(CGRect)frame type:(ChangeUIButtonType)type;
+-(void)setButtonFrame:(CGRect)frame type:(ChangeButtonType)type;
 
 
 ///修改button后方显示的文本
 ///@param title 修改后的text
 ///@param type 需要修改哪一类的button
--(void)setButtonTitle:(NSString *)title type:(ChangeUIButtonType)type;
+-(void)setButtonTitle:(NSString *)title type:(ChangeButtonType)type;
 
 
 ///修改button后方显示的未被选中文本颜色
@@ -69,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///删除已添加的button
 ///@param type 需要删除哪一类的button
--(void)deleteButton:(ChangeUIButtonType)type;
+-(void)deleteButton:(ChangeButtonType)type;
 
 
 ///添加/修改最上方的标题文本
@@ -93,7 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///设置默认被选中的button
 ///@param type 被选中的button类型
--(void)setDefault:(ChangeUIButtonType)type;
+-(void)setDefault:(ChangeButtonType)type;
 @end
 
 NS_ASSUME_NONNULL_END

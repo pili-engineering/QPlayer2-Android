@@ -81,5 +81,5 @@
 /**
 返回解码类型
  */
--(QPlayerDecoderType)getDecoderType;
+-(QPlayerDecoder)getDecoderType;
 @end

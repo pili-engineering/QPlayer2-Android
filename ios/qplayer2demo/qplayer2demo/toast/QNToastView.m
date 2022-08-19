@@ -29,7 +29,7 @@ static pthread_rwlock_t w_plock;
     [self addView:str];
 }
 
--(void)addDecoderType:(QPlayerDecoderType)type{
+-(void)addDecoderType:(QPlayerDecoder)type{
     switch (type) {
         case QPLAYER_DECODER_SETTING_AUTO:
             [self addView:@"解码方式：自动"];

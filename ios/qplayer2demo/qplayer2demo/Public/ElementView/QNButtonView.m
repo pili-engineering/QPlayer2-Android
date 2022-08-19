@@ -137,7 +137,7 @@
 }
 - (void)setPlayer:(QPlayerContext *)player {
     _player = player;
-    self.playButton.selected = (_player.controlHandler.currentPlayerState == PLAYING);
+    self.playButton.selected = (_player.controlHandler.currentPlayerState == QPLAYER_STATE_PLAYING);
 }
 
 - (UISlider *)prograssSlider {
