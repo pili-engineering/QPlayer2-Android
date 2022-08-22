@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13FEA8885D41B2665512AAA1 /* libPods-qplayer2demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28213E62E1DBFDB4047DE7E7 /* libPods-qplayer2demo.a */; };
+		404B4AC63E07219F80148C01 /* libPods-qplayer2demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28213E62E1DBFDB4047DE7E7 /* libPods-qplayer2demo.a */; };
 		50B1F3D5289BBF7A0074E02D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B1F3D4289BBF7A0074E02D /* Foundation.framework */; };
 		50B1F484289CC62D0074E02D /* QNPlayerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F41F289CC62D0074E02D /* QNPlayerModel.m */; };
 		50B1F487289CC62D0074E02D /* QNConfigSegTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1F425289CC62D0074E02D /* QNConfigSegTableViewCell.m */; };
@@ -206,7 +206,7 @@
 			files = (
 				50B1F3D5289BBF7A0074E02D /* Foundation.framework in Frameworks */,
 				50BC398E28AE2EBA00924577 /* qplayer2_core.framework in Frameworks */,
-				13FEA8885D41B2665512AAA1 /* libPods-qplayer2demo.a in Frameworks */,
+				404B4AC63E07219F80148C01 /* libPods-qplayer2demo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

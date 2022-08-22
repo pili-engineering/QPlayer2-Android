@@ -7,7 +7,7 @@
 //
 
 #import "QNButtonView.h"
-@interface QNButtonView()<QIPlayerStreamListener,QIPlayerProgressListener>
+@interface QNButtonView()<QIPlayerProgressListener>
 
 @property (nonatomic, strong) UILabel *totalDurationLabel;
 @property (nonatomic, strong) UILabel *currentTimeLabel;
@@ -55,7 +55,6 @@
         [self addCurrentTimeLabel];
         [self addPlayButton];
         [self addFullScreenButton];
-        [self.player.controlHandler addPlayerStreamListener:self];
         [self.player.controlHandler addPlayerProgressChangeListener:self];
     }
     return self;
@@ -85,7 +84,6 @@
         [self addSubview:self.prograssSlider];
         [self addCurrentTimeLabel];
         
-        [self.player.controlHandler addPlayerStreamListener:self];
         [self.player.controlHandler addPlayerProgressChangeListener:self];
     }
     return self;
@@ -173,11 +171,29 @@
 }
 
 #pragma mark ListenDelegate
--(void)onProgressChanged:(QPlayerContext *)context progress:(NSInteger)progress{
+-(void)onProgressChanged:(QPlayerContext *)context progress:(NSInteger)progress duration:(NSInteger)duration{
     long long currentSeconds = progress/1000;
     float currentSecondsDouble = progress/1000.0;
     long long totalSeconds = self.player.controlHandler.duration/1000;
 
+    if (self.totalDuration != duration/1000) {
+        if (self.isLiving) {
+            self.totalDuration = 0;
+        } else {
+            self.totalDuration = duration/1000;
+        }
+        float minutes = _totalDuration / 60.0;
+        int seconds = (int)_totalDuration % 60;
+        if (minutes < 60) {
+            self.totalDurationLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)minutes, seconds];
+        } else{
+            float hours = minutes / 60.0;
+            int min = (int)minutes % 60;
+            self.totalDurationLabel.text = [NSString stringWithFormat:@"%02d:%02d:%02d", (int)hours, (int)min, seconds];
+        }
+        self.prograssSlider.maximumValue = _totalDuration;
+    }
+    
     if (self.totalDuration != 0 && (currentSeconds >= totalSeconds || fabsf(currentSecondsDouble - totalSeconds) <=0.5)) {
         if (!_isLiving) {
             self.prograssSlider.value = self.totalDuration;
@@ -197,24 +213,7 @@
         self.prograssSlider.value = currentSeconds;
     }
 }
--(void)onStreamOpen:(QPlayerContext *)context duration:(int64_t)duration{
-    
-    if (self.isLiving) {
-        self.totalDuration = 0;
-    } else {
-        self.totalDuration = duration/1000;
-    }
-    float minutes = _totalDuration / 60.0;
-    int seconds = (int)_totalDuration % 60;
-    if (minutes < 60) {
-        self.totalDurationLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)minutes, seconds];
-    } else{
-        float hours = minutes / 60.0;
-        int min = (int)minutes % 60;
-        self.totalDurationLabel.text = [NSString stringWithFormat:@"%02d:%02d:%02d", (int)hours, (int)min, seconds];
-    }
-    self.prograssSlider.maximumValue = _totalDuration;
-}
+
 #pragma mark 对外接口
 
 - (void)changeFrame:(CGRect)frame isFull:(BOOL)isFull{

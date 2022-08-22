@@ -29,7 +29,7 @@ static NSString *status[] = {
 UITableViewDelegate,
 UITableViewDataSource,
 QIPlayerStateChangeListener,
-QIPlayerStreamListener,
+QIPlayerProgressListener,
 QIPlayerRenderListener,
 QIMediaItemCommandNotAllowListener,
 QIMediaItemStateChangeListener
@@ -187,7 +187,7 @@ QIMediaItemStateChangeListener
 #pragma mark - PLPlayerDelegate
 -(void)playerContextAllCallBack{
     [self.player.controlHandler addPlayerStateListener:self];
-    [self.player.controlHandler addPlayerStreamListener:self];
+    [self.player.controlHandler addPlayerProgressChangeListener:self];
     [self.player.renderHandler addPlayerRenderListener:self];
 
 }
