@@ -65,7 +65,6 @@ QIPlayerQualityListener
 @property (nonatomic, assign) QPlayerDecoder decoderType;
 @property (nonatomic, assign) BOOL seeking;
 @property (nonatomic, strong) RenderView *myRenderView;
-@property (nonatomic, assign) NSInteger myOldQuality;
 @end
 
 @implementation QNPlayerMaskView
@@ -406,16 +405,12 @@ QIPlayerQualityListener
     _player = player;
 }
 #pragma mark - playerListenerDelegate
--(void)onQualitySwitchComplete:(QPlayerContext *)context usertype:(NSString *)usertype urlType:(QPlayerURLType)urlType oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality{
-    self.myOldQuality = newQuality;
-}
--(void)onQualitySwitchStart:(QPlayerContext *)context usertype:(NSString *)usertype urlType:(QPlayerURLType)urlType oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality{
-    self.myOldQuality = newQuality;
-}
+
 -(void)onQualitySwitchRetryLater:(QPlayerContext *)context usertype:(NSString *)usertype urlType:(QPlayerURLType)urlType{
+
     NSInteger nums = self.qualitySegMc.numberOfSegments;
     for (int i = 0; i < nums; i++) {
-        if ([[self.qualitySegMc titleForSegmentAtIndex:i] isEqual:[NSString stringWithFormat:@"%ld%@",(long)self.myOldQuality,@"p"]]) {
+        if ([[self.qualitySegMc titleForSegmentAtIndex:i] isEqual:[NSString stringWithFormat:@"%ld%@",(long)[self.player.controlHandler getSwitchingQuality:usertype urlType:urlType],@"p"]]) {
             self.qualitySegMc.selectedSegmentIndex = i;
             break;
         }

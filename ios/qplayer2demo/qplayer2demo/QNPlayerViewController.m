@@ -78,6 +78,7 @@ QIPlayerAuthenticationListener
 @property (nonatomic, strong) RenderView *myRenderView;
 @property (nonatomic, assign) BOOL isPlaying;
 @property (nonatomic, assign) BOOL beInterruptedByOtherAudio;
+@property (nonatomic, assign) NSInteger UpQualityIndex;
 @end
 
 @implementation QNPlayerViewController
@@ -261,10 +262,7 @@ QIPlayerAuthenticationListener
 -(void)onQualitySwitchFailed:(QPlayerContext *)context usertype:(NSString *)usertype urlType:(QPlayerURLType)urlType oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality{
     [_toastView addText:[NSString stringWithFormat:@"切换失败"]];
 }
--(void)onQualitySwitchRetryLater:(QPlayerContext *)context usertype:(NSString *)usertype urlType:(QPlayerURLType)urlType{
-    [_toastView addText:@"不可重复切换"];
-    
-}
+
 -(void)onStateChange:(QPlayerContext *)context state:(QPlayerState)state{
     if (state == QPLAYER_STATE_PREPARE) {
         [self.maskView loadActivityIndicatorView];
@@ -785,11 +783,19 @@ QIPlayerAuthenticationListener
         tempIndex ++;
     }
     NSArray<NSString*> *segmentedArray = [[NSArray alloc]initWithObjects:@"1080p",@"720p",@"480p",@"270p",nil];
-    [_toastView addText:[NSString stringWithFormat:@"即将切换为：%@",segmentedArray[index]]];
     self.definition = segmentedArray[index];
     
-    [self.playerContext.controlHandler switchQuality:model.streamElements[index]];
-    
+//    [self.playerContext.controlHandler switchQuality:model.streamElements[index]];
+    BOOL switchQualityBool =[self.playerContext.controlHandler switchQuality:model.streamElements[index].userType urlType:model.streamElements[index].urlType quality:model.streamElements[index].quality immediately:model.isLive];
+    if (!switchQualityBool) {
+        self.maskView.qualitySegMc.selectedSegmentIndex = self.UpQualityIndex;
+        
+        [_toastView addText:@"不可重复切换"];
+    }else{
+        _UpQualityIndex = index;
+        
+        [_toastView addText:[NSString stringWithFormat:@"即将切换为：%@",segmentedArray[index]]];
+    }
 }
 
 
