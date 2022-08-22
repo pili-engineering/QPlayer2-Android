@@ -21,11 +21,11 @@
     QNChangePlayerView *stretchPlayerView;
     QNChangePlayerView *SEIPlayerView;
     QNChangePlayerView *authenticationPlayerView;
-    void (^changePlayerViewCallback)(ChangeButtonType type , NSString * startPosition);
+    void (^changePlayerViewCallback)(ChangeButtonType type , NSString * startPosition,BOOL selected);
     void (^speedViewCallback)(SpeedUIButtonType type);
 }
 
--(instancetype)initChangePlayerViewCallBack:(void (^)(ChangeButtonType type , NSString * startPosition) )back{
+-(instancetype)initChangePlayerViewCallBack:(void (^)(ChangeButtonType type , NSString * startPosition,BOOL selected) )back{
     self = [super init];
     if (self) {
         self.frame = CGRectMake(ScreenWidth-390, 0, 390, ScreenHeight);
@@ -103,6 +103,13 @@
         case UIButtonTypeDectorAutomatic:
             [decoderView setDefault:type];
             break;
+        case UIButtonTypeSEIData:
+            [SEIPlayerView setDefault:type];
+            break;
+        case UIButtonTypeAuthentication:
+            [authenticationPlayerView setDefault:type];
+            break;
+
         default:
             NSLog(@"设置出错");
             break;
@@ -226,7 +233,7 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (changePlayerViewCallback) {
-        changePlayerViewCallback(nil,position.text);
+        changePlayerViewCallback(nil,position.text,NO);
     }
     [textField resignFirstResponder]; //回收键盘
 return YES;
@@ -235,7 +242,7 @@ return YES;
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (changePlayerViewCallback) {
-        changePlayerViewCallback(nil,position.text);
+        changePlayerViewCallback(nil,position.text,NO);
     }
 
 }
@@ -296,12 +303,25 @@ return YES;
 }
 -(void)changePlayerViewClick:(UIButton *)btn{
     if (changePlayerViewCallback) {
-        changePlayerViewCallback(btn.tag,position.text);
+        changePlayerViewCallback(btn.tag,position.text,btn.selected);
     }
 }
 -(void)changePlayerViewClickTag:(UIGestureRecognizer *)btn{
+    BOOL selected = YES;
+    switch (btn.view.tag) {
+        case UIButtonTypeAuthentication:
+            selected = [authenticationPlayerView getButtonSelected:UIButtonTypeAuthentication];
+            break;
+        case UIButtonTypeSEIData:
+            
+            selected = [SEIPlayerView getButtonSelected:UIButtonTypeSEIData];
+            break;
+        default:
+            break;
+            
+    }
     if (changePlayerViewCallback) {
-        changePlayerViewCallback(btn.view.tag,position.text);
+        changePlayerViewCallback(btn.view.tag,position.text,selected);
     }
 }
 @end

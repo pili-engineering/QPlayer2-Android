@@ -35,7 +35,9 @@ PLScanViewControlerDelegate,
 QIPlayerStateChangeListener,
 QIPlayerBufferingListener,
 QIPlayerQualityListener,
-QIPlayerSpeedListener
+QIPlayerSpeedListener,
+QIPlayerSEIDataListener,
+QIPlayerAuthenticationListener
 >
 
 /** 播放器蒙版视图 **/
@@ -91,6 +93,8 @@ QIPlayerSpeedListener
     } else{
         [self.navigationController setNavigationBarHidden:NO animated:NO];
     }
+    [self becomeFirstResponder];
+    [[UIApplication sharedApplication]beginReceivingRemoteControlEvents];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -103,19 +107,18 @@ QIPlayerSpeedListener
     }
     [self.playerContext.controlHandler playerRelease];
     self.playerContext = nil;
+    
+    [self resignFirstResponder];
+    [[UIApplication sharedApplication]endReceivingRemoteControlEvents];
 }
 
-- (void)onUIApplication:(BOOL)active{
-    if (active) {
-        
-        [self.playerContext.controlHandler resume];
-    }else{
-        [self.playerContext.controlHandler pause];
-    }
+-(void)remoteControlReceivedWithEvent:(UIEvent *)event{
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.scanClick = NO;
     self.isPlaying = NO;
     _playerConfigArray = [QDataHandle shareInstance].playerConfigArray;
@@ -177,6 +180,7 @@ QIPlayerSpeedListener
     self.definition = @"1080p";
     [self playerContextAllCallBack];
     
+    
 }
 
 #pragma mark - 初始化 PLPlayer
@@ -234,6 +238,20 @@ QIPlayerSpeedListener
     [self.playerContext.controlHandler addPlayerBufferingListener:self];
     [self.playerContext.controlHandler addPlayerQualityListener:self];
     [self.playerContext.controlHandler addPlayerSpeedChangeListener:self];
+    [self.playerContext.controlHandler addPlayerAuthenticationListener:self];
+    [self.playerContext.controlHandler addPlayerSEIDataListener:self];
+    
+}
+-(void)onSEIData:(QPlayerContext *)context data:(NSData *)data{
+    NSLog(@"sei回调");
+}
+-(void)onAuthenticationFailed:(QPlayerContext *)context error:(QPlayerAuthenticationErrorType)error{
+    
+    [_toastView addText:[NSString stringWithFormat:@"鉴权失败 : %d",(int)error]];
+
+}
+-(void)onAuthenticationSuccess:(QPlayerContext *)context{
+    [_toastView addText:@"鉴权成功"];
     
 }
 -(void)onSpeedChanged:(QPlayerContext *)context speed:(float)speed{
@@ -283,11 +301,9 @@ QIPlayerSpeedListener
 
 -(void)onBufferingEnd:(QPlayerContext *)context{
     [self.maskView removeActivityIndicatorView];
-    [_toastView addText:@"结束buffering"];
 }
 -(void)onBufferingStart:(QPlayerContext *)context{
     [self.maskView loadActivityIndicatorView];
-    [_toastView addText:@"开始buffering"];
 }
 -(void)onQualitySwitchComplete:(QPlayerContext *)context usertype:(NSString *)usertype urlType:(QPlayerURLType)urlType oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality{
     NSString *string = [NSString stringWithFormat:@"清晰度切换成功 %ld",(long)newQuality];
@@ -337,8 +353,8 @@ QIPlayerSpeedListener
 
 - (NSString *)updatePlayerStatus {
     NSDictionary *statusDictionary = @{@(QPLAYER_STATE_NONE):@"Unknow",
-                                       @(    QPLAYER_STATE_INIT):@"init",
-                                       @(    QPLAYER_STATE_PREPARE):@"PREPARE",
+                                       @(QPLAYER_STATE_INIT):@"init",
+                                       @(QPLAYER_STATE_PREPARE):@"PREPARE",
                                        @(QPLAYER_STATE_PLAYING):@"Playing",
                                        @(QPLAYER_STATE_PAUSED):@"Paused",
                                        @(QPLAYER_STATE_STOPPED):@"Stopped",
@@ -379,8 +395,6 @@ QIPlayerSpeedListener
         self.durationTimer = nil;
         
         self.maskView = nil;
-        
-//        self.playerContext = nil;
         // 更新日志
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -409,7 +423,7 @@ QIPlayerSpeedListener
 
 {
 
-return NO;
+    return NO;
 
 }
 
@@ -495,6 +509,19 @@ return NO;
             
         } else if ([configureModel.configuraKey containsString:@"色盲模式"]) {
             [self.playerContext.renderHandler setBlindType:(QPlayerBlind)index];
+        }
+        else if ([configureModel.configuraKey containsString:@"SEI"]) {
+            if (index == 0) {
+                
+                [self.playerContext.controlHandler setSEIEnable:YES];
+            }else{
+                [self.playerContext.controlHandler setSEIEnable:NO];
+            }
+        }
+        else if ([configureModel.configuraKey containsString:@"鉴权"]) {
+            if (index == 0) {
+                [self.playerContext.controlHandler forceAuthenticationFromNetwork];
+            }
         }
     }
 }
@@ -620,7 +647,9 @@ return NO;
         self.maskView.qualitySegMc.hidden = YES;
     }
     
-    
+    if ([[QDataHandle shareInstance] getAuthenticationState]) {
+        [self.playerContext.controlHandler forceAuthenticationFromNetwork];
+    }
     [_playerContext.controlHandler playMediaModel:model startPos:[[QDataHandle shareInstance] getConfiguraPostion]];
     [_maskView setPlayButtonState:NO];
     [self judgeWeatherIsLiveWithURL:selectedURL];

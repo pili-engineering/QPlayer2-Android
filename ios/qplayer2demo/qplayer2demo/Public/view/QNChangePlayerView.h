@@ -29,9 +29,9 @@ typedef NS_ENUM(NSInteger, ChangeButtonType){
     UIButtonTypeActionPause,            //起播暂停
     
     
-    UIButtonTypeSEIData = 500,            //起播暂停
+    UIButtonTypeSEIData = 500,            //sei
     
-    UIButtonTypeAuthentication = 600            //起播暂停
+    UIButtonTypeAuthentication = 600            //鉴权
     
 };
 NS_ASSUME_NONNULL_BEGIN
@@ -99,6 +99,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///设置默认被选中的button
 ///@param type 被选中的button类型
 -(void)setDefault:(ChangeButtonType)type;
+
+//获取button是否被选择
+///@param type 被选中的button类型
+-(BOOL)getButtonSelected:(ChangeButtonType)type;
 @end
 
 NS_ASSUME_NONNULL_END

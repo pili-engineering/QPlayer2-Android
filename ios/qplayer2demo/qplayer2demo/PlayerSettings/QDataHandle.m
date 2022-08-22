@@ -57,8 +57,13 @@
         
         NSDictionary *colorBDict = @{@"色盲模式":@[@"无",@"红色盲",@"绿色盲",@"蓝色盲"], @"default":@0};
         
+        NSDictionary *authonBDict = @{@"鉴权":@[@"开启",@"关闭"], @"default":@0};
         
-        NSArray *piliOptionArray = @[startDict,videoToolboxDict, seekDict,actionDict,renderDict,speepDict,colorBDict];
+        NSDictionary *SEIBDict = @{@"SEI":@[@"开启",@"关闭"], @"default":@0};
+        
+        
+        
+        NSArray *piliOptionArray = @[startDict,videoToolboxDict, seekDict,actionDict,renderDict,speepDict,colorBDict,authonBDict,SEIBDict];
         
 //        NSDictionary *PLPlayerDict = @{@"PLPlayer":piliPlayerArray};
         NSDictionary *PLPlayerOptionDict = @{@"PLPlayerOption":piliOptionArray};
@@ -79,6 +84,8 @@
         }
     }
 }
+
+
 
 -(void)setValueConfiguraKey:(NSString *)tittle selValue:(int)value{
     for (QNClassModel *classModel in _playerConfigArray){
@@ -104,6 +111,20 @@
     }
     return 0;
 }
-
+-(BOOL)getAuthenticationState{
+    for (QNClassModel *classModel in _playerConfigArray){
+        for (PLConfigureModel *cMode in classModel.classValue) {
+            if ([cMode.configuraKey containsString:@"鉴权"]) {
+                if ([cMode.selectedNum intValue] == 0) {
+                    return YES;
+                }
+                else{
+                    return NO;
+                }
+            }
+        }
+    }
+    return NO;
+}
 
 @end

@@ -158,7 +158,7 @@ QIPlayerQualityListener
         [_showSettingViewButton addTarget:self action:@selector(ShowSettingViewButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         _showSettingViewButton.hidden = YES;
         [self addSubview:_showSettingViewButton];
-        _settingView = [[QNPlayerSettingsView alloc]initChangePlayerViewCallBack:^(ChangeButtonType type, NSString * _Nonnull startPosition) {
+        _settingView = [[QNPlayerSettingsView alloc]initChangePlayerViewCallBack:^(ChangeButtonType type, NSString * _Nonnull startPosition,BOOL selected) {
             if (type < 5) {
                 [self.player.renderHandler setRenderRatio:(QPlayerRenderRatio)(type + 1)];
                 
@@ -179,10 +179,25 @@ QIPlayerQualityListener
                 
                 [[QDataHandle shareInstance] setSelConfiguraKey:@"Start Action" selIndex:(int)(type-400)];
             }
-            else if(type < 502){
+            else if(type == 500){
                 
+                [self.player.controlHandler setSEIEnable: selected];
+                if (selected) {
+                    
+                    [[QDataHandle shareInstance] setSelConfiguraKey:@"SEI" selIndex:0];
+                }else{
+                    
+                    [[QDataHandle shareInstance] setSelConfiguraKey:@"SEI" selIndex:1];
+                }
             }
-            else if(type < 602){
+            else if(type == 600){
+                if (selected) {
+                    [self.player.controlHandler forceAuthenticationFromNetwork];
+                    [[QDataHandle shareInstance] setSelConfiguraKey:@"鉴权" selIndex:0];
+                }else{
+                    
+                    [[QDataHandle shareInstance] setSelConfiguraKey:@"鉴权" selIndex:1];
+                }
             }
             
             if (startPosition && ![startPosition isEqualToString:@""]) {
@@ -280,7 +295,26 @@ QIPlayerQualityListener
             
         } else if ([configureModel.configuraKey containsString:@"色盲模式"]) {
             [_settingView setChangeDefault:(ChangeButtonType)(index + 100)];
-        }
+        }//默认开启
+        else if ([configureModel.configuraKey containsString:@"SEI"]) {
+            if (index == 0) {
+                
+                [_settingView setChangeDefault:UIButtonTypeSEIData];
+            }
+            else{
+                
+            }
+        }//默认开启
+        else if ([configureModel.configuraKey containsString:@"鉴权"]) {
+            if (index == 0) {
+                
+                [_settingView setChangeDefault:UIButtonTypeAuthentication];
+            }
+            else{
+                
+            }
+       }
+        
     }
 }
 
@@ -645,7 +679,7 @@ QIPlayerQualityListener
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer shouldReceiveTouch:(UITouch*)touch {
 
-    if([touch.view isKindOfClass:[UISlider class]] || [touch.view isKindOfClass:[QNPlayerSettingsView class]] || [touch.view isKindOfClass:[QNChangePlayerView class]] || [touch.view isKindOfClass:[QNSpeedPlayerView class]]){
+    if([touch.view isKindOfClass:[UISlider class]] || [touch.view isKindOfClass:[QNPlayerSettingsView class]] || [touch.view isKindOfClass:[QNChangePlayerView class]] || [touch.view isKindOfClass:[QNSpeedPlayerView class]] || [touch.view isKindOfClass:[UILabel class]]){
         return NO;
     } else {
         return YES;

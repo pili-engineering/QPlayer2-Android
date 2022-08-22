@@ -54,10 +54,11 @@
     for (UIButton *btn in buttonArray) {
         if (btn.tag == type) {
             [btn setImage:selectedImage forState:UIControlStateNormal];
-            
+            btn.selected = YES;
         }
         else{
             [btn setImage:notSelectedImage forState:UIControlStateNormal];
+            btn.selected = NO;
         }
     }
     for (UILabel *lab in labelArray) {
@@ -258,6 +259,15 @@
 }
 -(void)setButtonSelectedImage:(UIImage *)Image{
     selectedImage = Image;
+}
+
+-(BOOL)getButtonSelected:(ChangeButtonType)type{
+    for (UIButton *midBtn in buttonArray) {
+        if (midBtn.tag == type) {
+            return midBtn.selected;
+        }
+    }
+    return NO;
 }
 /*
 // Only override drawRect: if you perform custom drawing.
