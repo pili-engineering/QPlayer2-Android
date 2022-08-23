@@ -174,10 +174,10 @@ class PlayerToastService
         val toast = PlayerToast.Builder()
             .toastItemType(PlayerToastConfig.TYPE_NORMAL)
             .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
-            .setExtraString(PlayerToastConfig.EXTRA_TITLE, "Qplayer2鉴权失败")
+            .setExtraString(PlayerToastConfig.EXTRA_TITLE, "Qplayer2鉴权失败-${error_type}")
             .duration(PlayerToastConfig.DURATION_3)
             .build()
-        Log.e("PlayerToastService", "Qplayer2鉴权失败")
+        Log.e("PlayerToastService", "Qplayer2鉴权失败-${error_type}")
 
         mPlayerCore.playerToastContainer?.showToast(toast)
     }
