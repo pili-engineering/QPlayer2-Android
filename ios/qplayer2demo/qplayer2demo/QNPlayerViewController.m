@@ -37,7 +37,8 @@ QIPlayerBufferingListener,
 QIPlayerQualityListener,
 QIPlayerSpeedListener,
 QIPlayerSEIDataListener,
-QIPlayerAuthenticationListener
+QIPlayerAuthenticationListener,
+QIPlayerRenderListener
 >
 
 /** 播放器蒙版视图 **/
@@ -79,6 +80,7 @@ QIPlayerAuthenticationListener
 @property (nonatomic, assign) BOOL isPlaying;
 @property (nonatomic, assign) BOOL beInterruptedByOtherAudio;
 @property (nonatomic, assign) NSInteger UpQualityIndex;
+@property (nonatomic, assign) NSInteger firstVideoTime;
 @end
 
 @implementation QNPlayerViewController
@@ -94,8 +96,6 @@ QIPlayerAuthenticationListener
     } else{
         [self.navigationController setNavigationBarHidden:NO animated:NO];
     }
-    [self becomeFirstResponder];
-    [[UIApplication sharedApplication]beginReceivingRemoteControlEvents];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -105,17 +105,16 @@ QIPlayerAuthenticationListener
     if (!self.scanClick) {
         
         [self.playerContext.controlHandler stop];
+    }else{
+        
+        [self.playerContext.controlHandler playerRelease];
+        self.playerContext = nil;
     }
-    [self.playerContext.controlHandler playerRelease];
-    self.playerContext = nil;
     
-    [self resignFirstResponder];
-    [[UIApplication sharedApplication]endReceivingRemoteControlEvents];
+    
 }
 
--(void)remoteControlReceivedWithEvent:(UIEvent *)event{
-    
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -181,6 +180,8 @@ QIPlayerAuthenticationListener
     self.definition = @"1080p";
     [self playerContextAllCallBack];
     
+    //已经进入到前台
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUIApplicationWillEnterForeground:) name:UIApplicationDidBecomeActiveNotification object:nil];
     
 }
 
@@ -237,12 +238,16 @@ QIPlayerAuthenticationListener
 -(void)playerContextAllCallBack{
 
     [self.playerContext.controlHandler addPlayerStateListener:self];
-    [self.playerContext.controlHandler addPlayerBufferingListener:self];
+    [self.playerContext.controlHandler addPlayerBufferingChangeListener:self];
     [self.playerContext.controlHandler addPlayerQualityListener:self];
     [self.playerContext.controlHandler addPlayerSpeedChangeListener:self];
     [self.playerContext.controlHandler addPlayerAuthenticationListener:self];
     [self.playerContext.controlHandler addPlayerSEIDataListener:self];
+    [self.playerContext.renderHandler addPlayerRenderListener:self];
     
+}
+-(void)onFirstFrameRendered:(QPlayerContext *)context elapsedTime:(NSInteger)elapsedTime{
+    self.firstVideoTime = elapsedTime;
 }
 -(void)onSEIData:(QPlayerContext *)context data:(NSData *)data{
     [_toastView addText:@"sei回调"];
@@ -320,7 +325,7 @@ QIPlayerAuthenticationListener
 
 - (NSArray *)updateInfoArray {
     NSString *statusStr = [self updatePlayerStatus];
-    NSString *firstVideoTimeStr = [NSString stringWithFormat:@"%d ms",self.playerContext.renderHandler.firstVideoTime];
+    NSString *firstVideoTimeStr = [NSString stringWithFormat:@"%d ms",self.firstVideoTime];
     NSString *renderFPSStr = [NSString stringWithFormat:@"%dfps", self.playerContext.controlHandler.fps];
     NSString *downSpeedStr = [NSString stringWithFormat:@"%.2fkb/s", self.playerContext.controlHandler.downloadSpeed * 1.0/1000];
 
@@ -488,7 +493,7 @@ QIPlayerAuthenticationListener
     
     if ([classModel.classKey isEqualToString:@"PLPlayerOption"]) {
         if ([configureModel.configuraKey containsString:@"播放速度"]) {
-            [self.playerContext.controlHandler setPlayerSpeed:[configureModel.configuraValue[index] floatValue]];
+            [self.playerContext.controlHandler setSpeed:[configureModel.configuraValue[index] floatValue]];
         }
 
         if ([configureModel.configuraKey containsString:@"播放起始"]){
@@ -530,7 +535,7 @@ QIPlayerAuthenticationListener
 - (void)scanQRResult:(NSString *)qrString isLive:(BOOL)isLive{
 
     if (!isLive) {
-        [_playerContext.controlHandler resume];
+        [_playerContext.controlHandler resumeRender];
     }
     NSURL *url;
     if (qrString) {
@@ -565,7 +570,7 @@ QIPlayerAuthenticationListener
 - (void)scanCodeAction:(UIButton *)scanButton {
     
     if (_playerContext.controlHandler.currentPlayerState == QPLAYER_STATE_PLAYING) {
-        [_playerContext.controlHandler pause];
+        [_playerContext.controlHandler pauseRender];
     }
     self.scanClick = YES;
     QNScanViewController *scanViewController = [[QNScanViewController alloc] init];
@@ -608,7 +613,7 @@ QIPlayerAuthenticationListener
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSURL *selectedURL = [NSURL URLWithString:_playerModels[indexPath.row].streamElements[0].url];
     if (_playerContext.controlHandler.currentPlayerState == QPLAYER_STATE_PLAYING) {
-        [_playerContext.controlHandler pause];
+        [_playerContext.controlHandler pauseRender];
     }
     
     _selectedIndex = indexPath.row;
@@ -798,6 +803,24 @@ QIPlayerAuthenticationListener
         [_toastView addText:[NSString stringWithFormat:@"即将切换为：%@",segmentedArray[index]]];
     }
 }
+- (void)onUIApplicationWillEnterForeground:(NSNotification *)note{
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    NSError* error = nil;
+    if ([session setActive:YES error:&error] == NO)
+    {
+        NSLog(@"%@",error); //发生错误
+        return;
+    }else{
+        if ([session setCategory:AVAudioSessionCategorySoloAmbient error:&error] == NO) {
+            NSLog(@"%@",error); //发生错误
+            return;
+        }else{
+            NSLog(@"独占");
+        }
+        NSLog(@"抢占焦点");
+    }
+}
+
 
 
 @end

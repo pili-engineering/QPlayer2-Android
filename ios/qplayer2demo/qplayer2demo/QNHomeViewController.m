@@ -58,7 +58,7 @@
     [cellPlayerButton addTarget:self action:@selector(enterCellPlayerAction:) forControlEvents:UIControlEventTouchDown];
     [cellPlayerButton setTitle:@"短视频" forState:UIControlStateNormal];
     cellPlayerButton.titleLabel.font = PL_FONT_MEDIUM(14);
-    [self.view addSubview:cellPlayerButton];
+//    [self.view addSubview:cellPlayerButton];
     
     // 多 player 多 item
     UIButton *itemPlayerButton = [[UIButton alloc] initWithFrame:CGRectMake(70, (PL_SCREEN_HEIGHT - kLogoSizeHeight - 116)/4 + kLogoSizeHeight + 50 + 140, PL_SCREEN_WIDTH - 140, 34)];

@@ -245,7 +245,7 @@ QIPlayerAuthenticationListener
                     break;
             }
             
-            [self.player.controlHandler setPlayerSpeed:speed];
+            [self.player.controlHandler setSpeed:speed];
             [[QDataHandle shareInstance] setSelConfiguraKey:@"播放速度" selIndex:(int)(type)];
             
         }];

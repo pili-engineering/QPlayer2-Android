@@ -13,6 +13,5 @@
 
 @property (nonatomic, strong) NSArray<QNClassModel*> *playerConfigArray;
 
-- (void)onUIApplication:(BOOL)active;
 
 @end

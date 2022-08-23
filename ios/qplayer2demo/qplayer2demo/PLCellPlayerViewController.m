@@ -30,9 +30,7 @@ UITableViewDelegate,
 UITableViewDataSource,
 QIPlayerStateChangeListener,
 QIPlayerProgressListener,
-QIPlayerRenderListener,
-QIMediaItemCommandNotAllowListener,
-QIMediaItemStateChangeListener
+QIPlayerRenderListener
 >
 
 @property (nonatomic, strong) QPlayerContext *player;
@@ -40,7 +38,7 @@ QIMediaItemStateChangeListener
 @property (nonatomic, strong) PLCellPlayerTableViewCell *currentCell;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
-@property (nonatomic, strong) NSMutableArray <QMediaItemContext *>*cacheArray;
+//@property (nonatomic, strong) NSMutableArray <QMediaItemContext *>*cacheArray;
 @property (nonatomic, strong) NSMutableArray<QMediaModel *> *playerModels;
 
 @property (nonatomic, assign) CGFloat topSpace;
@@ -55,12 +53,12 @@ QIMediaItemStateChangeListener
 - (void)dealloc {
     
     [self.player.controlHandler stop];
-    for (int i = 0; i < _cacheArray.count; i ++) {
-        QMediaItemContext *item = _cacheArray[i];
-       BOOL aa =  [item.controlHandler stop];
-        NSLog(@"----%d",aa);
-    }
-    [_cacheArray removeAllObjects];
+//    for (int i = 0; i < _cacheArray.count; i ++) {
+//        QMediaItemContext *item = _cacheArray[i];
+//       BOOL aa =  [item.controlHandler stop];
+//        NSLog(@"----%d",aa);
+//    }
+//    [_cacheArray removeAllObjects];
     NSLog(@"PLCellPlayerViewController - dealloc");
 }
 
@@ -80,7 +78,7 @@ QIMediaItemStateChangeListener
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.cacheArray = [NSMutableArray array];
+//    self.cacheArray = [NSMutableArray array];
     
     // Do any additional setup after loading the view.
 
@@ -261,18 +259,18 @@ QIMediaItemStateChangeListener
 
 #pragma mark - mediaItemDelegate
 
--(void)addAllCallBack:(QMediaItemContext *)mediaItem{
-    [mediaItem.controlHandler addMediaItemStateChangeListener:self];
-    [mediaItem.controlHandler addMediaItemCommandNotAllowListener:self];
-    
-
-}
--(void)onStateChanged:(QMediaItemContext *)context state:(QMediaItemState)state{
-    NSLog(@"-------------预加载--onStateChanged -- %d---%@",state,context.controlHandler.media_model.streamElements[0].url);
-}
--(void)onCommandNotAllow:(QMediaItemContext *)context commandName:(NSString *)commandName state:(QMediaItemState)state{
-    NSLog(@"-------------预加载--notAllow---%@",commandName);
-}
+//-(void)addAllCallBack:(QMediaItemContext *)mediaItem{
+////    [mediaItem.controlHandler addMediaItemStateChangeListener:self];
+////    [mediaItem.controlHandler addMediaItemCommandNotAllowListener:self];
+//
+//
+//}
+//-(void)onStateChanged:(QMediaItemContext *)context state:(QMediaItemState)state{
+////    NSLog(@"-------------预加载--onStateChanged -- %d---%@",state,context.controlHandler.media_model.streamElements[0].url);
+//}
+//-(void)onCommandNotAllow:(QMediaItemContext *)context commandName:(NSString *)commandName state:(QMediaItemState)state{
+//    NSLog(@"-------------预加载--notAllow---%@",commandName);
+//}
 #pragma mark - tableView delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -354,26 +352,26 @@ QIMediaItemStateChangeListener
     if (_currentCell == cell && _currentCell) {
         if (!scroll) {
             if(isPlaying) {
-                    [_player.controlHandler pause];
+                    [_player.controlHandler pauseRender];
             } else{
-                    [_player.controlHandler resume];
+                    [_player.controlHandler resumeRender];
             }
         }
     } else{
 
-        QMediaItemContext *item = [self findCrashMediaItemsOf:cell.model];
-        if (item) {
-            [self.player.controlHandler playMediaItem:item];
-            NSLog(@"预加载--播放缓存---%@",item.controlHandler.media_model.streamElements[0].url);
+//        QMediaItemContext *item = [self findCrashMediaItemsOf:cell.model];
+//        if (item) {
+//            [self.player.controlHandler playMediaItem:item];
+//            NSLog(@"预加载--播放缓存---%@",item.controlHandler.media_model.streamElements[0].url);
             
-        }else{
-            QMediaModel *model = [[QMediaModel alloc] init];
-            model.streamElements = cell.model.streamElements;
-            model.isLive = _playerModels.firstObject.isLive;
-            [self.player.controlHandler playMediaModel:model startPos:0];
+//        }else{
+//            QMediaModel *model = [[QMediaModel alloc] init];
+//            model.streamElements = cell.model.streamElements;
+//            model.isLive = _playerModels.firstObject.isLive;
+//            [self.player.controlHandler playMediaModel:model startPos:0];
             
-            NSLog(@"预加载--new---%@",item.controlHandler.media_model.streamElements[0].url);
-        }
+//            NSLog(@"预加载--new---%@",item.controlHandler.media_model.streamElements[0].url);
+//        }
     
         _currentCell = cell;
     }
@@ -391,10 +389,10 @@ QIMediaItemStateChangeListener
     model.isLive = playerModel.isLive;
     
     // 预加载
-    QMediaItemContext *item = [[QMediaItemContext alloc] initItemComtextStorageDir:documentsDir logLevel:LOG_VERBOSE];
-    [self addAllCallBack:item];
-    [item.controlHandler start:model startPos:0];
-    [self.cacheArray addObject:item];
+//    QMediaItemContext *item = [[QMediaItemContext alloc] initItemComtextStorageDir:documentsDir logLevel:LOG_VERBOSE];
+//    [self addAllCallBack:item];
+//    [item.controlHandler start:model startPos:0];
+//    [self.cacheArray addObject:item];
     
     NSLog(@"预加载--addcrash -- %@",playerModel.streamElements.firstObject.url);
     
@@ -403,22 +401,22 @@ QIMediaItemStateChangeListener
 -(int)indexPlayerModelsOf:(QMediaItemContext *)item{
     for (int i = 0; i < _playerModels.count; i ++) {
         QMediaModel *modle = _playerModels[i];
-        if (modle.isLive == item.controlHandler.media_model.isLive && modle.streamElements == item.controlHandler.media_model.streamElements) {
-            return i;
-        }
+//        if (modle.isLive == item.controlHandler.media_model.isLive && modle.streamElements == item.controlHandler.media_model.streamElements) {
+//            return i;
+//        }
     }
     return -1;
 }
 
--(QMediaItemContext *)findCrashMediaItemsOf:(QMediaModel *)modle{
-    for (int i = 0; i < _cacheArray.count; i ++) {
-        QMediaItemContext *item = _cacheArray[i];
-        if (modle.isLive == item.controlHandler.media_model.isLive && modle.streamElements == item.controlHandler.media_model.streamElements) {
-            return item;
-        }
-    }
-    return NULL;
-}
+//-(QMediaItemContext *)findCrashMediaItemsOf:(QMediaModel *)modle{
+//    for (int i = 0; i < _cacheArray.count; i ++) {
+//        QMediaItemContext *item = _cacheArray[i];
+//        if (modle.isLive == item.controlHandler.media_model.isLive && modle.streamElements == item.controlHandler.media_model.streamElements) {
+//            return item;
+//        }
+//    }
+//    return NULL;
+//}
 
 
 -(void)updateCache:(QMediaModel *)model{
@@ -427,25 +425,25 @@ QIMediaItemStateChangeListener
     
     NSMutableArray *delArray = [NSMutableArray array];
     NSMutableArray *addArray = [NSMutableArray array];
-    
-    for (int i = 0; i < _cacheArray.count; i ++) {//
-        QMediaItemContext *model0 = _cacheArray[i];
-        int index = (int)[self indexPlayerModelsOf:model0];
-        if (![realCacheArray containsObject:@(index)]) {// _cacheArray 独有
-            [delArray addObject:model0];
-             
-        }
-    }
-
-    for (int i = 0; i < realCacheArray.count; i ++) {//
-        int index = [realCacheArray[i] intValue];
-        QMediaModel *model0 = _playerModels[index];
-        if (![self findCrashMediaItemsOf:model0]) {// realCacheArray 独有
-            [self AddToCash:_playerModels[index]];
-        }
-    }
-    
-    [_cacheArray removeObjectsInArray:delArray];
+//
+//    for (int i = 0; i < _cacheArray.count; i ++) {//
+//        QMediaItemContext *model0 = _cacheArray[i];
+//        int index = (int)[self indexPlayerModelsOf:model0];
+//        if (![realCacheArray containsObject:@(index)]) {// _cacheArray 独有
+//            [delArray addObject:model0];
+//
+//        }
+//    }
+//
+//    for (int i = 0; i < realCacheArray.count; i ++) {//
+//        int index = [realCacheArray[i] intValue];
+//        QMediaModel *model0 = _playerModels[index];
+//        if (![self findCrashMediaItemsOf:model0]) {// realCacheArray 独有
+//            [self AddToCash:_playerModels[index]];
+//        }
+//    }
+//
+//    [_cacheArray removeObjectsInArray:delArray];
 }
 
 // 前 1 后 3
