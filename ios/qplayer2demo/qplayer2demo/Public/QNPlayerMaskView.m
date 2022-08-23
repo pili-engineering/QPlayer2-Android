@@ -20,7 +20,8 @@ typedef NS_ENUM(NSInteger, PLMoveDirectionType)
 @interface QNPlayerMaskView ()
 <
 UIGestureRecognizerDelegate,
-QIPlayerQualityListener
+QIPlayerQualityListener,
+QIPlayerAuthenticationListener
 >{
     bool isScreenFull;
     CGRect fullFrame;
@@ -78,6 +79,7 @@ QIPlayerQualityListener
         self.player = player;
         
         [self.player.controlHandler addPlayerQualityListener:self];
+        [self.player.controlHandler addPlayerAuthenticationListener:self];
         self.isLiving = isLiving;
         self.myRenderView = view;
         CGFloat playerWidth = CGRectGetWidth(frame);
@@ -414,6 +416,12 @@ QIPlayerQualityListener
             self.qualitySegMc.selectedSegmentIndex = i;
             break;
         }
+    }
+}
+
+-(void)onAuthenticationFailed:(QPlayerContext *)context error:(QPlayerAuthenticationErrorType)error{
+    if (error == QPLAYER_AUTHENTICATION_ERROR_TYPE_AET_NO_BLIND_AUTH) {
+        [_settingView setChangeDefault:UIButtonTypeFilterNone];
     }
 }
 #pragma mark - getter

@@ -207,13 +207,14 @@ QIPlayerAuthenticationListener
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 
     
-    QPlayerContext *player =  [[QPlayerContext alloc]initPlayerVersion:nil storageDir:documentsDir logLevel:LOG_VERBOSE];
+    QPlayerContext *player =  [[QPlayerContext alloc]initPlayerAPPVersion:nil localStorageDir:documentsDir logLevel:LOG_VERBOSE];
     self.playerContext = player;
 //    self.playerContext.controlHandler.playerView.frame = CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT);
     _myRenderView = [[RenderView alloc]initWithFrame:CGRectMake(0, _topSpace, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT)];
     [_myRenderView attachRenderHandler:self.playerContext.renderHandler];
 //    [self.view addSubview:self.playerContext.controlHandler.playerView];
     [self.view addSubview:_myRenderView];
+//    [self.playerContext.controlHandler forceAuthenticationFromNetwork];
     
     
     for (QNClassModel* model in configs) {
@@ -244,7 +245,7 @@ QIPlayerAuthenticationListener
     
 }
 -(void)onSEIData:(QPlayerContext *)context data:(NSData *)data{
-    NSLog(@"sei回调");
+    [_toastView addText:@"sei回调"];
 }
 -(void)onAuthenticationFailed:(QPlayerContext *)context error:(QPlayerAuthenticationErrorType)error{
     
