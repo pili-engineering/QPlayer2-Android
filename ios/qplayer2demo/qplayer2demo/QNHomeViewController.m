@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) NSArray<QNClassModel*> *playerConfigArray;
 
+
 @end
 
 @implementation QNHomeViewController
@@ -31,9 +32,8 @@
     
     // 布局主页面
     [self layoutMainView];
-    
-}
 
+}
 
 - (void)layoutMainView {
     UIImageView *qiniuLogImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LOGO"]];
@@ -69,7 +69,7 @@
     [itemPlayerButton setTitle:@"初始化" forState:UIControlStateNormal];
     itemPlayerButton.titleLabel.font = PL_FONT_MEDIUM(14);
     [self.view addSubview:itemPlayerButton];
-
+    
 }
 
 #pragma mark - 进入各个模式

@@ -72,7 +72,6 @@ QIPlayerRenderListener
 
 /**toast **/
 @property (nonatomic, strong) QNToastView *toastView;
-@property (nonatomic, assign) NSString *definition;
 
 @property (nonatomic, strong) QPlayerContext *playerContext;
 @property (nonatomic, assign) BOOL scanClick;
@@ -91,6 +90,7 @@ QIPlayerRenderListener
 
 - (void)viewWillAppear:(BOOL)animated {
     QNAppDelegate *appDelegate = (QNAppDelegate *)[UIApplication sharedApplication].delegate;
+    self.scanClick = NO;
     if (appDelegate.isFlip) {
         [self.navigationController setNavigationBarHidden:YES animated:NO];
     } else{
@@ -105,7 +105,6 @@ QIPlayerRenderListener
     if (!self.scanClick) {
         
         [self.playerContext.controlHandler stop];
-    }else{
         
         [self.playerContext.controlHandler playerRelease];
         self.playerContext = nil;
@@ -176,8 +175,6 @@ QIPlayerRenderListener
     
     _toastView = [[QNToastView alloc]initWithFrame:CGRectMake(0, PL_SCREEN_HEIGHT-300, 200, 300)];
     [self.view addSubview:_toastView];
-    //清晰度默认为1080p
-    self.definition = @"1080p";
     [self playerContextAllCallBack];
     
     //已经进入到前台
@@ -274,7 +271,6 @@ QIPlayerRenderListener
         [self.maskView loadActivityIndicatorView];
         [_toastView addText:@"开始拉视频数据"];
         [_toastView addDecoderType:[self.maskView getDecoderType]];
-        [_toastView addText:[NSString stringWithFormat:@"清晰度：%@",self.definition]];
     } else if (state == QPLAYER_STATE_PLAYING) {
         //            _maskView.player = _player;
         self.isPlaying = YES;
@@ -283,7 +279,7 @@ QIPlayerRenderListener
         
         [_toastView addText:@"播放中"];
         
-    } else if (state == QPLAYER_STATE_PAUSED) {
+    } else if (state == QPLAYER_STATE_PAUSED_RENDER) {
         [_toastView addText:@"暂停播放"];
         [_maskView setPlayButtonState:NO];
     }else if (state == QPLAYER_STATE_STOPPED){
@@ -310,7 +306,7 @@ QIPlayerRenderListener
     [self.maskView loadActivityIndicatorView];
 }
 -(void)onQualitySwitchComplete:(QPlayerContext *)context usertype:(NSString *)usertype urlType:(QPlayerURLType)urlType oldQuality:(NSInteger)oldQuality newQuality:(NSInteger)newQuality{
-    NSString *string = [NSString stringWithFormat:@"清晰度切换成功 %ld",(long)newQuality];
+    NSString *string = [NSString stringWithFormat:@"清晰度 %ld p",(long)newQuality];
     [self.toastView addText:string];
 }
 
@@ -360,7 +356,7 @@ QIPlayerRenderListener
                                        @(QPLAYER_STATE_INIT):@"init",
                                        @(QPLAYER_STATE_PREPARE):@"PREPARE",
                                        @(QPLAYER_STATE_PLAYING):@"Playing",
-                                       @(QPLAYER_STATE_PAUSED):@"Paused",
+                                       @(QPLAYER_STATE_PAUSED_RENDER):@"Paused",
                                        @(QPLAYER_STATE_STOPPED):@"Stopped",
                                        @(QPLAYER_STATE_ERROR):@"Error",
                                        @(QPLAYER_STATE_SEEKING):@"seek",
@@ -506,7 +502,7 @@ QIPlayerRenderListener
             [self.playerContext.controlHandler  setSeekMode:index];
 
         } else if ([configureModel.configuraKey containsString:@"Start Action"]) {
-            [self.playerContext.controlHandler setStartAction:(int)index];
+            [self.playerContext.controlHandler setStartAction:(QPlayerStart)index];
             
         } else if ([configureModel.configuraKey containsString:@"Render ratio"]) {
             [self.playerContext.renderHandler setRenderRatio:(QPlayerRenderRatio)(index + 1)];
@@ -789,7 +785,6 @@ QIPlayerRenderListener
         tempIndex ++;
     }
     NSArray<NSString*> *segmentedArray = [[NSArray alloc]initWithObjects:@"1080p",@"720p",@"480p",@"270p",nil];
-    self.definition = segmentedArray[index];
     
 //    [self.playerContext.controlHandler switchQuality:model.streamElements[index]];
     BOOL switchQualityBool =[self.playerContext.controlHandler switchQuality:model.streamElements[index].userType urlType:model.streamElements[index].urlType quality:model.streamElements[index].quality immediately:model.isLive];
@@ -811,13 +806,17 @@ QIPlayerRenderListener
         NSLog(@"%@",error); //发生错误
         return;
     }else{
-        if ([session setCategory:AVAudioSessionCategorySoloAmbient error:&error] == NO) {
+        if ([session setCategory:AVAudioSessionCategoryPlayback error:&error] == NO) {
+            
             NSLog(@"%@",error); //发生错误
             return;
         }else{
-            NSLog(@"独占");
+            
+            [self.playerContext.controlHandler pauseRender];
+            [self.playerContext.controlHandler resumeRender];
+           
         }
-        NSLog(@"抢占焦点");
+        
     }
 }
 

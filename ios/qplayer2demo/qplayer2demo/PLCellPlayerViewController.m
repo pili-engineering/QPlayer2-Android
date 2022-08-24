@@ -209,7 +209,7 @@ QIPlayerRenderListener
         _currentCell.state = YES;
         [_toastView addText:@"正在播放"];
     }
-    else if(state == QPLAYER_STATE_PAUSED){
+    else if(state == QPLAYER_STATE_PAUSED_RENDER){
         _currentCell.state = NO;
         [_toastView addText:@"播放暂停"];
     }
