@@ -30,7 +30,7 @@ Pod::Spec.new do |spec|
   spec.source       = { :http => "https://sdk-release.qnsdk.com/qplayer2_core-v#{spec.version}.zip" }
 
 
-  spec.vendored_frameworks = ["qplayer2_core.framework"]
+  spec.vendored_frameworks = ["Pod/qplayer2_core.framework"]
   spec.frameworks = ["UIKit", "Foundation", "AudioToolbox", "QuartzCore", "OpenGLES", "CoreVideo","CoreMedia","VideoToolbox"]
   spec.libraries = ["c++", "bz2", "iconv","z"]
 
