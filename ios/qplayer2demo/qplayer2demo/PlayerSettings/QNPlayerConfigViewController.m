@@ -32,7 +32,10 @@ static NSString *listIdentifier = @"listCell";
 - (void)dealloc {
     NSLog(@"QNPlayerConfigViewController - dealloc");
 }
-
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self saveConfigurations];
+}
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
@@ -166,7 +169,7 @@ static NSString *listIdentifier = @"listCell";
 - (void)controlPropertiesWithIndex:(NSInteger)index configureModel:(PLConfigureModel *)configureModel classModel:(QNClassModel *)classModel {
     configureModel.selectedNum = [NSNumber numberWithInteger:index];
     [_playerConfigTableView reloadData];
-//    [self saveConfigurations];
+    
     
 }
 

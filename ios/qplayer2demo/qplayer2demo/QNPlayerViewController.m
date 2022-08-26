@@ -369,7 +369,6 @@ QIPlayerRenderListener
 
 - (void)addPlayerMaskView{
     self.maskView = [[QNPlayerMaskView alloc] initWithFrame:CGRectMake(0, 0, PLAYER_PORTRAIT_WIDTH, PLAYER_PORTRAIT_HEIGHT) player:self.playerContext isLiving:NO renderView:self.myRenderView];
-//    self.maskView.center = self.playerContext.controlHandler.playerView.center;
     self.maskView.center = self.myRenderView.center;
     self.maskView.delegate = self;
     self.maskView.backgroundColor = PL_COLOR_RGB(0, 0, 0, 0.35);

@@ -181,7 +181,6 @@ QIPlayerAuthenticationListener
                 [[QDataHandle shareInstance] setSelConfiguraKey:@"Start Action" selIndex:(int)(type-400)];
             }
             else if(type == 500){
-                
                 [self.player.controlHandler setSEIEnable: selected];
                 if (selected) {
                     
@@ -215,7 +214,7 @@ QIPlayerAuthenticationListener
                 
                 [[QDataHandle shareInstance] setValueConfiguraKey:@"播放起始" selValue:satartPod];
             }
-            
+            [[QDataHandle shareInstance] saveConfigurations];
         }];
         _settingView.hidden = YES;
         [self addSubview:_settingView];
@@ -256,6 +255,8 @@ QIPlayerAuthenticationListener
             
             [self.player.controlHandler setSpeed:speed];
             [[QDataHandle shareInstance] setSelConfiguraKey:@"播放速度" selIndex:(int)(type)];
+            
+            [[QDataHandle shareInstance] saveConfigurations];
             
         }];
         _settingSpeedView.hidden = YES;

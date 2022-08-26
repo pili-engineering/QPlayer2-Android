@@ -87,17 +87,28 @@
 }
 
 
-
+- (void)saveConfigurations {
+    NSMutableArray *dataArr = [NSMutableArray array];
+    for (QNClassModel * classModel in _playerConfigArray) {
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:classModel];
+        [dataArr addObject:data];
+    }
+    NSUserDefaults *userdafault = [NSUserDefaults standardUserDefaults];
+    [userdafault setObject:[NSArray arrayWithArray:dataArr] forKey:@"PLPlayer_settings"];
+    [userdafault synchronize];
+}
 -(void)setValueConfiguraKey:(NSString *)tittle selValue:(int)value{
     for (QNClassModel *classModel in _playerConfigArray){
         for (PLConfigureModel *cMode in classModel.classValue) {
             if ([cMode.configuraKey containsString:tittle]) {
                 if (cMode.configuraValue.count > 1) {
                     cMode.configuraValue[0] = @(value);
+                    
                 }
             }
         }
     }
+    
 }
 
 -(int)getConfiguraPostion{
@@ -106,10 +117,12 @@
             if ([cMode.configuraKey containsString:@"播放起始"]) {
                 
                 NSLog(@"起播位置-----%d",[cMode.configuraValue[0] intValue]);
+                
                 return  [cMode.configuraValue[0] intValue];
             }
         }
     }
+    
     return 0;
 }
 -(BOOL)getAuthenticationState{

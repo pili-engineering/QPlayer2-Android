@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)setValueConfiguraKey:(NSString *)tittle selValue:(int)value;
 
 -(int)getConfiguraPostion;
-
+-(void)saveConfigurations;
 -(BOOL)getAuthenticationState;
 
 @end
