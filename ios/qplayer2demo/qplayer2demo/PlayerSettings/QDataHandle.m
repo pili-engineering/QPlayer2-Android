@@ -57,13 +57,14 @@
         
         NSDictionary *colorBDict = @{@"色盲模式":@[@"无",@"红色盲",@"绿色盲",@"蓝色盲"], @"default":@0};
         
-        NSDictionary *authonBDict = @{@"鉴权":@[@"开启",@"关闭"], @"default":@0};
+        NSDictionary *authonDict = @{@"鉴权":@[@"开启",@"关闭"], @"default":@0};
         
-        NSDictionary *SEIBDict = @{@"SEI":@[@"开启",@"关闭"], @"default":@0};
+        NSDictionary *SEIDict = @{@"SEI":@[@"开启",@"关闭"], @"default":@0};
+        
+        NSDictionary *backgroundPlayDict = @{@"后台播放":@[@"开启",@"关闭"], @"default":@0};
         
         
-        
-        NSArray *piliOptionArray = @[startDict,videoToolboxDict, seekDict,actionDict,renderDict,speepDict,colorBDict,authonBDict,SEIBDict];
+        NSArray *piliOptionArray = @[startDict,videoToolboxDict, seekDict,actionDict,renderDict,speepDict,colorBDict,authonDict,SEIDict,backgroundPlayDict];
         
 //        NSDictionary *PLPlayerDict = @{@"PLPlayer":piliPlayerArray};
         NSDictionary *PLPlayerOptionDict = @{@"PLPlayerOption":piliOptionArray};

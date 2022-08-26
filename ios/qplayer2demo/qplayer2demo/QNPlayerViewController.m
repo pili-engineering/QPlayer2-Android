@@ -177,9 +177,6 @@ QIPlayerRenderListener
     [self.view addSubview:_toastView];
     [self playerContextAllCallBack];
     
-    //已经进入到前台
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUIApplicationWillEnterForeground:) name:UIApplicationDidBecomeActiveNotification object:nil];
-    
 }
 
 #pragma mark - 初始化 PLPlayer
@@ -523,6 +520,14 @@ QIPlayerRenderListener
                 [self.playerContext.controlHandler forceAuthenticationFromNetwork];
             }
         }
+        else if ([configureModel.configuraKey containsString:@"后台播放"]){
+            if (index == 0) {
+                [self.playerContext.controlHandler setBackgroundPlay:YES];
+            }
+            else{
+                [self.playerContext.controlHandler setBackgroundPlay:NO];
+            }
+        }
     }
 }
 
@@ -668,11 +673,11 @@ QIPlayerRenderListener
 
     [headerView addSubview:titleLabel];
     
-    UIButton *pullButton = [[UIButton alloc] initWithFrame:CGRectMake(190, 7, 22, 22)];
-    pullButton.selected = _isPull;
-    [pullButton setImage:[UIImage imageNamed:@"pl_down"] forState:UIControlStateNormal];
-    [pullButton setImage:[UIImage imageNamed:@"pl_up"] forState:UIControlStateSelected];
-    [pullButton addTarget:self action:@selector(pullClickList:) forControlEvents:UIControlEventTouchDown];
+//    UIButton *pullButton = [[UIButton alloc] initWithFrame:CGRectMake(190, 7, 22, 22)];
+//    pullButton.selected = _isPull;
+//    [pullButton setImage:[UIImage imageNamed:@"pl_down"] forState:UIControlStateNormal];
+//    [pullButton setImage:[UIImage imageNamed:@"pl_up"] forState:UIControlStateSelected];
+//    [pullButton addTarget:self action:@selector(pullClickList:) forControlEvents:UIControlEventTouchDown];
     
     UIButton *scanButton = [[UIButton alloc] initWithFrame:CGRectMake(245, 7, 22, 22)];
     scanButton.backgroundColor = PL_COLOR_RGB(81, 81, 81, 1);
@@ -690,10 +695,10 @@ QIPlayerRenderListener
     }];
     UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self.playerModels removeObjectAtIndex:index];
-        if(index == _selectedIndex){
-            _selectedIndex = 0;
-            [self tableView:self.urlListTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:_selectedIndex inSection:0]];
-            [self.urlListTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        if(index == self.selectedIndex){
+            self.selectedIndex = 0;
+            [self tableView:self.urlListTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:self.selectedIndex inSection:0]];
+            [self.urlListTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedIndex inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 
         }
         if (self.playerModels.count != 0) {
@@ -798,27 +803,7 @@ QIPlayerRenderListener
         [_toastView addText:[NSString stringWithFormat:@"即将切换为：%@",segmentedArray[index]]];
     }
 }
-- (void)onUIApplicationWillEnterForeground:(NSNotification *)note{
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    NSError* error = nil;
-    if ([session setActive:YES error:&error] == NO)
-    {
-        NSLog(@"%@",error); //发生错误
-        return;
-    }else{
-        if ([session setCategory:AVAudioSessionCategoryPlayback error:&error] == NO) {
-            
-            NSLog(@"%@",error); //发生错误
-            return;
-        }else{
-            
-            [self.playerContext.controlHandler pauseRender];
-            [self.playerContext.controlHandler resumeRender];
-           
-        }
-        
-    }
-}
+
 
 
 

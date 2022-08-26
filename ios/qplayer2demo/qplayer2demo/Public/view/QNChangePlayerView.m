@@ -122,7 +122,7 @@
         UIButton *midBtn = buttonArray[i];
         UILabel *midlab = labelArray[i];
         if (midBtn.tag == tap.view.tag) {
-            if ((UIButtonType)midBtn.tag == UIButtonTypeSEIData || (UIButtonType)midBtn.tag == UIButtonTypeAuthentication) {
+            if ((UIButtonType)midBtn.tag == UIButtonTypeSEIData || (UIButtonType)midBtn.tag == UIButtonTypeAuthentication || (UIButtonType)midBtn.tag == UIButtonTypeBackgroundPlay) {
                 if (midBtn.selected) {
                     midBtn.selected = NO;
                     [midBtn setImage:notSelectedImage forState:UIControlStateNormal];
@@ -149,7 +149,7 @@
     }
 }
 -(void)Click:(UIButton *)btn{
-    if ((UIButtonType)btn.tag == UIButtonTypeSEIData || (UIButtonType)btn.tag == UIButtonTypeAuthentication) {
+    if ((UIButtonType)btn.tag == UIButtonTypeSEIData || (UIButtonType)btn.tag == UIButtonTypeAuthentication || (UIButtonType)btn.tag == UIButtonTypeBackgroundPlay) {
         if (btn.selected) {
             btn.selected = NO;
             [btn setImage:notSelectedImage forState:UIControlStateNormal];

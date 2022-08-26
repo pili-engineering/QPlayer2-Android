@@ -21,6 +21,7 @@
     QNChangePlayerView *stretchPlayerView;
     QNChangePlayerView *SEIPlayerView;
     QNChangePlayerView *authenticationPlayerView;
+    QNChangePlayerView *backgroundPlayPlayerView;
     void (^changePlayerViewCallback)(ChangeButtonType type , NSString * startPosition,BOOL selected);
     void (^speedViewCallback)(SpeedUIButtonType type);
 }
@@ -109,7 +110,9 @@
         case UIButtonTypeAuthentication:
             [authenticationPlayerView setDefault:type];
             break;
-
+        case UIButtonTypeBackgroundPlay:
+            [backgroundPlayPlayerView setDefault:type];
+            break;
         default:
             NSLog(@"设置出错");
             break;
@@ -138,7 +141,7 @@
 }
 -(void)addScrollView:(CGRect)frame{
 //    self = [[UIScrollView alloc]initWithFrame:frame];
-    self.contentSize = CGSizeMake(frame.size.width, 850);
+    self.contentSize = CGSizeMake(frame.size.width, 950);
 //    self.backgroundColor = [UIColor clearColor];
     self.userInteractionEnabled = YES;
     self.scrollEnabled = YES;
@@ -190,8 +193,21 @@
     
     [self addSEI:CGRectMake(0, 765, 350, 90)];
     
+    [self addLine:CGRectMake(5, 853, self.frame.size.width, 2)];
+    
+    [self addBackgroundPlay:CGRectMake(0, 865, 350, 90)];
     
     
+    
+}
+-(void)addBackgroundPlay:(CGRect)frame{
+    
+    
+    backgroundPlayPlayerView = [[QNChangePlayerView alloc]initWithFrame:frame backgroudColor:[UIColor clearColor]];
+    [backgroundPlayPlayerView setTitleLabelText:@"后台播放" frame:CGRectMake(10, 10, 120, 30) textColor:[UIColor whiteColor]];
+    [backgroundPlayPlayerView addButtonText:@"是否支持后台播放" frame:CGRectMake(10, 50, 150, 20) type:UIButtonTypeBackgroundPlay target:self selector:@selector(changePlayerViewClick:) selectorTag:@selector(changePlayerViewClickTag:)];
+
+    [self addSubview:backgroundPlayPlayerView];
 }
 -(void)addAuthentication:(CGRect)frame{
     
@@ -315,6 +331,9 @@ return YES;
         case UIButtonTypeSEIData:
             
             selected = [SEIPlayerView getButtonSelected:UIButtonTypeSEIData];
+            break;
+        case UIButtonTypeBackgroundPlay:
+            selected = [backgroundPlayPlayerView getButtonSelected:UIButtonTypeBackgroundPlay];
             break;
         default:
             break;

@@ -31,7 +31,9 @@ typedef NS_ENUM(NSInteger, ChangeButtonType){
     
     UIButtonTypeSEIData = 500,            //sei
     
-    UIButtonTypeAuthentication = 600            //鉴权
+    UIButtonTypeAuthentication = 600,            //鉴权
+    
+    UIButtonTypeBackgroundPlay = 700            //后台播放
     
 };
 NS_ASSUME_NONNULL_BEGIN

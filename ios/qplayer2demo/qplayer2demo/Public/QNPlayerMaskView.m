@@ -200,6 +200,15 @@ QIPlayerAuthenticationListener
                     [[QDataHandle shareInstance] setSelConfiguraKey:@"鉴权" selIndex:1];
                 }
             }
+            else if (type == 700){
+                [self.player.controlHandler setBackgroundPlay:selected];
+                if (selected) {
+                    [[QDataHandle shareInstance] setSelConfiguraKey:@"后台播放" selIndex:0];
+                }
+                else{
+                    [[QDataHandle shareInstance] setSelConfiguraKey:@"后台播放" selIndex:1];
+                }
+            }
             
             if (startPosition && ![startPosition isEqualToString:@""]) {
                 int satartPod = [startPosition intValue];
@@ -315,6 +324,13 @@ QIPlayerAuthenticationListener
                 
             }
        }
+        else if ([configureModel.configuraKey containsString:@"后台播放"]){
+            if (index == 0) {
+                [_settingView setChangeDefault:UIButtonTypeBackgroundPlay];
+            }else{
+                
+            }
+        }
         
     }
 }
