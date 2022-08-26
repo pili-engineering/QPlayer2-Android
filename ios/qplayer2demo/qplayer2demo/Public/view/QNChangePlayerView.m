@@ -96,8 +96,8 @@
     [btn setImage:notSelectedImage forState:UIControlStateNormal];
     btn.selected = NO;
     btn.tag = type;
-    [btn addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
     [btn addTarget:self action:@selector(Click:) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
     lab.backgroundColor = [UIColor clearColor];
     lab.text = text;
     lab.textColor = notSelectedColor;
@@ -122,7 +122,7 @@
         UIButton *midBtn = buttonArray[i];
         UILabel *midlab = labelArray[i];
         if (midBtn.tag == tap.view.tag) {
-            if ((UIButtonType)midBtn.tag == UIButtonTypeSEIData || (UIButtonType)midBtn.tag == UIButtonTypeAuthentication || (UIButtonType)midBtn.tag == UIButtonTypeBackgroundPlay) {
+            if ((ChangeButtonType)midBtn.tag == UIButtonTypeSEIData || (ChangeButtonType)midBtn.tag == UIButtonTypeAuthentication || (ChangeButtonType)midBtn.tag == UIButtonTypeBackgroundPlay) {
                 if (midBtn.selected) {
                     midBtn.selected = NO;
                     [midBtn setImage:notSelectedImage forState:UIControlStateNormal];
@@ -149,20 +149,23 @@
     }
 }
 -(void)Click:(UIButton *)btn{
-    if ((UIButtonType)btn.tag == UIButtonTypeSEIData || (UIButtonType)btn.tag == UIButtonTypeAuthentication || (UIButtonType)btn.tag == UIButtonTypeBackgroundPlay) {
-        if (btn.selected) {
-            btn.selected = NO;
-            [btn setImage:notSelectedImage forState:UIControlStateNormal];
-        }else{
-            btn.selected = YES;
-            [btn setImage:selectedImage forState:UIControlStateNormal];
-        }
-        return;
-    }
     for (int i = 0; i < buttonArray.count; i++) {
         UIButton *midBtn = buttonArray[i];
         UILabel *midlab = labelArray[i];
         if (midBtn.tag == btn.tag) {
+            if ((ChangeButtonType)btn.tag == UIButtonTypeSEIData || (ChangeButtonType)btn.tag == UIButtonTypeAuthentication || (ChangeButtonType)btn.tag == UIButtonTypeBackgroundPlay) {
+                if (midBtn.selected) {
+                    midBtn.selected = NO;
+                    [midBtn setImage:notSelectedImage forState:UIControlStateNormal];
+                    midlab.textColor = notSelectedColor;
+                }else{
+                    midBtn.selected = YES;
+                    [midBtn setImage:selectedImage forState:UIControlStateNormal];
+                    midlab.textColor = selectedColor;
+                }
+                return;
+            }
+
             [midBtn setImage:selectedImage forState:UIControlStateNormal];
             midlab.textColor = selectedColor;
             midBtn.selected = YES;

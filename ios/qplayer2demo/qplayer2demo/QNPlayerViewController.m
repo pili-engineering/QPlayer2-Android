@@ -354,6 +354,7 @@ QIPlayerRenderListener
                                        @(QPLAYER_STATE_PREPARE):@"PREPARE",
                                        @(QPLAYER_STATE_PLAYING):@"Playing",
                                        @(QPLAYER_STATE_PAUSED_RENDER):@"Paused",
+                                       @(QPLAYER_STATE_PAUSED):@"Paused",
                                        @(QPLAYER_STATE_STOPPED):@"Stopped",
                                        @(QPLAYER_STATE_ERROR):@"Error",
                                        @(QPLAYER_STATE_SEEKING):@"seek",
