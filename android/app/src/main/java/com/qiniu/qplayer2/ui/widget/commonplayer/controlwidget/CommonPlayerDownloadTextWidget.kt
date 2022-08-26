@@ -43,7 +43,7 @@ class CommonPlayerDownloadTextWidget : AppCompatTextView,
 
     override fun onWidgetInactive() {
         mPlayerCore.mPlayerContext.getPlayerControlHandler()
-            .removePlayerDownloadListener(mPlayerDownloadListener)
+            .removePlayerDownloadChangeListener(mPlayerDownloadListener)
 
     }
 

@@ -44,7 +44,7 @@ class CommonPlayerBiteRateTextWidget : AppCompatTextView,
 
     override fun onWidgetInactive() {
         mPlayerCore.mPlayerContext.getPlayerControlHandler()
-            .removePlayerBiteRateListener(mPlayerBiteRateListener)
+            .removePlayerBiteRateChangeListener(mPlayerBiteRateListener)
     }
 
     override fun bindPlayerCore(playerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>) {

@@ -30,7 +30,7 @@ QIPlayerBufferingListener, QIPlayerStateChangeListener{
     }
 
     override fun onStop() {
-        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerBufferingListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerBufferingChangeListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerStateChangeListener(this)
 
     }

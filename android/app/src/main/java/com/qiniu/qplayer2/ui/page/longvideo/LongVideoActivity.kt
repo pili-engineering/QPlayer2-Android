@@ -85,6 +85,7 @@ class LongVideoActivity : AppCompatActivity() {
             .setStartAction(PlayerSettingRespostory.startAction)
             .setSpeed(PlayerSettingRespostory.playSpeed)
             .setRenderRatio(PlayerSettingRespostory.ratioType)
+            .setSEIEnable(PlayerSettingRespostory.seiEnable)
             .build()
 
         mCommonPlayer = CommonPlayer(config)

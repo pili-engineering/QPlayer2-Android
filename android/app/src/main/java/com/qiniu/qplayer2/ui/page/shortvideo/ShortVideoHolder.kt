@@ -86,7 +86,7 @@ class ShortVideoHolder(
 
     fun stopVideo() {
         mCoverIV.visibility = View.VISIBLE
-        mVideoPlayerView.playerRenderHandler.removePlayerListener(mPlayerRenderListener)
+        mVideoPlayerView.playerRenderHandler.removePlayerRenderListener(mPlayerRenderListener)
         mVideoPlayerView.playerControlHandler.stop()
 
         mFPSWidget.setPlayerControlHandler(null)

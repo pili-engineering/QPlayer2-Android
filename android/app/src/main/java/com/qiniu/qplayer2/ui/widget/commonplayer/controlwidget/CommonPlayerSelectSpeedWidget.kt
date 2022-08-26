@@ -76,7 +76,7 @@ class CommonPlayerSelectSpeedWidget: AppCompatTextView,
 
     override fun onWidgetInactive() {
         setOnClickListener(null)
-        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerSpeedListener(mSpeedChangeListener)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerSpeedChangeListener(mSpeedChangeListener)
 
     }
 

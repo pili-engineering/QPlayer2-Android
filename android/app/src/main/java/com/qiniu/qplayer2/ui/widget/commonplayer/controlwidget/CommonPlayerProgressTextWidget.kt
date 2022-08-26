@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.text.TextUtils
 import android.util.AttributeSet
-import android.util.Log
 import androidx.appcompat.widget.AppCompatTextView
 import com.qiniu.qmedia.component.player.QIPlayerProgressListener
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
@@ -73,7 +72,7 @@ class CommonPlayerProgressTextWidget: AppCompatTextView,
 
     override fun onWidgetInactive() {
         mPlayerCore.mPlayerContext.getPlayerControlHandler()
-            .removePlayerProgressListener(mPlayerProgressListener)
+            .removePlayerProgressChangeListener(mPlayerProgressListener)
     }
 
     override fun bindPlayerCore(playerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>) {

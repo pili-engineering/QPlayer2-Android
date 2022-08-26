@@ -157,8 +157,8 @@ class CommonPlayerSeekWidget : AppCompatSeekBar,
 
     override fun onWidgetInactive() {
         mPlayerCore.mPlayerContext.getPlayerControlHandler().also {
-            it.removePlayerProgressListener(mPlayerProgressListener)
-            it.removePlayerDownloadListener(mPlayerDownloadListener)
+            it.removePlayerProgressChangeListener(mPlayerProgressListener)
+            it.removePlayerDownloadChangeListener(mPlayerDownloadListener)
             it.removePlayerStateChangeListener(mPlayerStateChangeListener)
 
         }

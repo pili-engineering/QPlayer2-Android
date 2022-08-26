@@ -45,7 +45,7 @@ class CommonPlayerFPSTextWidget: AppCompatTextView,
 
     override fun onWidgetInactive() {
         mPlayerCore.mPlayerContext.getPlayerControlHandler()
-            .removePlayerFPSListener(mPlayerFPSListener)
+            .removePlayerFPSChangeListener(mPlayerFPSListener)
     }
 
     override fun bindPlayerCore(playerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>) {

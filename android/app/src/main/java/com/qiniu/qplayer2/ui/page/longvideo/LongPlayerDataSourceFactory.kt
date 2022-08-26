@@ -835,6 +835,24 @@ object LongPlayerDataSourceFactory {
             )
         )
 
+        builder = QMediaModelBuilder()
+        url = "http://demo-videos.qnsdk.com/ios-hardware-decode-error.flv"
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
+        name = "37-点播-flv-ios硬解问题-http://demo-videos.qnsdk.com/ios-hardware-decode-error.flv"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(false),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L
+                )
+            )
+        )
+
 //        builder = QMediaModelBuilder()
 //        url = "srt://cdn-pull-tx.hntv.tv:10080?streamid=#!::h=cdn-pull-tx.hntv.tv/saas_live/38edfba79447461ba3c46440cf474822,m=request,wsSecret=69fb58c54ff2a0c13fb14c793a6aad58,wsTime=1909811783"
 //        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
