@@ -100,10 +100,10 @@ QIPlayerRenderListener
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.durationTimer invalidate];
-    self.durationTimer = nil;
     if (!self.scanClick) {
         
+        [self.durationTimer invalidate];
+        self.durationTimer = nil;
         [self.playerContext.controlHandler stop];
         
         [self.playerContext.controlHandler playerRelease];
