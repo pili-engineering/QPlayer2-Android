@@ -11,16 +11,17 @@ Qplayer2是一款跨平台的播放器SDK,除了基础的播放器能力外，�
 
  Platform | Build Status
  -------- | ------------
- Android | 正式版已发布 
- IOS | 敬请期待 
+ Android | version ：0.0.8 
+ IOS | https://github.com/pili-engineering/QPlayer2-IOS.git 
  Windows | 敬请期待 
  Mac | 敬请期待 
+ Linux | 敬请期待 
 ### qplayer2-core 功能列表
 
 | 能力                  | 亮点                                                         | 备注                             |
 | --------------------- | ------------------------------------------------------------ | -------------------------------- |
 | 媒体资源组成形式      | 一个媒体资源支持多url，比如一个音频url和一个视频url组成一个媒体资源,提升拉流速度和解封装速度 |                                  |
-| 播放协议及视频类型    | http/https/rtmp flv/m3u8/mp4/flac/wav(PCM_S24LE)             | 新增协议和视频类型请联系技术支持 |
+| 播放协议及视频类型    | http/https/rtmp/srt flv/m3u8/mp4/flac/wav(PCM_S24LE)         | 新增协议和视频类型请联系技术支持 |
 | 解码                  | 除了软解/硬解/自动解码方式外 新增混解方式，提升硬解首帧速度  |                                  |
 | 色盲模式              | 能在业务场景中更好的服务视觉有障碍的客户                     |                                  |
 | 倍速                  | 变速不变调                                                   |                                  |
@@ -52,15 +53,23 @@ Qplayer2是一款跨平台的播放器SDK,除了基础的播放器能力外，�
 ##### 引入依赖
 
 ```groovy
-implementation("com.qiniu:qplayer2-core:0.0.7")
-implementation("com.qiniu:qplayer2-ext:0.0.7") //如果无需qplayer2-ext能力可以不引入 不影响core的使用
+implementation("com.qiniu:qplayer2-core:0.0.8")
+implementation("com.qiniu:qplayer2-ext:0.0.8") //如果无需qplayer2-ext能力可以不引入 不影响core的使用
 ```
 
 
 
 ##### 鉴权
 
-如需使用该套sdk到其他工程中，请联系我们的技术支持开通帐号。
+| 权限  | 说明         | 鉴权失败结果                                                 |
+| ----- | ------------ | ------------------------------------------------------------ |
+| Base  | 基础播放能力 | 播放器进入error状态                                          |
+| VR    | 播放VR视频   | 播放vr视频，起播后播放器进入error状态                        |
+| SEI   | SEI数据回调  | 开启sei 回调，且视频有sei数据。能正常播放视频，SEI数据不回调，同时抛出鉴权失败错误码 |
+| SRT   | srt协议视频  | 播放srt链接 播放器进入error状态                              |
+| BLIND | 色盲滤镜     | 开启色盲滤镜，视频正常播放，滤镜不生效。                     |
+
+如需使用该套sdk到其他工程中，请联系我们的技术支持开通帐号和权限。
 
 
 
