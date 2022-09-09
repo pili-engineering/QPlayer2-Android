@@ -83,7 +83,7 @@ implementation("com.qiniu:qplayer2-ext:1.0.3") //如果无需qplayer2-ext能力�
 
 1. demo工程内的 长视频播放页 是基于qplayer2-ext + qplayer2-core来实现的
 2. demo工程内的 短视频视频播放页 是仅基于qplayer2-core来实现的
-3. 体验demo下载：http://fir.qnsdk.com/4rg5?release_id=62cfc82af945487ca599c6c0
+3. 体验demo下载：http://fir.qnsdk.com/4rg5?release_id=631ad8b723389f36ef700e7b
 
 
 
