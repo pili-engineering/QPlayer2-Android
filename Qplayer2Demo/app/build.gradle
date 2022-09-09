@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 ext {
-    qplayer2_demo_version='1.0.0'
+    qplayer2_demo_version='1.0.3'
 }
 android {
     compileSdkVersion 32
@@ -28,7 +28,7 @@ android {
             keyAlias "key-qplayer2"
             keyPassword "123456"
             storePassword "123456"
-            storeFile rootProject.file("../key")
+            storeFile rootProject.file("key")
         }
     }
 
@@ -82,8 +82,8 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
     if (use_aar) {
-        implementation("com.qiniu:qplayer2-core:0.0.7")
-        implementation("com.qiniu:qplayer2-ext:0.0.7")
+        implementation("com.qiniu:qplayer2-core:1.0.3")
+        implementation("com.qiniu:qplayer2-ext:1.0.3")
 
     } else {
 
