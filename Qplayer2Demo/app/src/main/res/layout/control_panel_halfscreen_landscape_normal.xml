@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerDownloadTextWidget
+        android:id="@+id/download_speed_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerBiteRateTextWidget
+        android:id="@+id/biterate_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/download_speed_TV"
+        app:layout_constraintBottom_toBottomOf="@+id/download_speed_TV"
+        app:layout_constraintLeft_toRightOf="@+id/download_speed_TV"
+        android:layout_marginLeft="4dp"/>
+
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerFPSTextWidget
+        android:id="@+id/fps_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/download_speed_TV"
+        app:layout_constraintBottom_toBottomOf="@+id/download_speed_TV"
+        app:layout_constraintLeft_toRightOf="@+id/biterate_TV"
+        android:layout_marginLeft="4dp"/>
+
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerPausePlayWidget
+        android:id="@+id/pause_play_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="4dp"/>
+
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerSeekWidget
+        android:id="@+id/seek_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:minHeight="2dp"
+        android:maxHeight="4dp"
+        android:max="1000"
+        android:thumbOffset="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pause_play_Btn"
+        app:layout_constraintTop_toTopOf="@+id/pause_play_Btn"
+        app:layout_constraintStart_toEndOf="@+id/pause_play_Btn"
+        app:layout_constraintEnd_toStartOf="@+id/progress_TV"/>
+
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerProgressTextWidget
+        android:id="@+id/progress_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fullscreen_IV"
+        app:layout_constraintTop_toTopOf="@+id/fullscreen_IV"
+        app:layout_constraintRight_toLeftOf="@+id/fullscreen_IV"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"/>
+
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerFullScreenWidget
+        android:id="@+id/fullscreen_IV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/qmedia_ic_player_fullscreen_vector"
+        android:layout_marginEnd="4dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
