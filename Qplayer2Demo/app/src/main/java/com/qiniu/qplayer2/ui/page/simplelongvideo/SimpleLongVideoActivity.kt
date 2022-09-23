@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.qiniu.qmedia.component.player.*
-import com.qiniu.qmedia.ui.QSurfacePlayerView
+import com.qiniu.qmedia.ui.QTexturePlayerView
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2.logic.PlayerSettingVM
 import com.qiniu.qplayer2.ui.widget.*
@@ -16,7 +16,7 @@ class SimpleLongVideoActivity : AppCompatActivity(), IVideoHolderClickListener {
         private final const val TAG = "LongVideoActivity"
     }
 
-    lateinit var mQSurfacePlayerView: QSurfacePlayerView
+    lateinit var mQTexturePlayerView: QTexturePlayerView
     lateinit var mPausePlayWidget: PlayerPausePlayWidget
     lateinit var mProgressTextWidget: PlayerProgressTextWidget
     lateinit var mSeekWidget: PlayerSeekWidget
@@ -36,7 +36,7 @@ class SimpleLongVideoActivity : AppCompatActivity(), IVideoHolderClickListener {
         supportActionBar?.hide();//隐藏标题栏
 //        requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_simple_long_video)
-        mQSurfacePlayerView = findViewById(R.id.player_view)
+        mQTexturePlayerView = findViewById(R.id.player_view)
         mPausePlayWidget = findViewById(R.id.pause_play_Btn)
         mProgressTextWidget = findViewById(R.id.progress_TV)
         mBufferingWidget = findViewById(R.id.buffering_TV)
@@ -56,34 +56,34 @@ class SimpleLongVideoActivity : AppCompatActivity(), IVideoHolderClickListener {
 
 
         mVideoListRecycleView.adapter = videoListAdapter
-        mPausePlayWidget.setPlayerControlHandler(mQSurfacePlayerView.playerControlHandler)
-        mProgressTextWidget.setPlayerControlHandler(mQSurfacePlayerView.playerControlHandler)
-        mSeekWidget.setPlayerControlHandler(mQSurfacePlayerView.playerControlHandler)
-        mFPSWidget.setPlayerControlHandler(mQSurfacePlayerView.playerControlHandler)
-        mBiteRateTextWidget.setPlayerControlHandler(mQSurfacePlayerView.playerControlHandler)
-        mDownloadTextWidget.setPlayerControlHandler(mQSurfacePlayerView.playerControlHandler)
-        mBufferingWidget.setPlayerControlHandler(mQSurfacePlayerView.playerControlHandler)
+        mPausePlayWidget.setPlayerControlHandler(mQTexturePlayerView.playerControlHandler)
+        mProgressTextWidget.setPlayerControlHandler(mQTexturePlayerView.playerControlHandler)
+        mSeekWidget.setPlayerControlHandler(mQTexturePlayerView.playerControlHandler)
+        mFPSWidget.setPlayerControlHandler(mQTexturePlayerView.playerControlHandler)
+        mBiteRateTextWidget.setPlayerControlHandler(mQTexturePlayerView.playerControlHandler)
+        mDownloadTextWidget.setPlayerControlHandler(mQTexturePlayerView.playerControlHandler)
+        mBufferingWidget.setPlayerControlHandler(mQTexturePlayerView.playerControlHandler)
         mSettingVM = PlayerSettingVM(this.lifecycle)
 
-        mQSurfacePlayerView.playerControlHandler.init(this)
-        mQSurfacePlayerView.playerControlHandler.setDecodeType(
+        mQTexturePlayerView.playerControlHandler.init(this)
+        mQTexturePlayerView.playerControlHandler.setDecodeType(
             mSettingVM.decoderTypeLiveData.value?: QPlayerSetting.QPlayerDecoder.QPLAYER_DECODER_SETTING_AUTO)
 
-        mQSurfacePlayerView.playerControlHandler.setSeekMode(
+        mQTexturePlayerView.playerControlHandler.setSeekMode(
             mSettingVM.seekTypeLiveData.value?: QPlayerSetting.QPlayerSeek.QPLAYER_SEEK_SETTING_NORMAL)
 
-        mQSurfacePlayerView.playerControlHandler.setStartAction(
+        mQTexturePlayerView.playerControlHandler.setStartAction(
             mSettingVM.startTypeLiveData.value?: QPlayerSetting.QPlayerStart.QPLAYER_START_SETTING_PLAYING)
 
-        mQSurfacePlayerView.playerControlHandler.setSpeed(
+        mQTexturePlayerView.playerControlHandler.setSpeed(
             mSettingVM.speedLiveData.value ?: 1.0f
         )
 
-        mQSurfacePlayerView.playerRenderHandler.setRenderRatio(
+        mQTexturePlayerView.playerRenderHandler.setRenderRatio(
             mSettingVM.renderRatioLiveData.value?: QPlayerSetting.QPlayerRenderRatio.QPLAYER_RATIO_SETTING_AUTO
         )
         mVideoList[0].also {
-            mQSurfacePlayerView.playerControlHandler.playMediaModel(it.second, mSettingVM.startPositionLiveData.value ?: 0)
+            mQTexturePlayerView.playerControlHandler.playMediaModel(it.second, mSettingVM.startPositionLiveData.value ?: 0)
 //            mQSurfacePlayerView.playerControlHandler.setSpeed(2.0f)
         }
     }
@@ -182,7 +182,7 @@ class SimpleLongVideoActivity : AppCompatActivity(), IVideoHolderClickListener {
 
 
     override fun onDestroy() {
-        mQSurfacePlayerView.playerControlHandler.stop()
+        mQTexturePlayerView.playerControlHandler.release()
         super.onDestroy()
 
     }
@@ -190,7 +190,7 @@ class SimpleLongVideoActivity : AppCompatActivity(), IVideoHolderClickListener {
     override fun onClick(mediaModel: QMediaModel?) {
         mediaModel?.also {
 
-            mQSurfacePlayerView.playerControlHandler.playMediaModel(it, mSettingVM.startPositionLiveData.value ?: 0)
+            mQTexturePlayerView.playerControlHandler.playMediaModel(it, mSettingVM.startPositionLiveData.value ?: 0)
 //            mBufferingTV.visibility = View.VISIBLE
         }
     }

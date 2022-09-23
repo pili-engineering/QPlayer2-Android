@@ -59,11 +59,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
-        <com.qiniu.qmedia.ui.QSurfacePlayerView
+        <com.qiniu.qmedia.ui.QTexturePlayerView
             android:id="@+id/player_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        </com.qiniu.qmedia.ui.QSurfacePlayerView>
+        </com.qiniu.qmedia.ui.QTexturePlayerView>
 
         <include layout="@layout/player_controller_half_screen" />
     </FrameLayout>
