@@ -35,7 +35,6 @@ class LongCommonPlayerScreenChangedListener(
             if (NotchCompat.hasDisplayCutout(mActivity.window)) {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P && !RomUtils.isSamsungRom()) { //samsuang with cutout device excluded
                     setStatusBarColor(Color.BLACK)
-//                  tintFakeStatusBar(ContextCompat.getColor(mActivity, android.R.color.black))
                 }
             }
         } else {
@@ -57,7 +56,6 @@ class LongCommonPlayerScreenChangedListener(
 
             if (NotchCompat.hasDisplayCutout(mActivity.window) && !RomUtils.isSamsungRom()) {
                 setStatusBarColor(Color.TRANSPARENT)
-//                tintFakeStatusBar(ContextCompat.getColor(mActivity, android.R.color.transparent))
             }
         }
     }
@@ -85,23 +83,7 @@ class LongCommonPlayerScreenChangedListener(
         }
     }
 
-    //    private fun tintFakeStatusBar(@ColorInt color: Int) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            val window = mActivity.window
-//            val decorView = window.decorView as ViewGroup
-//            var statusBarView: View? = mActivity.findViewById(R.id.bili_status_bar_view)
-//            if (statusBarView == null) {
-//                statusBarView = View(mActivity)
-//                statusBarView.id = R.id.bili_status_bar_view
-//                val lp = ViewGroup.LayoutParams(
-//                    ViewGroup.LayoutParams.MATCH_PARENT, StatusBarCompat.getStatusBarHeight(mActivity))
-//                decorView.addView(statusBarView, lp)
-//            }
-//
-//            statusBarView.setBackgroundColor(color)
-//            statusBarView.visibility = View.VISIBLE
-//        }
-//    }
+
     private fun setStatusBarColor(color: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mActivity.window.statusBarColor = color

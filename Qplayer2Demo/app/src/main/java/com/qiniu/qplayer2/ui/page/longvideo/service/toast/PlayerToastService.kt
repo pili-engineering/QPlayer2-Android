@@ -192,6 +192,4 @@ class PlayerToastService
         Log.e("PlayerToastService", "Qplayer2鉴权成功")
         mPlayerCore.playerToastContainer?.showToast(toast)
     }
-
-
 }
