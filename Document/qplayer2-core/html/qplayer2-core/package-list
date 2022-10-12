@@ -323,6 +323,12 @@ $dokka.location:com.qiniu.qmedia.ui/QSurfacePlayerView/QSurfacePlayerView/#andro
 $dokka.location:com.qiniu.qmedia.ui/QSurfacePlayerView/QSurfacePlayerView/#android.content.Context/PointingToDeclaration/qplayer2-core/com.qiniu.qmedia.ui/-q-surface-player-view/-q-surface-player-view.html
 $dokka.location:com.qiniu.qmedia.ui/QSurfacePlayerView/playerControlHandler/#/PointingToDeclaration/qplayer2-core/com.qiniu.qmedia.ui/-q-surface-player-view/player-control-handler.html
 $dokka.location:com.qiniu.qmedia.ui/QSurfacePlayerView/playerRenderHandler/#/PointingToDeclaration/qplayer2-core/com.qiniu.qmedia.ui/-q-surface-player-view/player-render-handler.html
+$dokka.location:com.qiniu.qmedia.ui/QTexturePlayerView///PointingToDeclaration/qplayer2-core/com.qiniu.qmedia.ui/-q-texture-player-view/index.html
+$dokka.location:com.qiniu.qmedia.ui/QTexturePlayerView/QTexturePlayerView/#android.content.Context#android.util.AttributeSet?#kotlin.Int/PointingToDeclaration/qplayer2-core/com.qiniu.qmedia.ui/-q-texture-player-view/-q-texture-player-view.html
+$dokka.location:com.qiniu.qmedia.ui/QTexturePlayerView/QTexturePlayerView/#android.content.Context#android.util.AttributeSet?/PointingToDeclaration/qplayer2-core/com.qiniu.qmedia.ui/-q-texture-player-view/-q-texture-player-view.html
+$dokka.location:com.qiniu.qmedia.ui/QTexturePlayerView/QTexturePlayerView/#android.content.Context/PointingToDeclaration/qplayer2-core/com.qiniu.qmedia.ui/-q-texture-player-view/-q-texture-player-view.html
+$dokka.location:com.qiniu.qmedia.ui/QTexturePlayerView/playerControlHandler/#/PointingToDeclaration/qplayer2-core/com.qiniu.qmedia.ui/-q-texture-player-view/player-control-handler.html
+$dokka.location:com.qiniu.qmedia.ui/QTexturePlayerView/playerRenderHandler/#/PointingToDeclaration/qplayer2-core/com.qiniu.qmedia.ui/-q-texture-player-view/player-render-handler.html
 com.qiniu.qmedia.component.player
 com.qiniu.qmedia.render.screen
 com.qiniu.qmedia.ui
