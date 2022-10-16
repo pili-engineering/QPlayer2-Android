@@ -6,7 +6,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 ext {
-    qplayer2_demo_version='1.1.0'
+    qplayer2_demo_version='1.1.1'
 }
 
 private static String getBuildTime() {
