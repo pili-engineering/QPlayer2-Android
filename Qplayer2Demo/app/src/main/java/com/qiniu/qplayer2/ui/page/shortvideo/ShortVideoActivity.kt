@@ -66,7 +66,7 @@ class ShortVideoActivity : AppCompatActivity() {
 
     private val  mPlayerRenderListener : QIPlayerRenderListener = object : QIPlayerRenderListener {
         override fun onFirstFrameRendered(elapsedTime: Long) {
-                updateMediaItemContext()
+//                updateMediaItemContext()
         }
     }
 
@@ -155,6 +155,7 @@ class ShortVideoActivity : AppCompatActivity() {
             mCurrentPosition = visibleItemPosition
             mShortVideoRV.findViewWithTag<View>(mCurrentPosition)?.let {
                 mCurrentVideoHolder = mShortVideoRV.getChildViewHolder(it) as ShortVideoHolder
+                updateMediaItemContext()
                 val mediaItemContext = mMediaItemContextManager.fetchMediaItemContext(mPlayItemList.getOrNull(mCurrentPosition)?.id ?: 0)
                 mCurrentVideoHolder?.startVideo(mediaItemContext)
             }

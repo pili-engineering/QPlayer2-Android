@@ -48,7 +48,6 @@ class LongVideoActivity : AppCompatActivity() {
         val config = CommonPlayerConfig.Builder<Any,
                 LongLogicProvider, LongPlayableParams, LongVideoParams>()
             .addControlPanel(
-                LongControlPanelType.Normal.type,
                 ControlPanelConfig(
                     LongControlPanelType.Normal.type,
                     arrayListOf(
@@ -62,7 +61,8 @@ class LongVideoActivity : AppCompatActivity() {
                             DisplayOrientation.LANDSCAPE)
                     )
                 )
-            ).addEnviroment(LongEnviromentType.LONG.type,
+            )
+            .addEnviroment(LongEnviromentType.LONG.type,
                 LongPlayerEnviroment())
             .setCommonPlayerScreenChangedListener(LongCommonPlayerScreenChangedListener(this, findViewById(R.id.video_container_FL)))
             .setLogicProvider(LongLogicProvider())

@@ -1,5 +1,6 @@
 package com.qiniu.qplayer2.ui.page.shortvideo
 
+import android.util.Log
 import com.qiniu.qmedia.component.player.QLogLevel
 import com.qiniu.qmedia.component.player.QMediaItemContext
 import com.qiniu.qmedia.component.player.QMediaItemState
@@ -30,6 +31,9 @@ class MediaItemContextManager {
     fun fetchMediaItemContext(id: Int): QMediaItemContext? {
         val mediaItem  = mMediaItemContextHashMap[id]
         mMediaItemContextHashMap.remove(id)
+
+
+        Log.d("MediaItemContextManager", mediaItem?.playMediaControlHandler?.currentState?.value?.toString() ?: "")
         return mediaItem
     }
 

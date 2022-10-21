@@ -87,6 +87,11 @@ QIPlayerBufferingListener, QIPlayerStateChangeListener{
                 mIsSeeking = true
                 mIsPrepared = true
             }
+            QPlayerState.COMPLETED -> {
+                mIsPrepared = true
+                mIsSeeking = false
+                mIsBuffering = false
+            }
             else -> {
                 mIsPrepared = true
                 mIsSeeking = false

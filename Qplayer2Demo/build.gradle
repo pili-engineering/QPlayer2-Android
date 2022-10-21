@@ -32,5 +32,5 @@ task clean(type: Delete) {
 }
 
 ext {
-    use_aar = true
+    dependency_type = "remote"
 }
