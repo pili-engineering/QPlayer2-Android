@@ -6,7 +6,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 ext {
-    qplayer2_demo_version='1.1.2'
+    qplayer2_demo_version='1.1.4'
 }
 
 private static String getBuildTime() {
@@ -97,15 +97,16 @@ dependencies {
     }
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
-    if (use_aar) {
-        implementation("com.qiniu:qplayer2-core:1.1.2")
-        implementation("com.qiniu:qplayer2-ext:1.1.2")
+    if (dependency_type == "remote") {
+        implementation("com.qiniu:qplayer2-core:1.1.4")
+        implementation("com.qiniu:qplayer2-ext:1.1.4")
 
-    } else {
+    } else if(dependency_type == "source"){
 
         implementation project(path: ':qplayer2-ext')
         implementation project(path: ':qplayer2-core')
-
+    } else {
+        implementation fileTree(dir: 'libs', include: ['*.aar'])
     }
 
 
