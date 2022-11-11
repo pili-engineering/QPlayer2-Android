@@ -93,6 +93,16 @@
         android:paddingEnd="11dp"
         android:paddingRight="11dp"/>
 
+
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerShootVideoWidget
+        android:id="@+id/shoot_video_IV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="12dp"/>
+
     <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerProgressTextWidget
         android:id="@+id/progress_TV"
         android:layout_width="wrap_content"
