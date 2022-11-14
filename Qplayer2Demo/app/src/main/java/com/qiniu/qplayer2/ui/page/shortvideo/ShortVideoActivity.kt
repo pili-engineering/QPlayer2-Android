@@ -156,8 +156,11 @@ class ShortVideoActivity : AppCompatActivity() {
             mShortVideoRV.findViewWithTag<View>(mCurrentPosition)?.let {
                 mCurrentVideoHolder = mShortVideoRV.getChildViewHolder(it) as ShortVideoHolder
                 updateMediaItemContext()
-                val mediaItemContext = mMediaItemContextManager.fetchMediaItemContext(mPlayItemList.getOrNull(mCurrentPosition)?.id ?: 0)
-                mCurrentVideoHolder?.startVideo(mediaItemContext)
+                mShortVideoRV.postDelayed({
+                    val mediaItemContext = mMediaItemContextManager.fetchMediaItemContext(mPlayItemList.getOrNull(mCurrentPosition)?.id ?: 0)
+                    mCurrentVideoHolder?.startVideo(mediaItemContext)
+                }, 3000)
+
             }
         }
     }
@@ -167,19 +170,22 @@ class ShortVideoActivity : AppCompatActivity() {
         var start = mCurrentPosition - LOAD_FORWARD_POS
         var end = mCurrentPosition - 1
 
-        //当前pos的视频 不加载
-        for (i: Int in start .. end) {
-            mPlayItemList.getOrNull(i)?.let {
+        mPlayItemList.getOrNull(mCurrentPosition)?.let {
                 mMediaItemContextManager.load(it.id, it.mediaModel, 0, QLogLevel.LOG_VERBOSE, this.getExternalFilesDir(null)?.path ?: "")
             }
-        }
-
-        start = mCurrentPosition + 1
-        end = mCurrentPosition + LOAD_BACKWARD_POS
-        for (i: Int in start .. end) {
-            mPlayItemList.getOrNull(i)?.let {
-                mMediaItemContextManager.load(it.id, it.mediaModel, 0, QLogLevel.LOG_VERBOSE, this.getExternalFilesDir(null)?.path ?: "")
-            }
-        }
+//        //当前pos的视频 不加载
+//        for (i: Int in start .. end) {
+//            mPlayItemList.getOrNull(i)?.let {
+//                mMediaItemContextManager.load(it.id, it.mediaModel, 0, QLogLevel.LOG_VERBOSE, this.getExternalFilesDir(null)?.path ?: "")
+//            }
+//        }
+//
+//        start = mCurrentPosition + 1
+//        end = mCurrentPosition + LOAD_BACKWARD_POS
+//        for (i: Int in start .. end) {
+//            mPlayItemList.getOrNull(i)?.let {
+//                mMediaItemContextManager.load(it.id, it.mediaModel, 0, QLogLevel.LOG_VERBOSE, this.getExternalFilesDir(null)?.path ?: "")
+//            }
+//        }
     }
 }

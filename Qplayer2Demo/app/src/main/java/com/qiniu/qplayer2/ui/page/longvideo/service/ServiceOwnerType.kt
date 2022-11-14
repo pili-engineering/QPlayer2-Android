@@ -5,6 +5,7 @@ enum class ServiceOwnerType(val type: String) {
     PLAYER_TOAST_SERVICE("PlayerToastService"),
     PLAYER_BUFFERING_SERVICE("PlayerBufferingService"),
     PLAYER_NETWORK_SERVICE("PlayerNetworkService"),
-    PLAYER_PANORAMA_TOUCH_SERVICE("PlayerPanoramaTouchSerivice")
+    PLAYER_PANORAMA_TOUCH_SERVICE("PlayerPanoramaTouchSerivice"),
+    PLAYER_SHOOT_VIDEO_SERVICE("PlayerShootVideoSerivice")
 
 }

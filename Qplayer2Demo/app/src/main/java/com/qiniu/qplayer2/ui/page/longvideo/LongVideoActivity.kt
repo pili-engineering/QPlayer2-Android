@@ -20,6 +20,8 @@ import com.qiniu.qplayer2.ui.page.longvideo.service.buffering.PlayerBufferingSer
 import com.qiniu.qplayer2.ui.page.longvideo.service.controlpanelcontainervisible.PlayerControlPanelContainerVisibleServiceOwner
 import com.qiniu.qplayer2.ui.page.longvideo.service.network.PlayerNetworkServiceOwner
 import com.qiniu.qplayer2.ui.page.longvideo.service.panorama.PlayerPanoramaTouchSeriviceOwner
+import com.qiniu.qplayer2.ui.page.longvideo.service.shoot.PlayerShootVideoService
+import com.qiniu.qplayer2.ui.page.longvideo.service.shoot.PlayerShootVideoServiceOwner
 import com.qiniu.qplayer2.ui.page.longvideo.service.toast.PlayerToastServiceOwner
 
 class LongVideoActivity : AppCompatActivity() {
@@ -73,6 +75,7 @@ class LongVideoActivity : AppCompatActivity() {
             .addServiceOwner(PlayerBufferingServiceOwner())
             .addServiceOwner(PlayerNetworkServiceOwner())
             .addServiceOwner(PlayerPanoramaTouchSeriviceOwner())
+            .addServiceOwner(PlayerShootVideoServiceOwner())
             .setRootUIContanier(this, findViewById(R.id.video_container_FL))
             .enableControlPanel()
             .enableFunctionWidget()
