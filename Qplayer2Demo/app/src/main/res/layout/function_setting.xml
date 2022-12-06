@@ -498,7 +498,89 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sei_CB" />
 
+    <TextView
+        android:id="@+id/quality_switch_type_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="清晰度切换方式（模式选择参考使用文档）"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider8" />
+    <RadioGroup
+        android:id="@+id/quality_switch_type_RG"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quality_switch_type_TV">
 
+        <RadioButton
+            android:id="@+id/quality_switch_immediately_RB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:textColor="@drawable/qmedia_player_selector_panel_text_purple"
 
+            android:text="立即模式" />
+
+        <RadioButton
+            android:id="@+id/quality_switch_type_by_is_living_RB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:textColor="@drawable/qmedia_player_selector_panel_text_purple"
+
+            android:text="直播立即/点播无缝" />
+        <RadioButton
+            android:id="@+id/quality_switch_seamless_RB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:textColor="@drawable/qmedia_player_selector_panel_text_purple"
+            android:text="无缝模式" />
+    </RadioGroup>
+    <View
+        android:id="@+id/divider9"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@color/white_alpha70"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quality_switch_type_RG" />
+    <TextView
+        android:id="@+id/shoot_video_source_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="截图是否截取原图"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider9"
+        android:visibility="gone"/>
+    <CheckBox
+        android:id="@+id/shoot_video_source_CB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shoot_video_source_TV"
+        android:layout_marginStart="12dp"
+        android:textSize="12sp"
+        android:textColor="@drawable/qmedia_player_selector_panel_text_purple"
+        android:text="截图是否截取原图"
+        android:visibility="gone">
+    </CheckBox>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

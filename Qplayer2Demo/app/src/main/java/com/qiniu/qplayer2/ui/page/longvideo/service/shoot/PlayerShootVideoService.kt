@@ -36,8 +36,8 @@ class PlayerShootVideoService :
         mPlayerCore = playerCore
     }
 
-    override fun shootVideo(source: Boolean) {
-        mPlayerCore.mPlayerContext.getPlayerControlHandler().shootVideo( source)
+    override fun shootVideo() {
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().shootVideo()
     }
 
     override fun onShootSuccessful(

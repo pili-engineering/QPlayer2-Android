@@ -1,18 +1,10 @@
 package com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
-import android.os.Build
-import android.provider.MediaStore
 import android.util.AttributeSet
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
-import androidx.core.content.contentValuesOf
-import com.qiniu.qmedia.component.player.QIPlayerShootVideoListener
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
@@ -21,8 +13,6 @@ import com.qiniu.qplayer2.ui.page.longvideo.service.ServiceOwnerType
 import com.qiniu.qplayer2.ui.page.longvideo.service.shoot.IPlayerShootVideoService
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
 import com.qiniu.qplayer2ext.commonplayer.layer.control.IControlWidget
-import java.io.ByteArrayInputStream
-import java.io.FileInputStream
 
 class CommonPlayerShootVideoWidget: AppCompatImageView, View.OnClickListener,
     IControlWidget<LongLogicProvider, LongPlayableParams, LongVideoParams> {
@@ -58,7 +48,7 @@ class CommonPlayerShootVideoWidget: AppCompatImageView, View.OnClickListener,
         val service = mPlayerCore.getPlayerEnviromentServiceManager().getPlayerService<IPlayerShootVideoService>(
             ServiceOwnerType.PLAYER_SHOOT_VIDEO_SERVICE.type)
         service?.also {
-            it.shootVideo(true)
+            it.shootVideo()
         }
     }
 

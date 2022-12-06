@@ -8,7 +8,12 @@ import com.qiniu.qmedia.component.player.*
 import com.qiniu.qmedia.ui.QTexturePlayerView
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2.logic.PlayerSettingVM
+import com.qiniu.qplayer2.ui.page.longvideo.LongControlPanelType
+import com.qiniu.qplayer2.ui.page.longvideo.LongEnviromentType
+import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
+import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
 import com.qiniu.qplayer2.ui.widget.*
+import com.qiniu.qplayer2ext.commonplayer.data.DisplayOrientation
 
 class SimpleLongVideoActivity : AppCompatActivity(), IVideoHolderClickListener {
 
@@ -91,6 +96,12 @@ class SimpleLongVideoActivity : AppCompatActivity(), IVideoHolderClickListener {
     private fun initMediaModel() {
         var builder = QMediaModelBuilder()
         var url = ""
+
+        builder = QMediaModelBuilder()
+        url = "https://playback-vpaas.cloudlinks.cn/vas/playback/m3u8?ownerid=9223372043372670614&deviceid=24402292&startTime=1666660997&endTime=1666661006&sign=fdfb9c98d4fe7635d35b6d762b33bb9e831fb4cf&port=42827"
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 0, url, true)
+        mVideoList.add(Pair(url, builder.build(false)))
+
 
         //音视频分开2个流的视频要用精准seek
         builder = QMediaModelBuilder()

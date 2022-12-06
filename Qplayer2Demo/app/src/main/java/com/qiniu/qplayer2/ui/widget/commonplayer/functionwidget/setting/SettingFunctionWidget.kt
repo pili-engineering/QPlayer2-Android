@@ -17,10 +17,7 @@ import com.qiniu.qplayer2.repository.setting.PlayerSettingRespostory
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
-import com.qiniu.qplayer2ext.common.rxjava3.into
-import com.qiniu.qplayer2ext.common.rxjava3.subscribeBy
 import com.qiniu.qplayer2ext.commonplayer.layer.function.FunctionWidgetConfig
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 class SettingFunctionWidget(context: Context) :
@@ -53,11 +50,19 @@ class SettingFunctionWidget(context: Context) :
     private lateinit var mGreenBlindRB: RadioButton
     private lateinit var mBlueBlindRB: RadioButton
 
+
+    private lateinit var mQualitySwitchTypeRG: RadioGroup
+    private lateinit var mQualitySwitchImmediatelyRB: RadioButton
+    private lateinit var mQualitySwitchAutoRB: RadioButton
+    private lateinit var mQualitySwitchSeamlessRB: RadioButton
+
     private lateinit var mStartPositionEdit: EditText
 
     private lateinit var mForceFlushAuthenticationCB: CheckBox
 
     private lateinit var mSEIEnableCB: CheckBox
+
+    private lateinit var mShootVideoSourceCB: CheckBox
 
     private val mCompositeDisposable = CompositeDisposable();
 
@@ -65,6 +70,7 @@ class SettingFunctionWidget(context: Context) :
 
     override val tag: String
         get() = "SettingFunctionWidget"
+
 
     override val functionWidgetConfig: FunctionWidgetConfig
         get() {
@@ -87,7 +93,9 @@ class SettingFunctionWidget(context: Context) :
         updateStartPosition(PlayerSettingRespostory.startPosition)
         updateBlindType(PlayerSettingRespostory.blindType)
         updateSEIEnable(PlayerSettingRespostory.seiEnable)
+        updateQualitySwitchType(PlayerSettingRespostory.qualitySwitchType)
         updateForceFlushAuthentication()
+        updateIsShootVideoSource(PlayerSettingRespostory.isShootVideoSource)
 //        registerSubjects()
         registerClickListeners()
     }
@@ -140,7 +148,12 @@ class SettingFunctionWidget(context: Context) :
 
         mSEIEnableCB = view.findViewById(R.id.sei_CB)
 
+        mQualitySwitchTypeRG = view.findViewById(R.id.quality_switch_type_RG)
+        mQualitySwitchImmediatelyRB = view.findViewById(R.id.quality_switch_immediately_RB)
+        mQualitySwitchAutoRB = view.findViewById(R.id.quality_switch_type_by_is_living_RB)
+        mQualitySwitchSeamlessRB = view.findViewById(R.id.quality_switch_seamless_RB)
 
+        mShootVideoSourceCB = view.findViewById(R.id.shoot_video_source_CB)
         return view
     }
 
@@ -214,6 +227,21 @@ class SettingFunctionWidget(context: Context) :
 
     private fun updateStartPosition(startPos: Long) {
         mStartPositionEdit.setText(startPos.toString())
+    }
+
+    private fun updateQualitySwitchType(type: PlayerSettingRespostory.QualitySwitchType) {
+        when (type) {
+            PlayerSettingRespostory.QualitySwitchType.QPLAYER_QUALITY_SWITCH_TYPE_AUTO ->
+                mQualitySwitchAutoRB.isChecked = true
+            PlayerSettingRespostory.QualitySwitchType.QPLAYER_QUALITY_SWITCH_IMMEDIATELY ->
+                mQualitySwitchImmediatelyRB.isChecked = true
+            PlayerSettingRespostory.QualitySwitchType.QPLAYER_QUALITY_SWITCH_SEAMLESS ->
+                mQualitySwitchSeamlessRB.isChecked = true
+        }
+    }
+
+    private fun updateIsShootVideoSource(isShootVideoSource: Boolean) {
+        mShootVideoSourceCB.isChecked = isShootVideoSource
     }
 //
 //    private fun registerSubjects() {
@@ -299,6 +327,8 @@ class SettingFunctionWidget(context: Context) :
         mForceFlushAuthenticationCB.setOnCheckedChangeListener(null)
 
         mSEIEnableCB.setOnCheckedChangeListener(null)
+
+        mQualitySwitchTypeRG.setOnCheckedChangeListener(null)
     }
     private fun registerClickListeners() {
         mDecodrRG.setOnCheckedChangeListener { group, checkedId ->
@@ -397,6 +427,23 @@ class SettingFunctionWidget(context: Context) :
 
         }
 
+        mQualitySwitchTypeRG.setOnCheckedChangeListener { radioGroup, checkedId ->
+            when (checkedId) {
+                mQualitySwitchAutoRB.id ->
+                    PlayerSettingRespostory.qualitySwitchType =
+                        PlayerSettingRespostory.QualitySwitchType.QPLAYER_QUALITY_SWITCH_TYPE_AUTO
+
+                mQualitySwitchImmediatelyRB.id ->
+                    PlayerSettingRespostory.qualitySwitchType =
+                        PlayerSettingRespostory.QualitySwitchType.QPLAYER_QUALITY_SWITCH_IMMEDIATELY
+
+                mQualitySwitchSeamlessRB.id ->
+                    PlayerSettingRespostory.qualitySwitchType =
+                        PlayerSettingRespostory.QualitySwitchType.QPLAYER_QUALITY_SWITCH_SEAMLESS
+
+            }
+        }
+
         mStartPositionEdit.setOnFocusChangeListener { v, hasFocus ->
             if (!hasFocus) {
                 updateDataSourceStartPos(mStartPositionEdit.editableText.toString().toLong())
@@ -408,11 +455,17 @@ class SettingFunctionWidget(context: Context) :
             mPlayerCore.mPlayerContext.getPlayerControlHandler().setSEIEnable(is_checked)
         }
 
+        mShootVideoSourceCB.setOnCheckedChangeListener{ cb, is_checked ->
+            PlayerSettingRespostory.isShootVideoSource = is_checked
+        }
+
         mForceFlushAuthenticationCB.setOnCheckedChangeListener { cb, is_checked ->
             if (is_checked) {
                 mPlayerCore.mPlayerContext.getPlayerControlHandler().forceAuthenticationFromNetwork()
             }
         }
+
+
     }
 
     private fun updateDataSourceStartPos(startPos: Long) {

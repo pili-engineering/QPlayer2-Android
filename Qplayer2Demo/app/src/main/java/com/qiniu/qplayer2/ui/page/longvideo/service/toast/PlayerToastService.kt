@@ -13,7 +13,9 @@ import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
 class PlayerToastService
     : IPlayerService<LongLogicProvider, LongPlayableParams, LongVideoParams>, IPlayerToastService,
     QIPlayerQualityListener, QIPlayerVideoDecodeListener,
-    QIPlayerCommandNotAllowListener, QIPlayerFormatListener, QIPlayerSEIDataListener, QIPlayerAuthenticationListener {
+    QIPlayerCommandNotAllowListener, QIPlayerFormatListener,
+    QIPlayerSEIDataListener, QIPlayerAuthenticationListener,
+    QIPlayerVideoFrameSizeChangeListener {
 
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
 
@@ -24,6 +26,8 @@ class PlayerToastService
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerFormatListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerSEIDataListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerAuthenticationListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerVideoFrameSizeChangeListener(this)
+
     }
 
     override fun onStop() {
@@ -33,6 +37,8 @@ class PlayerToastService
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerFormatListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerSEIDataListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerAuthenticationListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerVideoFrameSizeChangeListener(this)
+
     }
 
     override fun bindPlayerCore(playerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>) {
@@ -190,6 +196,16 @@ class PlayerToastService
             .duration(PlayerToastConfig.DURATION_3)
             .build()
         Log.e("PlayerToastService", "Qplayer2鉴权成功")
+        mPlayerCore.playerToastContainer?.showToast(toast)
+    }
+
+    override fun onVideoFrameSizeChanged(width: Int, height: Int) {
+        val toast = PlayerToast.Builder()
+            .toastItemType(PlayerToastConfig.TYPE_NORMAL)
+            .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
+            .setExtraString(PlayerToastConfig.EXTRA_TITLE, "视频宽高：${width}X${height}")
+            .duration(PlayerToastConfig.DURATION_3)
+            .build()
         mPlayerCore.playerToastContainer?.showToast(toast)
     }
 }

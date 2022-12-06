@@ -18,7 +18,17 @@ object PlayerSettingRespostory : SharedPreferences.OnSharedPreferenceChangeListe
     private const val START_POSITION_SETTING_KEY_NAME = "StartPositionSetting"
     private const val BLIND_SETTING_KEY_NAME = "BlindSetting"
     private const val SEI_SETTING_KEY_NAME = "SEISetting"
+    private const val QUALITY_SWITCH_TYPE_SETTING_KEY_NAME = "QualitySwitchTypeSetting"
+    private const val SHOOT_VIDEO_SOURCE_KEY_NAME = "ShootVideoSource"
 
+    public enum class QualitySwitchType(val value: Int) {
+        //自动选择
+        QPLAYER_QUALITY_SWITCH_TYPE_AUTO(0),
+        //立即模式
+        QPLAYER_QUALITY_SWITCH_IMMEDIATELY(1),
+        //无缝模式
+        QPLAYER_QUALITY_SWITCH_SEAMLESS(2)
+    }
 
     var decoderTypeSubject = PublishSubject.create<QPlayerSetting.QPlayerDecoder>()
     var seekTypeSubject = PublishSubject.create<QPlayerSetting.QPlayerSeek>()
@@ -138,6 +148,31 @@ object PlayerSettingRespostory : SharedPreferences.OnSharedPreferenceChangeListe
         }
         set(value) {
             mSharedPreferencesHelper.setBoolean(SEI_SETTING_KEY_NAME, value)
+        }
+
+    var qualitySwitchType:QualitySwitchType
+        get() {
+            val type: Int = mSharedPreferencesHelper.optInteger(
+                QUALITY_SWITCH_TYPE_SETTING_KEY_NAME,
+                QualitySwitchType.QPLAYER_QUALITY_SWITCH_TYPE_AUTO.value
+            )
+            return QualitySwitchType.values().find { it.value == type }
+                ?: QualitySwitchType.QPLAYER_QUALITY_SWITCH_TYPE_AUTO
+
+        }
+        set(value) {
+            mSharedPreferencesHelper.setInteger(QUALITY_SWITCH_TYPE_SETTING_KEY_NAME, value.value)
+        }
+
+    var isShootVideoSource:Boolean
+        get() {
+            return mSharedPreferencesHelper.optBoolean(
+                SHOOT_VIDEO_SOURCE_KEY_NAME,
+                true
+            )
+        }
+        set(value) {
+            mSharedPreferencesHelper.setBoolean(SHOOT_VIDEO_SOURCE_KEY_NAME, value)
         }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {

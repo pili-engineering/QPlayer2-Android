@@ -23,6 +23,7 @@ import com.qiniu.qplayer2.ui.page.longvideo.service.panorama.PlayerPanoramaTouch
 import com.qiniu.qplayer2.ui.page.longvideo.service.shoot.PlayerShootVideoService
 import com.qiniu.qplayer2.ui.page.longvideo.service.shoot.PlayerShootVideoServiceOwner
 import com.qiniu.qplayer2.ui.page.longvideo.service.toast.PlayerToastServiceOwner
+import com.qiniu.qplayer2.ui.page.longvideo.service.volume.PlayerVolumeServiceOwner
 
 class LongVideoActivity : AppCompatActivity() {
 
@@ -76,6 +77,7 @@ class LongVideoActivity : AppCompatActivity() {
             .addServiceOwner(PlayerNetworkServiceOwner())
             .addServiceOwner(PlayerPanoramaTouchSeriviceOwner())
             .addServiceOwner(PlayerShootVideoServiceOwner())
+            .addServiceOwner(PlayerVolumeServiceOwner())
             .setRootUIContanier(this, findViewById(R.id.video_container_FL))
             .enableControlPanel()
             .enableFunctionWidget()
