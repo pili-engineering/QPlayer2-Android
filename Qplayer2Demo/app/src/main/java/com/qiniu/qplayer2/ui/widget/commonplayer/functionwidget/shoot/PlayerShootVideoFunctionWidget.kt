@@ -66,10 +66,14 @@ class PlayerShootVideoFunctionWidget(context: Context):
     override fun createContentView(context: Context): View {
         val view = LayoutInflater.from(mContext).inflate(R.layout.function_shoot_video, null)
         mImageView = view.findViewById(R.id.shoot_viodeo_IV)
+        mImageView.setOnClickListener {
+            mPlayerCore.playerFunctionWidgetContainer?.hideWidget(this@PlayerShootVideoFunctionWidget.token)
+        }
         return view
     }
 
     override fun onRelease() {
+        mImageView.setOnClickListener(null)
     }
 
     override fun onConfigurationChanged(configuration: Configuration) {
