@@ -15,7 +15,7 @@ class PlayerToastService
     QIPlayerQualityListener, QIPlayerVideoDecodeListener,
     QIPlayerCommandNotAllowListener, QIPlayerFormatListener,
     QIPlayerSEIDataListener, QIPlayerAuthenticationListener,
-    QIPlayerVideoFrameSizeChangeListener {
+    QIPlayerVideoFrameSizeChangeListener, QIPlayerSeekListener {
 
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
 
@@ -27,6 +27,7 @@ class PlayerToastService
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerSEIDataListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerAuthenticationListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerVideoFrameSizeChangeListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerSeekListener(this)
 
     }
 
@@ -38,6 +39,7 @@ class PlayerToastService
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerSEIDataListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerAuthenticationListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerVideoFrameSizeChangeListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerSeekListener(this)
 
     }
 
@@ -195,7 +197,7 @@ class PlayerToastService
             .setExtraString(PlayerToastConfig.EXTRA_TITLE, "Qplayer2鉴权成功")
             .duration(PlayerToastConfig.DURATION_3)
             .build()
-        Log.e("PlayerToastService", "Qplayer2鉴权成功")
+        Log.d("PlayerToastService", "Qplayer2鉴权成功")
         mPlayerCore.playerToastContainer?.showToast(toast)
     }
 
@@ -204,6 +206,26 @@ class PlayerToastService
             .toastItemType(PlayerToastConfig.TYPE_NORMAL)
             .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
             .setExtraString(PlayerToastConfig.EXTRA_TITLE, "视频宽高：${width}X${height}")
+            .duration(PlayerToastConfig.DURATION_3)
+            .build()
+        mPlayerCore.playerToastContainer?.showToast(toast)
+    }
+
+    override fun onSeekFailed() {
+        val toast = PlayerToast.Builder()
+            .toastItemType(PlayerToastConfig.TYPE_NORMAL)
+            .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
+            .setExtraString(PlayerToastConfig.EXTRA_TITLE, "SEEK失败")
+            .duration(PlayerToastConfig.DURATION_3)
+            .build()
+        mPlayerCore.playerToastContainer?.showToast(toast)
+    }
+
+    override fun onSeekSuccess() {
+        val toast = PlayerToast.Builder()
+            .toastItemType(PlayerToastConfig.TYPE_NORMAL)
+            .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
+            .setExtraString(PlayerToastConfig.EXTRA_TITLE, "SEEK成功")
             .duration(PlayerToastConfig.DURATION_3)
             .build()
         mPlayerCore.playerToastContainer?.showToast(toast)
