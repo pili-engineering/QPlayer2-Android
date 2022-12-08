@@ -92,7 +92,7 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:3.12.12"){
         force = true //API 19 support
     }
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
 
     if (dependency_type == "remote") {
         implementation("com.qiniu:qplayer2-core:1.1.4")
@@ -103,7 +103,7 @@ dependencies {
         implementation project(path: ':qplayer2-ext')
         implementation project(path: ':qplayer2-core')
     } else {
-        implementation fileTree(dir: 'libs', include: ['*.aar'])
+        implementation files("libs/qplayer2-core-${qplayer2_version}.aar", "libs/qplayer2-ext-${qplayer2_version}.aar")
     }
 
 
