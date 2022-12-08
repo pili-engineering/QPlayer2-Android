@@ -103,7 +103,7 @@ dependencies {
         implementation project(path: ':qplayer2-ext')
         implementation project(path: ':qplayer2-core')
     } else {
-        implementation files("libs/qplayer2-core-${qplayer2_version}.aar", "libs/qplayer2-ext-${qplayer2_version}.aar")
+        implementation files("libs/qplayer2-core-${qplayer2_version}-release.aar", "libs/qplayer2-ext-${qplayer2_version}-release.aar")
     }
 
 
