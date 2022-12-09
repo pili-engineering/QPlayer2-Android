@@ -68,7 +68,7 @@ class LongVideoActivity : AppCompatActivity() {
             .addEnviroment(LongEnviromentType.LONG.type,
                 LongPlayerEnviroment())
             .setCommonPlayerScreenChangedListener(LongCommonPlayerScreenChangedListener(this, findViewById(R.id.video_container_FL)))
-            .setLogicProvider(LongLogicProvider())
+            .setLogicProvider(LongLogicProvider(this))
             .setPlayerDataSource(mPlayerDataSource)
             .setContext(this)
             .addServiceOwner(PlayerControlPanelContainerVisibleServiceOwner())

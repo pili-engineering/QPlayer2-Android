@@ -4,6 +4,7 @@ import android.provider.MediaStore
 import android.view.ViewGroup
 import androidx.core.content.contentValuesOf
 import com.qiniu.qmedia.component.player.QIPlayerShootVideoListener
+import com.qiniu.qplayer2.common.system.PermissionHelper
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
@@ -47,22 +48,24 @@ class PlayerShootVideoService :
         type: QIPlayerShootVideoListener.ShootVideoType
     ) {
 
+        if (mPlayerCore.logicProvider?.checkPhotoAlbumPermission() == true) {
+            //保存截图
+            val contentValues = contentValuesOf(
+                MediaStore.MediaColumns.DISPLAY_NAME to System.currentTimeMillis().toString(),
+                MediaStore.MediaColumns.MIME_TYPE to "image/jpeg",
+                MediaStore.MediaColumns.RELATIVE_PATH to "Pictures/QPlayer2VideoShoots/"
+            )
 
-        //保存截图
-        val contentValues = contentValuesOf(
-            MediaStore.MediaColumns.DISPLAY_NAME to System.currentTimeMillis().toString(),
-            MediaStore.MediaColumns.MIME_TYPE to "image/jpeg",
-            MediaStore.MediaColumns.RELATIVE_PATH to "Pictures/QPlayer2VideoShoots/"
-        )
-
-        mPlayerCore.mAndroidContext?.contentResolver?.insert(
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-            contentValues
-        )?.apply {
-            mPlayerCore.mAndroidContext?.contentResolver?.openOutputStream(this)?.use {
-                it.write(image, 0, image.size)
+            mPlayerCore.mAndroidContext?.contentResolver?.insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                contentValues
+            )?.apply {
+                mPlayerCore.mAndroidContext?.contentResolver?.openOutputStream(this)?.use {
+                    it.write(image, 0, image.size)
+                }
             }
         }
+
 
         mToken?.also {
             mPlayerCore.playerFunctionWidgetContainer?.hideWidget(it)
