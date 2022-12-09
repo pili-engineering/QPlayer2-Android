@@ -95,8 +95,8 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
 
     if (dependency_type == "remote") {
-        implementation("com.qiniu:qplayer2-core:1.1.4")
-        implementation("com.qiniu:qplayer2-ext:1.1.4")
+        implementation("com.qiniu:qplayer2-core:${qplayer2_version}")
+        implementation("com.qiniu:qplayer2-ext:${qplayer2_version}")
 
     } else if(dependency_type == "source"){
 
