@@ -33,4 +33,5 @@ task clean(type: Delete) {
 
 ext {
     dependency_type = "remote"
+    qplayer2_version='1.2.0'
 }

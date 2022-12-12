@@ -5,9 +5,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
-ext {
-    qplayer2_demo_version='1.1.4'
-}
 
 private static String getBuildTime() {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EEEE d MMMM yyyy HH:mm:ss")
@@ -25,7 +22,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 32
         versionCode 1
-        versionName "$qplayer2_demo_version"
+        versionName "$qplayer2_version"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -95,18 +92,18 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:3.12.12"){
         force = true //API 19 support
     }
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
 
     if (dependency_type == "remote") {
-        implementation("com.qiniu:qplayer2-core:1.1.4")
-        implementation("com.qiniu:qplayer2-ext:1.1.4")
+        implementation("com.qiniu:qplayer2-core:${qplayer2_version}")
+        implementation("com.qiniu:qplayer2-ext:${qplayer2_version}")
 
     } else if(dependency_type == "source"){
 
         implementation project(path: ':qplayer2-ext')
         implementation project(path: ':qplayer2-core')
     } else {
-        implementation fileTree(dir: 'libs', include: ['*.aar'])
+        implementation files("libs/qplayer2-core-${qplayer2_version}-release.aar", "libs/qplayer2-ext-${qplayer2_version}-release.aar")
     }
 
 

@@ -277,11 +277,32 @@ object LongPlayerDataSourceFactory {
                 )
             )
         )
+        builder = QMediaModelBuilder()
+        url = "rtmp://pili-rtmp.qnsdk.com/sdk-live/testf11@480p"
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
+        name = "13-1-直播-rtmp://pili-rtmp.qnsdk.com/sdk-live/testf11@480p"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L
+                )
+            )
+        )
 
         builder = QMediaModelBuilder()
-        url = "rtmp://pili-publish.qnsdk.com/sdk-live/6666"
-        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
-        name = "13-1-直播-rtmp://pili-publish.qnsdk.com/sdk-live/6666"
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 720,
+            "rtmp://pili-publish.qnsdk.com/sdk-live/6666", true)
+
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 480,
+            "rtmp://pili-publish.qnsdk.com/sdk-live/6666@480p", false)
+
+        name = "13-0-直播@-多码率-直播-rtmp://pili-publish.qnsdk.com/sdk-live/6666"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
         dataSourceBuilder.addVideo(
             videoParams,

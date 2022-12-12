@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="Ba0_u_alpha30">#4c000000</color>
+    <color name="Wh0_u_alpha20">#33ffffff</color>
+    <color name="Wh0_u_alpha40">#66ffffff</color>
 
 </resources>

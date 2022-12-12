@@ -20,7 +20,10 @@ import com.qiniu.qplayer2.ui.page.longvideo.service.buffering.PlayerBufferingSer
 import com.qiniu.qplayer2.ui.page.longvideo.service.controlpanelcontainervisible.PlayerControlPanelContainerVisibleServiceOwner
 import com.qiniu.qplayer2.ui.page.longvideo.service.network.PlayerNetworkServiceOwner
 import com.qiniu.qplayer2.ui.page.longvideo.service.panorama.PlayerPanoramaTouchSeriviceOwner
+import com.qiniu.qplayer2.ui.page.longvideo.service.shoot.PlayerShootVideoService
+import com.qiniu.qplayer2.ui.page.longvideo.service.shoot.PlayerShootVideoServiceOwner
 import com.qiniu.qplayer2.ui.page.longvideo.service.toast.PlayerToastServiceOwner
+import com.qiniu.qplayer2.ui.page.longvideo.service.volume.PlayerVolumeServiceOwner
 
 class LongVideoActivity : AppCompatActivity() {
 
@@ -65,7 +68,7 @@ class LongVideoActivity : AppCompatActivity() {
             .addEnviroment(LongEnviromentType.LONG.type,
                 LongPlayerEnviroment())
             .setCommonPlayerScreenChangedListener(LongCommonPlayerScreenChangedListener(this, findViewById(R.id.video_container_FL)))
-            .setLogicProvider(LongLogicProvider())
+            .setLogicProvider(LongLogicProvider(this))
             .setPlayerDataSource(mPlayerDataSource)
             .setContext(this)
             .addServiceOwner(PlayerControlPanelContainerVisibleServiceOwner())
@@ -73,6 +76,8 @@ class LongVideoActivity : AppCompatActivity() {
             .addServiceOwner(PlayerBufferingServiceOwner())
             .addServiceOwner(PlayerNetworkServiceOwner())
             .addServiceOwner(PlayerPanoramaTouchSeriviceOwner())
+            .addServiceOwner(PlayerShootVideoServiceOwner())
+            .addServiceOwner(PlayerVolumeServiceOwner())
             .setRootUIContanier(this, findViewById(R.id.video_container_FL))
             .enableControlPanel()
             .enableFunctionWidget()

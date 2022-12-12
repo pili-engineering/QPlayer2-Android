@@ -93,6 +93,16 @@
         android:paddingEnd="11dp"
         android:paddingRight="11dp"/>
 
+
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerShootVideoWidget
+        android:id="@+id/shoot_video_IV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="12dp"/>
+
     <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerProgressTextWidget
         android:id="@+id/progress_TV"
         android:layout_width="wrap_content"
@@ -131,6 +141,18 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="12dp"/>
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerMuteWidget
+        android:id="@+id/mute_IV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/select_video_TV"
+        app:layout_constraintTop_toTopOf="@+id/pause_play_Btn"
+        app:layout_constraintBottom_toBottomOf="@+id/pause_play_Btn"
+        android:layout_marginEnd="10dp"
+        android:paddingStart="11dp"
+        android:paddingLeft="11dp"
+        android:paddingEnd="11dp"
+        android:paddingRight="11dp" />
 
     <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerSelectVideoWidget
         android:id="@+id/select_video_TV"

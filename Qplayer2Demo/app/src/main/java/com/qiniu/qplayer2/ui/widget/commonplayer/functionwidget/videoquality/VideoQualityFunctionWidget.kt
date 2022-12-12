@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.qiniu.qmedia.component.player.*
 import com.qiniu.qmedia.component.player.QPlayerControlHandler.Companion.INVALID_QUALITY_ID
 import com.qiniu.qplayer2.R
+import com.qiniu.qplayer2.repository.setting.PlayerSettingRespostory
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
 import com.qiniu.qplayer2ext.commonplayer.controller.ICommonPlayerVideoSwitcher
 import com.qiniu.qplayer2ext.commonplayer.layer.function.BaseFunctionWidget
@@ -173,10 +174,19 @@ class VideoQualityFunctionWidget (context: Context):
 
             override fun onItemClick(quality: QQuality) {
                 mPlayerCore.mCommonPlayerVideoSwitcher.getCurrentPlayableParams()?.mediaModel?.isLive?.let { isLive->
+                    val isImmediately =
+                        when(PlayerSettingRespostory.qualitySwitchType) {
+                            PlayerSettingRespostory.QualitySwitchType.QPLAYER_QUALITY_SWITCH_TYPE_AUTO -> isLive
+                            PlayerSettingRespostory.QualitySwitchType.QPLAYER_QUALITY_SWITCH_IMMEDIATELY -> true
+                            PlayerSettingRespostory.QualitySwitchType.QPLAYER_QUALITY_SWITCH_SEAMLESS -> false
+                            else -> isLive
+                        }
+
+
                     mPlayerCore.mPlayerContext.getPlayerControlHandler().switchQuality(
                         quality.userType,
                         quality.urlType,
-                        quality.quality, isLive)
+                        quality.quality, isImmediately)
                     mPlayerCore.playerFunctionWidgetContainer?.hideWidget(token)
                 }
             }
