@@ -33,5 +33,7 @@ task clean(type: Delete) {
 
 ext {
     dependency_type = "remote"
-    qplayer2_version='1.2.0'
+//    dependency_type = "local"
+
+    qplayer2_version='1.2.1'
 }
