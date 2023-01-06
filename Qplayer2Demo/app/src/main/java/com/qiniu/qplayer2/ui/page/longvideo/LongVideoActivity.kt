@@ -1,8 +1,10 @@
 package com.qiniu.qplayer2.ui.page.longvideo
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PowerManager
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import com.qiniu.qplayer2.R
@@ -30,20 +32,35 @@ class LongVideoActivity : AppCompatActivity() {
     private lateinit var mCommonPlayer: CommonPlayer<Any,
             LongLogicProvider, LongPlayableParams, LongVideoParams>
 
+    private lateinit var mWakeLock: PowerManager.WakeLock
+
     private lateinit var mPlayerDataSource: CommonPlayerDataSource<LongPlayableParams, LongVideoParams>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         setContentView(R.layout.activity_long_video)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        acquireWakeLock();
         initCommonPlayer()
     }
 
+    override fun onStart() {
+        super.onStart()
+    }
     override fun onDestroy() {
         mCommonPlayer.release()
-        this is Context
+        releaseWakeLock()
         super.onDestroy()
+    }
+    @SuppressLint("InvalidWakeLockTag")
+    private fun acquireWakeLock() {
+        val powerManager =getSystemService(Context.POWER_SERVICE) as PowerManager
+        mWakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "keep_player_activate")
+        mWakeLock.setReferenceCounted(false)
+    }
 
+    private fun releaseWakeLock() {
+        mWakeLock.release()
     }
 
     private fun initCommonPlayer() {

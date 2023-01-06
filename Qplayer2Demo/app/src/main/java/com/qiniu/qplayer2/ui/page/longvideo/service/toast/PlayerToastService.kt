@@ -174,7 +174,8 @@ class PlayerToastService
             .setExtraString(PlayerToastConfig.EXTRA_TITLE, "SEI DATA:${data.decodeToString()}")
             .duration(PlayerToastConfig.DURATION_3)
             .build()
-        Log.i("PlayerToastService", "SEI DATA:${data}")
+
+        Log.i("PlayerToastService", "SEI Decode DATA:${data.decodeToString()} SEI DATA:${data}")
         mPlayerCore.playerToastContainer?.showToast(toast)
     }
 
