@@ -567,7 +567,7 @@ object LongPlayerDataSourceFactory {
         )
 
         builder = QMediaModelBuilder()
-        url = "http://pili-playback.qnsdk.com/recordings/z1.sdk-live.6666/1652355051_1652355244.m3u8"
+        url = "http://pili-playback.qnsdk.com/recordings/z1.sdk-live.Hera/1673340696_1673340783.m3u8"
         builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
         name = "26-点播-http-m3u8-SEI"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
