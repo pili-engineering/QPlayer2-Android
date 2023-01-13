@@ -894,6 +894,49 @@ object LongPlayerDataSourceFactory {
             )
         )
 
+        builder = QMediaModelBuilder()
+        builder.addElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 960,
+            "rtmp://pili-rtmp.qnsdk.com/sdk-live/Hera", true
+        )
+        name = "40-5.1声道-声音cici声"
+
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition
+                )
+            )
+        )
+
+
+        builder = QMediaModelBuilder()
+        builder.addElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 960,
+            "http://stream.0554news.com/hnds1/playlist.m3u8?_upt=cc441e8f1669371377", true
+        )
+        name = "41-直播-硬解崩溃"
+
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition
+                )
+            )
+        )
+
 
         return dataSourceBuilder.build()
     }
