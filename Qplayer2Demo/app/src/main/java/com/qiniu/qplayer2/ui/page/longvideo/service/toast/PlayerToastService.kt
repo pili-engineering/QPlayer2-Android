@@ -19,6 +19,8 @@ class PlayerToastService
 
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
 
+    private var mSEICount: Long = 0
+    private var mSEIDataStr : String = ""
     override fun onStart() {
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerQualityListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerVideoDecodeTypeListener(this)
@@ -168,15 +170,30 @@ class PlayerToastService
     }
 
     override fun onSEIData(data: ByteArray) {
-        val toast = PlayerToast.Builder()
-            .toastItemType(PlayerToastConfig.TYPE_NORMAL)
-            .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
-            .setExtraString(PlayerToastConfig.EXTRA_TITLE, "SEI DATA:${data.decodeToString()}")
-            .duration(PlayerToastConfig.DURATION_3)
-            .build()
+        if (data.size > 16) {
 
-        Log.i("PlayerToastService", "SEI Decode DATA:${data.decodeToString()} SEI DATA:${data}")
-        mPlayerCore.playerToastContainer?.showToast(toast)
+            //uuid_iso_iec_11578
+            val uuid = data.slice(0 until 16).toString()
+            val seiData = data.slice(16 until data.size).toByteArray()
+
+            if (mSEIDataStr == seiData.decodeToString()) {
+                ++mSEICount
+            } else {
+                mSEICount = 0
+                mSEIDataStr = seiData.decodeToString()
+            }
+
+            val toast = PlayerToast.Builder()
+                .toastItemType(PlayerToastConfig.TYPE_NORMAL)
+                .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
+                .setExtraString(PlayerToastConfig.EXTRA_TITLE, "$mSEICount UUID:${uuid} SEI DATA:${seiData.decodeToString()}")
+                .duration(PlayerToastConfig.DURATION_3)
+                .build()
+
+            Log.i("PlayerToastService", "$mSEICount  UUID:${uuid}  SEI Decode DATA:${seiData.decodeToString()}")
+            mPlayerCore.playerToastContainer?.showToast(toast)
+        }
+
     }
 
     override fun on_authentication_failed(error_type: QAuthenticationErrorType) {
