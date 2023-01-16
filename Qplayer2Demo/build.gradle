@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.6.10"
+    ext.kotlin_version = "1.4.20"
     repositories {
         mavenCentral()
 
@@ -33,7 +33,7 @@ task clean(type: Delete) {
 
 ext {
     dependency_type = "remote"
-//    dependency_type = "local"
+    //dependency_type = "local"
 
-    qplayer2_version='1.2.1'
+    qplayer2_version='1.2.2'
 }

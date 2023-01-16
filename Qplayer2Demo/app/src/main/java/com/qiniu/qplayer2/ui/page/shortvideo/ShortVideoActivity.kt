@@ -86,6 +86,7 @@ class ShortVideoActivity : AppCompatActivity() {
         mVideoView.playerControlHandler.addPlayerStateChangeListener(mPlayerStateChangeListener)
         mVideoView.playerRenderHandler.addPlayerRenderListener(mPlayerRenderListener)
         mVideoView.playerControlHandler.init(this)
+        mVideoView.playerControlHandler.setLogLevel(QLogLevel.LOG_INFO)
         fetchVideoList()
 
     }

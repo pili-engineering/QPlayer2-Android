@@ -567,7 +567,7 @@ object LongPlayerDataSourceFactory {
         )
 
         builder = QMediaModelBuilder()
-        url = "http://pili-playback.qnsdk.com/recordings/z1.sdk-live.6666/1652355051_1652355244.m3u8"
+        url = "http://pili-playback.qnsdk.com/recordings/z1.sdk-live.Hera/1673340696_1673340783.m3u8"
         builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
         name = "26-点播-http-m3u8-SEI"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
@@ -890,6 +890,49 @@ object LongPlayerDataSourceFactory {
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
                     0L
+                )
+            )
+        )
+
+        builder = QMediaModelBuilder()
+        builder.addElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 960,
+            "rtmp://pili-rtmp.qnsdk.com/sdk-live/Hera", true
+        )
+        name = "40-5.1声道-声音cici声"
+
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition
+                )
+            )
+        )
+
+
+        builder = QMediaModelBuilder()
+        builder.addElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 960,
+            "http://stream.0554news.com/hnds1/playlist.m3u8?_upt=cc441e8f1669371377", true
+        )
+        name = "41-直播-硬解崩溃"
+
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition
                 )
             )
         )
