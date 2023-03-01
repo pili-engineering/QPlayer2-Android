@@ -14,7 +14,11 @@ class PlayerDownloadVM: QIPlayerDownloadListener, BasePlayerControlVM() {
         playerDownloadSpeedLiveData.value = speed
     }
 
-    override fun onSetPlayerControlHandler(controlHandler: QPlayerControlHandler?) {
-        playerControlHandler?.addPlayerDownloadChangeListener(this)
+    override fun onInstallPlayerControlHandler(controlHandler: QPlayerControlHandler?) {
+        controlHandler?.addPlayerDownloadChangeListener(this)
+    }
+
+    override fun onClearPlayerListeners() {
+        playerControlHandler?.removePlayerDownloadChangeListener(this)
     }
 }

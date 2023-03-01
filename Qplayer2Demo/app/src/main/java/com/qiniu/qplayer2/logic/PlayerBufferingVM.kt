@@ -16,7 +16,12 @@ class PlayerBufferingVM: QIPlayerBufferingListener, BasePlayerControlVM() {
         playerBufferingLiveData.value = false
     }
 
-    override fun onSetPlayerControlHandler(controlHandler: QPlayerControlHandler?) {
-        playerControlHandler?.addPlayerBufferingChangeListener(this)
+    override fun onInstallPlayerControlHandler(controlHandler: QPlayerControlHandler?) {
+        controlHandler?.addPlayerBufferingChangeListener(this)
+    }
+
+    override fun onClearPlayerListeners() {
+        playerControlHandler?.removePlayerBufferingChangeListener(this)
+
     }
 }
