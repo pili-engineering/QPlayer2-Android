@@ -26,6 +26,7 @@
 
             />
         <activity android:name=".ui.page.shortvideo.ShortVideoActivity" />
+        <activity android:name=".ui.page.doubleplayer.DoublePlayerActivity" />
         <activity android:name=".ui.page.main.MainActivity"
             android:exported="true">
             <intent-filter>
