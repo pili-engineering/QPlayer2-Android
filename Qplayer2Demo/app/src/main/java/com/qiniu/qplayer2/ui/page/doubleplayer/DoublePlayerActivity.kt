@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.qiniu.qmedia.component.player.QMediaModelBuilder
+import com.qiniu.qmedia.component.player.QPlayerSetting
 import com.qiniu.qmedia.component.player.QURLType
 import com.qiniu.qmedia.ui.QSurfacePlayerView
 import com.qiniu.qplayer2.R
@@ -20,7 +21,7 @@ class DoublePlayerActivity: AppCompatActivity() {
 
     val mPlayerClickListener = View.OnClickListener {
         val backendLayoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.MATCH_PARENT)
-        val frontLayoutParams = ConstraintLayout.LayoutParams(DpUtils.dpToPx(200), DpUtils.dpToPx(400))
+        val frontLayoutParams = ConstraintLayout.LayoutParams(DpUtils.dpToPx(400), DpUtils.dpToPx(400))
         frontLayoutParams.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
         frontLayoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
 
@@ -54,7 +55,10 @@ class DoublePlayerActivity: AppCompatActivity() {
         mPlayerB.setOnClickListener(mPlayerClickListener)
 
         mPlayerA.playerControlHandler.init(this)
+        mPlayerA.playerRenderHandler.setRenderRatio(QPlayerSetting.QPlayerRenderRatio.QPLAYER_RATIO_SETTING_STRETCH)
         mPlayerB.playerControlHandler.init(this)
+        mPlayerB.playerRenderHandler.setRenderRatio(QPlayerSetting.QPlayerRenderRatio.QPLAYER_RATIO_SETTING_STRETCH)
+
         var builder = QMediaModelBuilder()
         builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 0,
             "http://demo-videos.qnsdk.com/shortvideo/nike.mp4", true)

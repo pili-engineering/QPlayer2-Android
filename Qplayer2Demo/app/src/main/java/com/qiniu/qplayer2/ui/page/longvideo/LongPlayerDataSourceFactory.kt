@@ -25,7 +25,7 @@ object LongPlayerDataSourceFactory {
         )
         builder.addElement(
             "", QURLType.QAUDIO_AND_VIDEO, 720,
-            "http://demo-videos.qnsdk.com/qiniu-720p.mp4", false
+            "http://demo-videos.qnsdk.com/qiniu-720p555.mp4", false
         )
         builder.addElement(
             "", QURLType.QAUDIO_AND_VIDEO, 480,
@@ -278,7 +278,7 @@ object LongPlayerDataSourceFactory {
             )
         )
         builder = QMediaModelBuilder()
-        url = "rtmp://pili-rtmp.qnsdk.com/sdk-live/testf11@480p"
+        url = "rtmp://pili-live-rtmp.cdn-stg1.zhi-niao.com/zhiniao-stg1/851131_59199A60361D4C54B944130794B1AEEE_1"
         builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
         name = "13-1-直播-rtmp://pili-rtmp.qnsdk.com/sdk-live/testf11@480p"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
@@ -294,15 +294,22 @@ object LongPlayerDataSourceFactory {
                 )
             )
         )
-
         builder = QMediaModelBuilder()
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666", true)
+
         builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 720,
-            "rtmp://pili-publish.qnsdk.com/sdk-live/6666", true)
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666@hugo720p", false)
 
         builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 480,
-            "rtmp://pili-publish.qnsdk.com/sdk-live/6666@480p", false)
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666@hugo480p", false)
 
-        name = "13-0-直播@-多码率-直播-rtmp://pili-publish.qnsdk.com/sdk-live/6666"
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 240,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666@hugo240p", false)
+//        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, ,
+//            "rtmp://pili-publish.qnsdk.com/sdk-live/6666", false)
+
+        name = "13-hugo-直播@-多码率-直播-rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
         dataSourceBuilder.addVideo(
             videoParams,
@@ -318,7 +325,55 @@ object LongPlayerDataSourceFactory {
         )
 
         builder = QMediaModelBuilder()
-        url = "http://pili-hls.qnsdk.com/sdk-live/6666.m3u8"
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666", true)
+
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 720,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666@zn720p", false)
+
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 480,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666@zn480p", false)
+
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 240,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666@zn240p", false)
+//        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, ,
+//            "rtmp://pili-publish.qnsdk.com/sdk-live/6666", false)
+
+        name = "13-zn-直播@-多码率-直播-rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L
+                )
+            )
+        )
+
+        builder = QMediaModelBuilder()
+        url = "rtmp://pili-hdl.qnsdk.com/sdk-live/6666"
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
+        name = "13-22-直播-http://pili-hls.qnsdk.com/sdk-live/6666.m3u8"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L
+                )
+            )
+        )
+
+        builder = QMediaModelBuilder()
+        url = "https://stg1-cdn-vod.zhi-niao.com/replays/2023/02/24/853909/853909_D0F915234FC648C7BDE4D62281E7575F.m3u8"
         builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
         name = "13-2-直播-http://pili-hls.qnsdk.com/sdk-live/6666.m3u8"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
@@ -349,6 +404,12 @@ object LongPlayerDataSourceFactory {
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
                     0L
+
+
+
+
+
+
                 )
             )
         )
@@ -357,7 +418,7 @@ object LongPlayerDataSourceFactory {
 
 
         builder = QMediaModelBuilder()
-        url = "https://sdk-release.qnsdk.com/zeng.m3u8"
+        url = "http://10008gi.playback1.z1.pili.qiniucdn.com/zhiniao-stg1/852373_E1FEB4E6C5B64D06A4B6C6962940BC6C_1.m3u8?start=1676961021&end=1676961045"
         builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
         name = "14-点播-hhtp-m3u8-30fps"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
@@ -936,6 +997,27 @@ object LongPlayerDataSourceFactory {
                 )
             )
         )
+
+//        builder = QMediaModelBuilder()
+//        builder.addElement(
+//            "", QURLType.QAUDIO_AND_VIDEO, 960,
+//            "http://demo-videos.qnsdk.com/moov-end.mp4", true
+//        )
+//        name = "42-点播-moov-end"
+//
+//        videoParams = LongVideoParams(name, name.hashCode().toLong())
+//        dataSourceBuilder.addVideo(
+//            videoParams,
+//            arrayListOf<LongPlayableParams>(
+//                LongPlayableParams(
+//                    builder.build(false),
+//                    LongControlPanelType.Normal.type,
+//                    DisplayOrientation.LANDSCAPE,
+//                    LongEnviromentType.LONG.type,
+//                    PlayerSettingRespostory.startPosition
+//                )
+//            )
+//        )
 
 
         return dataSourceBuilder.build()
