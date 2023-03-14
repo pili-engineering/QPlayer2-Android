@@ -25,7 +25,7 @@ object LongPlayerDataSourceFactory {
         )
         builder.addElement(
             "", QURLType.QAUDIO_AND_VIDEO, 720,
-            "http://demo-videos.qnsdk.com/qiniu-720p555.mp4", false
+            "http://demo-videos.qnsdk.com/qiniu-720p.mp4", false
         )
         builder.addElement(
             "", QURLType.QAUDIO_AND_VIDEO, 480,
