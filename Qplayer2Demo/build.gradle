@@ -35,5 +35,5 @@ ext {
     dependency_type = "remote"
     //dependency_type = "local"
 
-    qplayer2_version='1.2.2'
+    qplayer2_version='1.2.3'
 }
