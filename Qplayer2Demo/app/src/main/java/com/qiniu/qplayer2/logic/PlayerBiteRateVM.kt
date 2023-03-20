@@ -16,7 +16,12 @@ class PlayerBiteRateVM: QIPlayerBiteRateListener, BasePlayerControlVM() {
         playerBiteRateLiveData.value = biteRate
     }
 
-    override fun onSetPlayerControlHandler(controlHandler: QPlayerControlHandler?) {
-        playerControlHandler?.addPlayerBiteRateChangeListener(this)
+    override fun onInstallPlayerControlHandler(controlHandler: QPlayerControlHandler?) {
+        controlHandler?.addPlayerBiteRateChangeListener(this)
+    }
+
+    override fun onClearPlayerListeners() {
+        playerControlHandler?.removePlayerBiteRateChangeListener(this)
+
     }
 }

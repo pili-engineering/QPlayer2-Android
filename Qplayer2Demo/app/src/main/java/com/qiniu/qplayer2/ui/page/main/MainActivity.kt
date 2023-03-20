@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.qiniu.qplayer2.BuildConfig
 import com.qiniu.qplayer2.R
+import com.qiniu.qplayer2.ui.page.doubleplayer.DoublePlayerActivity
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoActivity
 import com.qiniu.qplayer2.ui.page.simplelongvideo.SimpleLongVideoActivity
 import com.qiniu.qplayer2.ui.page.setting.SettingActivity
@@ -36,6 +37,11 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.short_video_player_BTN).setOnClickListener {
             val intent = Intent(this, ShortVideoActivity::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.double_player_BTN).setOnClickListener {
+            val intent = Intent(this, DoublePlayerActivity::class.java)
             startActivity(intent)
         }
 

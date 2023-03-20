@@ -28,7 +28,11 @@ class PlayerPausePlayVM: QIPlayerStateChangeListener, BasePlayerControlVM() {
         playerControlHandler?.pauseRender()
     }
 
-    override fun onSetPlayerControlHandler(controlHandler: QPlayerControlHandler?) {
-        playerControlHandler?.addPlayerStateChangeListener(this)
+    override fun onInstallPlayerControlHandler(controlHandler: QPlayerControlHandler?) {
+        controlHandler?.addPlayerStateChangeListener(this)
+    }
+
+    override fun onClearPlayerListeners() {
+        playerControlHandler?.removePlayerStateChangeListener(this)
     }
 }

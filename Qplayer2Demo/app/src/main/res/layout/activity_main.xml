@@ -44,10 +44,21 @@
         android:layout_width="240dp"
         android:layout_height="80dp"
         android:text="初始化设置"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/short_video_player_BTN"
+        app:layout_constraintBottom_toTopOf="@+id/double_player_BTN"/>
+
+    <Button
+        android:id="@+id/double_player_BTN"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:text="双播放器场景"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/short_video_player_BTN" />
+        app:layout_constraintTop_toBottomOf="@+id/setting_BTN" />
 
     <TextView
         android:id="@+id/version_TV"

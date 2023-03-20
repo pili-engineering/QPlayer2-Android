@@ -86,6 +86,8 @@ class ShortVideoActivity : AppCompatActivity() {
         mVideoView.playerControlHandler.addPlayerStateChangeListener(mPlayerStateChangeListener)
         mVideoView.playerRenderHandler.addPlayerRenderListener(mPlayerRenderListener)
         mVideoView.playerControlHandler.init(this)
+        mVideoView.playerControlHandler.setDecodeType(QPlayerSetting.QPlayerDecoder.QPLAYER_DECODER_SETTING_AUTO)
+//        mVideoView.playerControlHandler.setDecodeType(QPlayerSetting.QPlayerDecoder.QPLAYER_DECODER_SETTING_SOFT_PRIORITY)
         mVideoView.playerControlHandler.setLogLevel(QLogLevel.LOG_INFO)
         fetchVideoList()
 

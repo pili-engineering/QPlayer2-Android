@@ -14,7 +14,12 @@ class PlayerFPSVM:QIPlayerFPSListener, BasePlayerControlVM() {
         playerFPSLiveData.value = fps
     }
 
-    override fun onSetPlayerControlHandler(controlHandler: QPlayerControlHandler?) {
-        playerControlHandler?.addPlayerFPSChangeListener(this)
+    override fun onInstallPlayerControlHandler(controlHandler: QPlayerControlHandler?) {
+        controlHandler?.addPlayerFPSChangeListener(this)
+    }
+
+    override fun onClearPlayerListeners() {
+        playerControlHandler?.removePlayerFPSChangeListener(this)
+
     }
 }

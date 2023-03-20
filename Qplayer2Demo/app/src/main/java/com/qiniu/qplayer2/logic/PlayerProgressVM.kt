@@ -18,9 +18,14 @@ class PlayerProgressVM : QIPlayerProgressListener, QIPlayerDownloadListener, Bas
         playerProgressLiveData.value = progress
     }
 
-    override fun onSetPlayerControlHandler(controlHandler: QPlayerControlHandler?) {
-        playerControlHandler?.addPlayerProgressChangeListener(this)
-        playerControlHandler?.addPlayerDownloadChangeListener(this)
+    override fun onInstallPlayerControlHandler(controlHandler: QPlayerControlHandler?) {
+        controlHandler?.addPlayerProgressChangeListener(this)
+        controlHandler?.addPlayerDownloadChangeListener(this)
+    }
+
+    override fun onClearPlayerListeners() {
+        playerControlHandler?.removePlayerProgressChangeListener(this)
+        playerControlHandler?.removePlayerDownloadChangeListener(this)
     }
 
     public fun seek(position: Long) {

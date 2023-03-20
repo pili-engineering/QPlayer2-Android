@@ -6,9 +6,15 @@ abstract class BasePlayerControlVM {
 
      var playerControlHandler: QPlayerControlHandler? = null
         set(value) {
-            field = value
-            onSetPlayerControlHandler(field)
+            if (value == null) {
+                onClearPlayerListeners()
+            } else {
+                field = value
+                onInstallPlayerControlHandler(field)
+            }
         }
 
-    abstract fun onSetPlayerControlHandler(controlHandler: QPlayerControlHandler?)
+    abstract fun onInstallPlayerControlHandler(controlHandler: QPlayerControlHandler?)
+
+    abstract fun onClearPlayerListeners()
 }

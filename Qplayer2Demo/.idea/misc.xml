@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_double_player.xml" value="0.27219202898550726" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33016304347826086" />
+        <entry key="app/src/main/res/layout/activity_short_video.xml" value="0.27219202898550726" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_qplayer2_launcher2_round.xml" value="0.1" />
       </map>
     </option>
