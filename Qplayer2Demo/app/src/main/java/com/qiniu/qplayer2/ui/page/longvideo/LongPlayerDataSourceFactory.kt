@@ -21,23 +21,23 @@ object LongPlayerDataSourceFactory {
 
         builder.addElement(
             "", QURLType.QAUDIO_AND_VIDEO, 1080,
-            "http://demo-videos.qnsdk.com/qiniu-1080p.mp4", true
+            "http://demo-videos.qnsdk.com/qiniu-2023-1080p.mp4", true
         )
         builder.addElement(
             "", QURLType.QAUDIO_AND_VIDEO, 720,
-            "http://demo-videos.qnsdk.com/qiniu-720p.mp4", false
+            "http://demo-videos.qnsdk.com/qiniu-2023-720p.mp4", false
         )
         builder.addElement(
             "", QURLType.QAUDIO_AND_VIDEO, 480,
-            "http://demo-videos.qnsdk.com/qiniu-480p.mp4", false
+            "http://demo-videos.qnsdk.com/qiniu-2023-480p.mp4", false
         )
         builder.addElement(
             "", QURLType.QAUDIO_AND_VIDEO, 360,
-            "http://demo-videos.qnsdk.com/qiniu-360p.mp4", false
+            "http://demo-videos.qnsdk.com/qiniu-2023-360p.mp4", false
         )
         builder.addElement(
             "", QURLType.QAUDIO_AND_VIDEO, 240,
-            "http://demo-videos.qnsdk.com/qiniu-240p.mp4", false
+            "http://demo-videos.qnsdk.com/qiniu-2023-240p.mp4", false
         )
         name = "1-点播-http-mp4-30fps-多清晰度"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
@@ -355,7 +355,37 @@ object LongPlayerDataSourceFactory {
         )
 
         builder = QMediaModelBuilder()
-        url = "rtmp://pili-hdl.qnsdk.com/sdk-live/6666"
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "rtmp://pili-rtmp.qnsdk.com/sdk-live/6666", true)
+
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 720,
+            "rtmp://pili-rtmp.qnsdk.com/sdk-live/6666@zn720p", false)
+
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 480,
+            "rtmp://pili-rtmp.qnsdk.com/sdk-live/6666@zn480p", false)
+
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 240,
+            "rtmp://pili-rtmp.qnsdk.com/sdk-live/6666@zn240p", false)
+//        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, ,
+//            "rtmp://pili-publish.qnsdk.com/sdk-live/6666", false)
+
+        name = "13-sdk-live-直播@-多码率-直播-rtmp://pili-rtmp.qnsdk.com/sdk-live/6666"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L
+                )
+            )
+        )
+
+        builder = QMediaModelBuilder()
+        url = "http://pili-hls.qnsdk.com/sdk-live/6666.m3u8"
         builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
         name = "13-22-直播-http://pili-hls.qnsdk.com/sdk-live/6666.m3u8"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
