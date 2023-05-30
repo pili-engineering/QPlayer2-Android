@@ -5,20 +5,22 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
-import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
-import com.qiniu.qplayer2ext.commonplayer.layer.control.IControlWidget
-import com.qiniu.qplayer2ext.commonplayer.layer.function.PlayerFunctionContainer
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
 import com.qiniu.qplayer2.ui.page.longvideo.LongVideoParams
-import com.qiniu.qplayer2.ui.widget.commonplayer.functionwidget.videoquality.VideoQualityFunctionWidget
+import com.qiniu.qplayer2.ui.widget.commonplayer.functionwidget.subtitle.SubtitleListFunctionWidget
+import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
+import com.qiniu.qplayer2ext.commonplayer.layer.control.IControlWidget
 import com.qiniu.qplayer2ext.commonplayer.layer.function.FunctionWidgetLayoutParams
+import com.qiniu.qplayer2ext.commonplayer.layer.function.PlayerFunctionContainer
 
-class CommonPlayerSelectQualityWidget: AppCompatTextView,
+
+class CommonPlayerSubtitleWidget : AppCompatTextView,
     IControlWidget<LongLogicProvider, LongPlayableParams, LongVideoParams>, View.OnClickListener {
 
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
-    private var mQualityToken: PlayerFunctionContainer.FunctionWidgetToken<LongLogicProvider, LongPlayableParams, LongVideoParams>? = null
+    private var mSubtitleToken: PlayerFunctionContainer.FunctionWidgetToken<LongLogicProvider, LongPlayableParams, LongVideoParams>? =
+        null
 
     constructor(context: Context) : super(context) {
         init(context, null)
@@ -40,25 +42,29 @@ class CommonPlayerSelectQualityWidget: AppCompatTextView,
     }
 
     private fun init(context: Context, attrs: AttributeSet?) {
-        text = "清晰度"
-    }
-
-    override fun onWidgetActive() {
-        setOnClickListener(this)
-
-    }
-
-    override fun onWidgetInactive() {
-        setOnClickListener(null)
+        text = "字幕"
     }
 
     override fun bindPlayerCore(playerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>) {
         mPlayerCore = playerCore
     }
 
-    override fun onClick(v: View?) {
-        val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
+    override fun onWidgetActive() {
+        setOnClickListener(this)
+    }
+
+    override fun onWidgetInactive() {
+        setOnClickListener(null)
+    }
+
+    override fun onClick(p0: View?) {
+        val layoutParams = FunctionWidgetLayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
         layoutParams.layoutType = FunctionWidgetLayoutParams.LayoutAlignType.RIGHT
-        mQualityToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(VideoQualityFunctionWidget::class.java, layoutParams)
+        mSubtitleToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(
+            SubtitleListFunctionWidget::class.java, layoutParams
+        )
     }
 }

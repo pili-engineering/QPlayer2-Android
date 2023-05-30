@@ -23,7 +23,8 @@ class LongPlayerEnviroment :
             ServiceOwnerType.PLAYER_NETWORK_SERVICE.type,
             ServiceOwnerType.PLAYER_PANORAMA_TOUCH_SERVICE.type,
             ServiceOwnerType.PLAYER_SHOOT_VIDEO_SERVICE.type,
-            ServiceOwnerType.PLAYER_VOLUME_SERVICE.type
+            ServiceOwnerType.PLAYER_VOLUME_SERVICE.type,
+            ServiceOwnerType.PLAYER_SUBTITLE_SERVICE.type
 
         )
 

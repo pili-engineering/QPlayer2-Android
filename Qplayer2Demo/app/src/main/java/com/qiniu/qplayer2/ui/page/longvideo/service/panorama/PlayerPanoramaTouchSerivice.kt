@@ -124,6 +124,7 @@ class PlayerPanoramaTouchSerivice :
             mCurrentScale = 2.0f
         }
         return mPlayerCore.mPlayerContext.getPlayerRenderHandler().setPanoramaViewScale(mCurrentScale)
+        return true
     }
 
     override fun onScaleBegin(p0: ScaleGestureDetector?): Boolean {

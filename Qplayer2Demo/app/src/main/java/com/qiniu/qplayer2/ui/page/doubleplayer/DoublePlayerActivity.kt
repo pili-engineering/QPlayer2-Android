@@ -4,7 +4,6 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.qiniu.qmedia.component.player.*
@@ -68,7 +67,7 @@ class DoublePlayerActivity: AppCompatActivity() {
         mPlayerB.playerRenderHandler.setRenderRatio(PlayerSettingRespostory.ratioType)
 
         var builder = QMediaModelBuilder()
-        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 0,
+        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 0,
             "http://demo-videos.qnsdk.com/shortvideo/nike.mp4", true)
         mPlayerA.playerControlHandler.playMediaModel(builder.build(false), 0)
         mPlayerA.playerControlHandler.addPlayerStateChangeListener(object :
@@ -82,7 +81,7 @@ class DoublePlayerActivity: AppCompatActivity() {
             })
 
         builder = QMediaModelBuilder()
-        builder.addElement(
+        builder.addStreamElement(
             "", QURLType.QAUDIO_AND_VIDEO, 1080,
             "http://demo-videos.qnsdk.com/qiniu-360p.mp4", true
         )

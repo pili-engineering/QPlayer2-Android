@@ -24,6 +24,7 @@ import com.qiniu.qplayer2.ui.page.longvideo.service.network.PlayerNetworkService
 import com.qiniu.qplayer2.ui.page.longvideo.service.panorama.PlayerPanoramaTouchSeriviceOwner
 import com.qiniu.qplayer2.ui.page.longvideo.service.shoot.PlayerShootVideoService
 import com.qiniu.qplayer2.ui.page.longvideo.service.shoot.PlayerShootVideoServiceOwner
+import com.qiniu.qplayer2.ui.page.longvideo.service.subtitle.PlayerSubtitleServiceOwner
 import com.qiniu.qplayer2.ui.page.longvideo.service.toast.PlayerToastServiceOwner
 import com.qiniu.qplayer2.ui.page.longvideo.service.volume.PlayerVolumeServiceOwner
 
@@ -95,6 +96,7 @@ class LongVideoActivity : AppCompatActivity() {
             .addServiceOwner(PlayerPanoramaTouchSeriviceOwner())
             .addServiceOwner(PlayerShootVideoServiceOwner())
             .addServiceOwner(PlayerVolumeServiceOwner())
+            .addServiceOwner(PlayerSubtitleServiceOwner())
             .setRootUIContanier(this, findViewById(R.id.video_container_FL))
             .enableControlPanel()
             .enableFunctionWidget()
@@ -107,7 +109,9 @@ class LongVideoActivity : AppCompatActivity() {
             .setStartAction(PlayerSettingRespostory.startAction)
             .setSpeed(PlayerSettingRespostory.playSpeed)
             .setRenderRatio(PlayerSettingRespostory.ratioType)
+            .setSubtitleEnable(PlayerSettingRespostory.subtitleEnable)
             .setSEIEnable(PlayerSettingRespostory.seiEnable)
+//            .setSubtitleEnable(PlayerSettingRespostory.subtitleEnable)
             .build()
 
         mCommonPlayer = CommonPlayer(config)
