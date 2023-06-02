@@ -141,6 +141,15 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="12dp"/>
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerStopWidget
+        android:id="@+id/stop_Btn"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/pause_play_Btn"
+        app:layout_constraintTop_toTopOf="@+id/pause_play_Btn"
+        app:layout_constraintBottom_toBottomOf="@+id/pause_play_Btn"
+        />
     <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerMuteWidget
         android:id="@+id/mute_IV"
         android:layout_width="wrap_content"
