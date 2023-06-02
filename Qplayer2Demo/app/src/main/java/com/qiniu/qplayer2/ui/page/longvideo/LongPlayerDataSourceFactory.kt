@@ -17,6 +17,68 @@ object LongPlayerDataSourceFactory {
         var builder = QMediaModelBuilder()
         var url = ""
         var name = ""
+
+        builder = QMediaModelBuilder()
+        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/zengtest", true)
+
+        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 720,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/zengtest@hugo720p", false)
+
+        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 480,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/zengtest@hugo480p", false)
+
+        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 240,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/zengtest@hugo240p", false)
+//        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, ,
+//            "rtmp://pili-publish.qnsdk.com/sdk-live/6666", false)
+
+        name = "113-hugo-直播@-多码率-直播-rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/zengtest"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L
+                )
+            )
+        )
+
+
+
+        builder = QMediaModelBuilder()
+        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666", true)
+
+        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 720,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666@hugo720p", false)
+
+        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 480,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666@hugo480p", false)
+
+        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 240,
+            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666@hugo240p", false)
+//        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, ,
+//            "rtmp://pili-publish.qnsdk.com/sdk-live/6666", false)
+
+        name = "13-hugo-直播@-多码率-直播-rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L
+                )
+            )
+        )
 //
 //        builder = QMediaModelBuilder()
 //        builder.addElement(
@@ -368,35 +430,7 @@ object LongPlayerDataSourceFactory {
                 )
             )
         )
-        builder = QMediaModelBuilder()
-        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 1080,
-            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666", true)
 
-        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 720,
-            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666@hugo720p", false)
-
-        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 480,
-            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666@hugo480p", false)
-
-        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 240,
-            "rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666@hugo240p", false)
-//        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, ,
-//            "rtmp://pili-publish.qnsdk.com/sdk-live/6666", false)
-
-        name = "13-hugo-直播@-多码率-直播-rtmp://pili-live-rtmp.test.qnsdk.com/sdk-live-test/test6666"
-        videoParams = LongVideoParams(name, name.hashCode().toLong())
-        dataSourceBuilder.addVideo(
-            videoParams,
-            arrayListOf<LongPlayableParams>(
-                LongPlayableParams(
-                    builder.build(true),
-                    LongControlPanelType.Normal.type,
-                    DisplayOrientation.LANDSCAPE,
-                    LongEnviromentType.LONG.type,
-                    0L
-                )
-            )
-        )
 
         builder = QMediaModelBuilder()
         builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 1080,
