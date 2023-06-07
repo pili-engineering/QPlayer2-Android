@@ -116,43 +116,42 @@ class PlayerPanoramaTouchSerivice :
     override fun onResizableGestureEnd(ev: MotionEvent) {
     }
 
-    override fun onScale(p0: ScaleGestureDetector?): Boolean {
-        mCurrentScale *= p0?.scaleFactor ?: 1f
-        Log.d("PanoramaScale", "mCurrentScale=$mCurrentScale scaleFactor=${p0?.scaleFactor}")
+    override fun onScale(p0: ScaleGestureDetector): Boolean {
+        mCurrentScale *= p0.scaleFactor
+        Log.d("PanoramaScale", "mCurrentScale=$mCurrentScale scaleFactor=${p0.scaleFactor}")
 //        return true
         if(mCurrentScale > 2) {
             mCurrentScale = 2.0f
         }
         return mPlayerCore.mPlayerContext.getPlayerRenderHandler().setPanoramaViewScale(mCurrentScale)
+    }
+
+    override fun onScaleBegin(p0: ScaleGestureDetector): Boolean {
         return true
     }
 
-    override fun onScaleBegin(p0: ScaleGestureDetector?): Boolean {
-        return true
+    override fun onScaleEnd(p0: ScaleGestureDetector) {
     }
 
-    override fun onScaleEnd(p0: ScaleGestureDetector?) {
-    }
-
-    override fun onDown(p0: MotionEvent?): Boolean {
+    override fun onDown(p0: MotionEvent): Boolean {
         return false
     }
 
-    override fun onShowPress(p0: MotionEvent?) {
+    override fun onShowPress(p0: MotionEvent) {
     }
 
-    override fun onSingleTapUp(p0: MotionEvent?): Boolean {
+    override fun onSingleTapUp(p0: MotionEvent): Boolean {
         return false
     }
 
-    override fun onScroll(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
+    override fun onScroll(p0: MotionEvent, p1: MotionEvent, p2: Float, p3: Float): Boolean {
         return false
     }
 
-    override fun onLongPress(p0: MotionEvent?) {
+    override fun onLongPress(p0: MotionEvent) {
     }
 
-    override fun onFling(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
+    override fun onFling(p0: MotionEvent, p1: MotionEvent, p2: Float, p3: Float): Boolean {
         return false
     }
 
