@@ -30,7 +30,7 @@ class SubtitleListFunctionWidget(context: Context) :
         override fun on_subtitle_text_change(text: String) {
         }
 
-        override fun on_subtitle_render_change(name: String) {
+        override fun on_subtitle_name_change(name: String) {
             mPlayerCore.mCommonPlayerVideoSwitcher.getCurrentPlayableParams()?.also {
                 updateSubtitles(it)
             }

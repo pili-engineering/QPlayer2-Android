@@ -48,7 +48,7 @@ class PlayerSubtitleService :
         updateSubtitleWidget(text)
     }
 
-    override fun on_subtitle_render_change(name: String) {
+    override fun on_subtitle_name_change(name: String) {
     }
 
     override fun on_subtitle_close() {
