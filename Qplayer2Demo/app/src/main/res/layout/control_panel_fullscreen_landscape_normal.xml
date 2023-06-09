@@ -218,7 +218,6 @@
         android:focusable="false"
         android:textColor="@color/white"
         android:fontFamily="sans-serif-medium"
-        android:visibility="gone"
         android:textSize="14sp"/>
     <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerSelectQualityWidget
         android:id="@+id/select_quality_TV"
