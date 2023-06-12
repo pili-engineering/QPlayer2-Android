@@ -95,8 +95,14 @@ class PlayerSubtitleService :
             )
         }
 
-        mPlayerCore.playerFunctionWidgetContainer?.updateWidget(mSubtitleToken!!,
-            SubtitleFunctionWidget.PlayerSubtitleFunctionWidgetConfiguration(text))
+        if (mSubtitleToken!!.isShowing) {
+            mPlayerCore.playerFunctionWidgetContainer?.updateWidget(mSubtitleToken!!,
+                SubtitleFunctionWidget.PlayerSubtitleFunctionWidgetConfiguration(text))
+        } else {
+            mPlayerCore.playerFunctionWidgetContainer?.showWidget(mSubtitleToken!!,
+                SubtitleFunctionWidget.PlayerSubtitleFunctionWidgetConfiguration(text))
+        }
+
 
     }
 
