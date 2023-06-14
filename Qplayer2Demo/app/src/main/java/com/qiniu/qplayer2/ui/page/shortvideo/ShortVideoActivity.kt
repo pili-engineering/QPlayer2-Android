@@ -77,7 +77,7 @@ class ShortVideoActivity : AppCompatActivity() {
         }
 
         override fun on_subtitle_name_change(name: String) {
-            Log.d(TAG, "on_subtitle_render_change $name")
+            Log.d(TAG, "on_subtitle_name_change $name")
         }
 
         override fun on_subtitle_close() {
