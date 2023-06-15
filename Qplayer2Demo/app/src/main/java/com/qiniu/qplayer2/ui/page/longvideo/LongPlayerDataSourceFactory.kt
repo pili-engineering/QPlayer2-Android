@@ -1178,6 +1178,63 @@ object LongPlayerDataSourceFactory {
             )
         )
 
+        builder = QMediaModelBuilder()
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 720,
+            "http://demo-videos.qnsdk.com/EnglishVideo.mp4",
+            true,
+            "",
+            "",
+            QVideoRenderType.PLANE
+        )
+
+        builder.addSubtitleElement("英文",
+            "http://demo-videos.qnsdk.com/EnglishVideo.srt", true)
+
+        name = "44-subtitle"
+
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(false),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0
+                )
+            )
+        )
+
+        builder = QMediaModelBuilder()
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 720,
+            "http://demo-videos.qnsdk.com/EnglishVideo.MOV",
+            true,
+            "",
+            "",
+            QVideoRenderType.PLANE
+        )
+
+        builder.addSubtitleElement("英文",
+            "http://demo-videos.qnsdk.com/EnglishVideo.srt", true)
+
+        name = "45-subtitle-mov"
+
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(false),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0
+                )
+            )
+        )
 
         return dataSourceBuilder.build()
     }
