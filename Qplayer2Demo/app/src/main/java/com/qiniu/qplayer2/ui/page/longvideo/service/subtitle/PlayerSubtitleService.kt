@@ -29,13 +29,13 @@ class PlayerSubtitleService :
 
     override fun onStart() {
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerSubtitleListener(this)
-//        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerStateChangeListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerStateChangeListener(this)
 
     }
 
     override fun onStop() {
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerSubtitleListener(this)
-//        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerStateChangeListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerStateChangeListener(this)
 
     }
 
@@ -95,6 +95,14 @@ class PlayerSubtitleService :
             )
         }
 
+        updateSubtitleText(text)
+
+
+    }
+    private fun updateSubtitleText(text: String) {
+        if (mSubtitleToken == null)
+            return
+
         if (mSubtitleToken!!.isShowing) {
             mPlayerCore.playerFunctionWidgetContainer?.updateWidget(mSubtitleToken!!,
                 SubtitleFunctionWidget.PlayerSubtitleFunctionWidgetConfiguration(text))
@@ -102,12 +110,14 @@ class PlayerSubtitleService :
             mPlayerCore.playerFunctionWidgetContainer?.showWidget(mSubtitleToken!!,
                 SubtitleFunctionWidget.PlayerSubtitleFunctionWidgetConfiguration(text))
         }
-
-
     }
 
     override fun onStateChanged(state: QPlayerState) {
 
+        if (state == QPlayerState.PREPARE) {
+            updateSubtitleText("")
+
+        }
     }
 
 
