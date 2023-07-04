@@ -1,5 +1,9 @@
 # 1.3.0 ReleaseNote
 
+#### 接口变更
+
+- `QMediaModelBuilder`的`addElement`修改成`addStreamElement`以区分新增接口`addSubtitleElement`
+
 #### 能力
 
 - 新增SRT字幕的加载并根据时间轴回调当前的文案给上层
