@@ -18,6 +18,7 @@ object PlayerSettingRespostory : SharedPreferences.OnSharedPreferenceChangeListe
     private const val START_POSITION_SETTING_KEY_NAME = "StartPositionSetting"
     private const val BLIND_SETTING_KEY_NAME = "BlindSetting"
     private const val SEI_SETTING_KEY_NAME = "SEISetting"
+    private const val SUBTITLE_ENABLE_SETTING_KEY_NAME = "SubtitleEnableSetting"
     private const val QUALITY_SWITCH_TYPE_SETTING_KEY_NAME = "QualitySwitchTypeSetting"
     private const val SHOOT_VIDEO_SOURCE_KEY_NAME = "ShootVideoSource"
 
@@ -148,6 +149,17 @@ object PlayerSettingRespostory : SharedPreferences.OnSharedPreferenceChangeListe
         }
         set(value) {
             mSharedPreferencesHelper.setBoolean(SEI_SETTING_KEY_NAME, value)
+        }
+
+    var subtitleEnable: Boolean
+        get() {
+            return mSharedPreferencesHelper.optBoolean(
+                SUBTITLE_ENABLE_SETTING_KEY_NAME,
+                false
+            )
+        }
+        set(value) {
+            mSharedPreferencesHelper.setBoolean(SUBTITLE_ENABLE_SETTING_KEY_NAME, value)
         }
 
     var qualitySwitchType:QualitySwitchType

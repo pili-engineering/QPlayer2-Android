@@ -141,6 +141,15 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="12dp"/>
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerStopWidget
+        android:id="@+id/stop_Btn"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/pause_play_Btn"
+        app:layout_constraintTop_toTopOf="@+id/pause_play_Btn"
+        app:layout_constraintBottom_toBottomOf="@+id/pause_play_Btn"
+        />
     <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerMuteWidget
         android:id="@+id/mute_IV"
         android:layout_width="wrap_content"
@@ -177,7 +186,7 @@
         android:id="@+id/select_speed_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/select_quality_TV"
+        app:layout_constraintEnd_toStartOf="@+id/select_subtitile_TV"
         app:layout_constraintTop_toTopOf="@+id/pause_play_Btn"
         app:layout_constraintBottom_toBottomOf="@+id/pause_play_Btn"
         android:layout_marginEnd="10dp"
@@ -191,9 +200,25 @@
         android:textColor="@color/white"
         android:fontFamily="sans-serif-medium"
         android:textSize="14sp"
-
         />
-
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerSubtitleWidget
+        android:id="@+id/select_subtitile_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/select_quality_TV"
+        app:layout_constraintTop_toTopOf="@+id/pause_play_Btn"
+        app:layout_constraintBottom_toBottomOf="@+id/pause_play_Btn"
+        android:layout_marginEnd="10dp"
+        android:paddingStart="11dp"
+        android:paddingLeft="11dp"
+        android:paddingEnd="11dp"
+        android:paddingRight="11dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:focusable="false"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="14sp"/>
     <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerSelectQualityWidget
         android:id="@+id/select_quality_TV"
         android:layout_width="wrap_content"

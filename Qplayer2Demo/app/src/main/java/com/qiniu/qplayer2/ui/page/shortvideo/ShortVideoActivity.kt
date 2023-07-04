@@ -1,6 +1,7 @@
 package com.qiniu.qplayer2.ui.page.shortvideo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -70,6 +71,29 @@ class ShortVideoActivity : AppCompatActivity() {
         }
     }
 
+    private val mPlayerSubtitleListener: QIPlayerSubtitleListener = object : QIPlayerSubtitleListener {
+        override fun on_subtitle_text_change(text: String) {
+            Log.d(TAG, "on_subtitle_text_change $text")
+        }
+
+        override fun on_subtitle_name_change(name: String) {
+            Log.d(TAG, "on_subtitle_name_change $name")
+        }
+
+        override fun on_subtitle_close() {
+            Log.d(TAG, "on_subtitle_close")
+        }
+
+        override fun on_subtitle_loaded(name: String, result: Boolean) {
+            Log.d(TAG, "on_subtitle_loaded $name $result")
+        }
+
+        override fun on_subtitle_decoded(name: String, result: Boolean) {
+            Log.d(TAG, "on_subtitle_decoded $name $result")
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
@@ -89,6 +113,8 @@ class ShortVideoActivity : AppCompatActivity() {
         mVideoView.playerControlHandler.setDecodeType(QPlayerSetting.QPlayerDecoder.QPLAYER_DECODER_SETTING_AUTO)
 //        mVideoView.playerControlHandler.setDecodeType(QPlayerSetting.QPlayerDecoder.QPLAYER_DECODER_SETTING_SOFT_PRIORITY)
         mVideoView.playerControlHandler.setLogLevel(QLogLevel.LOG_INFO)
+//        mVideoView.playerControlHandler.setSubtitleEnable(true)
+//        mVideoView.playerControlHandler.addPlayerSubtitleListener(mPlayerSubtitleListener)
         fetchVideoList()
 
     }
@@ -106,8 +132,8 @@ class ShortVideoActivity : AppCompatActivity() {
                 items.forEach { videoItem ->
                     videoItem?.let {
                         val builder = QMediaModelBuilder()
-                        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 0, it.videoPath, true)
-
+                        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 0, it.videoPath, true)
+                        builder.addSubtitleElement("中文", "http://demo-videos.qnsdk.com/qiniu-short-video.srt", true)
                         val playItem = PlayItem(it.videoPath.hashCode(),
                             builder.build(false),
                             it.coverPath)

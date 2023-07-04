@@ -20,7 +20,6 @@ class CommonPlayerSelectQualityWidget: AppCompatTextView,
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
     private var mQualityToken: PlayerFunctionContainer.FunctionWidgetToken<LongLogicProvider, LongPlayableParams, LongVideoParams>? = null
 
-
     constructor(context: Context) : super(context) {
         init(context, null)
 
