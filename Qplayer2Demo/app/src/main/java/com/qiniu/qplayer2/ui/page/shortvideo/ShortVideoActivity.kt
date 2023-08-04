@@ -84,6 +84,9 @@ class ShortVideoActivity : AppCompatActivity() {
             Log.d(TAG, "on_subtitle_close")
         }
 
+        override fun on_subtitle_open() {
+        }
+
         override fun on_subtitle_loaded(name: String, result: Boolean) {
             Log.d(TAG, "on_subtitle_loaded $name $result")
         }

@@ -55,6 +55,9 @@ class PlayerSubtitleService :
         updateSubtitleWidget("")
     }
 
+    override fun on_subtitle_open() {
+    }
+
     override fun on_subtitle_loaded(name: String, result: Boolean) {
         val toast = PlayerToast.Builder()
             .toastItemType(PlayerToastConfig.TYPE_NORMAL)
