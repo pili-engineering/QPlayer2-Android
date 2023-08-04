@@ -13,6 +13,7 @@ import com.qiniu.qplayer2.ui.page.longvideo.LongVideoActivity
 import com.qiniu.qplayer2.ui.page.simplelongvideo.SimpleLongVideoActivity
 import com.qiniu.qplayer2.ui.page.setting.SettingActivity
 import com.qiniu.qplayer2.ui.page.shortvideo.ShortVideoActivity
+import com.qiniu.qplayer2.ui.page.shortvideoV2.ShortVideoActivityV2
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
@@ -37,6 +38,11 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.short_video_player_BTN).setOnClickListener {
             val intent = Intent(this, ShortVideoActivity::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.short_video_playerV2_BTN).setOnClickListener {
+            val intent = Intent(this, ShortVideoActivityV2::class.java)
             startActivity(intent)
         }
 
