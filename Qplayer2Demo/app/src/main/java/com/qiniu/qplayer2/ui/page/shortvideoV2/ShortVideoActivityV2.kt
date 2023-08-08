@@ -23,8 +23,9 @@ class ShortVideoActivityV2 : AppCompatActivity() {
     private lateinit var mShortVideoViewPager2: ViewPager2
     private lateinit var mShortVideoListAdapterV2: ShortVideoListAdapterV2
     private var mCurrentPosition = -1
-    private val mPlayItemList = ArrayList<PlayItem>()
     private var mFirstPlay = true
+
+    private val mPlayItemManager = PlayItemManager()
 
 
     companion object {
@@ -38,7 +39,6 @@ class ShortVideoActivityV2 : AppCompatActivity() {
 
             override fun onViewAttachedToWindow(v: View) {
                 startPlay()
-
             }
 
             override fun onViewDetachedFromWindow(v: View) {
@@ -49,7 +49,6 @@ class ShortVideoActivityV2 : AppCompatActivity() {
     private fun findItemViewByPosition(position: Int): RecyclerView.ViewHolder? {
         val recyclerView = mShortVideoViewPager2.getChildAt(0) as RecyclerView
         return recyclerView.findViewHolderForAdapterPosition(position)
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,21 +57,21 @@ class ShortVideoActivityV2 : AppCompatActivity() {
 
         setContentView(R.layout.activity_short_video2)
         mShortVideoViewPager2 = findViewById(R.id.short_video_VP2)
+        mShortVideoViewPager2.offscreenPageLimit = 1
+        Log.d(TAG, "mShortVideoViewPager2.offscreenPageLimit=${mShortVideoViewPager2.offscreenPageLimit}")
+
         mShortVideoViewPager2.orientation = ViewPager2.ORIENTATION_VERTICAL
         mShortVideoListAdapterV2 = ShortVideoListAdapterV2(
             this,
+            mPlayItemManager,
             this.getExternalFilesDir(null)?.path ?: ""
         )
-        mShortVideoListAdapterV2.init()
 
         fetchVideoList()
 
     }
 
     fun initView() {
-
-        mShortVideoListAdapterV2.items = mPlayItemList
-
 
         mShortVideoViewPager2.adapter = mShortVideoListAdapterV2
 
@@ -98,7 +97,7 @@ class ShortVideoActivityV2 : AppCompatActivity() {
                 it
             )
         }
-        Log.d("INIT-STEP", "onPageSelected: position:$position ${holder?.itemId}")
+        Log.d("INIT-STEP", "onPageSelected: position:$position ${holder?.playItemId}")
     }
 
     override fun onDestroy() {
@@ -113,6 +112,7 @@ class ShortVideoActivityV2 : AppCompatActivity() {
             object : ModelFactory.OnResultListener {
                 override fun onSuccess(statusCode: Int, data: Any) {
                     val items = data as ArrayList<VideoItem>
+                    val playItems = ArrayList<PlayItem>()
                     items.forEach { videoItem ->
                         videoItem.let {
                             val builder = QMediaModelBuilder()
@@ -132,9 +132,11 @@ class ShortVideoActivityV2 : AppCompatActivity() {
                                 it.coverPath
                             )
 
-                            mPlayItemList.add(playItem)
+                            playItems.add(playItem)
                         }
                     }
+
+                    mPlayItemManager.refresh(playItems)
 
                     runOnUiThread(Runnable {
 
