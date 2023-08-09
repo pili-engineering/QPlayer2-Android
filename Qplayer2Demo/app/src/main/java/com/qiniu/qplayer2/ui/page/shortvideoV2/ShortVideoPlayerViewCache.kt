@@ -9,8 +9,7 @@ class ShortVideoPlayerViewCache(context: Context, private val mPlayItemManager: 
                                 externalFilesDir: String):IShortVideoPlayerViewCacheRecycler {
     private val mMediaItemContextManager = MediaItemContextManager(mPlayItemManager, externalFilesDir)
     private val mSurfacePlayerViewManager = SurfacePlayerViewManager(context)
-    private var mCurrentPostion = 0
-    private var mMaxChangePosition = 0
+    private var mCurrentPostion = -1
 
     companion object {
         private const val TAG = "PlayerViewCache"
@@ -27,20 +26,24 @@ class ShortVideoPlayerViewCache(context: Context, private val mPlayItemManager: 
     }
 
     fun changePosition(position: Int) {
-        mCurrentPostion = position
 
-        mMediaItemContextManager.updateMediaItemContext(mCurrentPostion)
-        if (mCurrentPostion >= mMaxChangePosition) {
-            Log.d(TAG, "change position pos=${position}")
-            mPlayItemManager.getOrNullByPosition(mCurrentPostion + 1)?.also {
-                if (!mSurfacePlayerViewManager.isPreRenderValaid()) {
-                    mMediaItemContextManager.fetchMediaItemContextById(it.id)?.also { mediaItemContext ->
-                        mSurfacePlayerViewManager.prepare(it.id, mediaItemContext)
-                    }
+        mMediaItemContextManager.updateMediaItemContext(position)
+        Log.d(TAG, "change position pos=${position}")
+        //向上滑动, 回收预渲染
+        if (position < mCurrentPostion) {
+            mSurfacePlayerViewManager.recyclePreRenderPlayerView()
+        }
+
+        mPlayItemManager.getOrNullByPosition(position + 1)?.also {
+            if (!mSurfacePlayerViewManager.isPreRenderValaid()) {
+                mMediaItemContextManager.fetchMediaItemContextById(it.id)?.also { mediaItemContext ->
+                    mSurfacePlayerViewManager.prepare(it.id, mediaItemContext)
                 }
             }
-            mMaxChangePosition = mCurrentPostion
         }
+
+        mCurrentPostion = position
+
     }
 
     override fun fetchSurfacePlayerView(id: Int): QSurfacePlayerView? {

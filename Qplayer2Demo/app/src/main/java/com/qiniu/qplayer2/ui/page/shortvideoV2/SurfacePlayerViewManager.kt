@@ -35,6 +35,19 @@ class SurfacePlayerViewManager(private val mContext: Context) {
         return mPreRenderVideoId != INVALID_VIDEO_ID
     }
 
+    public fun recyclePreRenderPlayerView(): Boolean {
+        var ret = false
+        mPreRenderPlayerView?.let {
+            it.playerControlHandler.stop()
+            recycleSurfacePlayerView(it)
+            ret = true
+        }
+        mPreRenderVideoId = INVALID_VIDEO_ID
+        mPreRenderPlayerView = null
+
+        return ret
+    }
+
 
     public fun prepare(id: Int, mediaItemContext: QMediaItemContext): Boolean {
 
