@@ -17,6 +17,7 @@ class MediaItemContextManager(private val mPlayItemManager: PlayItemManager,
     companion object {
         private const val LOAD_FORWARD_POS = 1
         private const val LOAD_BACKWARD_POS = 5
+        private const val TAG = "MediaItemContextManager"
     }
 
     private val mPlayItemListRefreshListener = object : PlayItemManager.IPlayItemListRefreshListener {
@@ -63,6 +64,7 @@ class MediaItemContextManager(private val mPlayItemManager: PlayItemManager,
         mPlayItemManager.removePlayItemReplaceListener(mPlayItemReplaceListener)
         mPlayItemManager.removePlayItemAppendListener(mPlayItemAppendListener)
         mPlayItemManager.removePlayItemRefreshListener(mPlayItemListRefreshListener)
+        discardAllMediaItemContexts()
     }
 
     private fun load(id: Int, mediaModel: QMediaModel, startPos: Long, logLevel: QLogLevel, localStorageDir: String) {
@@ -72,6 +74,8 @@ class MediaItemContextManager(private val mPlayItemManager: PlayItemManager,
                 mediaItem.playMediaControlHandler.currentState == QMediaItemState.ERROR)  {
                 mediaItem.playMediaControlHandler.stop()
                 mMediaItemContextHashMap.remove(id)
+                Log.d(TAG, "load::remove error or stoped mediaitem  id=$id")
+
                 mediaItem = null
             }
         }
@@ -80,6 +84,8 @@ class MediaItemContextManager(private val mPlayItemManager: PlayItemManager,
             mediaItem = QMediaItemContext(mediaModel, logLevel, localStorageDir, startPos)
             mediaItem.playMediaControlHandler.start()
             mMediaItemContextHashMap[id] = mediaItem
+            Log.d(TAG, "load::mediaitem id=$id")
+
         }
     }
 
@@ -87,7 +93,7 @@ class MediaItemContextManager(private val mPlayItemManager: PlayItemManager,
         val mediaItem  = mMediaItemContextHashMap[id]
         mMediaItemContextHashMap.remove(id)
 
-        Log.d("MediaItemContextManager", mediaItem?.playMediaControlHandler?.currentState?.value?.toString() ?: "")
+        Log.d(TAG, "fetchMediaItemContextById id=$id")
         return mediaItem
     }
 
@@ -104,6 +110,8 @@ class MediaItemContextManager(private val mPlayItemManager: PlayItemManager,
         val mediaItem  = mMediaItemContextHashMap[id]
         mediaItem?.playMediaControlHandler?.stop()
         mMediaItemContextHashMap.remove(id)
+        Log.d(TAG, "discardMediaItemContext id=$id")
+
     }
 
     public fun updateMediaItemContext(currentPosition: Int) {
