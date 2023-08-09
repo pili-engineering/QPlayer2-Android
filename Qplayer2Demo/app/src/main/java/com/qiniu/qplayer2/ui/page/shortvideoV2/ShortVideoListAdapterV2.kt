@@ -114,9 +114,9 @@ class ShortVideoListAdapterV2(context: Context,
 
     fun onPageSelected(position: Int, holder: ShortVideoHolderV2) {
         mCurrentPostion = position
-        mShortVideoPlayerViewCache.changePosition(mCurrentPostion)
 //        mMediaItemContextManager.updateMediaItemContext(mCurrentPostion, mItems, mExternalFilesDir)
 
+        //!!!!此处执行顺序不能变
         mCurrentHolder?.stopVideo()
         mCurrentHolder = holder
         val surfaceVideoPlayerView = mShortVideoPlayerViewCache.fetchSurfacePlayerView(holder.playItemId)
@@ -125,6 +125,8 @@ class ShortVideoListAdapterV2(context: Context,
         } else {
             Log.e(TAG, "surface video player view is null!!!")
         }
+        mShortVideoPlayerViewCache.changePosition(mCurrentPostion)
+
     }
 }
 
