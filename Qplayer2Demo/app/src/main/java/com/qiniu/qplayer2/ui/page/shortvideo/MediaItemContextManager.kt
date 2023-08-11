@@ -2,6 +2,7 @@ package com.qiniu.qplayer2.ui.page.shortvideo
 
 import android.annotation.SuppressLint
 import android.util.Log
+import androidx.collection.ArraySet
 import com.qiniu.qmedia.component.player.QLogLevel
 import com.qiniu.qmedia.component.player.QMediaItemContext
 import com.qiniu.qmedia.component.player.QMediaItemState
@@ -116,14 +117,17 @@ class MediaItemContextManager(private val mPlayItemManager: PlayItemManager,
 
     public fun updateMediaItemContext(currentPosition: Int) {
 
+        //TODO 移除范围外的mediaitem context
         mCurrentPosition = currentPosition
+
+        val newContextIdsSet = ArraySet<Int>()
+
         var start = currentPosition - LOAD_FORWARD_POS
         var end = currentPosition - 1
-
         //当前pos的视频 不加载
         for (i: Int in start .. end) {
             mPlayItemManager.getOrNullByPosition(i)?.let {
-                load(it.id, it.mediaModel, 0, QLogLevel.LOG_VERBOSE, mExternalFilesDir)
+                newContextIdsSet.add(it.id)
             }
         }
 
@@ -131,8 +135,24 @@ class MediaItemContextManager(private val mPlayItemManager: PlayItemManager,
         end = currentPosition + LOAD_BACKWARD_POS
         for (i: Int in start .. end) {
             mPlayItemManager.getOrNullByPosition(i)?.let {
+                newContextIdsSet.add(it.id)
+            }
+        }
+
+        //加载新的
+        val addContextIdsSet = newContextIdsSet - mMediaItemContextHashMap.keys
+        for (id: Int in addContextIdsSet) {
+            mPlayItemManager.getOrNullById(id)?.let {
                 load(it.id, it.mediaModel, 0, QLogLevel.LOG_VERBOSE, mExternalFilesDir)
             }
         }
+        Log.d(TAG, "add preload ids=${addContextIdsSet.toString()}")
+        //废弃老的
+        val discardContextIdsSet = mMediaItemContextHashMap.keys - newContextIdsSet
+        for (id: Int in discardContextIdsSet) {
+            discardMediaItemContext(id)
+        }
+        Log.d(TAG, "remove preload ids=${discardContextIdsSet.toString()}")
+
     }
 }
