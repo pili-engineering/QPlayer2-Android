@@ -60,7 +60,7 @@ class PlayItemManager() {
     fun replace(position: Int, playItem: PlayItem): Boolean {
         return if (position >= 0 && position < mPlayItemList.size) {
             val replacePlayItem = mPlayItemList[position]
-            mPlayItemList.removeAt(position)
+            mPlayItemList[position] = playItem
             mPlayItemReplaceListeners.forEach {
                 it.onReplace(position, replacePlayItem, playItem)
             }
