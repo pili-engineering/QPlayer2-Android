@@ -63,8 +63,6 @@ class ShortVideoHolderV2(
             if (state == QPlayerState.COMPLETED) {
                 //循环播放
                 mVideoPlayerView?.playerControlHandler?.seek(0)
-            } else if (state == QPlayerState.PLAYING) {
-                mCoverIV.visibility = View.GONE
             }
         }
     }
@@ -101,9 +99,7 @@ class ShortVideoHolderV2(
             )
             lp.gravity = Gravity.CENTER
 
-            if (it.playerControlHandler.currentPlayerState == QPlayerState.PLAYING) {
-                mCoverIV.visibility = View.GONE
-            }
+
             Log.d(TAG, "startVideo player-state=${it.playerControlHandler.currentPlayerState}")
 
             if (it.parent == null) {
