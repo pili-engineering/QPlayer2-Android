@@ -67,8 +67,8 @@ class ShortVideoListAdapterV2(context: Context,
     }
 
     fun clear() {
+        mCurrentHolder?.stopVideo()
         mShortVideoPlayerViewCache.stop()
-
     }
 
 
