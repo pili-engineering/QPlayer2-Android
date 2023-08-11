@@ -28,10 +28,10 @@ class ShortVideoPlayerViewCache(context: Context, private val mPlayItemManager: 
 
         mMediaItemContextManager.updateMediaItemContext(position)
         Log.d(TAG, "change position pos=${position}")
-        //向上滑动, 回收预渲染
-        if (position < mCurrentPostion) {
-            mSurfacePlayerViewManager.recyclePreRenderPlayerView()
-        }
+
+        //如果命中预渲染，则预渲染已经使用，如果没有命中，则需要回收预渲染，重建一个新pos的预渲染
+        mSurfacePlayerViewManager.recyclePreRenderPlayerView()
+
 
         mPlayItemManager.getOrNullByPosition(position + 1)?.also {
             if (!mSurfacePlayerViewManager.isPreRenderValaid()) {
