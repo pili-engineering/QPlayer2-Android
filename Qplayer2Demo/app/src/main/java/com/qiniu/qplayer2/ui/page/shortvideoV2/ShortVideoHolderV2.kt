@@ -13,7 +13,6 @@ import com.qiniu.qmedia.component.player.QIPlayerStateChangeListener
 import com.qiniu.qmedia.component.player.QPlayerState
 import com.qiniu.qmedia.ui.QSurfacePlayerView
 import com.qiniu.qplayer2.R
-import com.qiniu.qplayer2.ui.page.shortvideo.PlayItem
 import com.qiniu.qplayer2.ui.widget.PlayerBiteRateTextWidget
 import com.qiniu.qplayer2.ui.widget.PlayerBufferingWidget
 import com.qiniu.qplayer2.ui.widget.PlayerDownloadTextWidget

@@ -1,4 +1,4 @@
-package com.qiniu.qplayer2.ui.page.shortvideo
+package com.qiniu.qplayer2.ui.page.shortvideoV2
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -7,8 +7,6 @@ import com.qiniu.qmedia.component.player.QLogLevel
 import com.qiniu.qmedia.component.player.QMediaItemContext
 import com.qiniu.qmedia.component.player.QMediaItemState
 import com.qiniu.qmedia.component.player.QMediaModel
-import com.qiniu.qplayer2.ui.page.shortvideoV2.MikuClientManager
-import com.qiniu.qplayer2.ui.page.shortvideoV2.PlayItemManager
 
 class MediaItemContextManager(private val mPlayItemManager: PlayItemManager,
     private val mExternalFilesDir: String) {

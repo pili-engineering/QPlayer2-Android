@@ -1,7 +1,5 @@
 package com.qiniu.qplayer2.ui.page.shortvideoV2
 
-import com.qiniu.qplayer2.ui.page.shortvideo.PlayItem
-
 class PlayItemManager() {
 
     private var mPlayItemList = ArrayList<PlayItem>()

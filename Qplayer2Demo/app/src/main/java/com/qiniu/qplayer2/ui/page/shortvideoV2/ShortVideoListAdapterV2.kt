@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.qiniu.qplayer2.R
-import com.qiniu.qplayer2.ui.page.shortvideo.PlayItem
 
 class ShortVideoListAdapterV2(context: Context,
                               private val mPlayItemManager: PlayItemManager,

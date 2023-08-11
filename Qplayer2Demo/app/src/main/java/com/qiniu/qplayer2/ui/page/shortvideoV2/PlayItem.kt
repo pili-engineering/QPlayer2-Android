@@ -1,4 +1,4 @@
-package com.qiniu.qplayer2.ui.page.shortvideo
+package com.qiniu.qplayer2.ui.page.shortvideoV2
 
 import com.qiniu.qmedia.component.player.QMediaItemContext
 import com.qiniu.qmedia.component.player.QMediaModel

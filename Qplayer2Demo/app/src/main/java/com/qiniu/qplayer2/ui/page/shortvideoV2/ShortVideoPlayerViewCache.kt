@@ -3,7 +3,6 @@ package com.qiniu.qplayer2.ui.page.shortvideoV2
 import android.content.Context
 import android.util.Log
 import com.qiniu.qmedia.ui.QSurfacePlayerView
-import com.qiniu.qplayer2.ui.page.shortvideo.MediaItemContextManager
 
 class ShortVideoPlayerViewCache(context: Context, private val mPlayItemManager: PlayItemManager,
                                 externalFilesDir: String):IShortVideoPlayerViewCacheRecycler {

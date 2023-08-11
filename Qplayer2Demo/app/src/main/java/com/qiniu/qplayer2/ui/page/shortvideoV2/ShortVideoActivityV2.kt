@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Lifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
@@ -16,7 +15,6 @@ import com.qiniu.qmedia.component.player.QURLType
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2.repository.shortvideo.ModelFactory
 import com.qiniu.qplayer2.repository.shortvideo.VideoItem
-import com.qiniu.qplayer2.ui.page.shortvideo.PlayItem
 
 class ShortVideoActivityV2 : AppCompatActivity() {
 

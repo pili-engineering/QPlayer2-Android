@@ -1,12 +1,10 @@
 package com.qiniu.qplayer2.ui.page.shortvideoV2
 
-import com.qiniu.qmedia.component.player.QMediaModel
 import com.qiniu.qmedia.ui.QSurfacePlayerView
 import android.content.Context
 import android.util.Log
 import com.qiniu.qmedia.component.player.QMediaItemContext
 import com.qiniu.qmedia.component.player.QPlayerSetting
-import com.qiniu.qplayer2.ui.page.shortvideo.PlayItem
 
 class SurfacePlayerViewManager(private val mContext: Context) {
 
