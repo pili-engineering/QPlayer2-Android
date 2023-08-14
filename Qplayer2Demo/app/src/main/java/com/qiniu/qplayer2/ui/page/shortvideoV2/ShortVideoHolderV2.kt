@@ -17,6 +17,7 @@ import com.qiniu.qplayer2.ui.widget.PlayerBiteRateTextWidget
 import com.qiniu.qplayer2.ui.widget.PlayerBufferingWidget
 import com.qiniu.qplayer2.ui.widget.PlayerDownloadTextWidget
 import com.qiniu.qplayer2.ui.widget.PlayerFPSTextWidget
+import com.qiniu.qplayer2.ui.widget.PlayerFirstFrameWidget
 import com.qiniu.qplayer2.ui.widget.PlayerFullScreenPlayClickWidget
 import com.qiniu.qplayer2.ui.widget.PlayerPlayWidget
 import com.qiniu.qplayer2.ui.widget.PlayerProgressTextWidget
@@ -35,11 +36,13 @@ class ShortVideoHolderV2(
     private val mVideoContainerFL: FrameLayout = mItemView.findViewById(R.id.video_container_FL)
     private val mCoverIV: ImageView = mItemView.findViewById(R.id.cover_IV)
 
+    private val mFirstFrameWidget: PlayerFirstFrameWidget = mItemView.findViewById(R.id.first_frame_TV)
     private val mFPSWidget: PlayerFPSTextWidget = mItemView.findViewById(R.id.fps_TV)
     private val mDownloadTextWidget: PlayerDownloadTextWidget =
         mItemView.findViewById(R.id.download_speed_TV)
     private val mBiteRateTextWidget: PlayerBiteRateTextWidget =
         mItemView.findViewById(R.id.biterate_TV)
+
     private var mSeekWidget: PlayerSeekWidget = mItemView.findViewById(R.id.seek_bar)
     private var mProgressTextWidget: PlayerProgressTextWidget =
         mItemView.findViewById(R.id.progress_TV)
@@ -113,7 +116,7 @@ class ShortVideoHolderV2(
             mPlayWidget.setPlayerControlHandler(it.playerControlHandler)
             mFullScreenPlayClickWidget.setPlayerControlHandler(it.playerControlHandler)
             mBufferingWidget.setPlayerControlHandler(it.playerControlHandler)
-
+            mFirstFrameWidget.setPlayerRenderHandler(it.playerRenderHandler)
             it.playerRenderHandler.addPlayerRenderListener(mPlayerRenderListener)
             it.playerControlHandler.addPlayerStateChangeListener(mPlayerStateChangeListener)
         }
@@ -136,6 +139,8 @@ class ShortVideoHolderV2(
         mSeekWidget.setPlayerControlHandler(null)
         mProgressTextWidget.setPlayerControlHandler(null)
         mPlayWidget.setPlayerControlHandler(null)
+        mFirstFrameWidget.setPlayerRenderHandler(null)
+
         mFullScreenPlayClickWidget.setPlayerControlHandler(null)
         mBufferingWidget.setPlayerControlHandler(null)
     }
