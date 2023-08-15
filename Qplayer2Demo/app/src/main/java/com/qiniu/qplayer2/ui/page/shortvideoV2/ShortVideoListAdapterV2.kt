@@ -65,6 +65,10 @@ class ShortVideoListAdapterV2(context: Context,
         mPlayItemManager.addPlayItemDeleteListener(mPlayItemDeleteListener)
     }
 
+    fun makeProxyURL(url: String): String {
+        return MikuClientManager.getInstance().makeProxyURL(url)
+    }
+
     fun clear() {
         mCurrentHolder?.stopVideo()
         mShortVideoPlayerViewCache.stop()

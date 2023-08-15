@@ -119,7 +119,7 @@ class ShortVideoActivityV2 : AppCompatActivity() {
                                 "",
                                 QURLType.QAUDIO_AND_VIDEO,
                                 0,
-                                MikuClientManager.getInstance().makeProxyURL(it.videoPath),
+                                 mShortVideoListAdapterV2.makeProxyURL(it.videoPath),
                                 true,
                                 "",
                                 it.videoPath
