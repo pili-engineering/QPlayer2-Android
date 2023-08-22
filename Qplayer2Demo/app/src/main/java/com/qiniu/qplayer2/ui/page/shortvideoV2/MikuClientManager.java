@@ -14,7 +14,7 @@ public class MikuClientManager {
 
     private static final String CACHE_PATH = "";
 
-    private static final int CACHE_SIZE_MB = 400;
+    private static final int CACHE_SIZE_MB = 100;
 
     private static final int MAX_WORKERS = 8;
 
