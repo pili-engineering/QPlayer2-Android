@@ -1260,6 +1260,24 @@ object LongPlayerDataSourceFactory {
             )
         )
 
+        builder = QMediaModelBuilder()
+        url = "https://video.sureemed.com/hls-mp4%2F20230717%E7%9F%AD%E8%A7%86%E9%A2%91hls-2023%E5%85%AD%E6%9C%88%E7%9F%AD%E8%A7%86%E9%A2%916.27.mp4-2000k-transcode.m3u8"
+        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
+        name = "47-点播-https-m3u8-url带%"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(false),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L
+                )
+            )
+        )
+
         return dataSourceBuilder.build()
     }
 }
