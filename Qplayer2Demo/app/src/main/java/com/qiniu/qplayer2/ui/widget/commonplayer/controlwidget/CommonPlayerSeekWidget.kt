@@ -49,7 +49,7 @@ class CommonPlayerSeekWidget : AppCompatSeekBar,
 
     private val mPlayerStateChangeListener = object: QIPlayerStateChangeListener {
         override fun onStateChanged(state: QPlayerState) {
-            mIsNeedUpdateProgress = state == QPlayerState.PLAYING
+            mIsNeedUpdateProgress = (state == QPlayerState.PLAYING || state == QPlayerState.PAUSED_RENDER)
         }
 
     }
