@@ -1237,14 +1237,16 @@ object LongPlayerDataSourceFactory {
             )
         )
 
-
-
         builder = QMediaModelBuilder()
         builder.addStreamElement(
             "", QURLType.QAUDIO_AND_VIDEO, 720,
-            "https://sdk-release.qnsdk.com/CENC_AES-CTR.mp4", true
+            "https://sdk-release.qnsdk.com/CENC_AES-CTR.mp4", true,
+            "",
+            "", QVideoRenderType.PLANE,
+            ""
+//            ,"c7e16c4403654b85847037383f0c2db3"
         )
-        name = "mp4-drm"
+        name = "46-mp4-drm"
 
         videoParams = LongVideoParams(name, name.hashCode().toLong())
         dataSourceBuilder.addVideo(
