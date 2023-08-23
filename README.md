@@ -81,7 +81,8 @@ implementation("com.qiniu:qplayer2-ext:1.3.1") //如果无需qplayer2-ext能力�
 
 请查阅document目录下的api文档
 
-
+##### 接入文档
+https://developer.qiniu.com/pili/12214/qplayer2-android
 
 ##### Demo介绍
 
