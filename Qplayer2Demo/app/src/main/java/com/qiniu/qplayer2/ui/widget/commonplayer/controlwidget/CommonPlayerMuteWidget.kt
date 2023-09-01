@@ -5,6 +5,8 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.qiniu.qmedia.component.player.QIPlayerAudioListener
+import com.qiniu.qmedia.component.player.QIPlayerStateChangeListener
+import com.qiniu.qmedia.component.player.QPlayerState
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
@@ -16,6 +18,17 @@ class CommonPlayerMuteWidget : AppCompatImageView, View.OnClickListener,
     IControlWidget<LongLogicProvider, LongPlayableParams, LongVideoParams>, QIPlayerAudioListener {
 
     private lateinit var mPlayerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>
+
+    private val mPlayerStateChangeListener = object: QIPlayerStateChangeListener {
+        override fun onStateChanged(state: QPlayerState) {
+            if (state == QPlayerState.PLAYING) {
+                visibility = View.VISIBLE
+            } else if (state == QPlayerState.PREPARE) {
+                visibility = View.INVISIBLE
+            }
+        }
+
+    }
 
     constructor(context: Context) : super(context) {
     }
@@ -52,16 +65,30 @@ class CommonPlayerMuteWidget : AppCompatImageView, View.OnClickListener,
         setOnClickListener(this)
 
         updateIcon(mPlayerCore.mPlayerContext.getPlayerControlHandler().isMute)
-        mPlayerCore.mPlayerContext.getPlayerControlHandler()
-            .addPlayerAudioListener(this)
+
+        if (mPlayerCore.mPlayerContext.getPlayerControlHandler().currentPlayerState == QPlayerState.PLAYING) {
+            visibility = View.VISIBLE
+        } else {
+            visibility = View.INVISIBLE
+        }
+
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().also {
+            it.addPlayerAudioListener(this)
+            it.addPlayerStateChangeListener(mPlayerStateChangeListener)
+        }
+
+
 
 
     }
 
     override fun onWidgetInactive() {
         setOnClickListener(null)
-        mPlayerCore.mPlayerContext.getPlayerControlHandler()
-            .removePlayerAudioListener(this)
+
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().also {
+            it.removePlayerAudioListener(this)
+            it.removePlayerStateChangeListener(mPlayerStateChangeListener)
+        }
     }
 
     override fun bindPlayerCore(playerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>) {

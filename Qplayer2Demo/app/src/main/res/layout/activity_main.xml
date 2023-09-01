@@ -26,19 +26,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/long_video_player_BTN"
-        app:layout_constraintBottom_toTopOf="@+id/short_video_player_BTN"
-        android:visibility="gone"/>
+        app:layout_constraintBottom_toTopOf="@+id/short_video_playerV2_BTN"/>
+
 
     <Button
-        android:id="@+id/short_video_player_BTN"
+        android:id="@+id/short_video_playerV2_BTN"
         android:layout_width="240dp"
         android:layout_height="80dp"
-        android:text="短视频"
+        android:text="短视频V2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/simple_long_video_player_BTN"
         app:layout_constraintBottom_toTopOf="@+id/setting_BTN"/>
-
     <Button
         android:id="@+id/setting_BTN"
         android:layout_width="240dp"
@@ -47,7 +46,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/short_video_player_BTN"
+        app:layout_constraintTop_toBottomOf="@+id/short_video_playerV2_BTN"
         app:layout_constraintBottom_toTopOf="@+id/double_player_BTN"/>
 
     <Button

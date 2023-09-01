@@ -94,6 +94,8 @@ dependencies {
     }
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
 
+    implementation files("libs/qndroid-miku-delivery-v1.1.2.jar")
+
     if (dependency_type == "remote") {
         implementation("com.qiniu:qplayer2-core:${qplayer2_version}")
         implementation("com.qiniu:qplayer2-ext:${qplayer2_version}")

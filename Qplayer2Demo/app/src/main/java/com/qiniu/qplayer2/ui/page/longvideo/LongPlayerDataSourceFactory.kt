@@ -19,20 +19,21 @@ object LongPlayerDataSourceFactory {
         var name = ""
 
 
-//
+
+
 //        builder = QMediaModelBuilder()
-//        builder.addElement(
+//        builder.addStreamElement(
 //            "", QURLType.QAUDIO_AND_VIDEO, 720,
-//            "rtmp://pili-live-rtmp.cdn-stg1.zhi-niao.com/zhiniao-stg1/861443_D2045F2DD4BB49C2BEE05221CD9320D7_0", true
+//            "http://demo-videos.qnsdk.com/Sony-Bravia-OLED-4K-Demo.mp4", true
 //        )
-//        name = "-1-知鸟"
+//        name = "-1-HDR-2"
 //
 //        videoParams = LongVideoParams(name, name.hashCode().toLong())
 //        dataSourceBuilder.addVideo(
 //            videoParams,
 //            arrayListOf<LongPlayableParams>(
 //                LongPlayableParams(
-//                    builder.build(true),
+//                    builder.build(false),
 //                    LongControlPanelType.Normal.type,
 //                    DisplayOrientation.LANDSCAPE,
 //                    LongEnviromentType.LONG.type,
@@ -41,29 +42,29 @@ object LongPlayerDataSourceFactory {
 //            )
 //        )
 //
-
-//        builder = QMediaModelBuilder()
 //
+//        builder = QMediaModelBuilder()
 //        builder.addStreamElement(
-//            "", QURLType.QAUDIO_AND_VIDEO, 1080,
-//            "rtmp://pili-rtmp.qnsdk.com/sdk-live/d8lk7l4ed_hugotime_admin", true
+//            "", QURLType.QAUDIO_AND_VIDEO, 720,
+//            "http://demo-videos.qnsdk.com/Sony%20Swordsmith%20HDR%20UHD%204K%20Demo.mp4", true
 //        )
-//        name = "-1-延迟测试"
+//        name = "-1-HDR-1"
+//
 //        videoParams = LongVideoParams(name, name.hashCode().toLong())
 //        dataSourceBuilder.addVideo(
 //            videoParams,
-//            arrayListOf(
+//            arrayListOf<LongPlayableParams>(
 //                LongPlayableParams(
-//                    builder.build(true),
+//                    builder.build(false),
 //                    LongControlPanelType.Normal.type,
 //                    DisplayOrientation.LANDSCAPE,
 //                    LongEnviromentType.LONG.type,
-//                    PlayerSettingRespostory.startPosition,
-//
-//                    )
+//                    0
+//                )
 //            )
 //        )
-//
+
+
 //        builder = QMediaModelBuilder()
 //
 //        builder.addStreamElement(
@@ -1232,6 +1233,49 @@ object LongPlayerDataSourceFactory {
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
                     0
+                )
+            )
+        )
+
+//        builder = QMediaModelBuilder()
+//        builder.addStreamElement(
+//            "", QURLType.QAUDIO_AND_VIDEO, 720,
+//            "https://sdk-release.qnsdk.com/CENC_AES-CTR.mp4", true,
+//            "",
+//            "", QVideoRenderType.PLANE,
+//            ""
+////            ,"c7e16c4403654b85847037383f0c2db3"
+//        )
+//        name = "46-mp4-drm"
+//
+//        videoParams = LongVideoParams(name, name.hashCode().toLong())
+//        dataSourceBuilder.addVideo(
+//            videoParams,
+//            arrayListOf<LongPlayableParams>(
+//                LongPlayableParams(
+//                    builder.build(false),
+//                    LongControlPanelType.Normal.type,
+//                    DisplayOrientation.LANDSCAPE,
+//                    LongEnviromentType.LONG.type,
+//                    0
+//                )
+//            )
+//        )
+
+        builder = QMediaModelBuilder()
+        url = "https://video.sureemed.com/hls-mp4%2F20230717%E7%9F%AD%E8%A7%86%E9%A2%91hls-2023%E5%85%AD%E6%9C%88%E7%9F%AD%E8%A7%86%E9%A2%916.27.mp4-2000k-transcode.m3u8"
+        builder.addStreamElement("", QURLType.QAUDIO_AND_VIDEO, 1080, url, true)
+        name = "47-点播-https-m3u8-url带%"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(false),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0L
                 )
             )
         )

@@ -11,6 +11,8 @@ public class VideoItem implements Serializable {
     private String mSize;
     private String mTime;
     private String mVideoPath;
+
+    private String mProxyVideoPath;
     private String mCoverPath;
 
     public static final String VIDEO_PATH_PREFIX = "http://demo-videos.qnsdk.com/";
