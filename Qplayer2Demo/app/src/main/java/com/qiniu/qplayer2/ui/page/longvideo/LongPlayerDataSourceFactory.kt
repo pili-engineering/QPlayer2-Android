@@ -65,27 +65,27 @@ object LongPlayerDataSourceFactory {
 //        )
 
 
-//        builder = QMediaModelBuilder()
-//
-//        builder.addStreamElement(
-//            "", QURLType.QAUDIO_AND_VIDEO, 1080,
-//            "rtmp://pili-rtmp.qnsdk.com/sdk-live/lytest", true
-//        )
-//        name = "-2-延迟测试"
-//        videoParams = LongVideoParams(name, name.hashCode().toLong())
-//        dataSourceBuilder.addVideo(
-//            videoParams,
-//            arrayListOf(
-//                LongPlayableParams(
-//                    builder.build(true),
-//                    LongControlPanelType.Normal.type,
-//                    DisplayOrientation.LANDSCAPE,
-//                    LongEnviromentType.LONG.type,
-//                    PlayerSettingRespostory.startPosition,
-//
-//                    )
-//            )
-//        )
+        builder = QMediaModelBuilder()
+
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "https://test-video.99tv.live/hls/404366f4-0566-4f25-be7c-fd1953972882_720p/main.m3u8", true
+        )
+        name = "-2-延迟测试"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(false),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
+
+                    )
+            )
+        )
 
         builder = QMediaModelBuilder()
 
@@ -1237,30 +1237,30 @@ object LongPlayerDataSourceFactory {
             )
         )
 
-//        builder = QMediaModelBuilder()
-//        builder.addStreamElement(
-//            "", QURLType.QAUDIO_AND_VIDEO, 720,
-//            "https://sdk-release.qnsdk.com/CENC_AES-CTR.mp4", true,
-//            "",
-//            "", QVideoRenderType.PLANE,
-//            ""
-////            ,"c7e16c4403654b85847037383f0c2db3"
-//        )
-//        name = "46-mp4-drm"
-//
-//        videoParams = LongVideoParams(name, name.hashCode().toLong())
-//        dataSourceBuilder.addVideo(
-//            videoParams,
-//            arrayListOf<LongPlayableParams>(
-//                LongPlayableParams(
-//                    builder.build(false),
-//                    LongControlPanelType.Normal.type,
-//                    DisplayOrientation.LANDSCAPE,
-//                    LongEnviromentType.LONG.type,
-//                    0
-//                )
-//            )
-//        )
+        builder = QMediaModelBuilder()
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 720,
+            "https://sdk-release.qnsdk.com/CENC_AES-CTR.mp4", true,
+            "",
+            "", QVideoRenderType.PLANE,
+            ""
+            ,"c7e16c4403654b85847037383f0c2db3"
+        )
+        name = "46-mp4-drm"
+
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf<LongPlayableParams>(
+                LongPlayableParams(
+                    builder.build(false),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    0
+                )
+            )
+        )
 
         builder = QMediaModelBuilder()
         url = "https://video.sureemed.com/hls-mp4%2F20230717%E7%9F%AD%E8%A7%86%E9%A2%91hls-2023%E5%85%AD%E6%9C%88%E7%9F%AD%E8%A7%86%E9%A2%916.27.mp4-2000k-transcode.m3u8"
