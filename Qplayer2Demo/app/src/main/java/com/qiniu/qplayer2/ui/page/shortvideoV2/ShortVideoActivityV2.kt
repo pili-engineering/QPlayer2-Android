@@ -113,24 +113,28 @@ class ShortVideoActivityV2 : AppCompatActivity() {
                     val playItems = ArrayList<PlayItem>()
                     items.forEach { videoItem ->
                         videoItem.let {
-                            val builder = QMediaModelBuilder()
-                            Log.d(TAG, "video path=${it.videoPath}")
-                            builder.addStreamElement(
-                                "",
-                                QURLType.QAUDIO_AND_VIDEO,
-                                0,
-                                 mShortVideoListAdapterV2.makeProxyURL(it.videoPath),
-                                true,
-                                "",
-                                it.videoPath
-                            )
-                            val playItem = PlayItem(
-                                it.videoPath.hashCode(),
-                                builder.build(false),
-                                it.coverPath
-                            )
 
-                            playItems.add(playItem)
+                            mShortVideoListAdapterV2.makeProxyURL(it.videoPath)?.let { proxyUrl ->
+                                val builder = QMediaModelBuilder()
+                                Log.d(TAG, "video path=${it.videoPath}")
+                                builder.addStreamElement(
+                                    "",
+                                    QURLType.QAUDIO_AND_VIDEO,
+                                    0,
+                                    proxyUrl,
+                                    true,
+                                    "",
+                                    it.videoPath
+                                )
+                                val playItem = PlayItem(
+                                    it.videoPath.hashCode(),
+                                    builder.build(false),
+                                    it.coverPath
+                                )
+
+                                playItems.add(playItem)
+                            }
+
                         }
                     }
 
