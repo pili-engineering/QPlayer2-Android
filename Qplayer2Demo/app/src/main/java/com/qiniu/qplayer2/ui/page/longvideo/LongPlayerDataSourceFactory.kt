@@ -65,27 +65,29 @@ object LongPlayerDataSourceFactory {
 //        )
 
 
-        builder = QMediaModelBuilder()
+//        builder = QMediaModelBuilder()
+//
+//        builder.addStreamElement(
+//            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+//            "https://www.xianshiapp.com/apptest/xs-server-sys/file/downloadFile?id=1702159276864589826", true
+//        )
+//        name = "-2-延迟测试"
+//        videoParams = LongVideoParams(name, name.hashCode().toLong())
+//        dataSourceBuilder.addVideo(
+//            videoParams,
+//            arrayListOf(
+//                LongPlayableParams(
+//                    builder.build(false),
+//                    LongControlPanelType.Normal.type,
+//                    DisplayOrientation.LANDSCAPE,
+//                    LongEnviromentType.LONG.type,
+//                    PlayerSettingRespostory.startPosition,
+//
+//                    )
+//            )
+//        )
+//
 
-        builder.addStreamElement(
-            "", QURLType.QAUDIO_AND_VIDEO, 1080,
-            "https://test-video.99tv.live/hls/404366f4-0566-4f25-be7c-fd1953972882_720p/main.m3u8", true
-        )
-        name = "-2-延迟测试"
-        videoParams = LongVideoParams(name, name.hashCode().toLong())
-        dataSourceBuilder.addVideo(
-            videoParams,
-            arrayListOf(
-                LongPlayableParams(
-                    builder.build(false),
-                    LongControlPanelType.Normal.type,
-                    DisplayOrientation.LANDSCAPE,
-                    LongEnviromentType.LONG.type,
-                    PlayerSettingRespostory.startPosition,
-
-                    )
-            )
-        )
 
         builder = QMediaModelBuilder()
 
@@ -1277,6 +1279,28 @@ object LongPlayerDataSourceFactory {
                     LongEnviromentType.LONG.type,
                     0L
                 )
+            )
+        )
+
+        builder = QMediaModelBuilder()
+
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "https://mdy-picture.tos-cn-beijing.volces.com/2023%2F09%2F04%2F0599764572694a0c929ca79efcc988b0.wav", true
+        )
+        name = "48-音频卡顿"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(false),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
+
+                    )
             )
         )
 
