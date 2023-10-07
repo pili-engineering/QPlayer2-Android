@@ -27,6 +27,8 @@ class SurfacePlayerViewManager(private val mContext: Context) {
         mSurfacePlayerViews.forEach {
             it.playerControlHandler.release()
         }
+
+        mPreRenderPlayerView?.playerControlHandler?.release()
     }
 
     public fun isPreRenderValaid(): Boolean {
