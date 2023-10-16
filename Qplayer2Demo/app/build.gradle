@@ -92,7 +92,7 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:3.12.12"){
         force = true //API 19 support
     }
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
 
     implementation files("libs/qndroid-miku-delivery-v1.1.2.jar")
 
