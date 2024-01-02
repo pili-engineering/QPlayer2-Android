@@ -149,6 +149,16 @@ class PlayerToastService
         mPlayerCore.playerToastContainer?.showToast(toast)
     }
 
+    override fun onDecodeFailed(retry: Boolean) {
+        val toast = PlayerToast.Builder()
+            .toastItemType(PlayerToastConfig.TYPE_NORMAL)
+            .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
+            .setExtraString(PlayerToastConfig.EXTRA_TITLE, "解码失败 重试：$retry")
+            .duration(PlayerToastConfig.DURATION_3)
+            .build()
+        mPlayerCore.playerToastContainer?.showToast(toast)
+    }
+
     override fun onCommandNotAllow(commandName: String, state: QPlayerState) {
         val toast = PlayerToast.Builder()
             .toastItemType(PlayerToastConfig.TYPE_NORMAL)
