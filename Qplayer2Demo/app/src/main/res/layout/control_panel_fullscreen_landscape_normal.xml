@@ -94,7 +94,7 @@
         android:paddingRight="11dp"/>
 
 
-    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerShootVideoWidget
+    <com.qiniu.qplayer2.ui.widget.commonplayer.controlwidget.CommonPlayerCaptureWidget
         android:id="@+id/shoot_video_IV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
