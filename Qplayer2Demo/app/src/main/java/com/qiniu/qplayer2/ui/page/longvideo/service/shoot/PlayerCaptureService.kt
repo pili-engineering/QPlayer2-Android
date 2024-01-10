@@ -100,7 +100,7 @@ class PlayerCaptureService :
 
     private fun saveRecordToAlbum(path: String): Boolean {
         Log.d(TAG, "Check AlbumPermission")
-        if (mPlayerCore.logicProvider?.checkPhotoAlbumPermission() == true) {
+        if (mPlayerCore.logicProvider?.checkPhotoAlbumPermission() == true && path.isNotBlank() && path.isNotEmpty()) {
             //保存视频
             val contentValues = contentValuesOf(
                 MediaStore.MediaColumns.DISPLAY_NAME to System.currentTimeMillis().toString(),
