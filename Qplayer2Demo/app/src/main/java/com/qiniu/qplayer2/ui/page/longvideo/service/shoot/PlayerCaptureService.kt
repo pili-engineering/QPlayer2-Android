@@ -1,15 +1,14 @@
 package com.qiniu.qplayer2.ui.page.longvideo.service.shoot
 
-import android.net.Uri
-import android.provider.MediaStore
 import android.util.Log
 import android.view.ViewGroup
-import androidx.core.content.contentValuesOf
 import com.qiniu.qmedia.component.player.QIPlayerAudioDataListener
+import com.qiniu.qmedia.component.player.QIPlayerBufferingListener
 import com.qiniu.qmedia.component.player.QIPlayerShootVideoListener
 import com.qiniu.qmedia.component.player.QIPlayerVideoDataListener
 import com.qiniu.qmedia.component.player.QURLType
 import com.qiniu.qmedia.component.player.QVideoDataCallbackType
+import com.qiniu.qplayer2.common.system.SaveUtils
 import com.qiniu.qplayer2.tools.MediaRecord
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
@@ -22,13 +21,12 @@ import com.qiniu.qplayer2ext.commonplayer.layer.toast.PlayerToast
 import com.qiniu.qplayer2ext.commonplayer.layer.toast.PlayerToastConfig
 import com.qiniu.qplayer2ext.commonplayer.service.IPlayerService
 import java.io.File
-import java.io.IOException
 
 
 class PlayerCaptureService :
     IPlayerService<LongLogicProvider, LongPlayableParams, LongVideoParams>,
     IPlayerCaptureService, QIPlayerShootVideoListener, QIPlayerVideoDataListener,
-    QIPlayerAudioDataListener {
+    QIPlayerAudioDataListener, QIPlayerBufferingListener {
 
         companion object {
             const val TAG = "PlayerCaptureService"
@@ -40,17 +38,21 @@ class PlayerCaptureService :
     private var mToken: PlayerFunctionContainer.FunctionWidgetToken<LongLogicProvider, LongPlayableParams, LongVideoParams>? =
         null
 
+    private var mIsBuffering = false
     override fun onStart() {
+        mIsBuffering = mPlayerCore.mPlayerContext.getPlayerControlHandler().isBuffering
+
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerShootVideoListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerAudioDataListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerVideoDataListener(this)
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerBufferingChangeListener(this)
     }
 
     override fun onStop() {
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerShootVideoListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerAudioDataListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerVideoDataListener(this)
-
+        mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerBufferingChangeListener(this)
     }
 
     override fun bindPlayerCore(playerCore: CommonPlayerCore<LongLogicProvider, LongPlayableParams, LongVideoParams>) {
@@ -92,65 +94,33 @@ class PlayerCaptureService :
 
         val path = mMediaRecord?.stop()
         mMediaRecord = null
+
         path?.also {
-            return saveRecordToAlbum(it)
+            val fileSize = SaveUtils.getFileSize(it)
+            if(fileSize > 100) {
+                return saveRecordToAlbum(it)
+            } else {
+                return false
+            }
         }
         return false
     }
 
     private fun saveRecordToAlbum(path: String): Boolean {
         Log.d(TAG, "Check AlbumPermission")
-        if (mPlayerCore.logicProvider?.checkPhotoAlbumPermission() == true && path.isNotBlank() && path.isNotEmpty()) {
-            //保存视频
-            val contentValues = contentValuesOf(
-                MediaStore.MediaColumns.DISPLAY_NAME to System.currentTimeMillis().toString(),
-                MediaStore.MediaColumns.MIME_TYPE to "video/mp4",
-                MediaStore.MediaColumns.RELATIVE_PATH to "Movies/QPlayer2VideoRecords/"
-            )
-
-            mPlayerCore.mAndroidContext?.contentResolver?.insert(
-                MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-                contentValues
-            )?.also {dstUri ->
-
-                val sourceFile = File(path)
-                val srcUri = Uri.fromFile(sourceFile)
-                Log.d(TAG, "START COPY 1 ${srcUri.path}")
-                try {
-                    val inputStream = mPlayerCore.mAndroidContext?.contentResolver?.openInputStream(srcUri)
-                    if (inputStream == null) {
-                        Log.d(TAG, "inputStream is null")
-
-                        return false
-                    }
-                    Log.d(TAG, "START COPY 2")
-
-                    val outputStream = mPlayerCore.mAndroidContext?.contentResolver?.openOutputStream(dstUri)
-                    Log.d(TAG, "START COPY 3")
-
-                    if (outputStream == null) {
-                        inputStream.close()
-                        return false
-                    }
-                    Log.d(TAG, "START COPY 4")
-
-                    val buffer = ByteArray(1024)
-                    var bytesRead: Int
-                    while (inputStream.read(buffer).also { bytesRead = it } != -1) {
-                        outputStream.write(buffer, 0, bytesRead)
-                    }
-                    inputStream.close()
-                    outputStream.close()
-                    Log.d(TAG, "END COPY")
-
-                    return true
-                } catch (e: IOException) {
-                    Log.d(TAG, "catch ${e.stackTrace}")
-
-                }
-            }
+        var result = false
+        mPlayerCore.mAndroidContext?.let {
+            result = SaveUtils.saveVideoToAlbum(it, path)
+//            val text  = if (result) "视频保存成功" else "视频保存失败"
+//            val toast = PlayerToast.Builder()
+//                .toastItemType(PlayerToastConfig.TYPE_NORMAL)
+//                .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
+//                .setExtraString(PlayerToastConfig.EXTRA_TITLE, text)
+//                .duration(PlayerToastConfig.DURATION_3)
+//                .build()
+//            mPlayerCore.playerToastContainer?.showToast(toast)
         }
-        return false
+        return result
     }
 
     override fun onShootSuccessful(
@@ -160,24 +130,16 @@ class PlayerCaptureService :
         type: QIPlayerShootVideoListener.ShootVideoType
     ) {
 
-        if (mPlayerCore.logicProvider?.checkPhotoAlbumPermission() == true) {
-            //保存截图
-            val contentValues = contentValuesOf(
-                MediaStore.MediaColumns.DISPLAY_NAME to System.currentTimeMillis().toString(),
-                MediaStore.MediaColumns.MIME_TYPE to "image/jpeg",
-                MediaStore.MediaColumns.RELATIVE_PATH to "Pictures/QPlayer2VideoShoots/"
-            )
-
-            mPlayerCore.mAndroidContext?.contentResolver?.insert(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                contentValues
-            )?.apply {
-                mPlayerCore.mAndroidContext?.contentResolver?.openOutputStream(this)?.use {
-                    it.write(image, 0, image.size)
-                }
-            }
+        mPlayerCore.mAndroidContext?.let {
+            val text  = if (SaveUtils.saveImageToAlbumImpl(it, image)) "截图保存成功" else "截图保存失败"
+            val toast = PlayerToast.Builder()
+                .toastItemType(PlayerToastConfig.TYPE_NORMAL)
+                .location(PlayerToastConfig.LOCAT_LEFT_SIDE)
+                .setExtraString(PlayerToastConfig.EXTRA_TITLE, text)
+                .duration(PlayerToastConfig.DURATION_3)
+                .build()
+            mPlayerCore.playerToastContainer?.showToast(toast)
         }
-
 
         mToken?.also {
             mPlayerCore.playerFunctionWidgetContainer?.hideWidget(it)
@@ -218,7 +180,9 @@ class PlayerCaptureService :
         channelLayout: QIPlayerAudioDataListener.QChannelLayout,
         data: ByteArray
     ) {
-        mMediaRecord?.putAudioData(sampleRate, channelNum, format, channelLayout, data)
+        if (!mIsBuffering) {
+            mMediaRecord?.putAudioData(sampleRate, channelNum, format, channelLayout, data)
+        }
     }
 
     override fun onVideoData(
@@ -226,8 +190,16 @@ class PlayerCaptureService :
         height: Int,
         type: QIPlayerVideoDataListener.QVideoDataType,
         data: ByteArray) {
+        if (!mIsBuffering) {
+            mMediaRecord?.putVideoData(width, height, type, data)
+        }
+    }
 
-        mMediaRecord?.putVideoData(width, height, type, data)
+    override fun onBufferingStart() {
+        mIsBuffering = true
+    }
 
+    override fun onBufferingEnd() {
+        mIsBuffering = false
     }
 }
