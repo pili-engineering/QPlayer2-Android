@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import com.qiniu.qmedia.component.player.QIPlayerStateChangeListener
 import com.qiniu.qmedia.component.player.QPlayerState
+import com.qiniu.qmedia.component.player.QURLType
 import com.qiniu.qplayer2.R
 import com.qiniu.qplayer2.ui.page.longvideo.LongLogicProvider
 import com.qiniu.qplayer2.ui.page.longvideo.LongPlayableParams
@@ -74,7 +75,27 @@ class CommonPlayerCaptureWidget: AppCompatImageView, View.OnClickListener, View.
     }
 
     private fun startRecord() : Boolean {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M){
+            return false
+        }
         if (mPlayerCore.mPlayerContext.getPlayerControlHandler().currentPlayerState == QPlayerState.PLAYING) {
+            val streamElements = mPlayerCore.mCommonPlayerVideoSwitcher.getCurrentPlayableParams()?.mediaModel?.streamElements
+            var hasVideo = false
+            var hasAudio = false
+            streamElements?.forEach {
+                if (it.urlType == QURLType.QAUDIO_AND_VIDEO.value) {
+                    hasVideo = true
+                    hasAudio = true
+                } else if (it.urlType == QURLType.QAUDIO.value) {
+                    hasAudio = true
+                } else if (it.urlType == QURLType.QVIDEO.value) {
+                    hasVideo = true
+                }
+            }
+            if (!(hasAudio && hasVideo)) {
+                return false
+            }
+
             mRecording = true
             val service = mPlayerCore.getPlayerEnviromentServiceManager().getPlayerService<IPlayerCaptureService>(
                 ServiceOwnerType.PLAYER_CAPTURE_SERVICE.type)
