@@ -69,7 +69,7 @@ class CommonPlayerCaptureWidget: AppCompatImageView, View.OnClickListener, View.
 
     override fun onLongClick(v: View?): Boolean {
         Log.d(TAG, "onLongClick")
-        startRecord()
+//        startRecord()
 
         return false
     }
@@ -152,16 +152,16 @@ class CommonPlayerCaptureWidget: AppCompatImageView, View.OnClickListener, View.
 
     override fun onWidgetActive() {
         setOnClickListener(this)
-        setOnLongClickListener(this)
-        setOnTouchListener(this)
+//        setOnLongClickListener(this)
+//        setOnTouchListener(this)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().addPlayerStateChangeListener(this)
 
     }
 
     override fun onWidgetInactive() {
         setOnClickListener(null)
-        setOnLongClickListener(null)
-        setOnTouchListener(null)
+//        setOnLongClickListener(null)
+//        setOnTouchListener(null)
         mPlayerCore.mPlayerContext.getPlayerControlHandler().removePlayerStateChangeListener(this)
     }
 
@@ -171,7 +171,7 @@ class CommonPlayerCaptureWidget: AppCompatImageView, View.OnClickListener, View.
 
     override fun onStateChanged(state: QPlayerState) {
         if (state != QPlayerState.PLAYING) {
-            stopRecord()
+//            stopRecord()
         }
     }
 }
