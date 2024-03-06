@@ -11,9 +11,9 @@ Qplayer2是一款跨平台的播放器SDK,除了基础的播放器能力外，�
 
  Platform | Build Status
  -------- | ------------
- Android | Latest Version ：1.3.2 
+ Android | Latest Version ：1.4.0 
  IOS | https://github.com/pili-engineering/QPlayer2-IOS.git 
- Windows | 敬请期待 
+ Windows | https://github.com/pili-engineering/QPlayer2-Windows 
  Mac | 敬请期待 
  Linux | 敬请期待 
 ### qplayer2-core 功能列表
@@ -38,6 +38,8 @@ Qplayer2是一款跨平台的播放器SDK,除了基础的播放器能力外，�
 | 静音                  | 针对视频的静音，不影响系统声音                               |                                  |
 | 字幕                  | 支持srt字幕文件加载并根据时间回调当前时间的文案给上层        |                                  |
 | DRM                   | 支持HLS 私有加密/通用加密 2种方式；MP4 支持 CENC-AES-CTR 加密 |                                  |
+| 音视频数据上抛        | 适用于业务层需要获取当前播放的音视频数据的场景（比如推流等） |                                  |
+| 本地重建时间轴        | 在真实的流逝时间为准，避免某些视频时间轴错乱导致播放过程中异常 |                                  |
 
 
 ### qplayer2-ext 能力介绍
@@ -57,8 +59,8 @@ Qplayer2是一款跨平台的播放器SDK,除了基础的播放器能力外，�
 ##### 引入依赖
 
 ```groovy
-implementation("com.qiniu:qplayer2-core:1.3.2")
-implementation("com.qiniu:qplayer2-ext:1.3.2") //如果无需qplayer2-ext能力可以不引入 不影响core的使用
+implementation("com.qiniu:qplayer2-core:1.4.0")
+implementation("com.qiniu:qplayer2-ext:1.4.0") //如果无需qplayer2-ext能力可以不引入 不影响core的使用
 ```
 
 
