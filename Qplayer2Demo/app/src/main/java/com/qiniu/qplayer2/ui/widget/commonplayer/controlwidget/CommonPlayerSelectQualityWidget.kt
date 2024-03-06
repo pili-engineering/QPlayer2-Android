@@ -5,6 +5,8 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
+import com.qiniu.qmedia.component.player.QIPlayerStateChangeListener
+import com.qiniu.qmedia.component.player.QPlayerState
 import com.qiniu.qplayer2ext.commonplayer.CommonPlayerCore
 import com.qiniu.qplayer2ext.commonplayer.layer.control.IControlWidget
 import com.qiniu.qplayer2ext.commonplayer.layer.function.PlayerFunctionContainer
@@ -57,8 +59,11 @@ class CommonPlayerSelectQualityWidget: AppCompatTextView,
     }
 
     override fun onClick(v: View?) {
-        val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        layoutParams.layoutType = FunctionWidgetLayoutParams.LayoutAlignType.RIGHT
-        mQualityToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(VideoQualityFunctionWidget::class.java, layoutParams)
+        if (mPlayerCore.mCommonPlayerVideoSwitcher.getCurrentPlayableParams() != null) {
+            val layoutParams = FunctionWidgetLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            layoutParams.layoutType = FunctionWidgetLayoutParams.LayoutAlignType.RIGHT
+            mQualityToken = mPlayerCore.playerFunctionWidgetContainer?.showWidget(VideoQualityFunctionWidget::class.java, layoutParams)
+        }
+
     }
 }
