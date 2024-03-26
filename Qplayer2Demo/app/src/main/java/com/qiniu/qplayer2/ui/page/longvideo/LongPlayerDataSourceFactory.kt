@@ -1304,6 +1304,30 @@ object LongPlayerDataSourceFactory {
             )
         )
 
+        builder = QMediaModelBuilder()
+
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "https://kodo.koafun.com/drm-16884581530881688458153078-new.mp4",
+            true, "", "", QVideoRenderType.PLANE,
+            "", "", "comnew", "filenew")
+
+        name = "49-私有mp4-drm"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(false),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
+
+                    )
+            )
+        )
+
         return dataSourceBuilder.build()
     }
 }
