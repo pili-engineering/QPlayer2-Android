@@ -64,30 +64,27 @@ object LongPlayerDataSourceFactory {
 //            )
 //        )
 
+        builder = QMediaModelBuilder()
 
-//        builder = QMediaModelBuilder()
-//
-//        builder.addStreamElement(
-//            "", QURLType.QAUDIO_AND_VIDEO, 1080,
-//            "https://www.xianshiapp.com/apptest/xs-server-sys/file/downloadFile?id=1702159276864589826", true
-//        )
-//        name = "-2-延迟测试"
-//        videoParams = LongVideoParams(name, name.hashCode().toLong())
-//        dataSourceBuilder.addVideo(
-//            videoParams,
-//            arrayListOf(
-//                LongPlayableParams(
-//                    builder.build(false),
-//                    LongControlPanelType.Normal.type,
-//                    DisplayOrientation.LANDSCAPE,
-//                    LongEnviromentType.LONG.type,
-//                    PlayerSettingRespostory.startPosition,
-//
-//                    )
-//            )
-//        )
-//
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "http://live.zhongwei-info.com/recordings/z1.jixiangmei.1611802668861/1660906800_1660914000.m3u8", true
+        )
+        name = "seek crash"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(isLive = false, isReconstructTimeLine = true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
 
+                    )
+            )
+        )
 
         builder = QMediaModelBuilder()
 
@@ -124,7 +121,7 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf(
                 LongPlayableParams(
-                    builder.build(false),
+                    builder.build(false, true),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
@@ -459,7 +456,7 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(true),
+                    builder.build(true, true),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
@@ -1327,6 +1324,74 @@ object LongPlayerDataSourceFactory {
                     )
             )
         )
+
+        builder = QMediaModelBuilder()
+
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "https://video.medmeeting.com/recordings/z1.yihuibao-test.yihuibao-test_20240412181120417_140983/1712962721_1713006137.m3u8", true
+        )
+        name = "重建时间轴"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(false, true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
+
+                    )
+            )
+        )
+
+        builder = QMediaModelBuilder()
+
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "rtmp://pili-live-rtmp.jixiangmei.zhongwei-info.com/jixiangmei/1662026811828", true
+        )
+        name = "50%在火山-没有开启偷穿时间戳"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(false, true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
+
+                    )
+            )
+        )
+
+        builder = QMediaModelBuilder()
+
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "http://hdllive-main.autohome.com.cn/athmlive-main/z1_athmlive-main_903070.flv", true
+        )
+        name = "火山-开启了透传时间戳"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(isLive = false, isReconstructTimeLine = true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
+
+                    )
+            )
+        )
+
+
 
         return dataSourceBuilder.build()
     }
