@@ -95,16 +95,16 @@ class CommonPlayerInsetControllerWidget : ConstraintLayout,
 
 
 
-    override fun draw(canvas: Canvas?) {
+    override fun draw(canvas: Canvas) {
         drawBackground(canvas)
         super.draw(canvas)
     }
 
-    override fun dispatchDraw(canvas: Canvas?) {
+    override fun dispatchDraw(canvas: Canvas) {
         drawBackground(canvas)
         super.dispatchDraw(canvas)
     }
-    private fun drawBackground(canvas: Canvas?) {
+    private fun drawBackground(canvas: Canvas) {
         canvas ?: return
         val measureWidth = measuredWidth
         val measureHeight = measuredHeight
