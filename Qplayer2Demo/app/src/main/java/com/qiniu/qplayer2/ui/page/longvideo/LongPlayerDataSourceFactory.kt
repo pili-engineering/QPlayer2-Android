@@ -64,27 +64,6 @@ object LongPlayerDataSourceFactory {
 //            )
 //        )
 
-        builder = QMediaModelBuilder()
-
-        builder.addStreamElement(
-            "", QURLType.QAUDIO_AND_VIDEO, 1080,
-            "http://live.zhongwei-info.com/recordings/z1.jixiangmei.1611802668861/1660906800_1660914000.m3u8", true
-        )
-        name = "seek crash"
-        videoParams = LongVideoParams(name, name.hashCode().toLong())
-        dataSourceBuilder.addVideo(
-            videoParams,
-            arrayListOf(
-                LongPlayableParams(
-                    builder.build(isLive = false, isReconstructTimeLine = true),
-                    LongControlPanelType.Normal.type,
-                    DisplayOrientation.LANDSCAPE,
-                    LongEnviromentType.LONG.type,
-                    PlayerSettingRespostory.startPosition,
-
-                    )
-            )
-        )
 
         builder = QMediaModelBuilder()
 
@@ -109,9 +88,9 @@ object LongPlayerDataSourceFactory {
             "http://demo-videos.qnsdk.com/qiniu-2023-240p.mp4", false
         )
 
-        builder.addSubtitleElement("中文",
+        builder.addSubtitleElement("chinese",
             "http://demo-videos.qnsdk.com/qiniu-2023-chinese.srt", true)
-        builder.addSubtitleElement("英文",
+        builder.addSubtitleElement("english",
             "http://demo-videos.qnsdk.com/qiniu-2023-english.srt", false)
 
 
@@ -121,7 +100,7 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf(
                 LongPlayableParams(
-                    builder.build(false, true),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
@@ -456,7 +435,7 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf<LongPlayableParams>(
                 LongPlayableParams(
-                    builder.build(true, true),
+                    builder.build(true),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
@@ -494,6 +473,30 @@ object LongPlayerDataSourceFactory {
                 )
             )
         )
+
+        builder = QMediaModelBuilder()
+
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "http://pili-hdl.qnsdk.com/sdk-live/6666.flv", true
+        )
+        name = "miku-测试地址http"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(isLive = true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
+
+                    )
+            )
+        )
+
 
         builder = QMediaModelBuilder()
         url = "http://pili-hls.qnsdk.com/sdk-live/6666.m3u8"
@@ -1337,7 +1340,7 @@ object LongPlayerDataSourceFactory {
             videoParams,
             arrayListOf(
                 LongPlayableParams(
-                    builder.build(false, true),
+                    builder.build(false),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
@@ -1351,37 +1354,59 @@ object LongPlayerDataSourceFactory {
 
         builder.addStreamElement(
             "", QURLType.QAUDIO_AND_VIDEO, 1080,
-            "rtmp://pili-live-rtmp.jixiangmei.zhongwei-info.com/jixiangmei/1662026811828", true
+            "rtmp://pili-live-rtmp.jixiangmei.zhongwei-info.com/jixiangmei/1708425946376", true
         )
-        name = "50%在火山-没有开启偷穿时间戳"
+        name = "hs-不透传时间戳rtmp"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
         dataSourceBuilder.addVideo(
             videoParams,
             arrayListOf(
                 LongPlayableParams(
-                    builder.build(false, true),
+                    builder.build(true),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
                     PlayerSettingRespostory.startPosition,
-
                     )
             )
         )
+
+//        builder = QMediaModelBuilder()
+//
+//        builder.addStreamElement(
+//            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+//            "http://hdllive-main.autohome.com.cn/athmlive-main/z1_athmlive-main_908963.flv", true
+//        )
+//        name = "hs-透传时间戳http"
+//        videoParams = LongVideoParams(name, name.hashCode().toLong())
+//        dataSourceBuilder.addVideo(
+//            videoParams,
+//            arrayListOf(
+//                LongPlayableParams(
+//                    builder.build(isLive = true),
+//                    LongControlPanelType.Normal.type,
+//                    DisplayOrientation.LANDSCAPE,
+//                    LongEnviromentType.LONG.type,
+//                    PlayerSettingRespostory.startPosition,
+//
+//                    )
+//            )
+//        )
 
         builder = QMediaModelBuilder()
 
         builder.addStreamElement(
             "", QURLType.QAUDIO_AND_VIDEO, 1080,
-            "http://hdllive-main.autohome.com.cn/athmlive-main/z1_athmlive-main_903070.flv", true
+            "rtmp://pili-live-rtmp.blued.cn/blued/663d8aafd29c4e517780e496", true
         )
-        name = "火山-开启了透传时间戳"
+        name = "hs-透传时间戳rtmp"
         videoParams = LongVideoParams(name, name.hashCode().toLong())
         dataSourceBuilder.addVideo(
             videoParams,
+
             arrayListOf(
                 LongPlayableParams(
-                    builder.build(isLive = false, isReconstructTimeLine = true),
+                    builder.build(isLive = true),
                     LongControlPanelType.Normal.type,
                     DisplayOrientation.LANDSCAPE,
                     LongEnviromentType.LONG.type,
