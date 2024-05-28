@@ -65,30 +65,6 @@ object LongPlayerDataSourceFactory {
 //        )
 
 
-//        builder = QMediaModelBuilder()
-//
-//        builder.addStreamElement(
-//            "", QURLType.QAUDIO_AND_VIDEO, 1080,
-//            "https://www.xianshiapp.com/apptest/xs-server-sys/file/downloadFile?id=1702159276864589826", true
-//        )
-//        name = "-2-延迟测试"
-//        videoParams = LongVideoParams(name, name.hashCode().toLong())
-//        dataSourceBuilder.addVideo(
-//            videoParams,
-//            arrayListOf(
-//                LongPlayableParams(
-//                    builder.build(false),
-//                    LongControlPanelType.Normal.type,
-//                    DisplayOrientation.LANDSCAPE,
-//                    LongEnviromentType.LONG.type,
-//                    PlayerSettingRespostory.startPosition,
-//
-//                    )
-//            )
-//        )
-//
-
-
         builder = QMediaModelBuilder()
 
         builder.addStreamElement(
@@ -112,9 +88,9 @@ object LongPlayerDataSourceFactory {
             "http://demo-videos.qnsdk.com/qiniu-2023-240p.mp4", false
         )
 
-        builder.addSubtitleElement("中文",
+        builder.addSubtitleElement("chinese",
             "http://demo-videos.qnsdk.com/qiniu-2023-chinese.srt", true)
-        builder.addSubtitleElement("英文",
+        builder.addSubtitleElement("english",
             "http://demo-videos.qnsdk.com/qiniu-2023-english.srt", false)
 
 
@@ -497,6 +473,30 @@ object LongPlayerDataSourceFactory {
                 )
             )
         )
+
+        builder = QMediaModelBuilder()
+
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "http://pili-hdl.qnsdk.com/sdk-live/6666.flv", true
+        )
+        name = "miku-测试地址http"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(isLive = true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
+
+                    )
+            )
+        )
+
 
         builder = QMediaModelBuilder()
         url = "http://pili-hls.qnsdk.com/sdk-live/6666.m3u8"
@@ -1327,6 +1327,96 @@ object LongPlayerDataSourceFactory {
                     )
             )
         )
+
+        builder = QMediaModelBuilder()
+
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "https://video.medmeeting.com/recordings/z1.yihuibao-test.yihuibao-test_20240412181120417_140983/1712962721_1713006137.m3u8", true
+        )
+        name = "重建时间轴"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(false),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
+
+                    )
+            )
+        )
+
+        builder = QMediaModelBuilder()
+
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "rtmp://pili-live-rtmp.jixiangmei.zhongwei-info.com/jixiangmei/1708425946376", true
+        )
+        name = "hs-不透传时间戳rtmp"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
+                    )
+            )
+        )
+
+//        builder = QMediaModelBuilder()
+//
+//        builder.addStreamElement(
+//            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+//            "http://hdllive-main.autohome.com.cn/athmlive-main/z1_athmlive-main_908963.flv", true
+//        )
+//        name = "hs-透传时间戳http"
+//        videoParams = LongVideoParams(name, name.hashCode().toLong())
+//        dataSourceBuilder.addVideo(
+//            videoParams,
+//            arrayListOf(
+//                LongPlayableParams(
+//                    builder.build(isLive = true),
+//                    LongControlPanelType.Normal.type,
+//                    DisplayOrientation.LANDSCAPE,
+//                    LongEnviromentType.LONG.type,
+//                    PlayerSettingRespostory.startPosition,
+//
+//                    )
+//            )
+//        )
+
+        builder = QMediaModelBuilder()
+
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "rtmp://pili-live-rtmp.blued.cn/blued/663d8aafd29c4e517780e496", true
+        )
+        name = "hs-透传时间戳rtmp"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(isLive = true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
+
+                    )
+            )
+        )
+
+
 
         return dataSourceBuilder.build()
     }

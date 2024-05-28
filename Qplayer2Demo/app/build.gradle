@@ -14,13 +14,12 @@ private static String getBuildTime() {
 }
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion "33.0.2"
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.qiniu.qplayer2"
-        minSdkVersion 19
-        targetSdkVersion 33
+        minSdk 19
+        targetSdk 34
         versionCode 1
         versionName "$qplayer2_version"
 
