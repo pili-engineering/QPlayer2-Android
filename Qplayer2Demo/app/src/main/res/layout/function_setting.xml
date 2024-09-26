@@ -393,6 +393,75 @@
         app:layout_constraintTop_toBottomOf="@+id/ratio_RG" />
 
     <TextView
+        android:id="@+id/mirror_title_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="镜像设置"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider6" />
+    <RadioGroup
+        android:id="@+id/mirror_RG"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mirror_title_TV">
+
+        <RadioButton
+            android:id="@+id/mirror_none_RB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:textColor="@drawable/qmedia_player_selector_panel_text_purple"
+
+            android:text="无镜像" />
+
+        <RadioButton
+            android:id="@+id/mirror_x_RB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:textColor="@drawable/qmedia_player_selector_panel_text_purple"
+
+            android:text="X轴镜像" />
+        <RadioButton
+            android:id="@+id/mirror_y_RB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:textColor="@drawable/qmedia_player_selector_panel_text_purple"
+            android:text="Y轴镜像" />
+        <RadioButton
+            android:id="@+id/mirror_xy_RB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:textColor="@drawable/qmedia_player_selector_panel_text_purple"
+            android:text="XY轴镜像" />
+    </RadioGroup>
+
+    <View
+        android:id="@+id/divider_blind"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@color/white_alpha70"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mirror_RG" />
+    <TextView
         android:id="@+id/blind_title_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -402,7 +471,7 @@
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider6" />
+        app:layout_constraintTop_toBottomOf="@+id/divider_blind" />
 
     <RadioGroup
         android:id="@+id/blind_RG"
@@ -422,7 +491,6 @@
             android:layout_weight="1"
             android:textSize="12sp"
             android:textColor="@drawable/qmedia_player_selector_panel_text_purple"
-
             android:text="无滤镜" />
 
         <RadioButton
@@ -452,6 +520,82 @@
             android:text="蓝/黄滤镜" />
     </RadioGroup>
 
+    <!-- 起播位置-->
+    <View
+        android:id="@+id/divider_rotation"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@color/white_alpha70"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/blind_RG" />
+    <TextView
+        android:id="@+id/rotation_title_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="渲染角度(度数0-360)"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_rotation" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/rotation_SB"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:max="1000"
+        android:thumbOffset="10dp"
+        android:minHeight="2dp"
+        android:maxHeight="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rotation_title_TV" />
+
+
+    <View
+        android:id="@+id/divider_scale"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@color/white_alpha70"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rotation_SB" />
+    <TextView
+        android:id="@+id/scale_title_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="缩放(0.5-2)"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_scale" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/scale_SB"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:max="1000"
+        android:thumbOffset="10dp"
+        android:minHeight="2dp"
+        android:maxHeight="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scale_title_TV" />
+
+
+
     <View
         android:id="@+id/divider7"
         android:layout_width="match_parent"
@@ -461,7 +605,7 @@
         android:background="@color/white_alpha70"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blind_RG" />
+        app:layout_constraintTop_toBottomOf="@+id/scale_SB" />
 
     <TextView
         android:id="@+id/sei_title_TV"

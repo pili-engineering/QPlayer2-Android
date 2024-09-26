@@ -21,6 +21,10 @@ object PlayerSettingRespostory : SharedPreferences.OnSharedPreferenceChangeListe
     private const val SUBTITLE_ENABLE_SETTING_KEY_NAME = "SubtitleEnableSetting"
     private const val QUALITY_SWITCH_TYPE_SETTING_KEY_NAME = "QualitySwitchTypeSetting"
     private const val SHOOT_VIDEO_SOURCE_KEY_NAME = "ShootVideoSource"
+    private const val MIRROR_SETTING_KEY_NAME = "MirrorSetting"
+    private const val ROTATION_SETTING_KEY_NAME = "RotationSetting"
+    private const val SCALE_SETTING_KEY_NAME = "ScaleSetting"
+
 
     public enum class QualitySwitchType(val value: Int) {
         //自动选择
@@ -75,6 +79,41 @@ object PlayerSettingRespostory : SharedPreferences.OnSharedPreferenceChangeListe
             mSharedPreferencesHelper.setInteger(DECODER_SETTING_KEY_NAME, value.value)
         }
 
+    var mirrorType: QPlayerSetting.QPlayerMirror
+        get() {
+            val type: Int = mSharedPreferencesHelper.optInteger(
+                MIRROR_SETTING_KEY_NAME,
+                QPlayerSetting.QPlayerMirror.QPLAYER_MIRROR_NONE.value
+            )
+            return QPlayerSetting.QPlayerMirror.values().find { it.value == type } ?: QPlayerSetting.QPlayerMirror.QPLAYER_MIRROR_NONE
+        }
+
+        set(value) {
+            mSharedPreferencesHelper.setInteger(MIRROR_SETTING_KEY_NAME, value.value)
+        }
+
+    var scale: Float
+        get() {
+            return mSharedPreferencesHelper.optFloat(
+                SCALE_SETTING_KEY_NAME,
+                1.0f
+            )
+        }
+
+        set(value) {
+            mSharedPreferencesHelper.setFloat(SCALE_SETTING_KEY_NAME, value)
+        }
+    var rotation:Int
+        get() {
+            return mSharedPreferencesHelper.optInteger(
+                ROTATION_SETTING_KEY_NAME,
+                0
+            )
+        }
+        set(value) {
+            mSharedPreferencesHelper.setInteger(ROTATION_SETTING_KEY_NAME, value)
+        }
+
 
     var seekMode: QPlayerSetting.QPlayerSeek
         get() {
@@ -126,7 +165,7 @@ object PlayerSettingRespostory : SharedPreferences.OnSharedPreferenceChangeListe
             )
         }
         set(value) {
-            mSharedPreferencesHelper.setBoolean(SPEED_SETTING_KEY_NAME, value)
+            mSharedPreferencesHelper.setFloat(SPEED_SETTING_KEY_NAME, value)
         }
 
     var startPosition: Long
