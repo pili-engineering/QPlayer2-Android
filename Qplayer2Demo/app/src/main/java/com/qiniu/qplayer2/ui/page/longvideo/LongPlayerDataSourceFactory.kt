@@ -18,9 +18,6 @@ object LongPlayerDataSourceFactory {
         var url = ""
         var name = ""
 
-
-
-
 //        builder = QMediaModelBuilder()
 //        builder.addStreamElement(
 //            "", QURLType.QAUDIO_AND_VIDEO, 720,
@@ -1415,6 +1412,30 @@ object LongPlayerDataSourceFactory {
                     )
             )
         )
+
+        builder = QMediaModelBuilder()
+
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "http://demovideos.qiniushawn.top/rotation90degree.mp4", true
+        )
+        name = "旋转90度"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(false),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
+
+                    )
+            )
+        )
+
+
 
 
 
