@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.qiniu.qmedia.component.player.QMediaModelBuilder
 import com.qiniu.qmedia.component.player.QURLType
 import com.qiniu.qplayer2.R
+import com.qiniu.qplayer2.common.system.FileUtils
 import com.qiniu.qplayer2.repository.shortvideo.ModelFactory
 import com.qiniu.qplayer2.repository.shortvideo.VideoItem
 
@@ -105,58 +106,39 @@ class ShortVideoActivityV2 : AppCompatActivity() {
     }
 
     private fun fetchVideoList() {
-        ModelFactory.createVideoItemListByURL(
-            SHORT_VIDEO_PATH_PREFIX,
-            object : ModelFactory.OnResultListener {
-                override fun onSuccess(statusCode: Int, data: Any) {
-                    val items = data as ArrayList<VideoItem>
-                    val playItems = ArrayList<PlayItem>()
-                    items.forEach { videoItem ->
-                        videoItem.let {
 
-                            mShortVideoListAdapterV2.makeProxyURL(it.videoPath)?.let { proxyUrl ->
-                                val builder = QMediaModelBuilder()
-                                Log.d(TAG, "video path=${it.videoPath}")
-                                builder.addStreamElement(
-                                    "",
-                                    QURLType.QAUDIO_AND_VIDEO,
-                                    0,
-                                    proxyUrl,
-                                    true,
-                                    "",
-                                    it.videoPath
-                                )
-                                val playItem = PlayItem(
-                                    it.videoPath.hashCode(),
-                                    builder.build(false),
-                                    it.coverPath
-                                )
+        FileUtils.copyFromResToFile(this, R.raw.nike, "nike.mp4")?.let {
+            val playItems = ArrayList<PlayItem>()
+            var count = 10
+            while (count> 0) {
+                val builder = QMediaModelBuilder()
+                Log.d(TAG, "video path=${it}")
+                builder.addStreamElement(
+                    "",
+                    QURLType.QAUDIO_AND_VIDEO,
+                    0,
+                    it,
+                    true,
+                    "",
+                    it
+                )
+                count -= 1
 
-                                playItems.add(playItem)
-                            }
+                val playItem = PlayItem(
+                    it.hashCode(),
+                    builder.build(false),
+                    this.resources.getDrawable(R.drawable.nike)
 
-                        }
-                    }
+                )
 
-                    mPlayItemManager.refresh(playItems)
+                playItems.add(playItem)
+            }
 
-                    runOnUiThread(Runnable {
+            mPlayItemManager.refresh(playItems)
+            initView()
 
-                        initView()
-                    })
+        }
 
-                }
-
-                override fun onFailure() {
-                    runOnUiThread(Runnable {
-                        Toast.makeText(
-                            this@ShortVideoActivityV2,
-                            "获得短视频列表失败",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    })
-                }
-            })
     }
 
     private fun startPlay() {

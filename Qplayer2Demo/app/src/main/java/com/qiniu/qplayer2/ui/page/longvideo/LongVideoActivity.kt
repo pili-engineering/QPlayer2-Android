@@ -61,8 +61,9 @@ class LongVideoActivity : AppCompatActivity() {
         mWakeLock.release()
     }
 
+
     private fun initCommonPlayer() {
-        mPlayerDataSource = LongPlayerDataSourceFactory.create()
+        mPlayerDataSource = LongPlayerDataSourceFactory.create(this)
         val config = CommonPlayerConfig.Builder<Any,
                 LongLogicProvider, LongPlayableParams, LongVideoParams>()
             .addControlPanel(
