@@ -61,6 +61,10 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
     applicationVariants.all {
         variant ->
             variant.buildConfigField 'String', 'QPLAYER2_DEMO_BUILD_TIME', getBuildTime()
@@ -118,3 +122,4 @@ dependencies {
     //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
 
 }
+android.buildFeatures.buildConfig = true
