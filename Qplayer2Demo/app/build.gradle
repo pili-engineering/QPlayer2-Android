@@ -16,12 +16,12 @@ private static String getBuildTime() {
 android {
     namespace 'com.qiniu.qplayer2'
 
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.qiniu.qplayer2"
         minSdk 21
-        targetSdk 34
+        targetSdk 35
         versionCode 1
         versionName "$qplayer2_version"
 
