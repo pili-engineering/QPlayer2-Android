@@ -91,28 +91,28 @@ object PlayerSettingRespostory : SharedPreferences.OnSharedPreferenceChangeListe
         set(value) {
             mSharedPreferencesHelper.setInteger(MIRROR_SETTING_KEY_NAME, value.value)
         }
-
-    var scale: Float
-        get() {
-            return mSharedPreferencesHelper.optFloat(
-                SCALE_SETTING_KEY_NAME,
-                1.0f
-            )
-        }
-
-        set(value) {
-            mSharedPreferencesHelper.setFloat(SCALE_SETTING_KEY_NAME, value)
-        }
-    var rotation:Int
-        get() {
-            return mSharedPreferencesHelper.optInteger(
-                ROTATION_SETTING_KEY_NAME,
-                0
-            )
-        }
-        set(value) {
-            mSharedPreferencesHelper.setInteger(ROTATION_SETTING_KEY_NAME, value)
-        }
+//
+//    var scale: Float
+//        get() {
+//            return mSharedPreferencesHelper.optFloat(
+//                SCALE_SETTING_KEY_NAME,
+//                1.0f
+//            )
+//        }
+//
+//        set(value) {
+//            mSharedPreferencesHelper.setFloat(SCALE_SETTING_KEY_NAME, value)
+//        }
+//    var rotation:Int
+//        get() {
+//            return mSharedPreferencesHelper.optInteger(
+//                ROTATION_SETTING_KEY_NAME,
+//                0
+//            )
+//        }
+//        set(value) {
+//            mSharedPreferencesHelper.setInteger(ROTATION_SETTING_KEY_NAME, value)
+//        }
 
 
     var seekMode: QPlayerSetting.QPlayerSeek

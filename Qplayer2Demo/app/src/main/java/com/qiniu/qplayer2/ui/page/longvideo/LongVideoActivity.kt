@@ -107,6 +107,7 @@ class LongVideoActivity : AppCompatActivity() {
             .setStartAction(PlayerSettingRespostory.startAction)
             .setSpeed(PlayerSettingRespostory.playSpeed)
             .setRenderRatio(PlayerSettingRespostory.ratioType)
+            .setMirrorType(PlayerSettingRespostory.mirrorType)
             .setSubtitleEnable(PlayerSettingRespostory.subtitleEnable)
             .setSEIEnable(PlayerSettingRespostory.seiEnable)
 //            .setSubtitleEnable(PlayerSettingRespostory.subtitleEnable)

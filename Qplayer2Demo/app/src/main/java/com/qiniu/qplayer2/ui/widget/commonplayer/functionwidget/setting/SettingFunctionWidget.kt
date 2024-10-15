@@ -108,9 +108,9 @@ class SettingFunctionWidget(context: Context) :
         updateQualitySwitchType(PlayerSettingRespostory.qualitySwitchType)
         updateForceFlushAuthentication()
         updateIsShootVideoSource(PlayerSettingRespostory.isShootVideoSource)
-        updateRotation(PlayerSettingRespostory.rotation)
+        updateRotation(0)
         updateMirror(PlayerSettingRespostory.mirrorType)
-        updateScale(PlayerSettingRespostory.scale)
+        updateScale(1.0f)
 //        registerSubjects()
         registerClickListeners()
     }
@@ -123,7 +123,6 @@ class SettingFunctionWidget(context: Context) :
         } else {
             updateDataSourceStartPos(mStartPositionEdit.editableText.toString().toLong())
         }
-        updateRotation(mRotationSeekBar.progress * 360 / 1000);
 
         unRegisterClickListeners()
     }
@@ -519,9 +518,10 @@ class SettingFunctionWidget(context: Context) :
         }
 
         mRotationSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                PlayerSettingRespostory.rotation = progress * 360 / 1000
-                mPlayerCore.mPlayerContext.getPlayerRenderHandler().setRotation(PlayerSettingRespostory.rotation)
+                val rotation = progress * 360 / 1000
+                mPlayerCore.mPlayerContext.getPlayerRenderHandler().setRotation(rotation)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -534,14 +534,15 @@ class SettingFunctionWidget(context: Context) :
 
         mScaleSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                var scale: Float = 0.0f
                 if (progress >= 500) {
-                    PlayerSettingRespostory.scale = 2.0f * progress / 1000
+                    scale = 2.0f * progress / 1000
                 } else {
-                    PlayerSettingRespostory.scale = 0.5f + 0.5f * progress / 500
+                    scale = 0.5f + 0.5f * progress / 500
 
                 }
-                PlayerSettingRespostory.scale = 0.5f + 1.5f * progress / 1000
-                mPlayerCore.mPlayerContext.getPlayerRenderHandler().setScale(PlayerSettingRespostory.scale)
+                scale = 0.5f + 1.5f * progress / 1000
+                mPlayerCore.mPlayerContext.getPlayerRenderHandler().setScale(scale)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
