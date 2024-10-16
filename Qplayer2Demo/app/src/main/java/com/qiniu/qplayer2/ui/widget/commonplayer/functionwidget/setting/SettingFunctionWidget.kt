@@ -108,9 +108,9 @@ class SettingFunctionWidget(context: Context) :
         updateQualitySwitchType(PlayerSettingRespostory.qualitySwitchType)
         updateForceFlushAuthentication()
         updateIsShootVideoSource(PlayerSettingRespostory.isShootVideoSource)
-        updateRotation(0)
+        updateRotation(PlayerSettingRespostory.rotation)
         updateMirror(PlayerSettingRespostory.mirrorType)
-        updateScale(1.0f)
+        updateScale(PlayerSettingRespostory.scale)
 //        registerSubjects()
         registerClickListeners()
     }
