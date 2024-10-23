@@ -264,7 +264,7 @@ class SettingFunctionWidget(context: Context) :
     }
 
     private fun updateRotation(angle: Int) {
-        mRotationSeekBar.progress = angle * 1000 / 360
+        mRotationSeekBar.progress = angle
     }
 
     private fun updateScale(scale: Float) {
@@ -520,8 +520,8 @@ class SettingFunctionWidget(context: Context) :
         mRotationSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                val rotation = progress * 360 / 1000
-                mPlayerCore.mPlayerContext.getPlayerRenderHandler().setRotation(rotation)
+                PlayerSettingRespostory.rotation = progress
+                mPlayerCore.mPlayerContext.getPlayerRenderHandler().setRotation(PlayerSettingRespostory.rotation)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -542,7 +542,8 @@ class SettingFunctionWidget(context: Context) :
 
                 }
                 scale = 0.5f + 1.5f * progress / 1000
-                mPlayerCore.mPlayerContext.getPlayerRenderHandler().setScale(scale)
+                PlayerSettingRespostory.scale = scale
+                mPlayerCore.mPlayerContext.getPlayerRenderHandler().setScale(PlayerSettingRespostory.scale)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {

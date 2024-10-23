@@ -550,7 +550,7 @@
         android:layout_centerVertical="true"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:max="1000"
+        android:max="360"
         android:thumbOffset="10dp"
         android:minHeight="2dp"
         android:maxHeight="4dp"
