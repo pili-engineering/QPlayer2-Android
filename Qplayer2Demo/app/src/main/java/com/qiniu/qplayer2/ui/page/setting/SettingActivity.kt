@@ -41,6 +41,9 @@ class SettingActivity : AppCompatActivity() {
     private lateinit var m_1_5_0_RB: RadioButton
     private lateinit var m_2_0_0_RB: RadioButton
 
+    private lateinit var mMuteRG: RadioGroup
+    private lateinit var mMuteRB: RadioButton
+    private lateinit var mNotMuteRB:RadioButton
 
     private lateinit var mStartPositionEdit: EditText
 
@@ -59,6 +62,7 @@ class SettingActivity : AppCompatActivity() {
         mStartRG = findViewById(R.id.start_RG)
         mRenderRatioRG = findViewById(R.id.ratio_RG)
         mSpeedRG = findViewById(R.id.speed_RG)
+        mMuteRG = findViewById(R.id.mute_RG)
 
         mAutoDecodrRB = findViewById(R.id.auto_decoder_RB)
         mSoftDecodrRB = findViewById(R.id.software_decoder_RB)
@@ -83,6 +87,9 @@ class SettingActivity : AppCompatActivity() {
         m_1_2_5_RB = findViewById(R.id.speed_1_2_5_RB)
         m_1_5_0_RB = findViewById(R.id.speed_1_5_0_RB)
         m_2_0_0_RB = findViewById(R.id.speed_2_0_0_RB)
+
+        mMuteRB = findViewById(R.id.mute_RB)
+        mNotMuteRB = findViewById(R.id.speaker_RB)
 
         mStartPositionEdit = findViewById(R.id.start_pos_ET)
 
@@ -150,6 +157,15 @@ class SettingActivity : AppCompatActivity() {
                 m4_3RatioRB.id ->
                     mPlayerSettingVM.setRenderRatio(QPlayerSetting.QPlayerRenderRatio.QPLAYER_RATIO_SETTING_4_3)
 
+            }
+        }
+
+        mMuteRG.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId) {
+                mMuteRB.id ->
+                    mPlayerSettingVM.setMute(true)
+                mNotMuteRB.id ->
+                    mPlayerSettingVM.setMute(false)
             }
         }
 
@@ -241,7 +257,13 @@ class SettingActivity : AppCompatActivity() {
             mStartPositionEdit.setText(it.toString())
         })
 
-
+        mPlayerSettingVM.muteLiveData.observe(this, Observer {
+            if (it) {
+                mMuteRB.isChecked = true
+            } else {
+                mNotMuteRB.isChecked = true
+            }
+        })
     }
 
     private fun unregisterVM() {
@@ -250,6 +272,7 @@ class SettingActivity : AppCompatActivity() {
         mPlayerSettingVM.startTypeLiveData.removeObservers(this)
         mPlayerSettingVM.startPositionLiveData.removeObservers(this)
         mPlayerSettingVM.speedLiveData.removeObservers(this)
+        mPlayerSettingVM.muteLiveData.removeObservers(this)
     }
 
     override fun onPause() {

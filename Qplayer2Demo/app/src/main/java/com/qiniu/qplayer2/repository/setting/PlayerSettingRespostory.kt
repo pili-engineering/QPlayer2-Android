@@ -24,6 +24,7 @@ object PlayerSettingRespostory : SharedPreferences.OnSharedPreferenceChangeListe
     private const val MIRROR_SETTING_KEY_NAME = "MirrorSetting"
     private const val ROTATION_SETTING_KEY_NAME = "RotationSetting"
     private const val SCALE_SETTING_KEY_NAME = "ScaleSetting"
+    private const val MUTE_KEY_NAME = "MuteSetting"
 
 
     public enum class QualitySwitchType(val value: Int) {
@@ -224,6 +225,17 @@ object PlayerSettingRespostory : SharedPreferences.OnSharedPreferenceChangeListe
         }
         set(value) {
             mSharedPreferencesHelper.setBoolean(SHOOT_VIDEO_SOURCE_KEY_NAME, value)
+        }
+
+    var isMute: Boolean
+        get() {
+            return mSharedPreferencesHelper.optBoolean(
+                MUTE_KEY_NAME,
+                false
+            )
+        }
+        set(value) {
+            mSharedPreferencesHelper.setBoolean(MUTE_KEY_NAME, value)
         }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
