@@ -11,14 +11,15 @@ import com.qiniu.qplayer2.R
 
 class ShortVideoListAdapterV2(context: Context,
                               private val mPlayItemManager: PlayItemManager,
-                              private val mExternalFilesDir: String) :
+                              private val mExternalFilesDir: String,
+                              allPlayerStateEndListener: IAllPlayerStateEndListener) :
     RecyclerView.Adapter<ShortVideoHolderV2>() {
 
     companion object {
         private const val TAG = "ShortVideoListAdapterV2"
     }
 
-    private val mShortVideoPlayerViewCache = ShortVideoPlayerViewCache(context, mPlayItemManager, mExternalFilesDir)
+    private val mShortVideoPlayerViewCache = ShortVideoPlayerViewCache(context, mPlayItemManager, mExternalFilesDir, allPlayerStateEndListener)
     private var mCurrentPostion: Int = 0
     private var mCurrentHolder: ShortVideoHolderV2? = null
 

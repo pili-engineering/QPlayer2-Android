@@ -3,10 +3,13 @@ package com.qiniu.qplayer2.ui.page.shortvideoV2
 import com.qiniu.qmedia.ui.QSurfacePlayerView
 import android.content.Context
 import android.util.Log
+import com.qiniu.qmedia.component.player.QIPlayerStateChangeListener
 import com.qiniu.qmedia.component.player.QMediaItemContext
 import com.qiniu.qmedia.component.player.QPlayerSetting
+import com.qiniu.qmedia.component.player.QPlayerState
 
-class SurfacePlayerViewManager(private val mContext: Context) {
+class SurfacePlayerViewManager(private val mContext: Context,
+                               private val mAllPlayerStateEndListener: IAllPlayerStateEndListener): QIPlayerStateChangeListener {
 
     companion object {
         private const val MAX_COUNT = 3
@@ -16,6 +19,7 @@ class SurfacePlayerViewManager(private val mContext: Context) {
 
     private val mSurfacePlayerViews = ArrayList<QSurfacePlayerView>()
     private var mCurrentCacheCount = 0
+    private var mCurrentCacheEndCount = 0
     private var mPreRenderPlayerView: QSurfacePlayerView? = null
     private var mPreRenderVideoId: Int = INVALID_VIDEO_ID
 
@@ -104,6 +108,7 @@ class SurfacePlayerViewManager(private val mContext: Context) {
                 mCurrentCacheCount += 1
                 val surfaceView = QSurfacePlayerView(mContext)
                 surfaceView.playerControlHandler.init(mContext)
+                surfaceView.playerControlHandler.addPlayerStateChangeListener(this)
                 surfaceView
             } else {
                 null
@@ -115,5 +120,15 @@ class SurfacePlayerViewManager(private val mContext: Context) {
         mSurfacePlayerViews.add(surfacePlayerView)
         Log.d(TAG, "recycleSurfacePlayerView size=${mSurfacePlayerViews.size} current-count=${mCurrentCacheCount}")
 
+    }
+
+    override fun onStateChanged(state: QPlayerState) {
+
+        if (state == QPlayerState.END) {
+            mCurrentCacheEndCount++
+            if (mCurrentCacheCount == mCurrentCacheEndCount) {
+                mAllPlayerStateEndListener.onAllPlayerStateEnd()
+            }
+        }
     }
 }

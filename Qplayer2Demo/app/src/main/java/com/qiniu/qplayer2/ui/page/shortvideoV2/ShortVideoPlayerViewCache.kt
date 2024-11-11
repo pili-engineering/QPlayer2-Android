@@ -5,10 +5,11 @@ import android.util.Log
 import com.qiniu.qmedia.ui.QSurfacePlayerView
 
 class ShortVideoPlayerViewCache(context: Context, private val mPlayItemManager: PlayItemManager,
-                                externalFilesDir: String):IShortVideoPlayerViewCacheRecycler {
+                                externalFilesDir: String, allPlayerStateEndListener: IAllPlayerStateEndListener):IShortVideoPlayerViewCacheRecycler {
     private val mMediaItemContextManager = MediaItemContextManager(mPlayItemManager, externalFilesDir)
-    private val mSurfacePlayerViewManager = SurfacePlayerViewManager(context)
+    private val mSurfacePlayerViewManager = SurfacePlayerViewManager(context, allPlayerStateEndListener)
     private var mCurrentPostion = -1
+
 
     companion object {
         private const val TAG = "PlayerViewCache"

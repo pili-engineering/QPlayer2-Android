@@ -1,9 +1,12 @@
 package com.qiniu.qplayer2.ui.page.shortvideoV2
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Lifecycle
@@ -17,7 +20,8 @@ import com.qiniu.qplayer2.common.system.FileUtils
 import com.qiniu.qplayer2.repository.shortvideo.ModelFactory
 import com.qiniu.qplayer2.repository.shortvideo.VideoItem
 
-class ShortVideoActivityV2 : AppCompatActivity() {
+
+class ShortVideoActivityV2 : AppCompatActivity(), IAllPlayerStateEndListener {
 
     private lateinit var mShortVideoViewPager2: ViewPager2
     private lateinit var mShortVideoListAdapterV2: ShortVideoListAdapterV2
@@ -52,6 +56,7 @@ class ShortVideoActivityV2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
 
         setContentView(R.layout.activity_short_video2)
@@ -63,10 +68,49 @@ class ShortVideoActivityV2 : AppCompatActivity() {
         mShortVideoListAdapterV2 = ShortVideoListAdapterV2(
             this,
             mPlayItemManager,
-            this.getExternalFilesDir(null)?.path ?: ""
+            this.getExternalFilesDir(null)?.path ?: "",
+            this
         )
+        Log.d(TAG, "onCreate")
 
         fetchVideoList()
+        Log.d(TAG, "onCreate fetchVideoList")
+
+        onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                mShortVideoListAdapterV2.clear()
+            }
+        })
+
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.d(TAG, "onSaveInstanceState")
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Log.d(TAG, "onRestoreInstanceState")
+
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+        Log.d(TAG, "onCreate two params")
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart")
+
+    }
+
+    override fun recreate() {
+        super.recreate()
+        Log.d(TAG, "recreate")
 
     }
 
@@ -100,9 +144,10 @@ class ShortVideoActivityV2 : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        mShortVideoListAdapterV2.clear()
 
         super.onDestroy()
+        Log.d(TAG, "onDestroy")
+
     }
 
     private fun fetchVideoList() {
@@ -146,5 +191,10 @@ class ShortVideoActivityV2 : AppCompatActivity() {
             mFirstPlay = false
             changeVideo(0)
         }
+    }
+
+    override fun onAllPlayerStateEnd() {
+        Log.d(TAG, "onAllPlayerStateEnd")
+        finish()
     }
 }
