@@ -38,6 +38,15 @@ class LongPlayerEnviroment :
             newPlayableParams.startPos = PlayerSettingRespostory.startPosition
 
         }
+
+        override fun onVideoParamsStart(videoParams: LongVideoParams) {
+            PlayerSettingRespostory.scale = 1.0f
+            PlayerSettingRespostory.rotation = 0
+            mPlayerCore.mPlayerContext.getPlayerRenderHandler().setScale(PlayerSettingRespostory.scale)
+            mPlayerCore.mPlayerContext.getPlayerRenderHandler().setRotation(PlayerSettingRespostory.rotation)
+            super.onVideoParamsStart(videoParams)
+
+        }
     }
     override fun start() {
         mPlayerCore.mCommonPlayerVideoSwitcher.addVideoPlayEventListener(mVideoPlayEventListener)

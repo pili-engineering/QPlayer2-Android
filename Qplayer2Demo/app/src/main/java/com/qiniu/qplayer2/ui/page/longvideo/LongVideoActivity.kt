@@ -61,8 +61,9 @@ class LongVideoActivity : AppCompatActivity() {
         mWakeLock.release()
     }
 
+
     private fun initCommonPlayer() {
-        mPlayerDataSource = LongPlayerDataSourceFactory.create()
+        mPlayerDataSource = LongPlayerDataSourceFactory.create(this)
         val config = CommonPlayerConfig.Builder<Any,
                 LongLogicProvider, LongPlayableParams, LongVideoParams>()
             .addControlPanel(
@@ -106,8 +107,10 @@ class LongVideoActivity : AppCompatActivity() {
             .setStartAction(PlayerSettingRespostory.startAction)
             .setSpeed(PlayerSettingRespostory.playSpeed)
             .setRenderRatio(PlayerSettingRespostory.ratioType)
+            .setMirrorType(PlayerSettingRespostory.mirrorType)
             .setSubtitleEnable(PlayerSettingRespostory.subtitleEnable)
             .setSEIEnable(PlayerSettingRespostory.seiEnable)
+            .setMute(PlayerSettingRespostory.isMute)
 //            .setSubtitleEnable(PlayerSettingRespostory.subtitleEnable)
             .build()
 

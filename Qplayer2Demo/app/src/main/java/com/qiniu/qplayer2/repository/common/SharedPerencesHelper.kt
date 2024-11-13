@@ -85,6 +85,10 @@ class SharedPreferencesHelper {
         sharedPreferences.edit().putInt(key, value).apply()
     }
 
+    fun setFloat(key: String?, value: Float) {
+        sharedPreferences.edit().putFloat(key, value).apply()
+    }
+
     // ----- boolean -----
     fun optBoolean(key: String?, defaultValue: Boolean): Boolean {
         try {
@@ -112,11 +116,6 @@ class SharedPreferencesHelper {
     fun setBoolean(key: String?, value: Boolean) {
         sharedPreferences.edit().putBoolean(key, value).apply()
     }
-
-    fun setBoolean(key: String?, value: Float) {
-        sharedPreferences.edit().putFloat(key, value).apply()
-    }
-
 
     fun setBoolean(keyResId: Int, value: Boolean) {
         sharedPreferences.edit().putBoolean(applicationContext.getString(keyResId), value)

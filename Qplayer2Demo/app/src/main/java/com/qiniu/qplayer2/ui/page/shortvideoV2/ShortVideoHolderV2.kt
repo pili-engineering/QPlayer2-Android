@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.qiniu.qmedia.component.player.QIPlayerRenderListener
 import com.qiniu.qmedia.component.player.QIPlayerStateChangeListener
 import com.qiniu.qmedia.component.player.QPlayerState
@@ -22,6 +21,7 @@ import com.qiniu.qplayer2.ui.widget.PlayerFullScreenPlayClickWidget
 import com.qiniu.qplayer2.ui.widget.PlayerPlayWidget
 import com.qiniu.qplayer2.ui.widget.PlayerProgressTextWidget
 import com.qiniu.qplayer2.ui.widget.PlayerSeekWidget
+
 
 class ShortVideoHolderV2(
     private val mShortVideoPlayerViewCacheRecycler: IShortVideoPlayerViewCacheRecycler,
@@ -80,15 +80,7 @@ class ShortVideoHolderV2(
         mPlayItem = playItem
         mItemView.tag = postion
         mPlayItem?.let {
-            mCoverIV.load(it.coverUrl) {
-                listener(onError = { request, _ ->
-                    //设置点击事件，点击重新加载
-                    Log.i("AAA", "ERROR ")
-
-                }, onSuccess = { _, _ ->
-                    Log.i("AAA", "SUCESS ")
-                })
-            }
+            mCoverIV.setImageDrawable(it.cover)
         }
     }
 

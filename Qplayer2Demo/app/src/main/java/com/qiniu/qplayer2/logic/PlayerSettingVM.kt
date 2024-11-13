@@ -27,6 +27,8 @@ class PlayerSettingVM(lifeCycle: Lifecycle) {
     val startPositionLiveData =
         MutableLiveData<Long>(PlayerSettingRespostory.startPosition)
 
+    val muteLiveData = MutableLiveData<Boolean>(PlayerSettingRespostory.isMute)
+
     init {
 
         PlayerSettingRespostory.decoderTypeSubject
@@ -108,5 +110,9 @@ class PlayerSettingVM(lifeCycle: Lifecycle) {
 
     fun setStartPostion(pos: Long) {
         PlayerSettingRespostory.startPosition = pos
+    }
+
+    fun setMute(mute: Boolean) {
+        PlayerSettingRespostory.isMute = mute
     }
 }

@@ -7,6 +7,8 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.SeekBar
+import androidx.appcompat.widget.AppCompatSeekBar
 import com.qiniu.qmedia.component.player.QPlayerSetting
 import com.qiniu.qplayer2.R
 
@@ -50,6 +52,12 @@ class SettingFunctionWidget(context: Context) :
     private lateinit var mGreenBlindRB: RadioButton
     private lateinit var mBlueBlindRB: RadioButton
 
+    private lateinit var mMirrorRG: RadioGroup
+    private lateinit var mNoneMirrorRB: RadioButton
+    private lateinit var mXMirrorRB: RadioButton
+    private lateinit var mYMirrorRB: RadioButton
+    private lateinit var mXYMirrorRB: RadioButton
+
 
     private lateinit var mQualitySwitchTypeRG: RadioGroup
     private lateinit var mQualitySwitchImmediatelyRB: RadioButton
@@ -57,6 +65,10 @@ class SettingFunctionWidget(context: Context) :
     private lateinit var mQualitySwitchSeamlessRB: RadioButton
 
     private lateinit var mStartPositionEdit: EditText
+
+    private lateinit var mRotationSeekBar: AppCompatSeekBar
+
+    private lateinit var mScaleSeekBar: AppCompatSeekBar
 
     private lateinit var mForceFlushAuthenticationCB: CheckBox
 
@@ -96,6 +108,9 @@ class SettingFunctionWidget(context: Context) :
         updateQualitySwitchType(PlayerSettingRespostory.qualitySwitchType)
         updateForceFlushAuthentication()
         updateIsShootVideoSource(PlayerSettingRespostory.isShootVideoSource)
+        updateRotation(PlayerSettingRespostory.rotation)
+        updateMirror(PlayerSettingRespostory.mirrorType)
+        updateScale(PlayerSettingRespostory.scale)
 //        registerSubjects()
         registerClickListeners()
     }
@@ -108,6 +123,7 @@ class SettingFunctionWidget(context: Context) :
         } else {
             updateDataSourceStartPos(mStartPositionEdit.editableText.toString().toLong())
         }
+
         unRegisterClickListeners()
     }
 
@@ -141,6 +157,14 @@ class SettingFunctionWidget(context: Context) :
         mGreenBlindRB = view.findViewById(R.id.blind_green_RB)
         mBlueBlindRB = view.findViewById(R.id.blind_blue_RB)
 
+        mMirrorRG = view.findViewById(R.id.mirror_RG)
+        mNoneMirrorRB = view.findViewById(R.id.mirror_none_RB)
+        mXMirrorRB = view.findViewById(R.id.mirror_x_RB)
+        mYMirrorRB = view.findViewById(R.id.mirror_y_RB)
+        mXYMirrorRB = view.findViewById(R.id.mirror_xy_RB)
+
+        mRotationSeekBar = view.findViewById(R.id.rotation_SB)
+        mScaleSeekBar = view.findViewById(R.id.scale_SB)
         mStartPositionEdit = view.findViewById(R.id.start_pos_ET)
 
 
@@ -157,6 +181,19 @@ class SettingFunctionWidget(context: Context) :
         return view
     }
 
+    private fun updateMirror(mirrorType: QPlayerSetting.QPlayerMirror) {
+        when(mirrorType) {
+            QPlayerSetting.QPlayerMirror.QPLAYER_MIRROR_NONE ->
+                mNoneMirrorRB.isChecked = true
+            QPlayerSetting.QPlayerMirror.QPLAYER_MIRROR_X ->
+                mXMirrorRB.isChecked = true
+            QPlayerSetting.QPlayerMirror.QPLAYER_MIRROR_Y ->
+                mYMirrorRB.isChecked = true
+            QPlayerSetting.QPlayerMirror.QPLAYER_MIRROR_XY ->
+                mXYMirrorRB.isChecked = true
+        }
+    }
+
     private fun updateDecoder(decoderType: QPlayerSetting.QPlayerDecoder) {
         when (decoderType) {
             QPlayerSetting.QPlayerDecoder.QPLAYER_DECODER_SETTING_AUTO ->
@@ -169,6 +206,7 @@ class SettingFunctionWidget(context: Context) :
                 mMixDecodrRB.isChecked = true
         }
     }
+
 
     private fun updateSEIEnable(enable: Boolean) {
         mSEIEnableCB.isChecked = enable
@@ -223,6 +261,14 @@ class SettingFunctionWidget(context: Context) :
             QPlayerSetting.QPlayerBlind.QPLAYER_BLIND_SETTING_BLUE ->
                 mBlueBlindRB.isChecked = true
         }
+    }
+
+    private fun updateRotation(angle: Int) {
+        mRotationSeekBar.progress = angle
+    }
+
+    private fun updateScale(scale: Float) {
+        mScaleSeekBar.progress = (1000 * (scale - 0.5f) / 1.5f).toInt()
     }
 
     private fun updateStartPosition(startPos: Long) {
@@ -329,6 +375,8 @@ class SettingFunctionWidget(context: Context) :
         mSEIEnableCB.setOnCheckedChangeListener(null)
 
         mQualitySwitchTypeRG.setOnCheckedChangeListener(null)
+
+        mMirrorRG.setOnCheckedChangeListener(null)
     }
     private fun registerClickListeners() {
         mDecodrRG.setOnCheckedChangeListener { group, checkedId ->
@@ -349,6 +397,25 @@ class SettingFunctionWidget(context: Context) :
             }
 
             mPlayerCore.mPlayerContext.getPlayerControlHandler().setDecodeType(PlayerSettingRespostory.decoderType)
+
+        }
+
+        mMirrorRG.setOnCheckedChangeListener { group, checkId ->
+            when (checkId) {
+                mNoneMirrorRB.id ->
+                    PlayerSettingRespostory.mirrorType =
+                        QPlayerSetting.QPlayerMirror.QPLAYER_MIRROR_NONE
+                mXMirrorRB.id ->
+                    PlayerSettingRespostory.mirrorType =
+                        QPlayerSetting.QPlayerMirror.QPLAYER_MIRROR_X
+                mYMirrorRB.id ->
+                    PlayerSettingRespostory.mirrorType =
+                        QPlayerSetting.QPlayerMirror.QPLAYER_MIRROR_Y
+                mXYMirrorRB.id ->
+                    PlayerSettingRespostory.mirrorType =
+                        QPlayerSetting.QPlayerMirror.QPLAYER_MIRROR_XY
+            }
+            mPlayerCore.mPlayerContext.getPlayerRenderHandler().setMirrorType(PlayerSettingRespostory.mirrorType)
 
         }
 
@@ -449,6 +516,44 @@ class SettingFunctionWidget(context: Context) :
                 updateDataSourceStartPos(mStartPositionEdit.editableText.toString().toLong())
             }
         }
+
+        mRotationSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                PlayerSettingRespostory.rotation = progress
+                mPlayerCore.mPlayerContext.getPlayerRenderHandler().setRotation(PlayerSettingRespostory.rotation)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+        })
+
+
+        mScaleSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                var scale: Float = 0.0f
+                if (progress >= 500) {
+                    scale = 2.0f * progress / 1000
+                } else {
+                    scale = 0.5f + 0.5f * progress / 500
+
+                }
+                scale = 0.5f + 1.5f * progress / 1000
+                PlayerSettingRespostory.scale = scale
+                mPlayerCore.mPlayerContext.getPlayerRenderHandler().setScale(PlayerSettingRespostory.scale)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+
+        })
+
 
         mSEIEnableCB.setOnCheckedChangeListener { cb, is_checked ->
             PlayerSettingRespostory.seiEnable = is_checked
