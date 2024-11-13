@@ -65,6 +65,27 @@ object LongPlayerDataSourceFactory {
             )
         )
 
+        builder = QMediaModelBuilder()
+        builder.addStreamElement(
+            "", QURLType.QAUDIO_AND_VIDEO, 1080,
+            "rtmp://pili-rtmp.qnsdk.com/sdk-live/6666", true
+        )
+        name = "2-直播-rtmp"
+        videoParams = LongVideoParams(name, name.hashCode().toLong())
+        dataSourceBuilder.addVideo(
+            videoParams,
+            arrayListOf(
+                LongPlayableParams(
+                    builder.build(true),
+                    LongControlPanelType.Normal.type,
+                    DisplayOrientation.LANDSCAPE,
+                    LongEnviromentType.LONG.type,
+                    PlayerSettingRespostory.startPosition,
+
+                    )
+            )
+        )
+
         return dataSourceBuilder.build()
     }
 }
