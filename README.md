@@ -13,7 +13,6 @@ Qplayer2是一款跨平台的播放器SDK,除了基础的播放器能力外，�
  -------- | ------------
  Android | Latest Version ：1.5.0 
  IOS | https://github.com/pili-engineering/QPlayer2-IOS.git 
- Windows | https://github.com/pili-engineering/QPlayer2-Windows 
  HarmonyOS NEXT | https://github.com/pili-engineering/QPlayer2-HarmonyOS-NEXT 
  Mac | 敬请期待 
  Linux | 敬请期待 
